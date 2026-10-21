@@ -1,0 +1,47 @@
+/* C# code blocks – Prism token colors (light + dark) */
+pre.code {
+  margin: 0 0 .75em;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--code-bg);
+  color: var(--code-text);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  font: 14px/1.55 ui-monospace, "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  tab-size: 4;
+}
+pre.code:last-child { margin-bottom: 0; }
+pre.code code { font: inherit; white-space: pre; }
+
+:root {
+  --tok-comment: #6a737d;
+  --tok-keyword: #cf222e;
+  --tok-type: #8250df;
+  --tok-string: #0a3069;
+  --tok-number: #0550ae;
+  --tok-func: #6639ba;
+  --tok-punct: #57606a;
+  --tok-op: #cf222e;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tok-comment: #8b949e;
+    --tok-keyword: #ff7b72;
+    --tok-type: #d2a8ff;
+    --tok-string: #a5d6ff;
+    --tok-number: #79c0ff;
+    --tok-func: #d2a8ff;
+    --tok-punct: #8b949e;
+    --tok-op: #ff7b72;
+  }
+}
+.token.comment, .token.prolog, .token.doctype { color: var(--tok-comment); font-style: italic; }
+.token.keyword, .token.boolean, .token.null, .token.preprocessor { color: var(--tok-keyword); }
+.token.class-name, .token.namespace, .token.type-expression, .token.return-type, .token.generic-method { color: var(--tok-type); }
+.token.string, .token.char, .token.interpolation-string { color: var(--tok-string); }
+.token.number { color: var(--tok-number); }
+.token.function { color: var(--tok-func); }
+.token.punctuation { color: var(--tok-punct); }
+.token.operator { color: var(--tok-op); }
+.token.interpolation .token.punctuation { color: var(--tok-keyword); }
