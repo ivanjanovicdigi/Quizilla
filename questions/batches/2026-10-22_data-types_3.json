@@ -1,0 +1,3233 @@
+{
+  "batch": "2026-10-22_data-types_3",
+  "subject": "prog-1-digi",
+  "topic": "data-types",
+  "created": "2026-10-22",
+  "questions": [
+    {
+      "id": "dt-plus-mixed-001",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string vysledok = 8 + 6 + \"A\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`\"14A\"`",
+          "`\"86A\"`",
+          "`\"8\"`",
+          "`\"A68\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `8 + 6 = 14`, potom `14 + \"A\" = \"14A\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `8 + 6 = 14`, then `14 + \"A\" = \"14A\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"14A\"",
+        "hash": "3687e8fa442f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-002",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string spojenie = 7 + 2 + \"2\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `spojenie`?",
+        "answers": [
+          "`\"92\"`",
+          "`\"722\"`",
+          "`\"11\"`",
+          "`11`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `7 + 2 = 9`, potom `9 + \"2\" = \"92\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `spojenie` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `7 + 2 = 9`, then `9 + \"2\" = \"92\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "spojenie"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "spojenie = \"92\"",
+        "hash": "574c838ba4ee",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-003",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = 3 + 9 + \"A\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"12A\"`",
+          "`\"39A\"`",
+          "`\"3\"`",
+          "`\"A93\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `3 + 9 = 12`, potom `12 + \"A\" = \"12A\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `3 + 9 = 12`, then `12 + \"A\" = \"12A\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"12A\"",
+        "hash": "a92c537b45f4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-004",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string s = 2 + \"6\" + \"4\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `s`?",
+        "answers": [
+          "`\"264\"`",
+          "`\"12\"`",
+          "`12`",
+          "`\"2\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `2 + \"6\" = \"26\"`, potom `\"26\" + \"4\" = \"264\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `s` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `2 + \"6\" = \"26\"`, then `\"26\" + \"4\" = \"264\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "s"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "s = \"264\"",
+        "hash": "8b0b935e98b8",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-005",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string vysledok = \"4\" + 4 + \"1\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`\"441\"`",
+          "`\"9\"`",
+          "`9`",
+          "`\"4\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `\"4\" + 4 = \"44\"`, potom `\"44\" + \"1\" = \"441\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `\"4\" + 4 = \"44\"`, then `\"44\" + \"1\" = \"441\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"441\"",
+        "hash": "042b5d47ee3c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-006",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = 6 + 4 + \"2\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"102\"`",
+          "`\"642\"`",
+          "`\"12\"`",
+          "`12`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `6 + 4 = 10`, potom `10 + \"2\" = \"102\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `6 + 4 = 10`, then `10 + \"2\" = \"102\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"102\"",
+        "hash": "bb1f9cefb764",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-007",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = 2 + \"5\" + \"5\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"255\"`",
+          "`\"12\"`",
+          "`12`",
+          "`\"2\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `2 + \"5\" = \"25\"`, potom `\"25\" + \"5\" = \"255\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `2 + \"5\" = \"25\"`, then `\"25\" + \"5\" = \"255\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"255\"",
+        "hash": "76b57b743397",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-008",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = 4 + 2 + \"Y\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"6Y\"`",
+          "`\"42Y\"`",
+          "`\"4\"`",
+          "`\"Y24\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `4 + 2 = 6`, potom `6 + \"Y\" = \"6Y\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `4 + 2 = 6`, then `6 + \"Y\" = \"6Y\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"6Y\"",
+        "hash": "d489ac018ef0",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-009",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string vysledok = 2 + \"5\" + 1;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`\"251\"`",
+          "`\"8\"`",
+          "`8`",
+          "`\"2\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `2 + \"5\" = \"25\"`, potom `\"25\" + 1 = \"251\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `2 + \"5\" = \"25\"`, then `\"25\" + 1 = \"251\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"251\"",
+        "hash": "ea4d5e10720b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-010",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"5\" + 8 + 1;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"581\"`",
+          "`\"59\"`",
+          "`\"14\"`",
+          "`14`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `\"5\" + 8 = \"58\"`, potom `\"58\" + 1 = \"581\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `\"5\" + 8 = \"58\"`, then `\"58\" + 1 = \"581\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"581\"",
+        "hash": "b7b0fe6868c5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-011",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Y\" + 5 + 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"Y55\"`",
+          "`\"Y10\"`",
+          "`\"Y\"`",
+          "`\"55Y\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `\"Y\" + 5 = \"Y5\"`, potom `\"Y5\" + 5 = \"Y55\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `\"Y\" + 5 = \"Y5\"`, then `\"Y5\" + 5 = \"Y55\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"Y55\"",
+        "hash": "488ed0eadded",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-012",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string spojenie = 1 + 8 + \"8\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `spojenie`?",
+        "answers": [
+          "`\"98\"`",
+          "`\"188\"`",
+          "`\"17\"`",
+          "`17`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `1 + 8 = 9`, potom `9 + \"8\" = \"98\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `spojenie` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `1 + 8 = 9`, then `9 + \"8\" = \"98\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "spojenie"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "spojenie = \"98\"",
+        "hash": "f9713c1414c5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-013",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string spojenie = \"3\" + 4 + \"5\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `spojenie`?",
+        "answers": [
+          "`\"345\"`",
+          "`\"12\"`",
+          "`12`",
+          "`\"3\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `\"3\" + 4 = \"34\"`, potom `\"34\" + \"5\" = \"345\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `spojenie` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `\"3\" + 4 = \"34\"`, then `\"34\" + \"5\" = \"345\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "spojenie"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "spojenie = \"345\"",
+        "hash": "ab0d74e26d17",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-014",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string s = 2 + \"4\" + 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `s`?",
+        "answers": [
+          "`\"244\"`",
+          "`\"10\"`",
+          "`10`",
+          "`\"2\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `2 + \"4\" = \"24\"`, potom `\"24\" + 4 = \"244\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `s` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `2 + \"4\" = \"24\"`, then `\"24\" + 4 = \"244\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "s"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "s = \"244\"",
+        "hash": "85975c65f7f5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-015",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string s = 3 + 2 + \"1\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `s`?",
+        "answers": [
+          "`\"51\"`",
+          "`\"321\"`",
+          "`\"6\"`",
+          "`6`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `3 + 2 = 5`, potom `5 + \"1\" = \"51\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `s` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `3 + 2 = 5`, then `5 + \"1\" = \"51\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "s"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "s = \"51\"",
+        "hash": "268a21177e70",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-016",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string vysledok = 7 + \"7\" + 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`\"774\"`",
+          "`\"18\"`",
+          "`18`",
+          "`\"7\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `7 + \"7\" = \"77\"`, potom `\"77\" + 4 = \"774\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `7 + \"7\" = \"77\"`, then `\"77\" + 4 = \"774\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"774\"",
+        "hash": "0aae56b5b5fa",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-017",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string vysledok = 1 + 1 + \"Y\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`\"2Y\"`",
+          "`\"11Y\"`",
+          "`\"1\"`",
+          "`\"Y11\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `1 + 1 = 2`, potom `2 + \"Y\" = \"2Y\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `1 + 1 = 2`, then `2 + \"Y\" = \"2Y\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"2Y\"",
+        "hash": "39be5f7dd657",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-018",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string vysledok = 5 + 4 + \"4\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`\"94\"`",
+          "`\"544\"`",
+          "`\"13\"`",
+          "`13`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `5 + 4 = 9`, potom `9 + \"4\" = \"94\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `5 + 4 = 9`, then `9 + \"4\" = \"94\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"94\"",
+        "hash": "dde84cdd56f9",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-019",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string vysledok = \"4\" + 4 + \"3\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`\"443\"`",
+          "`\"11\"`",
+          "`11`",
+          "`\"4\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `\"4\" + 4 = \"44\"`, potom `\"44\" + \"3\" = \"443\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `\"4\" + 4 = \"44\"`, then `\"44\" + \"3\" = \"443\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"443\"",
+        "hash": "82bbf216dd02",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-020",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = 8 + 8 + \"3\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"163\"`",
+          "`\"883\"`",
+          "`\"19\"`",
+          "`19`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `8 + 8 = 16`, potom `16 + \"3\" = \"163\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `8 + 8 = 16`, then `16 + \"3\" = \"163\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"163\"",
+        "hash": "3a28ee6aef19",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-021",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = 7 + 3 + \"Y\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"10Y\"`",
+          "`\"73Y\"`",
+          "`\"7\"`",
+          "`\"Y37\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `7 + 3 = 10`, potom `10 + \"Y\" = \"10Y\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `7 + 3 = 10`, then `10 + \"Y\" = \"10Y\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"10Y\"",
+        "hash": "f9f9bc1a5290",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-022",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string s = 4 + \"4\" + 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `s`?",
+        "answers": [
+          "`\"448\"`",
+          "`\"16\"`",
+          "`16`",
+          "`\"4\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `4 + \"4\" = \"44\"`, potom `\"44\" + 8 = \"448\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `s` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `4 + \"4\" = \"44\"`, then `\"44\" + 8 = \"448\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "s"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "s = \"448\"",
+        "hash": "875405e3d3e9",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-023",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"9\" + 8 + 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"983\"`",
+          "`\"911\"`",
+          "`\"20\"`",
+          "`20`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `\"9\" + 8 = \"98\"`, potom `\"98\" + 3 = \"983\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `\"9\" + 8 = \"98\"`, then `\"98\" + 3 = \"983\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"983\"",
+        "hash": "7d68e06603b7",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-024",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string s = \"9\" + 8 + 1;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `s`?",
+        "answers": [
+          "`\"981\"`",
+          "`\"99\"`",
+          "`\"18\"`",
+          "`18`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `\"9\" + 8 = \"98\"`, potom `\"98\" + 1 = \"981\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `s` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `\"9\" + 8 = \"98\"`, then `\"98\" + 1 = \"981\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "s"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "s = \"981\"",
+        "hash": "098adcf3a60c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-plus-mixed-025",
+      "template": "dt-plus-mixed",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = 1 + \"2\" + \"4\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"124\"`",
+          "`\"7\"`",
+          "`7`",
+          "`\"1\"`"
+        ],
+        "explanation": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. Najprv `1 + \"2\" = \"12\"`, potom `\"12\" + \"4\" = \"124\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. First `1 + \"2\" = \"12\"`, then `\"12\" + \"4\" = \"124\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"124\"",
+        "hash": "62aadc6d5efb",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-001",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`int x = true;`",
+          "`char c = '5';`",
+          "`int n = 'A';`",
+          "`bool ok = true;`"
+        ],
+        "explanation": "`int x = true;` sa nedá preložiť: hodnotu typu `bool` nemožno priradiť do premennej typu `int`. Pozor: `char c = '5';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`int x = true;` does not compile: a value of type `bool` cannot be assigned to a variable of type `int`. Note: `char c = '5';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'bool' to 'int')",
+        "hash": "9a2c4c76c6f0",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-002",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`int x = true;`",
+          "`int y = -7;`",
+          "`string s = \"true\";`",
+          "`int x = 10;`"
+        ],
+        "explanation": "`int x = true;` sa nedá preložiť: hodnotu typu `bool` nemožno priradiť do premennej typu `int`. Pozor: `string s = \"true\";` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`int x = true;` does not compile: a value of type `bool` cannot be assigned to a variable of type `int`. Note: `string s = \"true\";` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'bool' to 'int')",
+        "hash": "403ba56f2a66",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-003",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`int x = 3.5;`",
+          "`string s = \"true\";`",
+          "`int x = 10;`",
+          "`char c = 'z';`"
+        ],
+        "explanation": "`int x = 3.5;` sa nedá preložiť: hodnotu typu `double` nemožno priradiť do premennej typu `int`. Pozor: `string s = \"true\";` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`int x = 3.5;` does not compile: a value of type `double` cannot be assigned to a variable of type `int`. Note: `string s = \"true\";` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0266: Cannot implicitly convert type 'double' to 'int'. An explicit conversion exists (are you missing a cast?))",
+        "hash": "1489a16a6417",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-004",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`string s = 5;`",
+          "`char c = 'z';`",
+          "`string s = \"5\";`",
+          "`double d = 5;`"
+        ],
+        "explanation": "`string s = 5;` sa nedá preložiť: hodnotu typu `int` nemožno priradiť do premennej typu `string`. Pozor: `string s = \"5\";` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`string s = 5;` does not compile: a value of type `int` cannot be assigned to a variable of type `string`. Note: `string s = \"5\";` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'string')",
+        "hash": "1c1cd0b59981",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-005",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`string s = 5;`",
+          "`char c = 'z';`",
+          "`double d = 7 / 2;`",
+          "`int n = 'A';`"
+        ],
+        "explanation": "`string s = 5;` sa nedá preložiť: hodnotu typu `int` nemožno priradiť do premennej typu `string`. Pozor: `double d = 7 / 2;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`string s = 5;` does not compile: a value of type `int` cannot be assigned to a variable of type `string`. Note: `double d = 7 / 2;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'string')",
+        "hash": "b96bf8d963ca",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-006",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`bool b = 1;`",
+          "`int n = 'A';`",
+          "`double d = 2.5;`",
+          "`char c = '5';`"
+        ],
+        "explanation": "`bool b = 1;` sa nedá preložiť: hodnotu typu `int` nemožno priradiť do premennej typu `bool`. Pozor: `int n = 'A';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`bool b = 1;` does not compile: a value of type `int` cannot be assigned to a variable of type `bool`. Note: `int n = 'A';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'bool')",
+        "hash": "c4595eff0898",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-007",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`string s = 'A';`",
+          "`bool ok = true;`",
+          "`double d = 5;`",
+          "`int y = -7;`"
+        ],
+        "explanation": "`string s = 'A';` sa nedá preložiť: hodnotu typu `char` nemožno priradiť do premennej typu `string`. Pozor: `double d = 5;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`string s = 'A';` does not compile: a value of type `char` cannot be assigned to a variable of type `string`. Note: `double d = 5;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'char' to 'string')",
+        "hash": "d758d2d0fb3c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-008",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`char c = \"A\";`",
+          "`bool ok = true;`",
+          "`double d = 5;`",
+          "`bool b = false;`"
+        ],
+        "explanation": "`char c = \"A\";` sa nedá preložiť: hodnotu typu `string` nemožno priradiť do premennej typu `char`. Pozor: `double d = 5;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`char c = \"A\";` does not compile: a value of type `string` cannot be assigned to a variable of type `char`. Note: `double d = 5;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'char')",
+        "hash": "cb3d0c878825",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-009",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`bool b = 1;`",
+          "`double d = 5;`",
+          "`string s = \"true\";`",
+          "`bool ok = true;`"
+        ],
+        "explanation": "`bool b = 1;` sa nedá preložiť: hodnotu typu `int` nemožno priradiť do premennej typu `bool`. Pozor: `double d = 5;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`bool b = 1;` does not compile: a value of type `int` cannot be assigned to a variable of type `bool`. Note: `double d = 5;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'bool')",
+        "hash": "676405ec589d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-010",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`double d = \"2.5\";`",
+          "`bool ok = true;`",
+          "`double d = 5;`",
+          "`int n = 'A';`"
+        ],
+        "explanation": "`double d = \"2.5\";` sa nedá preložiť: hodnotu typu `string` nemožno priradiť do premennej typu `double`. Pozor: `double d = 5;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`double d = \"2.5\";` does not compile: a value of type `string` cannot be assigned to a variable of type `double`. Note: `double d = 5;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'double')",
+        "hash": "15ea5e7fac3d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-011",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`string s = 5;`",
+          "`char c = '5';`",
+          "`string s = \"true\";`",
+          "`string s = \"Ahoj\";`"
+        ],
+        "explanation": "`string s = 5;` sa nedá preložiť: hodnotu typu `int` nemožno priradiť do premennej typu `string`. Pozor: `char c = '5';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`string s = 5;` does not compile: a value of type `int` cannot be assigned to a variable of type `string`. Note: `char c = '5';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'string')",
+        "hash": "ea91e2421485",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-012",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`string s = 5;`",
+          "`int x = 10;`",
+          "`double d = 2.5;`",
+          "`int n = 'A';`"
+        ],
+        "explanation": "`string s = 5;` sa nedá preložiť: hodnotu typu `int` nemožno priradiť do premennej typu `string`. Pozor: `int n = 'A';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`string s = 5;` does not compile: a value of type `int` cannot be assigned to a variable of type `string`. Note: `int n = 'A';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'string')",
+        "hash": "91feaab723d8",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-013",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`int x = 3.5;`",
+          "`bool b = false;`",
+          "`int y = -7;`",
+          "`double d = 7 / 2;`"
+        ],
+        "explanation": "`int x = 3.5;` sa nedá preložiť: hodnotu typu `double` nemožno priradiť do premennej typu `int`. Pozor: `double d = 7 / 2;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`int x = 3.5;` does not compile: a value of type `double` cannot be assigned to a variable of type `int`. Note: `double d = 7 / 2;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0266: Cannot implicitly convert type 'double' to 'int'. An explicit conversion exists (are you missing a cast?))",
+        "hash": "c1726280eca4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-014",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`char c = 'AB';`",
+          "`char c = '5';`",
+          "`bool ok = true;`",
+          "`double d = 5;`"
+        ],
+        "explanation": "`char c = 'AB';` sa nedá preložiť: v jednoduchých úvodzovkách môže byť iba jeden znak. Pozor: `char c = '5';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`char c = 'AB';` does not compile: single quotes can hold only one character. Note: `char c = '5';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS1012: Too many characters in character literal)",
+        "hash": "352abac4d338",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-015",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`int x = true;`",
+          "`int n = 'A';`",
+          "`double d = 2.5;`",
+          "`double d = 7 / 2;`"
+        ],
+        "explanation": "`int x = true;` sa nedá preložiť: hodnotu typu `bool` nemožno priradiť do premennej typu `int`. Pozor: `int n = 'A';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`int x = true;` does not compile: a value of type `bool` cannot be assigned to a variable of type `int`. Note: `int n = 'A';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'bool' to 'int')",
+        "hash": "9d8fa8fe5485",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-016",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`char c = 'AB';`",
+          "`bool b = false;`",
+          "`double d = 'A';`",
+          "`char c = '5';`"
+        ],
+        "explanation": "`char c = 'AB';` sa nedá preložiť: v jednoduchých úvodzovkách môže byť iba jeden znak. Pozor: `double d = 'A';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`char c = 'AB';` does not compile: single quotes can hold only one character. Note: `double d = 'A';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS1012: Too many characters in character literal)",
+        "hash": "20d20ee10245",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-017",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`string s = 5;`",
+          "`bool ok = true;`",
+          "`double d = 7 / 2;`",
+          "`char c = 'z';`"
+        ],
+        "explanation": "`string s = 5;` sa nedá preložiť: hodnotu typu `int` nemožno priradiť do premennej typu `string`. Pozor: `double d = 7 / 2;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`string s = 5;` does not compile: a value of type `int` cannot be assigned to a variable of type `string`. Note: `double d = 7 / 2;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'string')",
+        "hash": "8fc3faf4adae",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-018",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`double d = \"2.5\";`",
+          "`double d = 7 / 2;`",
+          "`double d = 5;`",
+          "`int x = 10;`"
+        ],
+        "explanation": "`double d = \"2.5\";` sa nedá preložiť: hodnotu typu `string` nemožno priradiť do premennej typu `double`. Pozor: `double d = 7 / 2;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`double d = \"2.5\";` does not compile: a value of type `string` cannot be assigned to a variable of type `double`. Note: `double d = 7 / 2;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'double')",
+        "hash": "eb6c5e8a2f36",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-019",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`int n = \"5\";`",
+          "`string s = \"Ahoj\";`",
+          "`int y = -7;`",
+          "`char c = '5';`"
+        ],
+        "explanation": "`int n = \"5\";` sa nedá preložiť: hodnotu typu `string` nemožno priradiť do premennej typu `int`. Pozor: `char c = '5';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`int n = \"5\";` does not compile: a value of type `string` cannot be assigned to a variable of type `int`. Note: `char c = '5';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'int')",
+        "hash": "71eab454fe24",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-020",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`int x = 3.5;`",
+          "`double d = 7 / 2;`",
+          "`int x = 10;`",
+          "`char c = 'z';`"
+        ],
+        "explanation": "`int x = 3.5;` sa nedá preložiť: hodnotu typu `double` nemožno priradiť do premennej typu `int`. Pozor: `double d = 7 / 2;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`int x = 3.5;` does not compile: a value of type `double` cannot be assigned to a variable of type `int`. Note: `double d = 7 / 2;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0266: Cannot implicitly convert type 'double' to 'int'. An explicit conversion exists (are you missing a cast?))",
+        "hash": "2400f6ea6a22",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-021",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`char c = 'AB';`",
+          "`string s = \"true\";`",
+          "`bool ok = true;`",
+          "`double d = 5;`"
+        ],
+        "explanation": "`char c = 'AB';` sa nedá preložiť: v jednoduchých úvodzovkách môže byť iba jeden znak. Pozor: `string s = \"true\";` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`char c = 'AB';` does not compile: single quotes can hold only one character. Note: `string s = \"true\";` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS1012: Too many characters in character literal)",
+        "hash": "9f6263c6b9c3",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-022",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`char c = \"A\";`",
+          "`double d = 'A';`",
+          "`int n = 'A';`",
+          "`int x = 10;`"
+        ],
+        "explanation": "`char c = \"A\";` sa nedá preložiť: hodnotu typu `string` nemožno priradiť do premennej typu `char`. Pozor: `double d = 'A';` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`char c = \"A\";` does not compile: a value of type `string` cannot be assigned to a variable of type `char`. Note: `double d = 'A';` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'char')",
+        "hash": "98b25644cd66",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-023",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`string s = 5;`",
+          "`bool ok = true;`",
+          "`double d = 7 / 2;`",
+          "`double d = 2.5;`"
+        ],
+        "explanation": "`string s = 5;` sa nedá preložiť: hodnotu typu `int` nemožno priradiť do premennej typu `string`. Pozor: `double d = 7 / 2;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`string s = 5;` does not compile: a value of type `int` cannot be assigned to a variable of type `string`. Note: `double d = 7 / 2;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'string')",
+        "hash": "0c9cc7d40621",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-024",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`char c = 'AB';`",
+          "`bool ok = true;`",
+          "`double d = 7 / 2;`",
+          "`bool b = false;`"
+        ],
+        "explanation": "`char c = 'AB';` sa nedá preložiť: v jednoduchých úvodzovkách môže byť iba jeden znak. Pozor: `double d = 7 / 2;` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`char c = 'AB';` does not compile: single quotes can hold only one character. Note: `double d = 7 / 2;` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS1012: Too many characters in character literal)",
+        "hash": "4ae6de49d38f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-compile-error-025",
+      "template": "dt-compile-error",
+      "difficulty": 3,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "answers": [
+          "`int n = \"5\";`",
+          "`bool ok = true;`",
+          "`string s = \"5\";`",
+          "`double d = 'A';`"
+        ],
+        "explanation": "`int n = \"5\";` sa nedá preložiť: hodnotu typu `string` nemožno priradiť do premennej typu `int`. Pozor: `string s = \"5\";` je v poriadku."
+      },
+      "en": {
+        "body": "Which of these lines causes a compile error?",
+        "answers": null,
+        "explanation": "`int n = \"5\";` does not compile: a value of type `string` cannot be assigned to a variable of type `int`. Note: `string s = \"5\";` is fine."
+      },
+      "verify": {
+        "type": "which-line",
+        "expect": "compile-error"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'int')",
+        "hash": "bc8299707921",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-001",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 17;\nx = x * 3;\nx = x / 4;\nx = x + 8;\nx = x % 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`0`",
+          "`20`",
+          "`2`",
+          "`4`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 17 → 51 → 12 → 20 → 0. Na konci má `x` hodnotu `0`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 17 → 51 → 12 → 20 → 0. At the end, `x` is `0`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"0\"",
+        "hash": "b4755f45889a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-002",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 4;\nx = x / 4;\nx = x * 5;\nx = x % 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`2`",
+          "`5`",
+          "`1`",
+          "`3`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 4 → 1 → 5 → 2. Na konci má `x` hodnotu `2`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 4 → 1 → 5 → 2. At the end, `x` is `2`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"2\"",
+        "hash": "aea09d2bbb0f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-003",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 15;\nx = x / 3;\nx = x + 8;\nx = x * 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`65`",
+          "`13`",
+          "`25`",
+          "`115`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 15 → 5 → 13 → 65. Na konci má `x` hodnotu `65`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 15 → 5 → 13 → 65. At the end, `x` is `65`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"65\"",
+        "hash": "8ae51984c357",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-004",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 4;\nx = x / 5;\nx = x + 9;\nx = x * 5;\nx = x - 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`37`",
+          "`45`",
+          "`1`",
+          "`-8`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 4 → 0 → 9 → 45 → 37. Na konci má `x` hodnotu `37`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 4 → 0 → 9 → 45 → 37. At the end, `x` is `37`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"37\"",
+        "hash": "5dadab4abb6b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-005",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 9;\nx = x + 1;\nx = x - 8;\nx = x * 3;\nx = x % 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`1`",
+          "`6`",
+          "`2`",
+          "`0`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 9 → 10 → 2 → 6 → 1. Na konci má `x` hodnotu `1`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 9 → 10 → 2 → 6 → 1. At the end, `x` is `1`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"1\"",
+        "hash": "6b8e7fd77632",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-006",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 12;\nx = x / 4;\nx = x % 5;\nx = x + 9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`12`",
+          "`3`",
+          "`11`",
+          "`13`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 12 → 3 → 3 → 12. Na konci má `x` hodnotu `12`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 12 → 3 → 3 → 12. At the end, `x` is `12`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"12\"",
+        "hash": "7fb8c6504490",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-007",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 18;\nx = x + 3;\nx = x - 7;\nx = x % 3;\nx = x * 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`10`",
+          "`2`",
+          "`70`",
+          "`0`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 18 → 21 → 14 → 2 → 10. Na konci má `x` hodnotu `10`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 18 → 21 → 14 → 2 → 10. At the end, `x` is `10`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"10\"",
+        "hash": "79b3c665e686",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-008",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 8;\nx = x * 4;\nx = x % 3;\nx = x + 1;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`3`",
+          "`2`",
+          "`33`",
+          "`4`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 8 → 32 → 2 → 3. Na konci má `x` hodnotu `3`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 8 → 32 → 2 → 3. At the end, `x` is `3`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"3\"",
+        "hash": "fdcd3e206086",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-009",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 20;\nx = x - 8;\nx = x % 4;\nx = x / 3;\nx = x + 7;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`7`",
+          "`0`",
+          "`11`",
+          "`8`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 20 → 12 → 0 → 0 → 7. Na konci má `x` hodnotu `7`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 20 → 12 → 0 → 0 → 7. At the end, `x` is `7`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"7\"",
+        "hash": "3ca92b4ccb33",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-010",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 8;\nx = x / 3;\nx = x - 2;\nx = x + 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`8`",
+          "`0`",
+          "`10`",
+          "`14`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 8 → 2 → 0 → 8. Na konci má `x` hodnotu `8`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 8 → 2 → 0 → 8. At the end, `x` is `8`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"8\"",
+        "hash": "e1d0bdf8cd09",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-011",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 8;\nx = x % 3;\nx = x / 2;\nx = x * 4;\nx = x + 7;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`11`",
+          "`4`",
+          "`8`",
+          "`15`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 8 → 2 → 1 → 4 → 11. Na konci má `x` hodnotu `11`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 8 → 2 → 1 → 4 → 11. At the end, `x` is `11`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"11\"",
+        "hash": "52d79ef4e5ed",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-012",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 2;\nx = x + 3;\nx = x % 2;\nx = x / 3;\nx = x * 2;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`0`",
+          "`2`",
+          "`1`",
+          "`-1`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 2 → 5 → 1 → 0 → 0. Na konci má `x` hodnotu `0`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 2 → 5 → 1 → 0 → 0. At the end, `x` is `0`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"0\"",
+        "hash": "fda616c1f836",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-013",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 6;\nx = x / 2;\nx = x % 3;\nx = x + 8;\nx = x - 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`4`",
+          "`8`",
+          "`-4`",
+          "`7`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 6 → 3 → 0 → 8 → 4. Na konci má `x` hodnotu `4`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 6 → 3 → 0 → 8 → 4. At the end, `x` is `4`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"4\"",
+        "hash": "02bb80ed179f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-014",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 5;\nx = x + 3;\nx = x - 4;\nx = x % 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`0`",
+          "`4`",
+          "`1`",
+          "`-1`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 5 → 8 → 4 → 0. Na konci má `x` hodnotu `0`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 5 → 8 → 4 → 0. At the end, `x` is `0`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"0\"",
+        "hash": "69b9600c0f9a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-015",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 9;\nx = x + 7;\nx = x / 5;\nx = x % 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`0`",
+          "`3`",
+          "`1`",
+          "`-1`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 9 → 16 → 3 → 0. Na konci má `x` hodnotu `0`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 9 → 16 → 3 → 0. At the end, `x` is `0`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"0\"",
+        "hash": "1ae2c760afac",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-016",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 7;\nx = x + 9;\nx = x / 4;\nx = x % 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`0`",
+          "`4`",
+          "`1`",
+          "`-1`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 7 → 16 → 4 → 0. Na konci má `x` hodnotu `0`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 7 → 16 → 4 → 0. At the end, `x` is `0`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"0\"",
+        "hash": "25ad18c51a6a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-017",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 8;\nx = x * 5;\nx = x - 9;\nx = x + 6;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`37`",
+          "`31`",
+          "`46`",
+          "`5`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 8 → 40 → 31 → 37. Na konci má `x` hodnotu `37`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 8 → 40 → 31 → 37. At the end, `x` is `37`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"37\"",
+        "hash": "6446abbd9b2a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-018",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 4;\nx = x - 1;\nx = x / 3;\nx = x + 6;\nx = x * 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`21`",
+          "`7`",
+          "`3`",
+          "`27`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 4 → 3 → 1 → 7 → 21. Na konci má `x` hodnotu `21`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 4 → 3 → 1 → 7 → 21. At the end, `x` is `21`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"21\"",
+        "hash": "d563e224e5d5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-019",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 9;\nx = x * 5;\nx = x / 2;\nx = x % 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`1`",
+          "`22`",
+          "`0`",
+          "`2`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 9 → 45 → 22 → 1. Na konci má `x` hodnotu `1`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 9 → 45 → 22 → 1. At the end, `x` is `1`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"1\"",
+        "hash": "63fedf64eaaa",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-020",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 11;\nx = x * 4;\nx = x % 3;\nx = x + 1;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`3`",
+          "`2`",
+          "`45`",
+          "`4`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 11 → 44 → 2 → 3. Na konci má `x` hodnotu `3`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 11 → 44 → 2 → 3. At the end, `x` is `3`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"3\"",
+        "hash": "b04bb1875f39",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-021",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 12;\nx = x * 5;\nx = x / 5;\nx = x % 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`0`",
+          "`12`",
+          "`2`",
+          "`1`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 12 → 60 → 12 → 0. Na konci má `x` hodnotu `0`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 12 → 60 → 12 → 0. At the end, `x` is `0`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"0\"",
+        "hash": "3a40018773be",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-022",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 19;\nx = x / 5;\nx = x % 5;\nx = x * 3;\nx = x - 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`6`",
+          "`9`",
+          "`0`",
+          "`7`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 19 → 3 → 3 → 9 → 6. Na konci má `x` hodnotu `6`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 19 → 3 → 3 → 9 → 6. At the end, `x` is `6`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"6\"",
+        "hash": "e62ec413844e",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-023",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 15;\nx = x + 5;\nx = x * 4;\nx = x - 2;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`78`",
+          "`80`",
+          "`18`",
+          "`58`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 15 → 20 → 80 → 78. Na konci má `x` hodnotu `78`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 15 → 20 → 80 → 78. At the end, `x` is `78`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"78\"",
+        "hash": "2d549714a35a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-024",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 16;\nx = x + 7;\nx = x / 5;\nx = x * 5;\nx = x % 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`2`",
+          "`20`",
+          "`1`",
+          "`0`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 16 → 23 → 4 → 20 → 2. Na konci má `x` hodnotu `2`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 16 → 23 → 4 → 20 → 2. At the end, `x` is `2`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"2\"",
+        "hash": "dfb91c86ee06",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-trace-025",
+      "template": "dt-trace",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "int x = 19;\nx = x * 4;\nx = x % 4;\nx = x + 6;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `x` na konci?",
+        "answers": [
+          "`6`",
+          "`0`",
+          "`82`",
+          "`9`"
+        ],
+        "explanation": "Riadky sa vykonávajú postupne: 19 → 76 → 0 → 6. Na konci má `x` hodnotu `6`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `x` have at the end?",
+        "answers": null,
+        "explanation": "The lines run one after another: 19 → 76 → 0 → 6. At the end, `x` is `6`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "x"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "x = \"6\"",
+        "hash": "7ebb3da6e21d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-001",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Malý pes\";\nchar pismeno = text[text.Length - 4];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`' '`",
+          "`'p'`",
+          "`'ý'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Malý pes\"` má dĺžku `8` (medzera sa tiež počíta), indexy idú od `0` po `7`. Index `text.Length - 4` = `4`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Malý pes\"` has length `8` (the space counts too); indexes go from `0` to `7`. Index `text.Length - 4` = `4`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \" \"",
+        "hash": "3a6dccb0edbf",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-002",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Dnes prší\";\nchar pismeno = text[text.Length - 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'š'`",
+          "`'í'`",
+          "`'r'`",
+          "`\"š\"`"
+        ],
+        "explanation": "Text `\"Dnes prší\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length - 2` = `7`, na ňom je znak `'š'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Dnes prší\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length - 2` = `7`, and there is the character `'š'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "'š'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"š\"",
+        "hash": "1bfbf35726a4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-003",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Ja som tu\";\nchar znak = text[text.Length - 3];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`' '`",
+          "`'t'`",
+          "`'m'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Ja som tu\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length - 3` = `6`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "The text `\"Ja som tu\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length - 3` = `6`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \" \"",
+        "hash": "6a438b1f8aae",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-004",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Pekny den\";\nchar z = text[text.Length - 6];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'n'`",
+          "`'y'`",
+          "`'k'`",
+          "`\"n\"`"
+        ],
+        "explanation": "Text `\"Pekny den\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length - 6` = `3`, na ňom je znak `'n'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Pekny den\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length - 6` = `3`, and there is the character `'n'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "'n'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"n\"",
+        "hash": "ca897c627d98",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-005",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Nový rok\";\nchar z = text[3];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'ý'`",
+          "`' '`",
+          "`'v'`",
+          "`\"ý\"`"
+        ],
+        "explanation": "Text `\"Nový rok\"` má dĺžku `8` (medzera sa tiež počíta), indexy idú od `0` po `7`. Index `3`, na ňom je znak `'ý'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Nový rok\"` has length `8` (the space counts too); indexes go from `0` to `7`. Index `3`, and there is the character `'ý'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "'ý'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"ý\"",
+        "hash": "5086b23d11c6",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-006",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Malý pes\";\nchar z = text[text.Length - 4];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`' '`",
+          "`'p'`",
+          "`'ý'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Malý pes\"` má dĺžku `8` (medzera sa tiež počíta), indexy idú od `0` po `7`. Index `text.Length - 4` = `4`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Malý pes\"` has length `8` (the space counts too); indexes go from `0` to `7`. Index `text.Length - 4` = `4`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \" \"",
+        "hash": "0790baf5072d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-007",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Mam rad C#\";\nchar z = text[text.Length - 5];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'a'`",
+          "`'d'`",
+          "`'r'`",
+          "`\"a\"`"
+        ],
+        "explanation": "Text `\"Mam rad C#\"` má dĺžku `10` (medzera sa tiež počíta), indexy idú od `0` po `9`. Index `text.Length - 5` = `5`, na ňom je znak `'a'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Mam rad C#\"` has length `10` (the space counts too); indexes go from `0` to `9`. Index `text.Length - 5` = `5`, and there is the character `'a'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "'a'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"a\"",
+        "hash": "d58281dfff8a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-008",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Moja trieda\";\nchar pismeno = text[4];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`' '`",
+          "`'t'`",
+          "`'a'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Moja trieda\"` má dĺžku `11` (medzera sa tiež počíta), indexy idú od `0` po `10`. Index `4`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Moja trieda\"` has length `11` (the space counts too); indexes go from `0` to `10`. Index `4`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \" \"",
+        "hash": "99d75cd11ea9",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-009",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Hello world\";\nchar z = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`' '`",
+          "`'w'`",
+          "`'o'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Hello world\"` má dĺžku `11` (medzera sa tiež počíta), indexy idú od `0` po `10`. Index `text.Length / 2` = `5`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Hello world\"` has length `11` (the space counts too); indexes go from `0` to `10`. Index `text.Length / 2` = `5`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \" \"",
+        "hash": "0d900fff82c2",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-010",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Pekny den\";\nchar z = text[text.Length - 1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'n'`",
+          "`'e'`",
+          "`'d'`",
+          "`\"n\"`"
+        ],
+        "explanation": "Text `\"Pekny den\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length - 1` = `8`, na ňom je znak `'n'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Pekny den\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length - 1` = `8`, and there is the character `'n'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "'n'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"n\"",
+        "hash": "fa8faee25716",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-011",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Ahoj svet\";\nchar z = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`' '`",
+          "`'s'`",
+          "`'j'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Ahoj svet\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length / 2` = `4`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Ahoj svet\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length / 2` = `4`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \" \"",
+        "hash": "d00bddda069d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-012",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Mam rad C#\";\nchar znak = text[text.Length - 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`'C'`",
+          "`'#'`",
+          "`' '`",
+          "`\"C\"`"
+        ],
+        "explanation": "Text `\"Mam rad C#\"` má dĺžku `10` (medzera sa tiež počíta), indexy idú od `0` po `9`. Index `text.Length - 2` = `8`, na ňom je znak `'C'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "The text `\"Mam rad C#\"` has length `10` (the space counts too); indexes go from `0` to `9`. Index `text.Length - 2` = `8`, and there is the character `'C'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak",
+        "expected": "'C'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"C\"",
+        "hash": "4cd0ed46ee69",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-013",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Pekny den\";\nchar pismeno = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'y'`",
+          "`' '`",
+          "`'n'`",
+          "`\"y\"`"
+        ],
+        "explanation": "Text `\"Pekny den\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length / 2` = `4`, na ňom je znak `'y'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Pekny den\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length / 2` = `4`, and there is the character `'y'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "'y'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"y\"",
+        "hash": "da56f782498f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-014",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Kód je hotový\";\nchar pismeno = text[text.Length - 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'v'`",
+          "`'ý'`",
+          "`'o'`",
+          "`\"v\"`"
+        ],
+        "explanation": "Text `\"Kód je hotový\"` má dĺžku `13` (medzera sa tiež počíta), indexy idú od `0` po `12`. Index `text.Length - 2` = `11`, na ňom je znak `'v'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Kód je hotový\"` has length `13` (the space counts too); indexes go from `0` to `12`. Index `text.Length - 2` = `11`, and there is the character `'v'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "'v'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"v\"",
+        "hash": "887fa011f0ff",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-015",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Hello world\";\nchar pismeno = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`' '`",
+          "`'w'`",
+          "`'o'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Hello world\"` má dĺžku `11` (medzera sa tiež počíta), indexy idú od `0` po `10`. Index `text.Length / 2` = `5`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Hello world\"` has length `11` (the space counts too); indexes go from `0` to `10`. Index `text.Length / 2` = `5`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \" \"",
+        "hash": "27eab839dea8",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-016",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Pekny den\";\nchar znak = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`'y'`",
+          "`' '`",
+          "`'n'`",
+          "`\"y\"`"
+        ],
+        "explanation": "Text `\"Pekny den\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length / 2` = `4`, na ňom je znak `'y'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "The text `\"Pekny den\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length / 2` = `4`, and there is the character `'y'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak",
+        "expected": "'y'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"y\"",
+        "hash": "a3335083a6e0",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-017",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Pekny den\";\nchar z = text[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'e'`",
+          "`'k'`",
+          "`'P'`",
+          "`\"e\"`"
+        ],
+        "explanation": "Text `\"Pekny den\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `1`, na ňom je znak `'e'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Pekny den\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `1`, and there is the character `'e'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "'e'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"e\"",
+        "hash": "1c183ca0c3d4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-018",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Hello world\";\nchar znak = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`' '`",
+          "`'w'`",
+          "`'o'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Hello world\"` má dĺžku `11` (medzera sa tiež počíta), indexy idú od `0` po `10`. Index `text.Length / 2` = `5`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "The text `\"Hello world\"` has length `11` (the space counts too); indexes go from `0` to `10`. Index `text.Length / 2` = `5`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \" \"",
+        "hash": "7e690587725d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-019",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Zajtra je piatok\";\nchar pismeno = text[7];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'j'`",
+          "`'e'`",
+          "`' '`",
+          "`\"j\"`"
+        ],
+        "explanation": "Text `\"Zajtra je piatok\"` má dĺžku `16` (medzera sa tiež počíta), indexy idú od `0` po `15`. Index `7`, na ňom je znak `'j'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Zajtra je piatok\"` has length `16` (the space counts too); indexes go from `0` to `15`. Index `7`, and there is the character `'j'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "'j'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"j\"",
+        "hash": "e63312ad2f68",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-020",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Dnes prší\";\nchar znak = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`' '`",
+          "`'p'`",
+          "`'s'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Dnes prší\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length / 2` = `4`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "The text `\"Dnes prší\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length / 2` = `4`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \" \"",
+        "hash": "7ef782121af9",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-021",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Dobry den\";\nchar pismeno = text[text.Length - 4];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`' '`",
+          "`'d'`",
+          "`'y'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Dobry den\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length - 4` = `5`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Dobry den\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length - 4` = `5`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \" \"",
+        "hash": "75b8f42d020e",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-022",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Dobry den\";\nchar znak = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`'y'`",
+          "`' '`",
+          "`'r'`",
+          "`\"y\"`"
+        ],
+        "explanation": "Text `\"Dobry den\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length / 2` = `4`, na ňom je znak `'y'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "The text `\"Dobry den\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length / 2` = `4`, and there is the character `'y'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak",
+        "expected": "'y'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"y\"",
+        "hash": "eefbda774a01",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-023",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Kód je hotový\";\nchar pismeno = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`' '`",
+          "`'h'`",
+          "`'e'`",
+          "`\" \"`"
+        ],
+        "explanation": "Text `\"Kód je hotový\"` má dĺžku `13` (medzera sa tiež počíta), indexy idú od `0` po `12`. Index `text.Length / 2` = `6`, na ňom je medzera."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Kód je hotový\"` has length `13` (the space counts too); indexes go from `0` to `12`. Index `text.Length / 2` = `6`, and there is a space."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "' '"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \" \"",
+        "hash": "f3905010d416",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-024",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Pekny den\";\nchar z = text[text.Length / 2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'y'`",
+          "`' '`",
+          "`'n'`",
+          "`\"y\"`"
+        ],
+        "explanation": "Text `\"Pekny den\"` má dĺžku `9` (medzera sa tiež počíta), indexy idú od `0` po `8`. Index `text.Length / 2` = `4`, na ňom je znak `'y'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "The text `\"Pekny den\"` has length `9` (the space counts too); indexes go from `0` to `8`. Index `text.Length / 2` = `4`, and there is the character `'y'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z",
+        "expected": "'y'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"y\"",
+        "hash": "2e1c0949ecb4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-hard-025",
+      "template": "dt-string-index-hard",
+      "difficulty": 3,
+      "status": "approved",
+      "code": "string text = \"Zajtra je piatok\";\nchar pismeno = text[text.Length - 1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'k'`",
+          "`'o'`",
+          "`'t'`",
+          "`\"k\"`"
+        ],
+        "explanation": "Text `\"Zajtra je piatok\"` má dĺžku `16` (medzera sa tiež počíta), indexy idú od `0` po `15`. Index `text.Length - 1` = `15`, na ňom je znak `'k'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "The text `\"Zajtra je piatok\"` has length `16` (the space counts too); indexes go from `0` to `15`. Index `text.Length - 1` = `15`, and there is the character `'k'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "'k'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"k\"",
+        "hash": "3f00a6fb9e53",
+        "at": "2026-10-22"
+      }
+    }
+  ]
+}

@@ -1,0 +1,5258 @@
+{
+  "batch": "2026-10-22_git",
+  "subject": "prog-1-digi",
+  "topic": "git",
+  "created": "2026-10-22",
+  "questions": [
+    {
+      "id": "git-term-purpose-001",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo robí fetch?",
+        "answers": [
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "priečinok projektu, ktorého históriu zmien Git sleduje",
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať"
+        ],
+        "explanation": "fetch: iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení."
+      },
+      "en": {
+        "body": "What does fetch do?",
+        "answers": [
+          "only finds out and downloads what's new on the server – my files don't change",
+          "two people changed the same place in a file and Git can't decide by itself",
+          "a project folder whose change history Git tracks",
+          "a list of files and folders Git should not track"
+        ],
+        "explanation": "fetch: only finds out and downloads what's new on the server – my files don't change."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-002",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená pull?",
+        "answers": [
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "vymaže históriu projektu"
+        ],
+        "explanation": "pull: stiahne nové commity zo servera a zapracuje ich do mojich súborov."
+      },
+      "en": {
+        "body": "What does pull mean in Git?",
+        "answers": [
+          "downloads new commits from the server and brings them into my files",
+          "two people changed the same place in a file and Git can't decide by itself",
+          "a saved state of changes with a message – only on my computer so far",
+          "deletes the project history"
+        ],
+        "explanation": "pull: downloads new commits from the server and brings them into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-003",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je fetch?",
+        "answers": [
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "skontroluje, či sa program dá preložiť"
+        ],
+        "explanation": "fetch: iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení."
+      },
+      "en": {
+        "body": "What is fetch?",
+        "answers": [
+          "only finds out and downloads what's new on the server – my files don't change",
+          "a saved state of changes with a message – only on my computer so far",
+          "two people changed the same place in a file and Git can't decide by itself",
+          "checks whether the program compiles"
+        ],
+        "explanation": "fetch: only finds out and downloads what's new on the server – my files don't change."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-004",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je pull?",
+        "answers": [
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať",
+          "pošle moje commity na server (napr. GitHub)",
+          "vymaže históriu projektu"
+        ],
+        "explanation": "pull: stiahne nové commity zo servera a zapracuje ich do mojich súborov."
+      },
+      "en": {
+        "body": "What is pull?",
+        "answers": [
+          "downloads new commits from the server and brings them into my files",
+          "a list of files and folders Git should not track",
+          "sends my commits to the server (e.g. GitHub)",
+          "deletes the project history"
+        ],
+        "explanation": "pull: downloads new commits from the server and brings them into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-005",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo robí push?",
+        "answers": [
+          "pošle moje commity na server (napr. GitHub)",
+          "priečinok projektu, ktorého históriu zmien Git sleduje",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov"
+        ],
+        "explanation": "push: pošle moje commity na server (napr. GitHub)."
+      },
+      "en": {
+        "body": "What does push do?",
+        "answers": [
+          "sends my commits to the server (e.g. GitHub)",
+          "a project folder whose change history Git tracks",
+          "two people changed the same place in a file and Git can't decide by itself",
+          "downloads new commits from the server and brings them into my files"
+        ],
+        "explanation": "push: sends my commits to the server (e.g. GitHub)."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-006",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo robí pull?",
+        "answers": [
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "pošle moje commity na server (napr. GitHub)"
+        ],
+        "explanation": "pull: stiahne nové commity zo servera a zapracuje ich do mojich súborov."
+      },
+      "en": {
+        "body": "What does pull do?",
+        "answers": [
+          "downloads new commits from the server and brings them into my files",
+          "a saved state of changes with a message – only on my computer so far",
+          "two people changed the same place in a file and Git can't decide by itself",
+          "sends my commits to the server (e.g. GitHub)"
+        ],
+        "explanation": "pull: downloads new commits from the server and brings them into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-007",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená fetch?",
+        "answers": [
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "priečinok projektu, ktorého históriu zmien Git sleduje",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "vytvorí zálohu celého disku"
+        ],
+        "explanation": "fetch: iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení."
+      },
+      "en": {
+        "body": "What does fetch mean in Git?",
+        "answers": [
+          "only finds out and downloads what's new on the server – my files don't change",
+          "a project folder whose change history Git tracks",
+          "two people changed the same place in a file and Git can't decide by itself",
+          "creates a backup of the whole disk"
+        ],
+        "explanation": "fetch: only finds out and downloads what's new on the server – my files don't change."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-008",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je konflikt?",
+        "answers": [
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "vytvorí zálohu celého disku"
+        ],
+        "explanation": "konflikt: dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť."
+      },
+      "en": {
+        "body": "What is conflict?",
+        "answers": [
+          "two people changed the same place in a file and Git can't decide by itself",
+          "downloads new commits from the server and brings them into my files",
+          "only finds out and downloads what's new on the server – my files don't change",
+          "creates a backup of the whole disk"
+        ],
+        "explanation": "conflict: two people changed the same place in a file and Git can't decide by itself."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-009",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená pull?",
+        "answers": [
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "priečinok projektu, ktorého históriu zmien Git sleduje",
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "vytvorí zálohu celého disku"
+        ],
+        "explanation": "pull: stiahne nové commity zo servera a zapracuje ich do mojich súborov."
+      },
+      "en": {
+        "body": "What does pull mean in Git?",
+        "answers": [
+          "downloads new commits from the server and brings them into my files",
+          "a project folder whose change history Git tracks",
+          "a saved state of changes with a message – only on my computer so far",
+          "creates a backup of the whole disk"
+        ],
+        "explanation": "pull: downloads new commits from the server and brings them into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-010",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená commit?",
+        "answers": [
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať",
+          "priečinok projektu, ktorého históriu zmien Git sleduje",
+          "vytvorí zálohu celého disku"
+        ],
+        "explanation": "commit: uložený stav zmien so správou – zatiaľ iba na mojom počítači."
+      },
+      "en": {
+        "body": "What does commit mean in Git?",
+        "answers": [
+          "a saved state of changes with a message – only on my computer so far",
+          "a list of files and folders Git should not track",
+          "a project folder whose change history Git tracks",
+          "creates a backup of the whole disk"
+        ],
+        "explanation": "commit: a saved state of changes with a message – only on my computer so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-011",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená commit?",
+        "answers": [
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "pošle zmeny na GitHub hneď po uložení súboru"
+        ],
+        "explanation": "commit: uložený stav zmien so správou – zatiaľ iba na mojom počítači."
+      },
+      "en": {
+        "body": "What does commit mean in Git?",
+        "answers": [
+          "a saved state of changes with a message – only on my computer so far",
+          "downloads new commits from the server and brings them into my files",
+          "two people changed the same place in a file and Git can't decide by itself",
+          "sends changes to GitHub as soon as a file is saved"
+        ],
+        "explanation": "commit: a saved state of changes with a message – only on my computer so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-012",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo robí fetch?",
+        "answers": [
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť"
+        ],
+        "explanation": "fetch: iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení."
+      },
+      "en": {
+        "body": "What does fetch do?",
+        "answers": [
+          "only finds out and downloads what's new on the server – my files don't change",
+          "downloads new commits from the server and brings them into my files",
+          "a list of files and folders Git should not track",
+          "two people changed the same place in a file and Git can't decide by itself"
+        ],
+        "explanation": "fetch: only finds out and downloads what's new on the server – my files don't change."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-013",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená commit?",
+        "answers": [
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "pošle moje commity na server (napr. GitHub)"
+        ],
+        "explanation": "commit: uložený stav zmien so správou – zatiaľ iba na mojom počítači."
+      },
+      "en": {
+        "body": "What does commit mean in Git?",
+        "answers": [
+          "a saved state of changes with a message – only on my computer so far",
+          "only finds out and downloads what's new on the server – my files don't change",
+          "downloads new commits from the server and brings them into my files",
+          "sends my commits to the server (e.g. GitHub)"
+        ],
+        "explanation": "commit: a saved state of changes with a message – only on my computer so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-014",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je konflikt?",
+        "answers": [
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "skontroluje, či sa program dá preložiť"
+        ],
+        "explanation": "konflikt: dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť."
+      },
+      "en": {
+        "body": "What is conflict?",
+        "answers": [
+          "two people changed the same place in a file and Git can't decide by itself",
+          "only finds out and downloads what's new on the server – my files don't change",
+          "downloads new commits from the server and brings them into my files",
+          "checks whether the program compiles"
+        ],
+        "explanation": "conflict: two people changed the same place in a file and Git can't decide by itself."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-015",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená repozitár?",
+        "answers": [
+          "priečinok projektu, ktorého históriu zmien Git sleduje",
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať",
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "pošle moje commity na server (napr. GitHub)"
+        ],
+        "explanation": "repozitár: priečinok projektu, ktorého históriu zmien Git sleduje."
+      },
+      "en": {
+        "body": "What does repository mean in Git?",
+        "answers": [
+          "a project folder whose change history Git tracks",
+          "a list of files and folders Git should not track",
+          "only finds out and downloads what's new on the server – my files don't change",
+          "sends my commits to the server (e.g. GitHub)"
+        ],
+        "explanation": "repository: a project folder whose change history Git tracks."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-016",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je konflikt?",
+        "answers": [
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "pošle moje commity na server (napr. GitHub)",
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov"
+        ],
+        "explanation": "konflikt: dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť."
+      },
+      "en": {
+        "body": "What is conflict?",
+        "answers": [
+          "two people changed the same place in a file and Git can't decide by itself",
+          "sends my commits to the server (e.g. GitHub)",
+          "a saved state of changes with a message – only on my computer so far",
+          "downloads new commits from the server and brings them into my files"
+        ],
+        "explanation": "conflict: two people changed the same place in a file and Git can't decide by itself."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-017",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená `.gitignore`?",
+        "answers": [
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení",
+          "pošle zmeny na GitHub hneď po uložení súboru"
+        ],
+        "explanation": "`.gitignore`: zoznam súborov a priečinkov, ktoré Git nemá sledovať."
+      },
+      "en": {
+        "body": "What does `.gitignore` mean in Git?",
+        "answers": [
+          "a list of files and folders Git should not track",
+          "downloads new commits from the server and brings them into my files",
+          "only finds out and downloads what's new on the server – my files don't change",
+          "sends changes to GitHub as soon as a file is saved"
+        ],
+        "explanation": "`.gitignore`: a list of files and folders Git should not track."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-018",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je commit?",
+        "answers": [
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať",
+          "priečinok projektu, ktorého históriu zmien Git sleduje",
+          "pošle zmeny na GitHub hneď po uložení súboru"
+        ],
+        "explanation": "commit: uložený stav zmien so správou – zatiaľ iba na mojom počítači."
+      },
+      "en": {
+        "body": "What is commit?",
+        "answers": [
+          "a saved state of changes with a message – only on my computer so far",
+          "a list of files and folders Git should not track",
+          "a project folder whose change history Git tracks",
+          "sends changes to GitHub as soon as a file is saved"
+        ],
+        "explanation": "commit: a saved state of changes with a message – only on my computer so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-019",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo v Gite znamená `.gitignore`?",
+        "answers": [
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať",
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť",
+          "vytvorí zálohu celého disku"
+        ],
+        "explanation": "`.gitignore`: zoznam súborov a priečinkov, ktoré Git nemá sledovať."
+      },
+      "en": {
+        "body": "What does `.gitignore` mean in Git?",
+        "answers": [
+          "a list of files and folders Git should not track",
+          "downloads new commits from the server and brings them into my files",
+          "two people changed the same place in a file and Git can't decide by itself",
+          "creates a backup of the whole disk"
+        ],
+        "explanation": "`.gitignore`: a list of files and folders Git should not track."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-term-purpose-020",
+      "template": "git-term-purpose",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je pull?",
+        "answers": [
+          "stiahne nové commity zo servera a zapracuje ich do mojich súborov",
+          "uložený stav zmien so správou – zatiaľ iba na mojom počítači",
+          "zoznam súborov a priečinkov, ktoré Git nemá sledovať",
+          "vymaže históriu projektu"
+        ],
+        "explanation": "pull: stiahne nové commity zo servera a zapracuje ich do mojich súborov."
+      },
+      "en": {
+        "body": "What is pull?",
+        "answers": [
+          "downloads new commits from the server and brings them into my files",
+          "a saved state of changes with a message – only on my computer so far",
+          "a list of files and folders Git should not track",
+          "deletes the project history"
+        ],
+        "explanation": "pull: downloads new commits from the server and brings them into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-001",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá priečinok projektu, ktorého históriu Git sleduje?",
+        "answers": [
+          "repozitár",
+          "commit",
+          "`.gitignore`",
+          "konflikt"
+        ],
+        "explanation": "To je repozitár: priečinok projektu, ktorého históriu zmien Git sleduje."
+      },
+      "en": {
+        "body": "What is a project folder whose history Git tracks called?",
+        "answers": [
+          "repository",
+          "commit",
+          "`.gitignore`",
+          "conflict"
+        ],
+        "explanation": "That's repository: a project folder whose change history Git tracks."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-002",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá krok, ktorý iba zistí, čo je nové na serveri, ale moje súbory nezmení?",
+        "answers": [
+          "fetch",
+          "pull",
+          "push",
+          "commit"
+        ],
+        "explanation": "To je fetch: iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení."
+      },
+      "en": {
+        "body": "What is the step that only checks what's new on the server without changing my files called?",
+        "answers": [
+          "fetch",
+          "pull",
+          "push",
+          "commit"
+        ],
+        "explanation": "That's fetch: only finds out and downloads what's new on the server – my files don't change."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-003",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá uložený stav zmien so správou?",
+        "answers": [
+          "commit",
+          "push",
+          "fetch",
+          "repozitár"
+        ],
+        "explanation": "To je commit: uložený stav zmien so správou – zatiaľ iba na mojom počítači."
+      },
+      "en": {
+        "body": "What is a saved state of changes with a message called?",
+        "answers": [
+          "commit",
+          "push",
+          "fetch",
+          "repository"
+        ],
+        "explanation": "That's commit: a saved state of changes with a message – only on my computer so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-004",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá krok, ktorý pošle moje commity na server?",
+        "answers": [
+          "push",
+          "pull",
+          "commit",
+          "fetch"
+        ],
+        "explanation": "To je push: pošle moje commity na server (napr. GitHub)."
+      },
+      "en": {
+        "body": "What is the step that sends my commits to the server called?",
+        "answers": [
+          "push",
+          "pull",
+          "commit",
+          "fetch"
+        ],
+        "explanation": "That's push: sends my commits to the server (e.g. GitHub)."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-005",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá priečinok projektu, ktorého históriu Git sleduje?",
+        "answers": [
+          "repozitár",
+          "`.gitignore`",
+          "konflikt",
+          "push"
+        ],
+        "explanation": "To je repozitár: priečinok projektu, ktorého históriu zmien Git sleduje."
+      },
+      "en": {
+        "body": "What is a project folder whose history Git tracks called?",
+        "answers": [
+          "repository",
+          "`.gitignore`",
+          "conflict",
+          "push"
+        ],
+        "explanation": "That's repository: a project folder whose change history Git tracks."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-006",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá krok, ktorý pošle moje commity na server?",
+        "answers": [
+          "push",
+          "pull",
+          "`.gitignore`",
+          "commit"
+        ],
+        "explanation": "To je push: pošle moje commity na server (napr. GitHub)."
+      },
+      "en": {
+        "body": "What is the step that sends my commits to the server called?",
+        "answers": [
+          "push",
+          "pull",
+          "`.gitignore`",
+          "commit"
+        ],
+        "explanation": "That's push: sends my commits to the server (e.g. GitHub)."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-007",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo urobím, keď chcem do svojho projektu dostať zmeny, ktoré spolužiak poslal na server?",
+        "answers": [
+          "pull",
+          "push",
+          "fetch",
+          "commit"
+        ],
+        "explanation": "To je pull: stiahne nové commity zo servera a zapracuje ich do mojich súborov."
+      },
+      "en": {
+        "body": "What do I do to get the changes a classmate sent to the server into my project?",
+        "answers": [
+          "pull",
+          "push",
+          "fetch",
+          "commit"
+        ],
+        "explanation": "That's pull: downloads new commits from the server and brings them into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-008",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá krok, ktorý stiahne nové commity zo servera a zapracuje ich do mojich súborov?",
+        "answers": [
+          "pull",
+          "push",
+          "fetch",
+          "commit"
+        ],
+        "explanation": "To je pull: stiahne nové commity zo servera a zapracuje ich do mojich súborov."
+      },
+      "en": {
+        "body": "What is the step that downloads new commits and brings them into my files called?",
+        "answers": [
+          "pull",
+          "push",
+          "fetch",
+          "commit"
+        ],
+        "explanation": "That's pull: downloads new commits from the server and brings them into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-009",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo urobím, keď chcem uložiť hotový kus práce s popisom, čo som zmenil?",
+        "answers": [
+          "commit",
+          "push",
+          "pull",
+          "repozitár"
+        ],
+        "explanation": "To je commit: uložený stav zmien so správou – zatiaľ iba na mojom počítači."
+      },
+      "en": {
+        "body": "What do I do to save a finished piece of work with a description of what I changed?",
+        "answers": [
+          "commit",
+          "push",
+          "pull",
+          "repository"
+        ],
+        "explanation": "That's commit: a saved state of changes with a message – only on my computer so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-010",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá krok, ktorý stiahne nové commity zo servera a zapracuje ich do mojich súborov?",
+        "answers": [
+          "pull",
+          "`.gitignore`",
+          "push",
+          "repozitár"
+        ],
+        "explanation": "To je pull: stiahne nové commity zo servera a zapracuje ich do mojich súborov."
+      },
+      "en": {
+        "body": "What is the step that downloads new commits and brings them into my files called?",
+        "answers": [
+          "pull",
+          "`.gitignore`",
+          "push",
+          "repository"
+        ],
+        "explanation": "That's pull: downloads new commits from the server and brings them into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-011",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá situácia, keď dvaja zmenili ten istý riadok a Git nevie, ktorú verziu ponechať?",
+        "answers": [
+          "konflikt",
+          "commit",
+          "repozitár",
+          "pull"
+        ],
+        "explanation": "To je konflikt: dvaja zmenili to isté miesto v súbore a Git nevie sám rozhodnúť."
+      },
+      "en": {
+        "body": "What is it called when two people changed the same line and Git can't tell which version to keep?",
+        "answers": [
+          "conflict",
+          "commit",
+          "repository",
+          "pull"
+        ],
+        "explanation": "That's conflict: two people changed the same place in a file and Git can't decide by itself."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-012",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo urobím, keď chcem uložiť hotový kus práce s popisom, čo som zmenil?",
+        "answers": [
+          "commit",
+          "fetch",
+          "`.gitignore`",
+          "push"
+        ],
+        "explanation": "To je commit: uložený stav zmien so správou – zatiaľ iba na mojom počítači."
+      },
+      "en": {
+        "body": "What do I do to save a finished piece of work with a description of what I changed?",
+        "answers": [
+          "commit",
+          "fetch",
+          "`.gitignore`",
+          "push"
+        ],
+        "explanation": "That's commit: a saved state of changes with a message – only on my computer so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-013",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá krok, ktorý iba zistí, čo je nové na serveri, ale moje súbory nezmení?",
+        "answers": [
+          "fetch",
+          "`.gitignore`",
+          "repozitár",
+          "push"
+        ],
+        "explanation": "To je fetch: iba zistí a stiahne, čo je nové na serveri – moje súbory nezmení."
+      },
+      "en": {
+        "body": "What is the step that only checks what's new on the server without changing my files called?",
+        "answers": [
+          "fetch",
+          "`.gitignore`",
+          "repository",
+          "push"
+        ],
+        "explanation": "That's fetch: only finds out and downloads what's new on the server – my files don't change."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-014",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa volá súbor so zoznamom súborov, ktoré Git nemá sledovať?",
+        "answers": [
+          "`.gitignore`",
+          "repozitár",
+          "commit",
+          "konflikt"
+        ],
+        "explanation": "To je `.gitignore`: zoznam súborov a priečinkov, ktoré Git nemá sledovať."
+      },
+      "en": {
+        "body": "What is the file listing files Git should not track called?",
+        "answers": [
+          "`.gitignore`",
+          "repository",
+          "commit",
+          "conflict"
+        ],
+        "explanation": "That's `.gitignore`: a list of files and folders Git should not track."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-purpose-term-015",
+      "template": "git-purpose-term",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo musím urobiť, aby učiteľ videl môj commit na GitHube?",
+        "answers": [
+          "push",
+          "commit",
+          "konflikt",
+          "fetch"
+        ],
+        "explanation": "To je push: pošle moje commity na server (napr. GitHub)."
+      },
+      "en": {
+        "body": "What do I have to do so the teacher sees my commit on GitHub?",
+        "answers": [
+          "push",
+          "commit",
+          "conflict",
+          "fetch"
+        ],
+        "explanation": "That's push: sends my commits to the server (e.g. GitHub)."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-001",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Potrebujem internet na to, aby som urobil commit?",
+        "answers": [
+          "nie – commit sa uloží na mojom počítači",
+          "áno, ale iba pri prvom commite",
+          "áno – commit sa hneď posiela na GitHub",
+          "nie, lebo commit sa vôbec neukladá"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "Do I need the internet to make a commit?",
+        "answers": [
+          "no – a commit is saved on my computer",
+          "yes, but only for the first commit",
+          "yes – a commit is sent to GitHub right away",
+          "no, because a commit isn't saved at all"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-002",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Potrebujem internet na push? Vyber jednu možnosť.",
+        "answers": [
+          "áno – push posiela commity na server",
+          "nie, ak som už urobil commit",
+          "iba ak mám otvorený prehliadač",
+          "nie – push sa robí iba na mojom počítači"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "Do I need the internet for a push? Pick one option.",
+        "answers": [
+          "yes – push sends commits to the server",
+          "no, if I've already committed",
+          "only if a browser is open",
+          "no – push happens only on my computer"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-003",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktoré tvrdenie o Gite a GitHube je pravdivé? Vyber jednu možnosť.",
+        "answers": [
+          "Git sa dá používať aj bez GitHubu",
+          "GitHub beží iba na mojom počítači",
+          "Git a GitHub sú to isté",
+          "bez GitHubu sa nedá urobiť commit"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "Which statement about Git and GitHub is true? Pick one option.",
+        "answers": [
+          "Git can be used without GitHub too",
+          "GitHub runs only on my computer",
+          "Git and GitHub are the same thing",
+          "you can't commit without GitHub"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-004",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je Git? Vyber správnu odpoveď.",
+        "answers": [
+          "nástroj, ktorý na mojom počítači sleduje históriu zmien v projekte",
+          "cloudové úložisko ako Disk Google",
+          "programovací jazyk",
+          "webová stránka na zdieľanie kódu"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "What is Git? Choose the correct answer.",
+        "answers": [
+          "a tool that tracks the change history of a project on my computer",
+          "cloud storage like Google Drive",
+          "a programming language",
+          "a website for sharing code"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-005",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je Git?",
+        "answers": [
+          "nástroj, ktorý na mojom počítači sleduje históriu zmien v projekte",
+          "webová stránka na zdieľanie kódu",
+          "programovací jazyk",
+          "iný názov pre GitHub"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "What is Git?",
+        "answers": [
+          "a tool that tracks the change history of a project on my computer",
+          "a website for sharing code",
+          "a programming language",
+          "another name for GitHub"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-006",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je GitHub? Vyber správnu odpoveď.",
+        "answers": [
+          "služba na internete, kde sú uložené a zdieľané repozitáre",
+          "iný názov pre Git",
+          "nástroj na počítači, ktorý sleduje históriu zmien",
+          "editor na písanie kódu"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "What is GitHub? Choose the correct answer.",
+        "answers": [
+          "an online service where repositories are stored and shared",
+          "another name for Git",
+          "a tool on the computer that tracks the history of changes",
+          "a code editor"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-007",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktoré tvrdenie o Gite a GitHube je pravdivé? Vyber správnu odpoveď.",
+        "answers": [
+          "Git sa dá používať aj bez GitHubu",
+          "bez GitHubu sa nedá urobiť commit",
+          "GitHub beží iba na mojom počítači",
+          "Git a GitHub sú to isté"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "Which statement about Git and GitHub is true? Choose the correct answer.",
+        "answers": [
+          "Git can be used without GitHub too",
+          "you can't commit without GitHub",
+          "GitHub runs only on my computer",
+          "Git and GitHub are the same thing"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-008",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je Git?",
+        "answers": [
+          "nástroj, ktorý na mojom počítači sleduje históriu zmien v projekte",
+          "iný názov pre GitHub",
+          "cloudové úložisko ako Disk Google",
+          "webová stránka na zdieľanie kódu"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "What is Git?",
+        "answers": [
+          "a tool that tracks the change history of a project on my computer",
+          "another name for GitHub",
+          "cloud storage like Google Drive",
+          "a website for sharing code"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-009",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je GitHub? Vyber správnu odpoveď.",
+        "answers": [
+          "služba na internete, kde sú uložené a zdieľané repozitáre",
+          "nástroj na počítači, ktorý sleduje históriu zmien",
+          "programovací jazyk",
+          "editor na písanie kódu"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "What is GitHub? Choose the correct answer.",
+        "answers": [
+          "an online service where repositories are stored and shared",
+          "a tool on the computer that tracks the history of changes",
+          "a programming language",
+          "a code editor"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-vs-github-010",
+      "template": "git-vs-github",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kde je uložený môj commit, kým neurobím push? Vyber jednu možnosť.",
+        "answers": [
+          "iba v repozitári na mojom počítači",
+          "na GitHube",
+          "u učiteľa",
+          "nikde – commit sa uloží až po pushi"
+        ],
+        "explanation": "Git je nástroj na počítači, ktorý sleduje históriu zmien; GitHub je služba na internete, kam repozitár posielam a kde ho zdieľam."
+      },
+      "en": {
+        "body": "Where is my commit stored before I push? Pick one option.",
+        "answers": [
+          "only in the repository on my computer",
+          "on GitHub",
+          "on the teacher's computer",
+          "nowhere – a commit is saved only after a push"
+        ],
+        "explanation": "Git is a tool on the computer that tracks the history of changes; GitHub is an online service where I send and share the repository."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-001",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Je commit to isté ako uloženie súboru (Ctrl+S)? Vyber jednu možnosť.",
+        "answers": [
+          "nie – commit uloží stav do histórie Gitu so správou",
+          "nie – commit súbor vymaže",
+          "áno, je to to isté",
+          "áno, ale commit je rýchlejší"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "Is a commit the same as saving a file (Ctrl+S)? Pick one option.",
+        "answers": [
+          "no – a commit saves a state into Git's history with a message",
+          "no – a commit deletes the file",
+          "yes, it's the same",
+          "yes, but a commit is faster"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-002",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Na čo slúži správa commitu? Vyber jednu možnosť.",
+        "answers": [
+          "stručne opisuje, čo sa v commite zmenilo",
+          "nemá žiadny význam",
+          "je to heslo k repozitáru",
+          "určuje, kam sa commit pošle"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "What is a commit message for? Pick one option.",
+        "answers": [
+          "it briefly describes what changed in the commit",
+          "it has no purpose",
+          "it's the password to the repository",
+          "it decides where the commit is sent"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-003",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Na čo slúži správa commitu?",
+        "answers": [
+          "stručne opisuje, čo sa v commite zmenilo",
+          "určuje, kam sa commit pošle",
+          "nemá žiadny význam",
+          "je to heslo k repozitáru"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "What is a commit message for?",
+        "answers": [
+          "it briefly describes what changed in the commit",
+          "it decides where the commit is sent",
+          "it has no purpose",
+          "it's the password to the repository"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-004",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Je commit to isté ako uloženie súboru (Ctrl+S)? Vyber správnu odpoveď.",
+        "answers": [
+          "nie – commit uloží stav do histórie Gitu so správou",
+          "áno, ale commit je rýchlejší",
+          "nie – commit súbor vymaže",
+          "áno, je to to isté"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "Is a commit the same as saving a file (Ctrl+S)? Choose the correct answer.",
+        "answers": [
+          "no – a commit saves a state into Git's history with a message",
+          "yes, but a commit is faster",
+          "no – a commit deletes the file",
+          "yes, it's the same"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-005",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo obsahuje commit? Vyber správnu odpoveď.",
+        "answers": [
+          "zmeny v súboroch, správu, autora a čas",
+          "iba názov projektu",
+          "celý počítač",
+          "iba správu"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "What does a commit contain? Choose the correct answer.",
+        "answers": [
+          "changes to files, a message, the author and the time",
+          "only the project name",
+          "the whole computer",
+          "only the message"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-006",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo obsahuje commit? Vyber jednu možnosť.",
+        "answers": [
+          "zmeny v súboroch, správu, autora a čas",
+          "iba správu",
+          "celý počítač",
+          "iba názov projektu"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "What does a commit contain? Pick one option.",
+        "answers": [
+          "changes to files, a message, the author and the time",
+          "only the message",
+          "the whole computer",
+          "only the project name"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-007",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo sa stane, keď urobím commit? Vyber správnu odpoveď.",
+        "answers": [
+          "zmeny sa uložia do histórie repozitára na mojom počítači",
+          "stiahnu sa zmeny spolužiakov",
+          "zmeny sa hneď objavia na GitHube",
+          "vymaže sa predchádzajúca verzia"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "What happens when I make a commit? Choose the correct answer.",
+        "answers": [
+          "the changes are saved into the repository history on my computer",
+          "classmates' changes are downloaded",
+          "the changes appear on GitHub right away",
+          "the previous version is deleted"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-008",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Spravil som commit. Vidí ho už učiteľ na GitHube? Vyber jednu možnosť.",
+        "answers": [
+          "nie, najprv musím urobiť push",
+          "áno, commit sa posiela automaticky",
+          "áno, ak som pripojený na internet",
+          "nie, učiteľ musí urobiť commit"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "I made a commit. Can the teacher see it on GitHub yet? Pick one option.",
+        "answers": [
+          "no, I have to push first",
+          "yes, a commit is sent automatically",
+          "yes, if I'm online",
+          "no, the teacher must commit"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-009",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je commit? Vyber správnu odpoveď.",
+        "answers": [
+          "uložený stav (snímka) zmien s popisom",
+          "uloženie súboru ako Ctrl+S",
+          "odoslanie zmien na GitHub",
+          "záloha celého disku"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "What is a commit? Choose the correct answer.",
+        "answers": [
+          "a saved state (snapshot) of changes with a description",
+          "saving a file like Ctrl+S",
+          "sending changes to GitHub",
+          "a backup of the whole disk"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-meaning-010",
+      "template": "git-commit-meaning",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo je commit?",
+        "answers": [
+          "uložený stav (snímka) zmien s popisom",
+          "uloženie súboru ako Ctrl+S",
+          "odoslanie zmien na GitHub",
+          "záloha celého disku"
+        ],
+        "explanation": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne."
+      },
+      "en": {
+        "body": "What is a commit?",
+        "answers": [
+          "a saved state (snapshot) of changes with a description",
+          "saving a file like Ctrl+S",
+          "sending changes to GitHub",
+          "a backup of the whole disk"
+        ],
+        "explanation": "A commit is a saved state of the project with a description – only local so far."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-001",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dal som push bez toho, aby som predtým urobil commit. Čo sa pošle na GitHub? Vyber správnu odpoveď.",
+        "answers": [
+          "nič nové – push posiela iba commity",
+          "všetky zmenené súbory",
+          "prázdny commit",
+          "iba uložené súbory"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "I pushed without committing first. What is sent to GitHub? Choose the correct answer.",
+        "answers": [
+          "nothing new – push sends only commits",
+          "all changed files",
+          "an empty commit",
+          "only saved files"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-002",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Upravil som súbor, dal som commit A a push. Potom som urobil commit B, ale push som už nedal. Čo je teraz na GitHube? Vyber jednu možnosť.",
+        "answers": [
+          "iba commit A",
+          "iba commit B",
+          "nič",
+          "commity A aj B"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "I edited a file, made commit A and pushed. Then I made commit B but didn't push. What is on GitHub now? Pick one option.",
+        "answers": [
+          "only commit A",
+          "only commit B",
+          "nothing",
+          "commits A and B"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-003",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Upravil som tri súbory, ale nedal som commit ani push. Čo je na GitHube? Vyber jednu možnosť.",
+        "answers": [
+          "stará verzia, bez mojich zmien",
+          "prázdny repozitár",
+          "všetky tri zmenené súbory",
+          "iba prvý súbor"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "I edited three files but didn't commit or push. What is on GitHub? Pick one option.",
+        "answers": [
+          "the old version, without my changes",
+          "an empty repository",
+          "all three changed files",
+          "only the first file"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-004",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Spolužiak pushol commit X. Ja som zatiaľ nič nespravil. Je X na GitHube?",
+        "answers": [
+          "áno, ale u mňa na počítači zatiaľ nie je",
+          "nie, push nič neposiela",
+          "nie, kým neurobím pull",
+          "áno, aj u mňa sa objavil sám"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "A classmate pushed commit X. I haven't done anything yet. Is X on GitHub?",
+        "answers": [
+          "yes, but it isn't on my computer yet",
+          "no, push doesn't send anything",
+          "no, not until I pull",
+          "yes, and it appeared on my computer by itself"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-005",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dal som commit a push, potom som ešte upravil súbor bez commitu. Čo je na GitHube? Vyber jednu možnosť.",
+        "answers": [
+          "verzia z posledného pushnutého commitu",
+          "aj posledná úprava",
+          "nič",
+          "iba posledná úprava"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "I committed and pushed, then edited a file without committing. What is on GitHub? Pick one option.",
+        "answers": [
+          "the version from the last pushed commit",
+          "the last edit too",
+          "nothing",
+          "only the last edit"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-006",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dal som commit a push, potom som ešte upravil súbor bez commitu. Čo je na GitHube?",
+        "answers": [
+          "verzia z posledného pushnutého commitu",
+          "aj posledná úprava",
+          "iba posledná úprava",
+          "nič"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "I committed and pushed, then edited a file without committing. What is on GitHub?",
+        "answers": [
+          "the version from the last pushed commit",
+          "the last edit too",
+          "only the last edit",
+          "nothing"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-007",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Upravil som tri súbory, ale nedal som commit ani push. Čo je na GitHube?",
+        "answers": [
+          "stará verzia, bez mojich zmien",
+          "prázdny repozitár",
+          "iba prvý súbor",
+          "všetky tri zmenené súbory"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "I edited three files but didn't commit or push. What is on GitHub?",
+        "answers": [
+          "the old version, without my changes",
+          "an empty repository",
+          "only the first file",
+          "all three changed files"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-008",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Spolužiak pushol commit X. Ja som zatiaľ nič nespravil. Je X na GitHube? Vyber správnu odpoveď.",
+        "answers": [
+          "áno, ale u mňa na počítači zatiaľ nie je",
+          "áno, aj u mňa sa objavil sám",
+          "nie, push nič neposiela",
+          "nie, kým neurobím pull"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "A classmate pushed commit X. I haven't done anything yet. Is X on GitHub? Choose the correct answer.",
+        "answers": [
+          "yes, but it isn't on my computer yet",
+          "yes, and it appeared on my computer by itself",
+          "no, push doesn't send anything",
+          "no, not until I pull"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-009",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dal som commit A, commit B a potom push. Čo je na GitHube?",
+        "answers": [
+          "oba commity A aj B",
+          "iba commit A",
+          "nič, push posiela iba posledný súbor",
+          "iba commit B"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "I made commit A, commit B and then pushed. What is on GitHub?",
+        "answers": [
+          "both commits A and B",
+          "only commit A",
+          "nothing, push sends only the last file",
+          "only commit B"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-whats-on-remote-010",
+      "template": "git-whats-on-remote",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dal som commit A, commit B a potom push. Čo je na GitHube? Vyber jednu možnosť.",
+        "answers": [
+          "oba commity A aj B",
+          "iba commit A",
+          "nič, push posiela iba posledný súbor",
+          "iba commit B"
+        ],
+        "explanation": "Na server sa dostane iba to, čo som commitol a potom pushol."
+      },
+      "en": {
+        "body": "I made commit A, commit B and then pushed. What is on GitHub? Pick one option.",
+        "answers": [
+          "both commits A and B",
+          "only commit A",
+          "nothing, push sends only the last file",
+          "only commit B"
+        ],
+        "explanation": "Only what I committed and then pushed reaches the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-001",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý postup je správny pri práci v tíme? Vyber správnu odpoveď.",
+        "answers": [
+          "pull → úpravy → commit → push",
+          "úpravy → push → commit",
+          "commit → pull → push → úpravy",
+          "push → úpravy → commit → pull"
+        ],
+        "explanation": "Najprv stiahnem zmeny ostatných, potom pracujem, uložím commit a pošlem ho pushom."
+      },
+      "en": {
+        "body": "Which workflow is right when working in a team? Choose the correct answer.",
+        "answers": [
+          "pull → edits → commit → push",
+          "edits → push → commit",
+          "commit → pull → push → edits",
+          "push → edits → commit → pull"
+        ],
+        "explanation": "First I get the others' changes, then work, commit and push."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-002",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý postup je správny pri práci v tíme?",
+        "answers": [
+          "pull → úpravy → commit → push",
+          "commit → pull → push → úpravy",
+          "úpravy → push → commit",
+          "push → úpravy → commit → pull"
+        ],
+        "explanation": "Najprv stiahnem zmeny ostatných, potom pracujem, uložím commit a pošlem ho pushom."
+      },
+      "en": {
+        "body": "Which workflow is right when working in a team?",
+        "answers": [
+          "pull → edits → commit → push",
+          "commit → pull → push → edits",
+          "edits → push → commit",
+          "push → edits → commit → pull"
+        ],
+        "explanation": "First I get the others' changes, then work, commit and push."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-003",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "V akom poradí odošlem svoju prácu na GitHub? Vyber správnu odpoveď.",
+        "answers": [
+          "commit → push",
+          "pull → commit",
+          "iba push",
+          "push → commit"
+        ],
+        "explanation": "Najprv sa zmeny uložia commitom na mojom počítači, až potom ich push pošle na server."
+      },
+      "en": {
+        "body": "In which order do I send my work to GitHub? Choose the correct answer.",
+        "answers": [
+          "commit → push",
+          "pull → commit",
+          "push only",
+          "push → commit"
+        ],
+        "explanation": "First the changes are saved with a commit on my computer, then push sends them to the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-004",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Urobil som commit. Čo ďalej, aby to videl učiteľ? Vyber správnu odpoveď.",
+        "answers": [
+          "push",
+          "fetch",
+          "ďalší commit",
+          "nič, učiteľ ho už vidí"
+        ],
+        "explanation": "Najprv sa zmeny uložia commitom na mojom počítači, až potom ich push pošle na server."
+      },
+      "en": {
+        "body": "I made a commit. What next, so the teacher sees it? Choose the correct answer.",
+        "answers": [
+          "push",
+          "fetch",
+          "another commit",
+          "nothing, the teacher already sees it"
+        ],
+        "explanation": "First the changes are saved with a commit on my computer, then push sends them to the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-005",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý postup je správny pri práci v tíme? Vyber jednu možnosť.",
+        "answers": [
+          "pull → úpravy → commit → push",
+          "úpravy → push → commit",
+          "commit → pull → push → úpravy",
+          "push → úpravy → commit → pull"
+        ],
+        "explanation": "Najprv stiahnem zmeny ostatných, potom pracujem, uložím commit a pošlem ho pushom."
+      },
+      "en": {
+        "body": "Which workflow is right when working in a team? Pick one option.",
+        "answers": [
+          "pull → edits → commit → push",
+          "edits → push → commit",
+          "commit → pull → push → edits",
+          "push → edits → commit → pull"
+        ],
+        "explanation": "First I get the others' changes, then work, commit and push."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-006",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dopísal som úlohu. Čo urobím najprv? Vyber jednu možnosť.",
+        "answers": [
+          "commit",
+          "push",
+          "fetch",
+          "vymažem repozitár"
+        ],
+        "explanation": "Najprv sa zmeny uložia commitom na mojom počítači, až potom ich push pošle na server."
+      },
+      "en": {
+        "body": "I finished my assignment. What do I do first? Pick one option.",
+        "answers": [
+          "commit",
+          "push",
+          "fetch",
+          "delete the repository"
+        ],
+        "explanation": "First the changes are saved with a commit on my computer, then push sends them to the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-007",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Urobil som commit. Čo ďalej, aby to videl učiteľ? Vyber jednu možnosť.",
+        "answers": [
+          "push",
+          "fetch",
+          "nič, učiteľ ho už vidí",
+          "ďalší commit"
+        ],
+        "explanation": "Najprv sa zmeny uložia commitom na mojom počítači, až potom ich push pošle na server."
+      },
+      "en": {
+        "body": "I made a commit. What next, so the teacher sees it? Pick one option.",
+        "answers": [
+          "push",
+          "fetch",
+          "nothing, the teacher already sees it",
+          "another commit"
+        ],
+        "explanation": "First the changes are saved with a commit on my computer, then push sends them to the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-008",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "V akom poradí odošlem svoju prácu na GitHub?",
+        "answers": [
+          "commit → push",
+          "pull → commit",
+          "iba push",
+          "push → commit"
+        ],
+        "explanation": "Najprv sa zmeny uložia commitom na mojom počítači, až potom ich push pošle na server."
+      },
+      "en": {
+        "body": "In which order do I send my work to GitHub?",
+        "answers": [
+          "commit → push",
+          "pull → commit",
+          "push only",
+          "push → commit"
+        ],
+        "explanation": "First the changes are saved with a commit on my computer, then push sends them to the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-009",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo urobím na začiatku práce, keď spolužiak medzitým niečo zmenil na serveri? Vyber jednu možnosť.",
+        "answers": [
+          "pull",
+          "commit",
+          "push",
+          "nič, zmeny sa stiahnu samé"
+        ],
+        "explanation": "Najprv si pullom stiahnem najnovšie zmeny, až potom pokračujem v práci."
+      },
+      "en": {
+        "body": "What do I do when I start working and a classmate has changed something on the server? Pick one option.",
+        "answers": [
+          "pull",
+          "commit",
+          "push",
+          "nothing, the changes download by themselves"
+        ],
+        "explanation": "First I pull the latest changes, then I continue working."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-workflow-order-010",
+      "template": "git-workflow-order",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dopísal som úlohu. Čo urobím najprv? Vyber správnu odpoveď.",
+        "answers": [
+          "commit",
+          "fetch",
+          "push",
+          "vymažem repozitár"
+        ],
+        "explanation": "Najprv sa zmeny uložia commitom na mojom počítači, až potom ich push pošle na server."
+      },
+      "en": {
+        "body": "I finished my assignment. What do I do first? Choose the correct answer.",
+        "answers": [
+          "commit",
+          "fetch",
+          "push",
+          "delete the repository"
+        ],
+        "explanation": "First the changes are saved with a commit on my computer, then push sends them to the server."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-001",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Pracujem na dvoch počítačoch. Doma chcem pokračovať v tom, čo som v škole pushol. Čo urobím doma? Vyber správnu odpoveď.",
+        "answers": [
+          "pull",
+          "commit",
+          "nič, zmeny sa objavia samé",
+          "push"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "I work on two computers. At home I want to continue what I pushed at school. What do I do at home? Choose the correct answer.",
+        "answers": [
+          "pull",
+          "commit",
+          "nothing, the changes appear by themselves",
+          "push"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-002",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Učiteľ pridal do repozitára nové zadanie. Ako ho dostanem do svojho projektu? Vyber jednu možnosť.",
+        "answers": [
+          "pull",
+          "fetch – a hotovo",
+          "commit",
+          "push"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "The teacher added a new assignment to the repository. How do I get it into my project? Pick one option.",
+        "answers": [
+          "pull",
+          "fetch – and that's it",
+          "commit",
+          "push"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-003",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorým smerom ide pull?",
+        "answers": [
+          "zo servera na môj počítač",
+          "nikam, iba ukladá",
+          "z môjho počítača na server",
+          "od učiteľa k žiakom e-mailom"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "Which way does pull go?",
+        "answers": [
+          "from the server to my computer",
+          "nowhere, it only saves",
+          "from my computer to the server",
+          "from the teacher to students by e-mail"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-004",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Chcem, aby učiteľ videl moje riešenie. Čo použijem po commite?",
+        "answers": [
+          "push",
+          "ďalší commit",
+          "pull",
+          "fetch"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "I want the teacher to see my solution. What do I use after committing?",
+        "answers": [
+          "push",
+          "another commit",
+          "pull",
+          "fetch"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-005",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Pracujem na dvoch počítačoch. Doma chcem pokračovať v tom, čo som v škole pushol. Čo urobím doma? Vyber jednu možnosť.",
+        "answers": [
+          "pull",
+          "nič, zmeny sa objavia samé",
+          "commit",
+          "push"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "I work on two computers. At home I want to continue what I pushed at school. What do I do at home? Pick one option.",
+        "answers": [
+          "pull",
+          "nothing, the changes appear by themselves",
+          "commit",
+          "push"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-006",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Učiteľ pridal do repozitára nové zadanie. Ako ho dostanem do svojho projektu? Vyber správnu odpoveď.",
+        "answers": [
+          "pull",
+          "fetch – a hotovo",
+          "commit",
+          "push"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "The teacher added a new assignment to the repository. How do I get it into my project? Choose the correct answer.",
+        "answers": [
+          "pull",
+          "fetch – and that's it",
+          "commit",
+          "push"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-007",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorým smerom ide pull? Vyber jednu možnosť.",
+        "answers": [
+          "zo servera na môj počítač",
+          "z môjho počítača na server",
+          "nikam, iba ukladá",
+          "od učiteľa k žiakom e-mailom"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "Which way does pull go? Pick one option.",
+        "answers": [
+          "from the server to my computer",
+          "from my computer to the server",
+          "nowhere, it only saves",
+          "from the teacher to students by e-mail"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-008",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Chcem, aby učiteľ videl moje riešenie. Čo použijem po commite? Vyber jednu možnosť.",
+        "answers": [
+          "push",
+          "pull",
+          "ďalší commit",
+          "fetch"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "I want the teacher to see my solution. What do I use after committing? Pick one option.",
+        "answers": [
+          "push",
+          "pull",
+          "another commit",
+          "fetch"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-009",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorým smerom ide push?",
+        "answers": [
+          "z môjho počítača na server",
+          "nikam, iba ukladá",
+          "z jedného súboru do druhého",
+          "zo servera na môj počítač"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "Which way does push go?",
+        "answers": [
+          "from my computer to the server",
+          "nowhere, it only saves",
+          "from one file to another",
+          "from the server to my computer"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-vs-pull-010",
+      "template": "git-push-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Učiteľ pridal do repozitára nové zadanie. Ako ho dostanem do svojho projektu?",
+        "answers": [
+          "pull",
+          "fetch – a hotovo",
+          "push",
+          "commit"
+        ],
+        "explanation": "push = z môjho počítača na server, pull = zo servera k mne."
+      },
+      "en": {
+        "body": "The teacher added a new assignment to the repository. How do I get it into my project?",
+        "answers": [
+          "pull",
+          "fetch – and that's it",
+          "push",
+          "commit"
+        ],
+        "explanation": "push = from my computer to the server, pull = from the server to me."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-001",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Aký je rozdiel medzi fetch a pull? Vyber správnu odpoveď.",
+        "answers": [
+          "fetch iba stiahne informácie o zmenách, pull ich aj zapracuje do mojich súborov",
+          "fetch posiela zmeny na server, pull ich sťahuje",
+          "žiadny, sú to dve mená pre to isté",
+          "pull iba zistí zmeny, fetch ich zapracuje"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "What is the difference between fetch and pull? Choose the correct answer.",
+        "answers": [
+          "fetch only downloads information about changes; pull also brings them into my files",
+          "fetch sends changes to the server, pull downloads them",
+          "none, they're two names for the same thing",
+          "pull only checks for changes, fetch brings them in"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-002",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Spravil som fetch. Zmenili sa moje súbory?",
+        "answers": [
+          "nie – fetch iba zistí, čo je nové na serveri",
+          "áno, ale iba súbory spolužiakov",
+          "nie, lebo fetch vymaže zmeny",
+          "áno, fetch je to isté ako pull"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "I did a fetch. Did my files change?",
+        "answers": [
+          "no – fetch only finds out what's new on the server",
+          "yes, but only classmates' files",
+          "no, because fetch deletes changes",
+          "yes, fetch is the same as pull"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-003",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Chcem iba zistiť, či spolužiaci niečo pushli, ale zatiaľ nič nemeniť. Čo použijem? Vyber jednu možnosť.",
+        "answers": [
+          "fetch",
+          "pull",
+          "commit",
+          "push"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "I only want to find out whether classmates pushed something, without changing anything yet. What do I use? Pick one option.",
+        "answers": [
+          "fetch",
+          "pull",
+          "commit",
+          "push"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-004",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Aký je rozdiel medzi fetch a pull?",
+        "answers": [
+          "fetch iba stiahne informácie o zmenách, pull ich aj zapracuje do mojich súborov",
+          "pull iba zistí zmeny, fetch ich zapracuje",
+          "fetch posiela zmeny na server, pull ich sťahuje",
+          "žiadny, sú to dve mená pre to isté"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "What is the difference between fetch and pull?",
+        "answers": [
+          "fetch only downloads information about changes; pull also brings them into my files",
+          "pull only checks for changes, fetch brings them in",
+          "fetch sends changes to the server, pull downloads them",
+          "none, they're two names for the same thing"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-005",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Aký je rozdiel medzi fetch a pull? Vyber jednu možnosť.",
+        "answers": [
+          "fetch iba stiahne informácie o zmenách, pull ich aj zapracuje do mojich súborov",
+          "pull iba zistí zmeny, fetch ich zapracuje",
+          "fetch posiela zmeny na server, pull ich sťahuje",
+          "žiadny, sú to dve mená pre to isté"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "What is the difference between fetch and pull? Pick one option.",
+        "answers": [
+          "fetch only downloads information about changes; pull also brings them into my files",
+          "pull only checks for changes, fetch brings them in",
+          "fetch sends changes to the server, pull downloads them",
+          "none, they're two names for the same thing"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-006",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Chcem iba zistiť, či spolužiaci niečo pushli, ale zatiaľ nič nemeniť. Čo použijem?",
+        "answers": [
+          "fetch",
+          "push",
+          "pull",
+          "commit"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "I only want to find out whether classmates pushed something, without changing anything yet. What do I use?",
+        "answers": [
+          "fetch",
+          "push",
+          "pull",
+          "commit"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-007",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Pull sa skladá z dvoch krokov. Z ktorých? Vyber jednu možnosť.",
+        "answers": [
+          "stiahnutie zmien (fetch) a ich zapracovanie do mojich súborov",
+          "push a fetch",
+          "uloženie a vymazanie",
+          "commit a push"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "Pull consists of two steps. Which ones? Pick one option.",
+        "answers": [
+          "downloading the changes (fetch) and bringing them into my files",
+          "push and fetch",
+          "saving and deleting",
+          "commit and push"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-008",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý krok zmení súbory v mojom projekte podľa servera? Vyber jednu možnosť.",
+        "answers": [
+          "pull",
+          "push",
+          "commit",
+          "fetch"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "Which step changes the files in my project according to the server? Pick one option.",
+        "answers": [
+          "pull",
+          "push",
+          "commit",
+          "fetch"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-009",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Chcem iba zistiť, či spolužiaci niečo pushli, ale zatiaľ nič nemeniť. Čo použijem? Vyber správnu odpoveď.",
+        "answers": [
+          "fetch",
+          "commit",
+          "pull",
+          "push"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "I only want to find out whether classmates pushed something, without changing anything yet. What do I use? Choose the correct answer.",
+        "answers": [
+          "fetch",
+          "commit",
+          "pull",
+          "push"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull-010",
+      "template": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Spravil som fetch. Zmenili sa moje súbory? Vyber jednu možnosť.",
+        "answers": [
+          "nie – fetch iba zistí, čo je nové na serveri",
+          "áno, ale iba súbory spolužiakov",
+          "nie, lebo fetch vymaže zmeny",
+          "áno, fetch je to isté ako pull"
+        ],
+        "explanation": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov."
+      },
+      "en": {
+        "body": "I did a fetch. Did my files change? Pick one option.",
+        "answers": [
+          "no – fetch only finds out what's new on the server",
+          "yes, but only classmates' files",
+          "no, because fetch deletes changes",
+          "yes, fetch is the same as pull"
+        ],
+        "explanation": "fetch only finds out what's new; pull also brings it into my files."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-001",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Pridaná trieda Ziak s metódou Pozdrav",
+          "aaaa",
+          "oprava",
+          "commit"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Add Ziak class with Pozdrav method",
+          "aaaa",
+          "fix",
+          "commit"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-002",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Doplnené testy pre funkciu Max",
+          "asdf",
+          "zmena",
+          "posledná verzia FINAL2"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Add tests for the Max function",
+          "asdf",
+          "change",
+          "final version FINAL2"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-003",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Opravené delenie nulou vo funkcii Priemer",
+          "posledná verzia FINAL2",
+          "nefunguje",
+          "aaaa"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Fix division by zero in Priemer",
+          "final version FINAL2",
+          "doesn't work",
+          "aaaa"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-004",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Pridaná trieda Ziak s metódou Pozdrav",
+          "oprava",
+          "asdf",
+          "zmena"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Add Ziak class with Pozdrav method",
+          "fix",
+          "asdf",
+          "change"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-005",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Opravené delenie nulou vo funkcii Priemer",
+          "asdf",
+          "nefunguje",
+          "aaaa"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Fix division by zero in Priemer",
+          "asdf",
+          "doesn't work",
+          "aaaa"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-006",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Doplnené testy pre funkciu Max",
+          "nefunguje",
+          "zmena",
+          "asdf"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Add tests for the Max function",
+          "doesn't work",
+          "change",
+          "asdf"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-007",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Pridaný výpočet priemeru známok",
+          "commit",
+          "oprava",
+          "hotovo???"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Add average grade calculation",
+          "commit",
+          "fix",
+          "done???"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-008",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Upravený výpis výsledkov podľa zadania",
+          "zmena",
+          "commit",
+          "nefunguje"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Change result output to match the assignment",
+          "change",
+          "commit",
+          "doesn't work"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-009",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Upravený výpis výsledkov podľa zadania",
+          "asdf",
+          "hotovo???",
+          "nefunguje"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Change result output to match the assignment",
+          "asdf",
+          "done???",
+          "doesn't work"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-good-message-010",
+      "template": "git-good-message",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorá správa commitu je najlepšia?",
+        "answers": [
+          "Oprava chyby v cykle pri výpise poľa",
+          "aaaa",
+          "commit",
+          "posledná verzia FINAL2"
+        ],
+        "explanation": "Dobrá správa stručne a konkrétne povie, čo sa zmenilo – aby sa dala história neskôr čítať."
+      },
+      "en": {
+        "body": "Which commit message is best?",
+        "answers": [
+          "Fix loop bug when printing the array",
+          "aaaa",
+          "commit",
+          "final version FINAL2"
+        ],
+        "explanation": "A good message briefly and specifically says what changed – so the history can be read later."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-001",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Push sa nepodaril, lebo spolužiak medzitým pushol svoje zmeny. Čo mám urobiť? Vyber správnu odpoveď.",
+        "answers": [
+          "najprv pull, potom znova push",
+          "vymazať repozitár a začať odznova",
+          "dať commit ešte raz",
+          "počkať, kým sa to opraví samo"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "My push failed because a classmate pushed their changes in the meantime. What should I do? Choose the correct answer.",
+        "answers": [
+          "pull first, then push again",
+          "delete the repository and start over",
+          "commit once more",
+          "wait until it fixes itself"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-002",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Pracoval som na dvoch počítačoch a z druhého som už pushol. Na prvom mi push nejde. Prečo? Vyber jednu možnosť.",
+        "answers": [
+          "server má commity, ktoré tento počítač ešte nemá – treba pull",
+          "push funguje iba raz denne",
+          "treba urobiť nový repozitár",
+          "na jednom repozitári sa dá pracovať iba z jedného počítača"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "I worked on two computers and already pushed from the second one. The push from the first fails. Why? Pick one option.",
+        "answers": [
+          "the server has commits this computer doesn't have yet – I need to pull",
+          "push works only once a day",
+          "I need a new repository",
+          "a repository can only be used from one computer"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-003",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Push skončil chybou, lebo na serveri sú novšie commity, ktoré nemám. Ktorý krok chýba?",
+        "answers": [
+          "pull",
+          "commit",
+          "vymazanie súborov",
+          "ďalší push"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "The push failed because the server has newer commits I don't have. Which step is missing?",
+        "answers": [
+          "pull",
+          "commit",
+          "deleting files",
+          "another push"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-004",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Push skončil chybou, lebo na serveri sú novšie commity, ktoré nemám. Ktorý krok chýba? Vyber jednu možnosť.",
+        "answers": [
+          "pull",
+          "commit",
+          "vymazanie súborov",
+          "ďalší push"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "The push failed because the server has newer commits I don't have. Which step is missing? Pick one option.",
+        "answers": [
+          "pull",
+          "commit",
+          "deleting files",
+          "another push"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-005",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Pracoval som na dvoch počítačoch a z druhého som už pushol. Na prvom mi push nejde. Prečo?",
+        "answers": [
+          "server má commity, ktoré tento počítač ešte nemá – treba pull",
+          "push funguje iba raz denne",
+          "na jednom repozitári sa dá pracovať iba z jedného počítača",
+          "treba urobiť nový repozitár"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "I worked on two computers and already pushed from the second one. The push from the first fails. Why?",
+        "answers": [
+          "the server has commits this computer doesn't have yet – I need to pull",
+          "push works only once a day",
+          "a repository can only be used from one computer",
+          "I need a new repository"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-006",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Prečo server niekedy odmietne môj push?",
+        "answers": [
+          "lebo na ňom sú novšie commity, ktoré ešte nemám",
+          "lebo som urobil príliš veľa commitov",
+          "lebo push sa dá urobiť iba raz",
+          "lebo som nezatvoril editor"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "Why does the server sometimes refuse my push?",
+        "answers": [
+          "because it has newer commits I don't have yet",
+          "because I made too many commits",
+          "because you can push only once",
+          "because I didn't close the editor"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-007",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Prečo server niekedy odmietne môj push? Vyber jednu možnosť.",
+        "answers": [
+          "lebo na ňom sú novšie commity, ktoré ešte nemám",
+          "lebo som urobil príliš veľa commitov",
+          "lebo push sa dá urobiť iba raz",
+          "lebo som nezatvoril editor"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "Why does the server sometimes refuse my push? Pick one option.",
+        "answers": [
+          "because it has newer commits I don't have yet",
+          "because I made too many commits",
+          "because you can push only once",
+          "because I didn't close the editor"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-008",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Pracoval som na dvoch počítačoch a z druhého som už pushol. Na prvom mi push nejde. Prečo? Vyber správnu odpoveď.",
+        "answers": [
+          "server má commity, ktoré tento počítač ešte nemá – treba pull",
+          "na jednom repozitári sa dá pracovať iba z jedného počítača",
+          "treba urobiť nový repozitár",
+          "push funguje iba raz denne"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "I worked on two computers and already pushed from the second one. The push from the first fails. Why? Choose the correct answer.",
+        "answers": [
+          "the server has commits this computer doesn't have yet – I need to pull",
+          "a repository can only be used from one computer",
+          "I need a new repository",
+          "push works only once a day"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-009",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Push sa nepodaril, lebo spolužiak medzitým pushol svoje zmeny. Čo mám urobiť? Vyber jednu možnosť.",
+        "answers": [
+          "najprv pull, potom znova push",
+          "počkať, kým sa to opraví samo",
+          "dať commit ešte raz",
+          "vymazať repozitár a začať odznova"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "My push failed because a classmate pushed their changes in the meantime. What should I do? Pick one option.",
+        "answers": [
+          "pull first, then push again",
+          "wait until it fixes itself",
+          "commit once more",
+          "delete the repository and start over"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-push-rejected-010",
+      "template": "git-push-rejected",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Push skončil chybou, lebo na serveri sú novšie commity, ktoré nemám. Ktorý krok chýba? Vyber správnu odpoveď.",
+        "answers": [
+          "pull",
+          "commit",
+          "ďalší push",
+          "vymazanie súborov"
+        ],
+        "explanation": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom, potom pushnem znova."
+      },
+      "en": {
+        "body": "The push failed because the server has newer commits I don't have. Which step is missing? Choose the correct answer.",
+        "answers": [
+          "pull",
+          "commit",
+          "another push",
+          "deleting files"
+        ],
+        "explanation": "The server refuses a push when I don't have its newest commits – I get them with pull first, then push again."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-001",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý súbor by NEMAL byť v `.gitignore`? Vyber správnu odpoveď.",
+        "answers": [
+          "`Program.cs`",
+          "`bin/`",
+          "`obj/`",
+          "súbor s mojím heslom"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "Which file should NOT be in `.gitignore`? Choose the correct answer.",
+        "answers": [
+          "`Program.cs`",
+          "`bin/`",
+          "`obj/`",
+          "a file with my password"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-002",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Na čo slúži súbor `.gitignore`? Vyber správnu odpoveď.",
+        "answers": [
+          "určuje, ktoré súbory Git nemá sledovať",
+          "skryje projekt pred učiteľom",
+          "zoznam chýb v programe",
+          "vymaže súbory z disku"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "What is the `.gitignore` file for? Choose the correct answer.",
+        "answers": [
+          "it says which files Git should not track",
+          "it hides the project from the teacher",
+          "a list of bugs in the program",
+          "it deletes files from the disk"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-003",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Prečo nedávame do repozitára priečinok `bin/`? Vyber správnu odpoveď.",
+        "answers": [
+          "dá sa kedykoľvek znova vytvoriť prekladom – je to výstup, nie zdrojový kód",
+          "lebo je to tajný priečinok",
+          "lebo je v ňom zdrojový kód",
+          "lebo Git nevie ukladať priečinky"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "Why don't we put the `bin/` folder into the repository? Choose the correct answer.",
+        "answers": [
+          "it can be recreated any time by building – it's output, not source code",
+          "because it's a secret folder",
+          "because it contains the source code",
+          "because Git can't store folders"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-004",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý priečinok patrí do `.gitignore` v C# projekte? Vyber jednu možnosť.",
+        "answers": [
+          "`bin/`",
+          "`.gitignore`",
+          "`README.md`",
+          "`Program.cs`"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "Which folder belongs in `.gitignore` in a C# project? Pick one option.",
+        "answers": [
+          "`bin/`",
+          "`.gitignore`",
+          "`README.md`",
+          "`Program.cs`"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-005",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý súbor by NEMAL byť v `.gitignore`? Vyber jednu možnosť.",
+        "answers": [
+          "`Program.cs`",
+          "`bin/`",
+          "`obj/`",
+          "súbor s mojím heslom"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "Which file should NOT be in `.gitignore`? Pick one option.",
+        "answers": [
+          "`Program.cs`",
+          "`bin/`",
+          "`obj/`",
+          "a file with my password"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-006",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý súbor by NEMAL byť v `.gitignore`?",
+        "answers": [
+          "`Program.cs`",
+          "`bin/`",
+          "súbor s mojím heslom",
+          "`obj/`"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "Which file should NOT be in `.gitignore`?",
+        "answers": [
+          "`Program.cs`",
+          "`bin/`",
+          "a file with my password",
+          "`obj/`"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-007",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Prečo nedávame do repozitára priečinok `bin/`? Vyber jednu možnosť.",
+        "answers": [
+          "dá sa kedykoľvek znova vytvoriť prekladom – je to výstup, nie zdrojový kód",
+          "lebo Git nevie ukladať priečinky",
+          "lebo je to tajný priečinok",
+          "lebo je v ňom zdrojový kód"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "Why don't we put the `bin/` folder into the repository? Pick one option.",
+        "answers": [
+          "it can be recreated any time by building – it's output, not source code",
+          "because Git can't store folders",
+          "because it's a secret folder",
+          "because it contains the source code"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-008",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý priečinok patrí do `.gitignore` v C# projekte? Vyber jednu možnosť.",
+        "answers": [
+          "`bin/`",
+          "priečinok so zdrojovým kódom",
+          "`README.md`",
+          "`Program.cs`"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "Which folder belongs in `.gitignore` in a C# project? Pick one option.",
+        "answers": [
+          "`bin/`",
+          "the source code folder",
+          "`README.md`",
+          "`Program.cs`"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-009",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ktorý priečinok patrí do `.gitignore` v C# projekte?",
+        "answers": [
+          "`obj/`",
+          "`README.md`",
+          "`Projekt.csproj`",
+          "`Program.cs`"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "Which folder belongs in `.gitignore` in a C# project?",
+        "answers": [
+          "`obj/`",
+          "`README.md`",
+          "`Projekt.csproj`",
+          "`Program.cs`"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-gitignore-010",
+      "template": "git-gitignore",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Na čo slúži súbor `.gitignore`? Vyber jednu možnosť.",
+        "answers": [
+          "určuje, ktoré súbory Git nemá sledovať",
+          "skryje projekt pred učiteľom",
+          "zoznam chýb v programe",
+          "vymaže súbory z disku"
+        ],
+        "explanation": "Do `.gitignore` patria súbory, ktoré sa dajú znova vytvoriť (výstup prekladu) alebo sú súkromné – nie zdrojový kód."
+      },
+      "en": {
+        "body": "What is the `.gitignore` file for? Pick one option.",
+        "answers": [
+          "it says which files Git should not track",
+          "it hides the project from the teacher",
+          "a list of bugs in the program",
+          "it deletes files from the disk"
+        ],
+        "explanation": "`.gitignore` is for files that can be regenerated (build output) or are private – not source code."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-001",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kedy vznikne konflikt?",
+        "answers": [
+          "keď dvaja zmenia ten istý riadok toho istého súboru",
+          "keď urobím dva commity za sebou",
+          "vždy, keď dvaja pracujú v rovnakom repozitári",
+          "keď niekto zmaže repozitár"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "When does a conflict happen?",
+        "answers": [
+          "when two people change the same line of the same file",
+          "when I make two commits in a row",
+          "whenever two people work in the same repository",
+          "when someone deletes the repository"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-002",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ja som zmenil súbor A, spolužiak súbor B. Vznikne pri pulle konflikt? Vyber jednu možnosť.",
+        "answers": [
+          "nie – zmeny sú v rôznych súboroch a Git ich spojí sám",
+          "nie, lebo spolužiakove zmeny sa zahodia",
+          "áno, vždy",
+          "áno, lebo sme pracovali naraz"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "I changed file A, a classmate changed file B. Will pulling cause a conflict? Pick one option.",
+        "answers": [
+          "no – the changes are in different files and Git merges them itself",
+          "no, because the classmate's changes are thrown away",
+          "yes, always",
+          "yes, because we worked at the same time"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-003",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa dá konfliktom najlepšie predchádzať? Vyber jednu možnosť.",
+        "answers": [
+          "často robiť pull a menšie commity, a nemeniť naraz to isté miesto",
+          "robiť jeden veľký commit na konci",
+          "pracovať bez Gitu",
+          "nikdy nerobiť pull"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "What is the best way to avoid conflicts? Pick one option.",
+        "answers": [
+          "pull often, make smaller commits, and don't edit the same place at once",
+          "make one big commit at the end",
+          "work without Git",
+          "never pull"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-004",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kto vyrieši konflikt?",
+        "answers": [
+          "človek – vyberie alebo spojí verzie a urobí commit",
+          "Git sám, automaticky",
+          "GitHub po pushi",
+          "nikto, konflikt sa nedá vyriešiť"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "Who resolves a conflict?",
+        "answers": [
+          "a person – picks or combines the versions and commits",
+          "Git itself, automatically",
+          "GitHub after the push",
+          "nobody, a conflict can't be resolved"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-005",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ako sa dá konfliktom najlepšie predchádzať? Vyber správnu odpoveď.",
+        "answers": [
+          "často robiť pull a menšie commity, a nemeniť naraz to isté miesto",
+          "nikdy nerobiť pull",
+          "pracovať bez Gitu",
+          "robiť jeden veľký commit na konci"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "What is the best way to avoid conflicts? Choose the correct answer.",
+        "answers": [
+          "pull often, make smaller commits, and don't edit the same place at once",
+          "never pull",
+          "work without Git",
+          "make one big commit at the end"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-006",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Ja som zmenil súbor A, spolužiak súbor B. Vznikne pri pulle konflikt? Vyber správnu odpoveď.",
+        "answers": [
+          "nie – zmeny sú v rôznych súboroch a Git ich spojí sám",
+          "áno, lebo sme pracovali naraz",
+          "áno, vždy",
+          "nie, lebo spolužiakove zmeny sa zahodia"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "I changed file A, a classmate changed file B. Will pulling cause a conflict? Choose the correct answer.",
+        "answers": [
+          "no – the changes are in different files and Git merges them itself",
+          "yes, because we worked at the same time",
+          "yes, always",
+          "no, because the classmate's changes are thrown away"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-007",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kto vyrieši konflikt? Vyber správnu odpoveď.",
+        "answers": [
+          "človek – vyberie alebo spojí verzie a urobí commit",
+          "GitHub po pushi",
+          "Git sám, automaticky",
+          "nikto, konflikt sa nedá vyriešiť"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "Who resolves a conflict? Choose the correct answer.",
+        "answers": [
+          "a person – picks or combines the versions and commits",
+          "GitHub after the push",
+          "Git itself, automatically",
+          "nobody, a conflict can't be resolved"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-008",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Obaja sme zmenili ten istý riadok v `Program.cs`. Čo sa stane pri pulle?",
+        "answers": [
+          "vznikne konflikt a musím rozhodnúť, ktorá verzia zostane",
+          "Git ponechá novšiu verziu",
+          "repozitár sa vymaže",
+          "Git ponechá moju verziu"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "We both changed the same line in `Program.cs`. What happens when I pull?",
+        "answers": [
+          "a conflict happens and I have to decide which version stays",
+          "Git keeps the newer version",
+          "the repository is deleted",
+          "Git keeps my version"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-009",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kedy vznikne konflikt? Vyber jednu možnosť.",
+        "answers": [
+          "keď dvaja zmenia ten istý riadok toho istého súboru",
+          "keď niekto zmaže repozitár",
+          "keď urobím dva commity za sebou",
+          "vždy, keď dvaja pracujú v rovnakom repozitári"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "When does a conflict happen? Pick one option.",
+        "answers": [
+          "when two people change the same line of the same file",
+          "when someone deletes the repository",
+          "when I make two commits in a row",
+          "whenever two people work in the same repository"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-conflict-010",
+      "template": "git-conflict",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kedy vznikne konflikt? Vyber správnu odpoveď.",
+        "answers": [
+          "keď dvaja zmenia ten istý riadok toho istého súboru",
+          "keď niekto zmaže repozitár",
+          "vždy, keď dvaja pracujú v rovnakom repozitári",
+          "keď urobím dva commity za sebou"
+        ],
+        "explanation": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby človek vybral výslednú verziu."
+      },
+      "en": {
+        "body": "When does a conflict happen? Choose the correct answer.",
+        "answers": [
+          "when two people change the same line of the same file",
+          "when someone deletes the repository",
+          "whenever two people work in the same repository",
+          "when I make two commits in a row"
+        ],
+        "explanation": "A conflict happens when changes overlap in the same place – Git needs a person to choose the final version."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-001",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Na čo je dobrá história commitov?",
+        "answers": [
+          "vidno, kto, kedy a čo zmenil, a dá sa vrátiť k staršej verzii",
+          "zrýchli program",
+          "nahrádza testy",
+          "je potrebná iba pre GitHub"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "What is the commit history good for?",
+        "answers": [
+          "you can see who changed what and when, and go back to an older version",
+          "it makes the program faster",
+          "it replaces tests",
+          "it's needed only for GitHub"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-002",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Pokazil som program, ktorý včera fungoval. Ako mi pomôže Git?",
+        "answers": [
+          "môžem sa vrátiť k včerajšiemu commitu alebo s ním porovnať zmeny",
+          "pošle chybu učiteľovi",
+          "Git chybu opraví automaticky",
+          "nijako, história sa po pushi maže"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "I broke a program that worked yesterday. How does Git help?",
+        "answers": [
+          "I can go back to yesterday's commit or compare the changes with it",
+          "it sends the bug to the teacher",
+          "Git fixes the bug automatically",
+          "it doesn't, the history is deleted after a push"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-003",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo sa stane so staršími commitmi, keď urobím nový? Vyber jednu možnosť.",
+        "answers": [
+          "zostanú v histórii",
+          "spoja sa do jedného súboru",
+          "presunú sa k učiteľovi",
+          "vymažú sa"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "What happens to older commits when I make a new one? Pick one option.",
+        "answers": [
+          "they stay in the history",
+          "they're merged into one file",
+          "they move to the teacher",
+          "they're deleted"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-004",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo sa stane so staršími commitmi, keď urobím nový? Vyber správnu odpoveď.",
+        "answers": [
+          "zostanú v histórii",
+          "presunú sa k učiteľovi",
+          "vymažú sa",
+          "spoja sa do jedného súboru"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "What happens to older commits when I make a new one? Choose the correct answer.",
+        "answers": [
+          "they stay in the history",
+          "they move to the teacher",
+          "they're deleted",
+          "they're merged into one file"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-005",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Môžem zistiť, čo som zmenil od posledného commitu?",
+        "answers": [
+          "áno, Git ukáže rozdiely oproti poslednému commitu",
+          "iba ak urobím push",
+          "nie, rozdiely vidí iba učiteľ",
+          "nie, Git si pamätá iba posledný súbor"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "Can I find out what I changed since the last commit?",
+        "answers": [
+          "yes, Git shows the differences from the last commit",
+          "only if I push",
+          "no, only the teacher sees differences",
+          "no, Git remembers only the last file"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-006",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Na čo je dobrá história commitov? Vyber jednu možnosť.",
+        "answers": [
+          "vidno, kto, kedy a čo zmenil, a dá sa vrátiť k staršej verzii",
+          "zrýchli program",
+          "nahrádza testy",
+          "je potrebná iba pre GitHub"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "What is the commit history good for? Pick one option.",
+        "answers": [
+          "you can see who changed what and when, and go back to an older version",
+          "it makes the program faster",
+          "it replaces tests",
+          "it's needed only for GitHub"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-007",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Pokazil som program, ktorý včera fungoval. Ako mi pomôže Git? Vyber správnu odpoveď.",
+        "answers": [
+          "môžem sa vrátiť k včerajšiemu commitu alebo s ním porovnať zmeny",
+          "nijako, história sa po pushi maže",
+          "pošle chybu učiteľovi",
+          "Git chybu opraví automaticky"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "I broke a program that worked yesterday. How does Git help? Choose the correct answer.",
+        "answers": [
+          "I can go back to yesterday's commit or compare the changes with it",
+          "it doesn't, the history is deleted after a push",
+          "it sends the bug to the teacher",
+          "Git fixes the bug automatically"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-008",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Na čo je dobrá história commitov? Vyber správnu odpoveď.",
+        "answers": [
+          "vidno, kto, kedy a čo zmenil, a dá sa vrátiť k staršej verzii",
+          "je potrebná iba pre GitHub",
+          "zrýchli program",
+          "nahrádza testy"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "What is the commit history good for? Choose the correct answer.",
+        "answers": [
+          "you can see who changed what and when, and go back to an older version",
+          "it's needed only for GitHub",
+          "it makes the program faster",
+          "it replaces tests"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-009",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Môžem zistiť, čo som zmenil od posledného commitu? Vyber jednu možnosť.",
+        "answers": [
+          "áno, Git ukáže rozdiely oproti poslednému commitu",
+          "iba ak urobím push",
+          "nie, rozdiely vidí iba učiteľ",
+          "nie, Git si pamätá iba posledný súbor"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "Can I find out what I changed since the last commit? Pick one option.",
+        "answers": [
+          "yes, Git shows the differences from the last commit",
+          "only if I push",
+          "no, only the teacher sees differences",
+          "no, Git remembers only the last file"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-history-010",
+      "template": "git-history",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo sa stane so staršími commitmi, keď urobím nový?",
+        "answers": [
+          "zostanú v histórii",
+          "presunú sa k učiteľovi",
+          "spoja sa do jedného súboru",
+          "vymažú sa"
+        ],
+        "explanation": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať."
+      },
+      "en": {
+        "body": "What happens to older commits when I make a new one?",
+        "answers": [
+          "they stay in the history",
+          "they move to the teacher",
+          "they're merged into one file",
+          "they're deleted"
+        ],
+        "explanation": "Every commit is a saved state – I can go back to it or compare with it."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-001",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Je dobré commitovať program, ktorý sa nedá preložiť? Vyber správnu odpoveď.",
+        "answers": [
+          "radšej nie – commit by mal byť funkčný stav",
+          "áno, Git ho opraví",
+          "nie, Git to vôbec nedovolí",
+          "áno, vždy"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "Is it good to commit a program that doesn't compile? Choose the correct answer.",
+        "answers": [
+          "better not – a commit should be a working state",
+          "yes, Git will fix it",
+          "no, Git doesn't allow it at all",
+          "yes, always"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-002",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kedy je vhodné urobiť commit?",
+        "answers": [
+          "po každom menšom ucelenom kroku, ktorý funguje",
+          "iba raz na konci projektu",
+          "iba keď to prikáže učiteľ",
+          "po každom napísanom riadku"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "When is a good time to commit?",
+        "answers": [
+          "after each small, complete step that works",
+          "only once at the end of the project",
+          "only when the teacher says so",
+          "after every line written"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-003",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dopísal som funkciu a funguje. Čo je dobré urobiť?",
+        "answers": [
+          "commit so správou, čo som pridal",
+          "vymazať repozitár",
+          "nič, Git si to zapamätá sám",
+          "počkať s commitom do konca roka"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "I finished a function and it works. What is a good idea now?",
+        "answers": [
+          "commit with a message saying what I added",
+          "delete the repository",
+          "nothing, Git remembers it by itself",
+          "wait with the commit until the end of the year"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-004",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kedy je vhodné urobiť commit? Vyber jednu možnosť.",
+        "answers": [
+          "po každom menšom ucelenom kroku, ktorý funguje",
+          "iba keď to prikáže učiteľ",
+          "iba raz na konci projektu",
+          "po každom napísanom riadku"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "When is a good time to commit? Pick one option.",
+        "answers": [
+          "after each small, complete step that works",
+          "only when the teacher says so",
+          "only once at the end of the project",
+          "after every line written"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-005",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Prečo nie je dobré robiť iba jeden veľký commit na konci?",
+        "answers": [
+          "ťažko sa v ňom hľadá chyba a nedá sa vrátiť k medzikrokom",
+          "Git veľké commity nedovolí",
+          "veľký commit sa nedá pushnúť",
+          "je to v poriadku, nie je s tým problém"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "Why is one big commit at the end a bad idea?",
+        "answers": [
+          "it's hard to find bugs and you can't go back to intermediate steps",
+          "Git doesn't allow big commits",
+          "a big commit can't be pushed",
+          "it's fine, there's no problem"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-006",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kedy je vhodné urobiť commit? Vyber správnu odpoveď.",
+        "answers": [
+          "po každom menšom ucelenom kroku, ktorý funguje",
+          "iba keď to prikáže učiteľ",
+          "po každom napísanom riadku",
+          "iba raz na konci projektu"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "When is a good time to commit? Choose the correct answer.",
+        "answers": [
+          "after each small, complete step that works",
+          "only when the teacher says so",
+          "after every line written",
+          "only once at the end of the project"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-007",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Prečo nie je dobré robiť iba jeden veľký commit na konci? Vyber správnu odpoveď.",
+        "answers": [
+          "ťažko sa v ňom hľadá chyba a nedá sa vrátiť k medzikrokom",
+          "veľký commit sa nedá pushnúť",
+          "je to v poriadku, nie je s tým problém",
+          "Git veľké commity nedovolí"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "Why is one big commit at the end a bad idea? Choose the correct answer.",
+        "answers": [
+          "it's hard to find bugs and you can't go back to intermediate steps",
+          "a big commit can't be pushed",
+          "it's fine, there's no problem",
+          "Git doesn't allow big commits"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-008",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Je dobré commitovať program, ktorý sa nedá preložiť? Vyber jednu možnosť.",
+        "answers": [
+          "radšej nie – commit by mal byť funkčný stav",
+          "nie, Git to vôbec nedovolí",
+          "áno, Git ho opraví",
+          "áno, vždy"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "Is it good to commit a program that doesn't compile? Pick one option.",
+        "answers": [
+          "better not – a commit should be a working state",
+          "no, Git doesn't allow it at all",
+          "yes, Git will fix it",
+          "yes, always"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-009",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Prečo nie je dobré robiť iba jeden veľký commit na konci? Vyber jednu možnosť.",
+        "answers": [
+          "ťažko sa v ňom hľadá chyba a nedá sa vrátiť k medzikrokom",
+          "Git veľké commity nedovolí",
+          "veľký commit sa nedá pushnúť",
+          "je to v poriadku, nie je s tým problém"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "Why is one big commit at the end a bad idea? Pick one option.",
+        "answers": [
+          "it's hard to find bugs and you can't go back to intermediate steps",
+          "Git doesn't allow big commits",
+          "a big commit can't be pushed",
+          "it's fine, there's no problem"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-commit-often-010",
+      "template": "git-commit-often",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dopísal som funkciu a funguje. Čo je dobré urobiť? Vyber jednu možnosť.",
+        "answers": [
+          "commit so správou, čo som pridal",
+          "počkať s commitom do konca roka",
+          "vymazať repozitár",
+          "nič, Git si to zapamätá sám"
+        ],
+        "explanation": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým."
+      },
+      "en": {
+        "body": "I finished a function and it works. What is a good idea now? Pick one option.",
+        "answers": [
+          "commit with a message saying what I added",
+          "wait with the commit until the end of the year",
+          "delete the repository",
+          "nothing, Git remembers it by itself"
+        ],
+        "explanation": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-001",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dal som commit aj push v škole. Doma dám pull. Mám zmeny? Vyber jednu možnosť.",
+        "answers": [
+          "áno – sú na serveri a pull ich stiahol",
+          "nie, treba ešte commit",
+          "nie, pull funguje iba v škole",
+          "iba polovicu"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "I committed and pushed at school. At home I pull. Do I have the changes? Pick one option.",
+        "answers": [
+          "yes – they're on the server and pull downloaded them",
+          "no, I still need to commit",
+          "no, pull only works at school",
+          "only half of them"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-002",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Dal som commit aj push v škole. Doma dám pull. Mám zmeny? Vyber správnu odpoveď.",
+        "answers": [
+          "áno – sú na serveri a pull ich stiahol",
+          "iba polovicu",
+          "nie, pull funguje iba v škole",
+          "nie, treba ešte commit"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "I committed and pushed at school. At home I pull. Do I have the changes? Choose the correct answer.",
+        "answers": [
+          "yes – they're on the server and pull downloaded them",
+          "only half of them",
+          "no, pull only works at school",
+          "no, I still need to commit"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-003",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "V škole som dal commit, ale nie push. Doma som otvoril projekt a dal pull. Mám doma svoje zmeny?",
+        "answers": [
+          "nie – na serveri nie sú",
+          "áno, pull ich stiahol",
+          "stratili sa navždy",
+          "objavia sa až po fetch"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "At school I committed but didn't push. At home I opened the project and pulled. Do I have my changes at home?",
+        "answers": [
+          "no – they aren't on the server",
+          "yes, pull downloaded them",
+          "they're lost forever",
+          "they'll appear only after a fetch"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-004",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kde sú zmeny, ktoré som uložil (Ctrl+S), ale necommitol?",
+        "answers": [
+          "iba v súboroch na mojom počítači – Git ich ešte neuložil do histórie",
+          "na GitHube",
+          "nikde, Ctrl+S nič neuloží",
+          "v poslednom commite"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "Where are changes I saved (Ctrl+S) but didn't commit?",
+        "answers": [
+          "only in the files on my computer – Git hasn't stored them in the history yet",
+          "on GitHub",
+          "nowhere, Ctrl+S saves nothing",
+          "in the last commit"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-005",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "V škole som dal commit, ale nie push. Doma som otvoril projekt a dal pull. Mám doma svoje zmeny? Vyber jednu možnosť.",
+        "answers": [
+          "nie – na serveri nie sú",
+          "objavia sa až po fetch",
+          "stratili sa navždy",
+          "áno, pull ich stiahol"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "At school I committed but didn't push. At home I opened the project and pulled. Do I have my changes at home? Pick one option.",
+        "answers": [
+          "no – they aren't on the server",
+          "they'll appear only after a fetch",
+          "they're lost forever",
+          "yes, pull downloaded them"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-006",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kde sú zmeny, ktoré som uložil (Ctrl+S), ale necommitol? Vyber správnu odpoveď.",
+        "answers": [
+          "iba v súboroch na mojom počítači – Git ich ešte neuložil do histórie",
+          "nikde, Ctrl+S nič neuloží",
+          "na GitHube",
+          "v poslednom commite"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "Where are changes I saved (Ctrl+S) but didn't commit? Choose the correct answer.",
+        "answers": [
+          "only in the files on my computer – Git hasn't stored them in the history yet",
+          "nowhere, Ctrl+S saves nothing",
+          "on GitHub",
+          "in the last commit"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-007",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Kde sú zmeny, ktoré som uložil (Ctrl+S), ale necommitol? Vyber jednu možnosť.",
+        "answers": [
+          "iba v súboroch na mojom počítači – Git ich ešte neuložil do histórie",
+          "v poslednom commite",
+          "na GitHube",
+          "nikde, Ctrl+S nič neuloží"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "Where are changes I saved (Ctrl+S) but didn't commit? Pick one option.",
+        "answers": [
+          "only in the files on my computer – Git hasn't stored them in the history yet",
+          "in the last commit",
+          "on GitHub",
+          "nowhere, Ctrl+S saves nothing"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-008",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Upravil som súbory, ale nedal som commit. Počítač sa pokazil. Sú moje zmeny na GitHube? Vyber jednu možnosť.",
+        "answers": [
+          "nie – neboli commitnuté ani pushnuté",
+          "áno, ale iba prvý súbor",
+          "áno, ak som bol na internete",
+          "áno, Git ich poslal sám"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "I edited files but didn't commit. The computer broke. Are my changes on GitHub? Pick one option.",
+        "answers": [
+          "no – they were neither committed nor pushed",
+          "yes, but only the first file",
+          "yes, if I was online",
+          "yes, Git sent them by itself"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-009",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "V škole som dal commit, ale nie push. Doma som otvoril projekt a dal pull. Mám doma svoje zmeny? Vyber správnu odpoveď.",
+        "answers": [
+          "nie – na serveri nie sú",
+          "stratili sa navždy",
+          "objavia sa až po fetch",
+          "áno, pull ich stiahol"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "At school I committed but didn't push. At home I opened the project and pulled. Do I have my changes at home? Choose the correct answer.",
+        "answers": [
+          "no – they aren't on the server",
+          "they're lost forever",
+          "they'll appear only after a fetch",
+          "yes, pull downloaded them"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-uncommitted-010",
+      "template": "git-uncommitted",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Upravil som súbory, ale nedal som commit. Počítač sa pokazil. Sú moje zmeny na GitHube?",
+        "answers": [
+          "nie – neboli commitnuté ani pushnuté",
+          "áno, ale iba prvý súbor",
+          "áno, Git ich poslal sám",
+          "áno, ak som bol na internete"
+        ],
+        "explanation": "Na iný počítač alebo k učiteľovi sa dostane iba to, čo som pushol na server."
+      },
+      "en": {
+        "body": "I edited files but didn't commit. The computer broke. Are my changes on GitHub?",
+        "answers": [
+          "no – they were neither committed nor pushed",
+          "yes, but only the first file",
+          "yes, Git sent them by itself",
+          "yes, if I was online"
+        ],
+        "explanation": "Only what I pushed to the server reaches another computer or the teacher."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-001",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo spraví tlačidlo **Sync** (Synchronizovať) v IDE?",
+        "answers": [
+          "stiahne zmeny zo servera (pull) a pošle moje commity (push)",
+          "iba uloží súbor",
+          "vymaže lokálne zmeny",
+          "urobí commit bez správy"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "What does the **Sync** button in the IDE do?",
+        "answers": [
+          "downloads changes from the server (pull) and sends my commits (push)",
+          "only saves the file",
+          "deletes local changes",
+          "makes a commit without a message"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-002",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo spraví tlačidlo **Sync** (Synchronizovať) v IDE? Vyber jednu možnosť.",
+        "answers": [
+          "stiahne zmeny zo servera (pull) a pošle moje commity (push)",
+          "urobí commit bez správy",
+          "iba uloží súbor",
+          "vymaže lokálne zmeny"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "What does the **Sync** button in the IDE do? Pick one option.",
+        "answers": [
+          "downloads changes from the server (pull) and sends my commits (push)",
+          "makes a commit without a message",
+          "only saves the file",
+          "deletes local changes"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-003",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo spraví voľba **Commit and Push**? Vyber správnu odpoveď.",
+        "answers": [
+          "urobí commit a hneď ho pošle na server",
+          "stiahne zmeny zo servera",
+          "iba push bez commitu",
+          "iba commit"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "What does **Commit and Push** do? Choose the correct answer.",
+        "answers": [
+          "makes a commit and sends it to the server right away",
+          "downloads changes from the server",
+          "only a push without a commit",
+          "only a commit"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-004",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo spraví tlačidlo **Commit** v IDE? Vyber jednu možnosť.",
+        "answers": [
+          "uloží zmeny ako commit so správou na mojom počítači",
+          "pošle zmeny na GitHub",
+          "stiahne zmeny spolužiakov",
+          "spustí program"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "What does the **Commit** button in the IDE do? Pick one option.",
+        "answers": [
+          "saves the changes as a commit with a message on my computer",
+          "sends the changes to GitHub",
+          "downloads classmates' changes",
+          "runs the program"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-005",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "IDE ukazuje pri tlačidle Sync číslo „↑2“. Čo znamená? Vyber správnu odpoveď.",
+        "answers": [
+          "mám 2 commity, ktoré ešte nie sú na serveri",
+          "mám 2 chyby v kóde",
+          "na serveri sú 2 nové commity",
+          "2 súbory nie sú uložené"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "The IDE shows “↑2” next to the Sync button. What does it mean? Choose the correct answer.",
+        "answers": [
+          "I have 2 commits that aren't on the server yet",
+          "I have 2 errors in the code",
+          "there are 2 new commits on the server",
+          "2 files aren't saved"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-006",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "IDE ukazuje pri tlačidle Sync číslo „↓3“. Čo znamená? Vyber jednu možnosť.",
+        "answers": [
+          "na serveri sú 3 commity, ktoré ešte nemám",
+          "mám 3 commity na odoslanie",
+          "mám 3 konflikty",
+          "3 súbory sa vymažú"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "The IDE shows “↓3” next to the Sync button. What does it mean? Pick one option.",
+        "answers": [
+          "the server has 3 commits I don't have yet",
+          "I have 3 commits to send",
+          "I have 3 conflicts",
+          "3 files will be deleted"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-007",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "IDE ukazuje pri tlačidle Sync číslo „↓3“. Čo znamená?",
+        "answers": [
+          "na serveri sú 3 commity, ktoré ešte nemám",
+          "mám 3 commity na odoslanie",
+          "3 súbory sa vymažú",
+          "mám 3 konflikty"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "The IDE shows “↓3” next to the Sync button. What does it mean?",
+        "answers": [
+          "the server has 3 commits I don't have yet",
+          "I have 3 commits to send",
+          "3 files will be deleted",
+          "I have 3 conflicts"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-008",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "IDE ukazuje pri tlačidle Sync číslo „↓3“. Čo znamená? Vyber správnu odpoveď.",
+        "answers": [
+          "na serveri sú 3 commity, ktoré ešte nemám",
+          "mám 3 konflikty",
+          "mám 3 commity na odoslanie",
+          "3 súbory sa vymažú"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "The IDE shows “↓3” next to the Sync button. What does it mean? Choose the correct answer.",
+        "answers": [
+          "the server has 3 commits I don't have yet",
+          "I have 3 conflicts",
+          "I have 3 commits to send",
+          "3 files will be deleted"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-009",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo spraví tlačidlo **Sync** (Synchronizovať) v IDE? Vyber správnu odpoveď.",
+        "answers": [
+          "stiahne zmeny zo servera (pull) a pošle moje commity (push)",
+          "vymaže lokálne zmeny",
+          "urobí commit bez správy",
+          "iba uloží súbor"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "What does the **Sync** button in the IDE do? Choose the correct answer.",
+        "answers": [
+          "downloads changes from the server (pull) and sends my commits (push)",
+          "deletes local changes",
+          "makes a commit without a message",
+          "only saves the file"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "git-ide-buttons-010",
+      "template": "git-ide-buttons",
+      "difficulty": 1,
+      "status": "approved",
+      "code": null,
+      "sk": {
+        "body": "Čo spraví tlačidlo **Commit** v IDE? Vyber správnu odpoveď.",
+        "answers": [
+          "uloží zmeny ako commit so správou na mojom počítači",
+          "stiahne zmeny spolužiakov",
+          "pošle zmeny na GitHub",
+          "spustí program"
+        ],
+        "explanation": "Tlačidlá v IDE robia tie isté kroky: Commit uloží stav lokálne, Push ho pošle na server, Pull/Sync stiahne zmeny."
+      },
+      "en": {
+        "body": "What does the **Commit** button in the IDE do? Choose the correct answer.",
+        "answers": [
+          "saves the changes as a commit with a message on my computer",
+          "downloads classmates' changes",
+          "sends the changes to GitHub",
+          "runs the program"
+        ],
+        "explanation": "IDE buttons do the same steps: Commit saves a state locally, Push sends it to the server, Pull/Sync downloads changes."
+      },
+      "verify": {
+        "type": "none"
+      }
+    }
+  ]
+}

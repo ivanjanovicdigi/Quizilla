@@ -10,7 +10,7 @@ export const TEMPLATE_DIR = join(ROOT, 'questions', 'templates');
 export const UPDATES_DIR = join(ROOT, 'supabase', 'updates');
 
 export const STATUSES = ['pending', 'approved', 'rejected'];
-export const VERIFY_TYPES = ['output', 'value', 'exception', 'timeout', 'which-line', 'none'];
+export const VERIFY_TYPES = ['output', 'value', 'exception', 'timeout', 'which-line', 'which-input', 'none'];
 
 /** Read a JSON file (UTF-8, optional BOM). */
 export function readJson(path) {
@@ -150,12 +150,13 @@ export function validateBatch(batch, file = 'batch') {
     const v = q.verify;
     if (!v) warn(id, 'no "verify" block');
     else if (!VERIFY_TYPES.includes(v.type)) err(id, `verify.type must be one of ${VERIFY_TYPES.join(', ')}`);
-    else if (v.type !== 'none' && !q.code && v.type !== 'which-line') err(id, `verify.type ${v.type} needs code`);
+    else if (['output', 'exception', 'timeout'].includes(v.type) && !q.code && !v.setup) err(id, `verify.type ${v.type} needs code`);
+    else if (v.type === 'which-input' && (!v.input || !v.input.includes('{answer}') || v.output == null)) err(id, 'verify.input (with {answer}) and verify.output are needed');
     else if (v.type === 'value' && !v.expr) err(id, 'verify.expr missing (value check)');
     else if (['output', 'value'].includes(v.type) && v.expected == null && unwrapCode(q.sk.answers[0]) == null)
       err(id, 'correct answer is not inline code – set verify.expected');
     else if (v.type === 'exception' && !v.name) err(id, 'verify.name missing (exception type)');
-    else if (v.type === 'which-line' && !['compile-error', 'exception'].includes(v.expect)) err(id, 'verify.expect must be compile-error or exception');
+    else if (v.type === 'which-line' && !['compile-error', 'exception', 'timeout'].includes(v.expect)) err(id, 'verify.expect must be compile-error, exception or timeout');
 
     // Duplicates: same text AND same answers = the same question twice
     const key = composeBody(q.sk.body, q.code) + '\n' + [...q.sk.answers].map(norm).sort().join('|');

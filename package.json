@@ -10,12 +10,14 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "q:check": "node scripts/check-batch.mjs",
     "q:verify": "node scripts/verify-dotnet.mjs",
-    "q:sql": "node scripts/questions-to-sql.mjs"
+    "q:sql": "node scripts/questions-to-sql.mjs",
+    "q:import": "node scripts/import-sql.mjs"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
     "@tsconfig/svelte": "^5.0.8",
     "@types/prismjs": "^1.26.6",
+    "pg": "^8.13.1",
     "svelte": "^5.57.2",
     "svelte-check": "^4.7.7",
     "typescript": "~5.9",

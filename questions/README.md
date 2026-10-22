@@ -24,6 +24,10 @@ Steps 3–6 can be repeated: the verifier only re-checks changed questions, and 
 matches questions by their id, so running it again updates them instead of adding duplicates.
 A question set to `rejected` after an import is hidden (`is_active = false`) by the next update.
 
+In the batch the correct answer is always **first** (easy to review). The SQL build shuffles the
+answers and sets `correct_index` (the same order every time, derived from the question id), so the
+API response does not give the answer away. The app shuffles them again for display.
+
 ## Batch file
 
 ```jsonc
@@ -65,8 +69,11 @@ A question set to `rejected` after an import is hidden (`is_active = false`) by 
 | `value` | runs the code + `Console.Write(expr)`, compares with the correct answer (`"text"` / `'c'` quotes and `true`/`True` are normalised) | `expr`, optional `expected` |
 | `exception` | the program must crash with this exception | `name` (e.g. `IndexOutOfRangeException`), optional `stdout` printed before the crash |
 | `timeout` | the program must run forever (infinite loop) | – |
-| `which-line` | each answer line is added to the code separately; only answer 1 may fail | `expect`: `compile-error` or `exception`; optional `wrap` (e.g. `"{line} { }"`), optional `lines` when answers are not inline code |
+| `which-line` | each answer line is added to the code separately; only answer 1 may fail | `expect`: `compile-error`, `exception` or `timeout` (infinite loop); optional `wrap` (e.g. `"{line} { }"`), optional `lines` when answers are not inline code; `invert: true` = only answer 1 is fine (e.g. "which call is correct?") |
+| `which-input` | each answer is a value put into `input` (e.g. `int x = {answer};`) before the code; only answer 1 may print `output` | `input`, `output`, optional `values`; `useCode: false` = run only the input (e.g. each answer is a whole loop) |
 | `none` | concept question, nothing to run | – |
+
+Any type may add `setup`: code put before the question's code only for checking (e.g. `int x = 4;` when the value is given in the question text).
 
 Extra lines are inserted before the first `class` declaration, so the code may end with classes.
 Programs run with invariant culture (`2.5`, not `2,5`).

@@ -106,12 +106,12 @@ function expectedText(q) {
 }
 
 function sameValue(actual, expected) {
-  let e = String(expected).trim();
+  const e = String(expected).trim();
+  // quoted string / char: compare exactly (a space or leading/trailing spaces matter)
+  if (/^".*"$/s.test(e) || /^'.+'$/s.test(e)) return actual === e.slice(1, -1);
   const a = actual.trim();
   if (/^(true|false)$/i.test(e)) return a.toLowerCase() === e.toLowerCase();
-  if (e === 'null') e = '';
-  else if (/^".*"$/s.test(e)) e = e.slice(1, -1);
-  else if (/^'.+'$/s.test(e)) e = e.slice(1, -1);
+  if (e === 'null') return a === '';
   return a === e;
 }
 
@@ -119,9 +119,10 @@ const show = (s) => JSON.stringify(s.length > 80 ? s.slice(0, 80) + '…' : s);
 
 async function verify(q) {
   const v = q.verify;
+  const code = (v.setup ? v.setup + '\n' : '') + (q.code ?? '');
   switch (v.type) {
     case 'output': {
-      const r = await runProgram(withExtra(q.code, ''));
+      const r = await runProgram(withExtra(code, ''));
       if (!r.compiled) return fail(`does not compile: ${r.errors.join('; ')}`);
       if (r.timedOut) return fail('runs forever (timeout)');
       if (r.exception) return fail(`crashes: ${r.exception}`);
@@ -129,7 +130,7 @@ async function verify(q) {
       return r.stdout.trimEnd() === exp.trimEnd() ? ok(`prints ${show(exp)}`) : fail(`prints ${show(r.stdout.trimEnd())}, expected ${show(exp)}`);
     }
     case 'value': {
-      const r = await runProgram(withExtra(q.code, `Console.Write("${MARK}"); Console.Write(${v.expr});`));
+      const r = await runProgram(withExtra(code, `Console.Write("${MARK}"); Console.Write(${v.expr});`));
       if (!r.compiled) return fail(`does not compile: ${r.errors.join('; ')}`);
       if (r.timedOut) return fail('runs forever (timeout)');
       if (r.exception) return fail(`crashes: ${r.exception}`);
@@ -139,14 +140,14 @@ async function verify(q) {
       return sameValue(value, exp) ? ok(`${v.expr} = ${show(value)}`) : fail(`${v.expr} = ${show(value)}, expected ${show(exp)}`);
     }
     case 'exception': {
-      const r = await runProgram(withExtra(q.code, ''));
+      const r = await runProgram(withExtra(code, ''));
       if (!r.compiled) return fail(`does not compile: ${r.errors.join('; ')}`);
       if (r.exception !== v.name) return fail(r.exception ? `throws ${r.exception}, expected ${v.name}` : `no exception (prints ${show(r.stdout.trimEnd())})`);
       if (v.stdout != null && r.stdout.trimEnd() !== String(v.stdout)) return fail(`prints ${show(r.stdout.trimEnd())} before the crash, expected ${show(String(v.stdout))}`);
       return ok(`throws ${v.name}`);
     }
     case 'timeout': {
-      const r = await runProgram(withExtra(q.code, ''), { timeout: LOOP_TIMEOUT });
+      const r = await runProgram(withExtra(code, ''), { timeout: LOOP_TIMEOUT });
       if (!r.compiled) return fail(`does not compile: ${r.errors.join('; ')}`);
       return r.timedOut ? ok('runs forever (as expected)') : fail(`ends (prints ${show(r.stdout.trimEnd())}), expected an infinite loop`);
     }
@@ -156,16 +157,34 @@ async function verify(q) {
       for (const [i, answer] of q.sk.answers.entries()) {
         const line = v.lines?.[i] ?? unwrapCode(answer);
         if (line == null) return fail(`answer ${i + 1} is not code – add verify.lines`);
-        const src = withExtra(q.code, wrap.replace('{line}', line));
-        const r = await runProgram(src, { run: v.expect === 'exception', timeout: RUN_TIMEOUT });
-        const bad = v.expect === 'compile-error' ? !r.compiled : r.compiled && !!r.exception;
-        if (v.expect === 'exception' && !r.compiled) return fail(`answer ${i + 1} does not compile: ${r.errors.join('; ')}`);
+        const src = withExtra(code, wrap.replace('{line}', line));
+        const r = await runProgram(src, { run: v.expect !== 'compile-error', timeout: v.expect === 'timeout' ? LOOP_TIMEOUT : RUN_TIMEOUT });
+        let bad = v.expect === 'compile-error' ? !r.compiled : v.expect === 'timeout' ? r.compiled && r.timedOut : r.compiled && !!r.exception;
+        if (v.invert) bad = !bad; // invert: only answer 1 is fine, all others fail
+        if (v.expect !== 'compile-error' && !r.compiled) return fail(`answer ${i + 1} does not compile: ${r.errors.join('; ')}`);
         results.push({ i, bad, why: r.errors?.join('; ') ?? r.exception });
       }
       const badOnes = results.filter((r) => r.bad).map((r) => r.i);
-      const what = v.expect === 'compile-error' ? 'compile error' : 'crash';
-      if (badOnes.length === 1 && badOnes[0] === 0) return ok(`only the correct answer gives a ${what} (${results[0].why})`);
-      return fail(`${what} in answer(s) ${badOnes.map((i) => i + 1).join(', ') || 'none'} – expected only in answer 1`);
+      const what = { 'compile-error': 'compile error', exception: 'crash', timeout: 'infinite loop' }[v.expect];
+      if (badOnes.length === 1 && badOnes[0] === 0)
+        return ok(v.invert ? `only the correct answer has no ${what}` : `only the correct answer gives a ${what} (${results[0].why})`);
+      return fail(v.invert
+        ? `answer(s) without a ${what}: ${results.filter((r) => !r.bad).map((r) => r.i + 1).join(', ') || 'none'} – expected only answer 1`
+        : `${what} in answer(s) ${badOnes.map((i) => i + 1).join(', ') || 'none'} – expected only in answer 1`);
+    }
+    case 'which-input': {
+      // e.g. "For which value of x does it print A?" – each answer is put into v.setup ({answer})
+      const hits = [];
+      for (const [i, answer] of q.sk.answers.entries()) {
+        const value = v.values?.[i] ?? unwrapCode(answer);
+        if (value == null) return fail(`answer ${i + 1} is not code – add verify.values`);
+        const src = withExtra(v.input.replace('{answer}', value) + '\n' + (v.useCode === false ? '' : q.code ?? ''), '');
+        const r = await runProgram(src);
+        if (!r.compiled) return fail(`answer ${i + 1} does not compile: ${r.errors.join('; ')}`);
+        if (r.stdout.trimEnd() === String(v.output)) hits.push(i);
+      }
+      if (hits.length === 1 && hits[0] === 0) return ok(`only answer 1 prints ${show(String(v.output))}`);
+      return fail(`answers printing ${show(String(v.output))}: ${hits.map((i) => i + 1).join(', ') || 'none'} – expected only answer 1`);
     }
     default:
       return null;
@@ -200,6 +219,7 @@ for (const file of batchFiles(args)) {
   console.log(`${basename(file)}: checking ${todo.length} question(s) with ${JOBS} parallel job(s)…`);
 
   let next = 0;
+  let done = 0;
   const worker = async () => {
     while (next < todo.length) {
       const q = todo[next++];
@@ -208,7 +228,10 @@ for (const file of batchFiles(args)) {
       if (!res) continue;
       q.check = { ...res, hash: hashOf(q), at: new Date().toISOString().slice(0, 10) };
       if (res.status === 'ok') okCount++; else failCount++;
-      console.log(`  ${res.status === 'ok' ? '✔' : '✖'} ${q.id}  ${res.detail}`);
+      done++;
+      console.log(`  [${done}/${todo.length}] ${res.status === 'ok' ? '✔' : '✖'} ${q.id}  ${res.detail}`);
+      // save progress every 20 questions, so stopping the run (Ctrl+C) loses almost nothing
+      if (!DRY && done % 20 === 0) writeJson(file, batch);
     }
   };
   await Promise.all(Array.from({ length: JOBS }, worker));

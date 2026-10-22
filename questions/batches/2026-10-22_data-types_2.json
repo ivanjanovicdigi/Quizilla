@@ -1,0 +1,4033 @@
+{
+  "batch": "2026-10-22_data-types_2",
+  "subject": "prog-1-digi",
+  "topic": "data-types",
+  "created": "2026-10-22",
+  "questions": [
+    {
+      "id": "dt-int-arith-001",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int rok = 24 + 39;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `rok`?",
+        "answers": [
+          "`63`",
+          "`-15`",
+          "`936`",
+          "`0.6153846153846154`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `24 + 39`, ktorého výsledok je `63`. Táto hodnota sa priradí do premennej `rok`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `rok` have?",
+        "answers": null,
+        "explanation": "First the expression `24 + 39` is evaluated; its result is `63`. This value is assigned to the variable `rok`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "rok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "rok = \"63\"",
+        "hash": "2b0fa1b91839",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-002",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int skore = 13 + 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `skore`?",
+        "answers": [
+          "`18`",
+          "`8`",
+          "`65`",
+          "`2.6`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `13 + 5`, ktorého výsledok je `18`. Táto hodnota sa priradí do premennej `skore`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `skore` have?",
+        "answers": null,
+        "explanation": "First the expression `13 + 5` is evaluated; its result is `18`. This value is assigned to the variable `skore`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "skore"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "skore = \"18\"",
+        "hash": "3df20dfb7273",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-003",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cena = 16 + 17;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cena`?",
+        "answers": [
+          "`33`",
+          "`-1`",
+          "`272`",
+          "`0.9411764705882353`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `16 + 17`, ktorého výsledok je `33`. Táto hodnota sa priradí do premennej `cena`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cena` have?",
+        "answers": null,
+        "explanation": "First the expression `16 + 17` is evaluated; its result is `33`. This value is assigned to the variable `cena`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cena"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cena = \"33\"",
+        "hash": "4d38ad5cd2f7",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-004",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cislo = 36 + 10;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cislo`?",
+        "answers": [
+          "`46`",
+          "`26`",
+          "`360`",
+          "`3.6`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `36 + 10`, ktorého výsledok je `46`. Táto hodnota sa priradí do premennej `cislo`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cislo` have?",
+        "answers": null,
+        "explanation": "First the expression `36 + 10` is evaluated; its result is `46`. This value is assigned to the variable `cislo`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo = \"46\"",
+        "hash": "55ee3b68d469",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-005",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int rok = 14 + 14;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `rok`?",
+        "answers": [
+          "`28`",
+          "`0`",
+          "`196`",
+          "`1`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `14 + 14`, ktorého výsledok je `28`. Táto hodnota sa priradí do premennej `rok`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `rok` have?",
+        "answers": null,
+        "explanation": "First the expression `14 + 14` is evaluated; its result is `28`. This value is assigned to the variable `rok`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "rok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "rok = \"28\"",
+        "hash": "71385552cd03",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-006",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int hodnota = 8 + 14;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `hodnota`?",
+        "answers": [
+          "`22`",
+          "`-6`",
+          "`112`",
+          "`0.5714285714285714`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `8 + 14`, ktorého výsledok je `22`. Táto hodnota sa priradí do premennej `hodnota`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `hodnota` have?",
+        "answers": null,
+        "explanation": "First the expression `8 + 14` is evaluated; its result is `22`. This value is assigned to the variable `hodnota`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "hodnota"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "hodnota = \"22\"",
+        "hash": "29538b38f115",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-007",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int body = 34 - 9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `body`?",
+        "answers": [
+          "`25`",
+          "`43`",
+          "`306`",
+          "`3.7777777777777777`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `34 - 9`, ktorého výsledok je `25`. Táto hodnota sa priradí do premennej `body`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `body` have?",
+        "answers": null,
+        "explanation": "First the expression `34 - 9` is evaluated; its result is `25`. This value is assigned to the variable `body`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "body"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "body = \"25\"",
+        "hash": "5b5ce64afff4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-008",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cena = 39 - 30;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cena`?",
+        "answers": [
+          "`9`",
+          "`69`",
+          "`1170`",
+          "`1.3`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `39 - 30`, ktorého výsledok je `9`. Táto hodnota sa priradí do premennej `cena`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cena` have?",
+        "answers": null,
+        "explanation": "First the expression `39 - 30` is evaluated; its result is `9`. This value is assigned to the variable `cena`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cena"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cena = \"9\"",
+        "hash": "6230e37f4ffe",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-009",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vyska = 39 - 9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vyska`?",
+        "answers": [
+          "`30`",
+          "`48`",
+          "`351`",
+          "`4.333333333333333`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `39 - 9`, ktorého výsledok je `30`. Táto hodnota sa priradí do premennej `vyska`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vyska` have?",
+        "answers": null,
+        "explanation": "First the expression `39 - 9` is evaluated; its result is `30`. This value is assigned to the variable `vyska`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vyska"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vyska = \"30\"",
+        "hash": "a3a17141f5c4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-010",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vyska = 11 - 39;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vyska`?",
+        "answers": [
+          "`-28`",
+          "`50`",
+          "`429`",
+          "`0.28205128205128205`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `11 - 39`, ktorého výsledok je `-28`. Táto hodnota sa priradí do premennej `vyska`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vyska` have?",
+        "answers": null,
+        "explanation": "First the expression `11 - 39` is evaluated; its result is `-28`. This value is assigned to the variable `vyska`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vyska"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vyska = \"-28\"",
+        "hash": "631b29b80b8d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-011",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cislo = 32 - 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cislo`?",
+        "answers": [
+          "`27`",
+          "`37`",
+          "`160`",
+          "`6.4`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `32 - 5`, ktorého výsledok je `27`. Táto hodnota sa priradí do premennej `cislo`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cislo` have?",
+        "answers": null,
+        "explanation": "First the expression `32 - 5` is evaluated; its result is `27`. This value is assigned to the variable `cislo`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo = \"27\"",
+        "hash": "2c7fc6841f14",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-012",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vaha = 11 - 11;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vaha`?",
+        "answers": [
+          "`0`",
+          "`22`",
+          "`121`",
+          "`1`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `11 - 11`, ktorého výsledok je `0`. Táto hodnota sa priradí do premennej `vaha`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vaha` have?",
+        "answers": null,
+        "explanation": "First the expression `11 - 11` is evaluated; its result is `0`. This value is assigned to the variable `vaha`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vaha"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vaha = \"0\"",
+        "hash": "f2a8dc61b936",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-013",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int stav = 11 * 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`55`",
+          "`16`",
+          "`6`",
+          "`2.2`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `11 * 5`, ktorého výsledok je `55`. Táto hodnota sa priradí do premennej `stav`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `11 * 5` is evaluated; its result is `55`. This value is assigned to the variable `stav`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"55\"",
+        "hash": "a23f42a1bbea",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-014",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int dlzka = 3 * 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `dlzka`?",
+        "answers": [
+          "`12`",
+          "`7`",
+          "`-1`",
+          "`0.75`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `3 * 4`, ktorého výsledok je `12`. Táto hodnota sa priradí do premennej `dlzka`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `dlzka` have?",
+        "answers": null,
+        "explanation": "First the expression `3 * 4` is evaluated; its result is `12`. This value is assigned to the variable `dlzka`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "dlzka"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "dlzka = \"12\"",
+        "hash": "f1716f8eaa23",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-015",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cislo = 8 * 9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cislo`?",
+        "answers": [
+          "`72`",
+          "`17`",
+          "`-1`",
+          "`0.8888888888888888`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `8 * 9`, ktorého výsledok je `72`. Táto hodnota sa priradí do premennej `cislo`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cislo` have?",
+        "answers": null,
+        "explanation": "First the expression `8 * 9` is evaluated; its result is `72`. This value is assigned to the variable `cislo`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo = \"72\"",
+        "hash": "7ccab29c1354",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-016",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cislo = 10 * 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cislo`?",
+        "answers": [
+          "`50`",
+          "`15`",
+          "`5`",
+          "`2`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `10 * 5`, ktorého výsledok je `50`. Táto hodnota sa priradí do premennej `cislo`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cislo` have?",
+        "answers": null,
+        "explanation": "First the expression `10 * 5` is evaluated; its result is `50`. This value is assigned to the variable `cislo`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo = \"50\"",
+        "hash": "65bf9880b2b8",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-017",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int stav = 3 * 6;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`18`",
+          "`9`",
+          "`-3`",
+          "`0.5`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `3 * 6`, ktorého výsledok je `18`. Táto hodnota sa priradí do premennej `stav`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `3 * 6` is evaluated; its result is `18`. This value is assigned to the variable `stav`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"18\"",
+        "hash": "bc38aca6c7b9",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-018",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int sirka = 3 * 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `sirka`?",
+        "answers": [
+          "`9`",
+          "`6`",
+          "`0`",
+          "`1`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `3 * 3`, ktorého výsledok je `9`. Táto hodnota sa priradí do premennej `sirka`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `sirka` have?",
+        "answers": null,
+        "explanation": "First the expression `3 * 3` is evaluated; its result is `9`. This value is assigned to the variable `sirka`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "sirka"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "sirka = \"9\"",
+        "hash": "9d36b8ebead5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-019",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int kluc = 45 / 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `kluc`?",
+        "answers": [
+          "`9`",
+          "`50`",
+          "`40`",
+          "`225`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `45 / 5`, ktorého výsledok je `9`. Táto hodnota sa priradí do premennej `kluc`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `kluc` have?",
+        "answers": null,
+        "explanation": "First the expression `45 / 5` is evaluated; its result is `9`. This value is assigned to the variable `kluc`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "kluc"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "kluc = \"9\"",
+        "hash": "9eea82904330",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-020",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cislo = 30 / 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cislo`?",
+        "answers": [
+          "`10`",
+          "`33`",
+          "`27`",
+          "`90`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `30 / 3`, ktorého výsledok je `10`. Táto hodnota sa priradí do premennej `cislo`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cislo` have?",
+        "answers": null,
+        "explanation": "First the expression `30 / 3` is evaluated; its result is `10`. This value is assigned to the variable `cislo`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo = \"10\"",
+        "hash": "1014b81b9480",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-021",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int trieda = 14 / 7;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `trieda`?",
+        "answers": [
+          "`2`",
+          "`21`",
+          "`7`",
+          "`98`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `14 / 7`, ktorého výsledok je `2`. Táto hodnota sa priradí do premennej `trieda`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `trieda` have?",
+        "answers": null,
+        "explanation": "First the expression `14 / 7` is evaluated; its result is `2`. This value is assigned to the variable `trieda`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "trieda"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "trieda = \"2\"",
+        "hash": "f1d166021b65",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-022",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int kluc = 16 / 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `kluc`?",
+        "answers": [
+          "`2`",
+          "`24`",
+          "`8`",
+          "`128`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `16 / 8`, ktorého výsledok je `2`. Táto hodnota sa priradí do premennej `kluc`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `kluc` have?",
+        "answers": null,
+        "explanation": "First the expression `16 / 8` is evaluated; its result is `2`. This value is assigned to the variable `kluc`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "kluc"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "kluc = \"2\"",
+        "hash": "6a749e79d7f6",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-023",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cena = 10 / 2;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cena`?",
+        "answers": [
+          "`5`",
+          "`12`",
+          "`8`",
+          "`20`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `10 / 2`, ktorého výsledok je `5`. Táto hodnota sa priradí do premennej `cena`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cena` have?",
+        "answers": null,
+        "explanation": "First the expression `10 / 2` is evaluated; its result is `5`. This value is assigned to the variable `cena`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cena"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cena = \"5\"",
+        "hash": "12cea097e91c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-024",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int stav = 24 / 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`6`",
+          "`28`",
+          "`20`",
+          "`96`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `24 / 4`, ktorého výsledok je `6`. Táto hodnota sa priradí do premennej `stav`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `24 / 4` is evaluated; its result is `6`. This value is assigned to the variable `stav`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"6\"",
+        "hash": "ca6159949c9f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-arith-025",
+      "template": "dt-int-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int rok = 14 / 7;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `rok`?",
+        "answers": [
+          "`2`",
+          "`21`",
+          "`7`",
+          "`98`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `14 / 7`, ktorého výsledok je `2`. Táto hodnota sa priradí do premennej `rok`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `rok` have?",
+        "answers": null,
+        "explanation": "First the expression `14 / 7` is evaluated; its result is `2`. This value is assigned to the variable `rok`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "rok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "rok = \"2\"",
+        "hash": "8fe400dfc312",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-001",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vysledok = 34 % 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`1`",
+          "`37`",
+          "`31`",
+          "`102`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `34 % 3`, ktorého výsledok je `1`. Táto hodnota sa priradí do premennej `vysledok`. Operátor `%` vracia zvyšok po delení: 34 = 11 · 3 + 1."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "First the expression `34 % 3` is evaluated; its result is `1`. This value is assigned to the variable `vysledok`. The `%` operator gives the remainder: 34 = 11 · 3 + 1."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"1\"",
+        "hash": "2a93b1896dcd",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-002",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cislo = 38 % 7;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cislo`?",
+        "answers": [
+          "`3`",
+          "`45`",
+          "`31`",
+          "`266`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `38 % 7`, ktorého výsledok je `3`. Táto hodnota sa priradí do premennej `cislo`. Operátor `%` vracia zvyšok po delení: 38 = 5 · 7 + 3."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cislo` have?",
+        "answers": null,
+        "explanation": "First the expression `38 % 7` is evaluated; its result is `3`. This value is assigned to the variable `cislo`. The `%` operator gives the remainder: 38 = 5 · 7 + 3."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo = \"3\"",
+        "hash": "71eb8e578c0b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-003",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int stav = 21 % 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`5`",
+          "`29`",
+          "`13`",
+          "`168`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `21 % 8`, ktorého výsledok je `5`. Táto hodnota sa priradí do premennej `stav`. Operátor `%` vracia zvyšok po delení: 21 = 2 · 8 + 5."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `21 % 8` is evaluated; its result is `5`. This value is assigned to the variable `stav`. The `%` operator gives the remainder: 21 = 2 · 8 + 5."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"5\"",
+        "hash": "f44303e11874",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-004",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int stav = 20 % 6;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`2`",
+          "`26`",
+          "`14`",
+          "`120`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `20 % 6`, ktorého výsledok je `2`. Táto hodnota sa priradí do premennej `stav`. Operátor `%` vracia zvyšok po delení: 20 = 3 · 6 + 2."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `20 % 6` is evaluated; its result is `2`. This value is assigned to the variable `stav`. The `%` operator gives the remainder: 20 = 3 · 6 + 2."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"2\"",
+        "hash": "6c809028028c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-005",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cena = 28 % 6;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cena`?",
+        "answers": [
+          "`4`",
+          "`34`",
+          "`22`",
+          "`168`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `28 % 6`, ktorého výsledok je `4`. Táto hodnota sa priradí do premennej `cena`. Operátor `%` vracia zvyšok po delení: 28 = 4 · 6 + 4."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cena` have?",
+        "answers": null,
+        "explanation": "First the expression `28 % 6` is evaluated; its result is `4`. This value is assigned to the variable `cena`. The `%` operator gives the remainder: 28 = 4 · 6 + 4."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cena"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cena = \"4\"",
+        "hash": "74700115dba0",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-006",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int teplota = 34 % 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `teplota`?",
+        "answers": [
+          "`2`",
+          "`42`",
+          "`26`",
+          "`272`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `34 % 8`, ktorého výsledok je `2`. Táto hodnota sa priradí do premennej `teplota`. Operátor `%` vracia zvyšok po delení: 34 = 4 · 8 + 2."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `teplota` have?",
+        "answers": null,
+        "explanation": "First the expression `34 % 8` is evaluated; its result is `2`. This value is assigned to the variable `teplota`. The `%` operator gives the remainder: 34 = 4 · 8 + 2."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "teplota"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "teplota = \"2\"",
+        "hash": "06f318254aa7",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-007",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int teplota = 26 % 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `teplota`?",
+        "answers": [
+          "`2`",
+          "`34`",
+          "`18`",
+          "`208`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `26 % 8`, ktorého výsledok je `2`. Táto hodnota sa priradí do premennej `teplota`. Operátor `%` vracia zvyšok po delení: 26 = 3 · 8 + 2."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `teplota` have?",
+        "answers": null,
+        "explanation": "First the expression `26 % 8` is evaluated; its result is `2`. This value is assigned to the variable `teplota`. The `%` operator gives the remainder: 26 = 3 · 8 + 2."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "teplota"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "teplota = \"2\"",
+        "hash": "a1cdae939b08",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-008",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int zostatok = 40 % 7;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `zostatok`?",
+        "answers": [
+          "`5`",
+          "`47`",
+          "`33`",
+          "`280`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `40 % 7`, ktorého výsledok je `5`. Táto hodnota sa priradí do premennej `zostatok`. Operátor `%` vracia zvyšok po delení: 40 = 5 · 7 + 5."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `zostatok` have?",
+        "answers": null,
+        "explanation": "First the expression `40 % 7` is evaluated; its result is `5`. This value is assigned to the variable `zostatok`. The `%` operator gives the remainder: 40 = 5 · 7 + 5."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "zostatok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "zostatok = \"5\"",
+        "hash": "098dc163fc9b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-009",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int stav = 36 % 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`4`",
+          "`44`",
+          "`28`",
+          "`288`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `36 % 8`, ktorého výsledok je `4`. Táto hodnota sa priradí do premennej `stav`. Operátor `%` vracia zvyšok po delení: 36 = 4 · 8 + 4."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `36 % 8` is evaluated; its result is `4`. This value is assigned to the variable `stav`. The `%` operator gives the remainder: 36 = 4 · 8 + 4."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"4\"",
+        "hash": "53391cf1bc77",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-010",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int stav = 28 % 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`3`",
+          "`33`",
+          "`23`",
+          "`140`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `28 % 5`, ktorého výsledok je `3`. Táto hodnota sa priradí do premennej `stav`. Operátor `%` vracia zvyšok po delení: 28 = 5 · 5 + 3."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `28 % 5` is evaluated; its result is `3`. This value is assigned to the variable `stav`. The `%` operator gives the remainder: 28 = 5 · 5 + 3."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"3\"",
+        "hash": "877c7613b9bb",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-011",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int zostatok = 32 % 9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `zostatok`?",
+        "answers": [
+          "`5`",
+          "`41`",
+          "`23`",
+          "`288`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `32 % 9`, ktorého výsledok je `5`. Táto hodnota sa priradí do premennej `zostatok`. Operátor `%` vracia zvyšok po delení: 32 = 3 · 9 + 5."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `zostatok` have?",
+        "answers": null,
+        "explanation": "First the expression `32 % 9` is evaluated; its result is `5`. This value is assigned to the variable `zostatok`. The `%` operator gives the remainder: 32 = 3 · 9 + 5."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "zostatok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "zostatok = \"5\"",
+        "hash": "5ada8891218e",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-012",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vyska = 38 % 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vyska`?",
+        "answers": [
+          "`3`",
+          "`43`",
+          "`33`",
+          "`190`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `38 % 5`, ktorého výsledok je `3`. Táto hodnota sa priradí do premennej `vyska`. Operátor `%` vracia zvyšok po delení: 38 = 7 · 5 + 3."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vyska` have?",
+        "answers": null,
+        "explanation": "First the expression `38 % 5` is evaluated; its result is `3`. This value is assigned to the variable `vyska`. The `%` operator gives the remainder: 38 = 7 · 5 + 3."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vyska"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vyska = \"3\"",
+        "hash": "8495ba6236ec",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-013",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int stav = 25 % 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`1`",
+          "`29`",
+          "`21`",
+          "`100`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `25 % 4`, ktorého výsledok je `1`. Táto hodnota sa priradí do premennej `stav`. Operátor `%` vracia zvyšok po delení: 25 = 6 · 4 + 1."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `25 % 4` is evaluated; its result is `1`. This value is assigned to the variable `stav`. The `%` operator gives the remainder: 25 = 6 · 4 + 1."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"1\"",
+        "hash": "bef448043de3",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-014",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vaha = 36 % 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vaha`?",
+        "answers": [
+          "`1`",
+          "`41`",
+          "`31`",
+          "`180`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `36 % 5`, ktorého výsledok je `1`. Táto hodnota sa priradí do premennej `vaha`. Operátor `%` vracia zvyšok po delení: 36 = 7 · 5 + 1."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vaha` have?",
+        "answers": null,
+        "explanation": "First the expression `36 % 5` is evaluated; its result is `1`. This value is assigned to the variable `vaha`. The `%` operator gives the remainder: 36 = 7 · 5 + 1."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vaha"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vaha = \"1\"",
+        "hash": "b0d8c19f25eb",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-015",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vaha = 20 % 3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vaha`?",
+        "answers": [
+          "`2`",
+          "`23`",
+          "`17`",
+          "`60`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `20 % 3`, ktorého výsledok je `2`. Táto hodnota sa priradí do premennej `vaha`. Operátor `%` vracia zvyšok po delení: 20 = 6 · 3 + 2."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vaha` have?",
+        "answers": null,
+        "explanation": "First the expression `20 % 3` is evaluated; its result is `2`. This value is assigned to the variable `vaha`. The `%` operator gives the remainder: 20 = 6 · 3 + 2."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vaha"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vaha = \"2\"",
+        "hash": "4cf999ca8a3c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-016",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int zostatok = 38 % 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `zostatok`?",
+        "answers": [
+          "`3`",
+          "`43`",
+          "`33`",
+          "`190`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `38 % 5`, ktorého výsledok je `3`. Táto hodnota sa priradí do premennej `zostatok`. Operátor `%` vracia zvyšok po delení: 38 = 7 · 5 + 3."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `zostatok` have?",
+        "answers": null,
+        "explanation": "First the expression `38 % 5` is evaluated; its result is `3`. This value is assigned to the variable `zostatok`. The `%` operator gives the remainder: 38 = 7 · 5 + 3."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "zostatok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "zostatok = \"3\"",
+        "hash": "8a20ed3c460b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-017",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int kluc = 23 % 9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `kluc`?",
+        "answers": [
+          "`5`",
+          "`32`",
+          "`14`",
+          "`207`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `23 % 9`, ktorého výsledok je `5`. Táto hodnota sa priradí do premennej `kluc`. Operátor `%` vracia zvyšok po delení: 23 = 2 · 9 + 5."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `kluc` have?",
+        "answers": null,
+        "explanation": "First the expression `23 % 9` is evaluated; its result is `5`. This value is assigned to the variable `kluc`. The `%` operator gives the remainder: 23 = 2 · 9 + 5."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "kluc"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "kluc = \"5\"",
+        "hash": "0674221c83ef",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-018",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int zostatok = 33 % 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `zostatok`?",
+        "answers": [
+          "`1`",
+          "`41`",
+          "`25`",
+          "`264`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `33 % 8`, ktorého výsledok je `1`. Táto hodnota sa priradí do premennej `zostatok`. Operátor `%` vracia zvyšok po delení: 33 = 4 · 8 + 1."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `zostatok` have?",
+        "answers": null,
+        "explanation": "First the expression `33 % 8` is evaluated; its result is `1`. This value is assigned to the variable `zostatok`. The `%` operator gives the remainder: 33 = 4 · 8 + 1."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "zostatok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "zostatok = \"1\"",
+        "hash": "4aae79350221",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-019",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int trieda = 35 % 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `trieda`?",
+        "answers": [
+          "`3`",
+          "`39`",
+          "`31`",
+          "`140`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `35 % 4`, ktorého výsledok je `3`. Táto hodnota sa priradí do premennej `trieda`. Operátor `%` vracia zvyšok po delení: 35 = 8 · 4 + 3."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `trieda` have?",
+        "answers": null,
+        "explanation": "First the expression `35 % 4` is evaluated; its result is `3`. This value is assigned to the variable `trieda`. The `%` operator gives the remainder: 35 = 8 · 4 + 3."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "trieda"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "trieda = \"3\"",
+        "hash": "46fc3c3628c3",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-020",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int dlzka = 20 % 7;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `dlzka`?",
+        "answers": [
+          "`6`",
+          "`27`",
+          "`13`",
+          "`140`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `20 % 7`, ktorého výsledok je `6`. Táto hodnota sa priradí do premennej `dlzka`. Operátor `%` vracia zvyšok po delení: 20 = 2 · 7 + 6."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `dlzka` have?",
+        "answers": null,
+        "explanation": "First the expression `20 % 7` is evaluated; its result is `6`. This value is assigned to the variable `dlzka`. The `%` operator gives the remainder: 20 = 2 · 7 + 6."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "dlzka"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "dlzka = \"6\"",
+        "hash": "c38702d76b48",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-021",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vyska = 36 % 7;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vyska`?",
+        "answers": [
+          "`1`",
+          "`43`",
+          "`29`",
+          "`252`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `36 % 7`, ktorého výsledok je `1`. Táto hodnota sa priradí do premennej `vyska`. Operátor `%` vracia zvyšok po delení: 36 = 5 · 7 + 1."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vyska` have?",
+        "answers": null,
+        "explanation": "First the expression `36 % 7` is evaluated; its result is `1`. This value is assigned to the variable `vyska`. The `%` operator gives the remainder: 36 = 5 · 7 + 1."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vyska"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vyska = \"1\"",
+        "hash": "5561aedddeb0",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-022",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int sirka = 22 % 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `sirka`?",
+        "answers": [
+          "`2`",
+          "`26`",
+          "`18`",
+          "`88`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `22 % 4`, ktorého výsledok je `2`. Táto hodnota sa priradí do premennej `sirka`. Operátor `%` vracia zvyšok po delení: 22 = 5 · 4 + 2."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `sirka` have?",
+        "answers": null,
+        "explanation": "First the expression `22 % 4` is evaluated; its result is `2`. This value is assigned to the variable `sirka`. The `%` operator gives the remainder: 22 = 5 · 4 + 2."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "sirka"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "sirka = \"2\"",
+        "hash": "064d4367b931",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-023",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int cislo = 30 % 9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cislo`?",
+        "answers": [
+          "`3`",
+          "`39`",
+          "`21`",
+          "`270`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `30 % 9`, ktorého výsledok je `3`. Táto hodnota sa priradí do premennej `cislo`. Operátor `%` vracia zvyšok po delení: 30 = 3 · 9 + 3."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cislo` have?",
+        "answers": null,
+        "explanation": "First the expression `30 % 9` is evaluated; its result is `3`. This value is assigned to the variable `cislo`. The `%` operator gives the remainder: 30 = 3 · 9 + 3."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo = \"3\"",
+        "hash": "f94846b31b8b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-024",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int vysledok = 30 % 9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vysledok`?",
+        "answers": [
+          "`3`",
+          "`39`",
+          "`21`",
+          "`270`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `30 % 9`, ktorého výsledok je `3`. Táto hodnota sa priradí do premennej `vysledok`. Operátor `%` vracia zvyšok po delení: 30 = 3 · 9 + 3."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vysledok` have?",
+        "answers": null,
+        "explanation": "First the expression `30 % 9` is evaluated; its result is `3`. This value is assigned to the variable `vysledok`. The `%` operator gives the remainder: 30 = 3 · 9 + 3."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"3\"",
+        "hash": "4cf44bff0322",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-int-mod-025",
+      "template": "dt-int-mod",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "int body = 39 % 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `body`?",
+        "answers": [
+          "`7`",
+          "`47`",
+          "`31`",
+          "`312`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `39 % 8`, ktorého výsledok je `7`. Táto hodnota sa priradí do premennej `body`. Operátor `%` vracia zvyšok po delení: 39 = 4 · 8 + 7."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `body` have?",
+        "answers": null,
+        "explanation": "First the expression `39 % 8` is evaluated; its result is `7`. This value is assigned to the variable `body`. The `%` operator gives the remainder: 39 = 4 · 8 + 7."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "body"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "body = \"7\"",
+        "hash": "7fd1bdee3614",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-001",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double vaha = 7.5 + 0.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vaha`?",
+        "answers": [
+          "`8`",
+          "`7`",
+          "`3.75`",
+          "`15`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `7.5 + 0.5`, ktorého výsledok je `8`. Táto hodnota sa priradí do premennej `vaha`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vaha` have?",
+        "answers": null,
+        "explanation": "First the expression `7.5 + 0.5` is evaluated; its result is `8`. This value is assigned to the variable `vaha`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vaha",
+        "expected": "8"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vaha = \"8\"",
+        "hash": "4e508bb2ac6f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-002",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double hodnota = 2.25 + 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `hodnota`?",
+        "answers": [
+          "`7.25`",
+          "`-2.75`",
+          "`11.25`",
+          "`0.45`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `2.25 + 5`, ktorého výsledok je `7.25`. Táto hodnota sa priradí do premennej `hodnota`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `hodnota` have?",
+        "answers": null,
+        "explanation": "First the expression `2.25 + 5` is evaluated; its result is `7.25`. This value is assigned to the variable `hodnota`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "hodnota",
+        "expected": "7.25"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "hodnota = \"7.25\"",
+        "hash": "3bef6ed35744",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-003",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double rok = 14 + 0.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `rok`?",
+        "answers": [
+          "`14.5`",
+          "`13.5`",
+          "`7`",
+          "`28`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `14 + 0.5`, ktorého výsledok je `14.5`. Táto hodnota sa priradí do premennej `rok`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `rok` have?",
+        "answers": null,
+        "explanation": "First the expression `14 + 0.5` is evaluated; its result is `14.5`. This value is assigned to the variable `rok`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "rok",
+        "expected": "14.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "rok = \"14.5\"",
+        "hash": "a1367c77df7c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-004",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double kluc = 3 + 16;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `kluc`?",
+        "answers": [
+          "`19`",
+          "`-13`",
+          "`48`",
+          "`0.1875`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `3 + 16`, ktorého výsledok je `19`. Táto hodnota sa priradí do premennej `kluc`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `kluc` have?",
+        "answers": null,
+        "explanation": "First the expression `3 + 16` is evaluated; its result is `19`. This value is assigned to the variable `kluc`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "kluc",
+        "expected": "19"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "kluc = \"19\"",
+        "hash": "b80c515dcab7",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-005",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double vyska = 2.25 + 7.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vyska`?",
+        "answers": [
+          "`9.75`",
+          "`-5.25`",
+          "`16.875`",
+          "`0.3`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `2.25 + 7.5`, ktorého výsledok je `9.75`. Táto hodnota sa priradí do premennej `vyska`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vyska` have?",
+        "answers": null,
+        "explanation": "First the expression `2.25 + 7.5` is evaluated; its result is `9.75`. This value is assigned to the variable `vyska`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vyska",
+        "expected": "9.75"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vyska = \"9.75\"",
+        "hash": "9bf62ac520a4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-006",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double trieda = 4 + 1.25;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `trieda`?",
+        "answers": [
+          "`5.25`",
+          "`2.75`",
+          "`5`",
+          "`3.2`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `4 + 1.25`, ktorého výsledok je `5.25`. Táto hodnota sa priradí do premennej `trieda`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `trieda` have?",
+        "answers": null,
+        "explanation": "First the expression `4 + 1.25` is evaluated; its result is `5.25`. This value is assigned to the variable `trieda`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "trieda",
+        "expected": "5.25"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "trieda = \"5.25\"",
+        "hash": "06359e458f62",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-007",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double trieda = 2.5 + 2.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `trieda`?",
+        "answers": [
+          "`5`",
+          "`0`",
+          "`6.25`",
+          "`1`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `2.5 + 2.5`, ktorého výsledok je `5`. Táto hodnota sa priradí do premennej `trieda`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `trieda` have?",
+        "answers": null,
+        "explanation": "First the expression `2.5 + 2.5` is evaluated; its result is `5`. This value is assigned to the variable `trieda`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "trieda",
+        "expected": "5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "trieda = \"5\"",
+        "hash": "8edbc9f64c9d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-008",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double stav = 3.5 + 10;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`13.5`",
+          "`-6.5`",
+          "`35`",
+          "`0.35`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `3.5 + 10`, ktorého výsledok je `13.5`. Táto hodnota sa priradí do premennej `stav`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `3.5 + 10` is evaluated; its result is `13.5`. This value is assigned to the variable `stav`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav",
+        "expected": "13.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"13.5\"",
+        "hash": "a19b967efedc",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-009",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double zostatok = 1.5 + 12.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `zostatok`?",
+        "answers": [
+          "`14`",
+          "`-11`",
+          "`18.75`",
+          "`0.12`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `1.5 + 12.5`, ktorého výsledok je `14`. Táto hodnota sa priradí do premennej `zostatok`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `zostatok` have?",
+        "answers": null,
+        "explanation": "First the expression `1.5 + 12.5` is evaluated; its result is `14`. This value is assigned to the variable `zostatok`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "zostatok",
+        "expected": "14"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "zostatok = \"14\"",
+        "hash": "0331360a6981",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-010",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double rok = 6 + 0.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `rok`?",
+        "answers": [
+          "`6.5`",
+          "`5.5`",
+          "`3`",
+          "`12`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `6 + 0.5`, ktorého výsledok je `6.5`. Táto hodnota sa priradí do premennej `rok`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `rok` have?",
+        "answers": null,
+        "explanation": "First the expression `6 + 0.5` is evaluated; its result is `6.5`. This value is assigned to the variable `rok`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "rok",
+        "expected": "6.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "rok = \"6.5\"",
+        "hash": "d50c185d79a7",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-011",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double vyska = 14 + 2.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vyska`?",
+        "answers": [
+          "`16.5`",
+          "`11.5`",
+          "`35`",
+          "`5.6`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `14 + 2.5`, ktorého výsledok je `16.5`. Táto hodnota sa priradí do premennej `vyska`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vyska` have?",
+        "answers": null,
+        "explanation": "First the expression `14 + 2.5` is evaluated; its result is `16.5`. This value is assigned to the variable `vyska`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vyska",
+        "expected": "16.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vyska = \"16.5\"",
+        "hash": "be48bde6e845",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-012",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double cena = 7.5 + 12;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `cena`?",
+        "answers": [
+          "`19.5`",
+          "`-4.5`",
+          "`90`",
+          "`0.625`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `7.5 + 12`, ktorého výsledok je `19.5`. Táto hodnota sa priradí do premennej `cena`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `cena` have?",
+        "answers": null,
+        "explanation": "First the expression `7.5 + 12` is evaluated; its result is `19.5`. This value is assigned to the variable `cena`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cena",
+        "expected": "19.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cena = \"19.5\"",
+        "hash": "1fec8a1c906e",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-013",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double stav = 11 * 0.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `stav`?",
+        "answers": [
+          "`5.5`",
+          "`11.5`",
+          "`10.5`",
+          "`22`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `11 * 0.5`, ktorého výsledok je `5.5`. Táto hodnota sa priradí do premennej `stav`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `stav` have?",
+        "answers": null,
+        "explanation": "First the expression `11 * 0.5` is evaluated; its result is `5.5`. This value is assigned to the variable `stav`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav",
+        "expected": "5.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"5.5\"",
+        "hash": "4f9da8fdb159",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-014",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double zostatok = 7.5 * 1.25;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `zostatok`?",
+        "answers": [
+          "`9.375`",
+          "`8.75`",
+          "`6.25`",
+          "`6`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `7.5 * 1.25`, ktorého výsledok je `9.375`. Táto hodnota sa priradí do premennej `zostatok`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `zostatok` have?",
+        "answers": null,
+        "explanation": "First the expression `7.5 * 1.25` is evaluated; its result is `9.375`. This value is assigned to the variable `zostatok`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "zostatok",
+        "expected": "9.375"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "zostatok = \"9.375\"",
+        "hash": "a71231f652ee",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-015",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double vyska = 1.5 * 0.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vyska`?",
+        "answers": [
+          "`0.75`",
+          "`2`",
+          "`1`",
+          "`3`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `1.5 * 0.5`, ktorého výsledok je `0.75`. Táto hodnota sa priradí do premennej `vyska`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vyska` have?",
+        "answers": null,
+        "explanation": "First the expression `1.5 * 0.5` is evaluated; its result is `0.75`. This value is assigned to the variable `vyska`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vyska",
+        "expected": "0.75"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vyska = \"0.75\"",
+        "hash": "9dd148a84d61",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-016",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double hodnota = 1.5 * 12.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `hodnota`?",
+        "answers": [
+          "`18.75`",
+          "`14`",
+          "`-11`",
+          "`0.12`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `1.5 * 12.5`, ktorého výsledok je `18.75`. Táto hodnota sa priradí do premennej `hodnota`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `hodnota` have?",
+        "answers": null,
+        "explanation": "First the expression `1.5 * 12.5` is evaluated; its result is `18.75`. This value is assigned to the variable `hodnota`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "hodnota",
+        "expected": "18.75"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "hodnota = \"18.75\"",
+        "hash": "6a58a9a4be75",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-017",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double rok = 7.5 * 2.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `rok`?",
+        "answers": [
+          "`18.75`",
+          "`10`",
+          "`5`",
+          "`3`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `7.5 * 2.5`, ktorého výsledok je `18.75`. Táto hodnota sa priradí do premennej `rok`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `rok` have?",
+        "answers": null,
+        "explanation": "First the expression `7.5 * 2.5` is evaluated; its result is `18.75`. This value is assigned to the variable `rok`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "rok",
+        "expected": "18.75"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "rok = \"18.75\"",
+        "hash": "c95115eed30f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-018",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double dlzka = 4.5 * 5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `dlzka`?",
+        "answers": [
+          "`22.5`",
+          "`9.5`",
+          "`-0.5`",
+          "`0.9`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `4.5 * 5`, ktorého výsledok je `22.5`. Táto hodnota sa priradí do premennej `dlzka`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `dlzka` have?",
+        "answers": null,
+        "explanation": "First the expression `4.5 * 5` is evaluated; its result is `22.5`. This value is assigned to the variable `dlzka`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "dlzka",
+        "expected": "22.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "dlzka = \"22.5\"",
+        "hash": "5173fe4393ea",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-019",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double trieda = 7 * 12.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `trieda`?",
+        "answers": [
+          "`87.5`",
+          "`19.5`",
+          "`-5.5`",
+          "`0.56`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `7 * 12.5`, ktorého výsledok je `87.5`. Táto hodnota sa priradí do premennej `trieda`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `trieda` have?",
+        "answers": null,
+        "explanation": "First the expression `7 * 12.5` is evaluated; its result is `87.5`. This value is assigned to the variable `trieda`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "trieda",
+        "expected": "87.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "trieda = \"87.5\"",
+        "hash": "9da95ce3455d",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-020",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double vek = 7 * 0.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vek`?",
+        "answers": [
+          "`3.5`",
+          "`7.5`",
+          "`6.5`",
+          "`14`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `7 * 0.5`, ktorého výsledok je `3.5`. Táto hodnota sa priradí do premennej `vek`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vek` have?",
+        "answers": null,
+        "explanation": "First the expression `7 * 0.5` is evaluated; its result is `3.5`. This value is assigned to the variable `vek`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vek",
+        "expected": "3.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vek = \"3.5\"",
+        "hash": "6fc5d5073cd4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-021",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double teplota = 7 * 2.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `teplota`?",
+        "answers": [
+          "`17.5`",
+          "`9.5`",
+          "`4.5`",
+          "`2.8`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `7 * 2.5`, ktorého výsledok je `17.5`. Táto hodnota sa priradí do premennej `teplota`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `teplota` have?",
+        "answers": null,
+        "explanation": "First the expression `7 * 2.5` is evaluated; its result is `17.5`. This value is assigned to the variable `teplota`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "teplota",
+        "expected": "17.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "teplota = \"17.5\"",
+        "hash": "069f7cd9cb6b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-022",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double vek = 2 * 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `vek`?",
+        "answers": [
+          "`16`",
+          "`10`",
+          "`-6`",
+          "`0.25`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `2 * 8`, ktorého výsledok je `16`. Táto hodnota sa priradí do premennej `vek`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `vek` have?",
+        "answers": null,
+        "explanation": "First the expression `2 * 8` is evaluated; its result is `16`. This value is assigned to the variable `vek`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vek",
+        "expected": "16"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vek = \"16\"",
+        "hash": "d9d666338a41",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-023",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double trieda = 3.5 * 12.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `trieda`?",
+        "answers": [
+          "`43.75`",
+          "`16`",
+          "`-9`",
+          "`0.28`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `3.5 * 12.5`, ktorého výsledok je `43.75`. Táto hodnota sa priradí do premennej `trieda`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `trieda` have?",
+        "answers": null,
+        "explanation": "First the expression `3.5 * 12.5` is evaluated; its result is `43.75`. This value is assigned to the variable `trieda`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "trieda",
+        "expected": "43.75"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "trieda = \"43.75\"",
+        "hash": "f09fa6f4e23f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-024",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double skore = 3.5 * 4;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `skore`?",
+        "answers": [
+          "`14`",
+          "`7.5`",
+          "`-0.5`",
+          "`0.875`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `3.5 * 4`, ktorého výsledok je `14`. Táto hodnota sa priradí do premennej `skore`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `skore` have?",
+        "answers": null,
+        "explanation": "First the expression `3.5 * 4` is evaluated; its result is `14`. This value is assigned to the variable `skore`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "skore",
+        "expected": "14"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "skore = \"14\"",
+        "hash": "434f95e20bbb",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-double-arith-025",
+      "template": "dt-double-arith",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "double kluc = 18 * 8;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `kluc`?",
+        "answers": [
+          "`144`",
+          "`26`",
+          "`10`",
+          "`2.25`"
+        ],
+        "explanation": "Najskôr sa vypočíta výraz `18 * 8`, ktorého výsledok je `144`. Táto hodnota sa priradí do premennej `kluc`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `kluc` have?",
+        "answers": null,
+        "explanation": "First the expression `18 * 8` is evaluated; its result is `144`. This value is assigned to the variable `kluc`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "kluc",
+        "expected": "144"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "kluc = \"144\"",
+        "hash": "4da751b7f17c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-001",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Dobrá\" + \" práca\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Dobrá práca\"`",
+          "`\"Dobrápráca\"`",
+          "`\"Dobrá\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Dobrá\"` a `\" práca\"` vznikne `\"Dobrá práca\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Dobrá\"` and `\" práca\"` gives `\"Dobrá práca\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Dobrá práca\"",
+        "hash": "efd84072bfb2",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-002",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Pekný\" + \" deň\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Pekný deň\"`",
+          "`\"Peknýdeň\"`",
+          "`\"Pekný\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Pekný\"` a `\" deň\"` vznikne `\"Pekný deň\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Pekný\"` and `\" deň\"` gives `\"Pekný deň\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Pekný deň\"",
+        "hash": "327560da4a51",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-003",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string veta = \"Ahoj\" + \" svet\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `veta`?",
+        "answers": [
+          "`\"Ahoj svet\"`",
+          "`\"Ahojsvet\"`",
+          "`\"Ahoj\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Ahoj\"` a `\" svet\"` vznikne `\"Ahoj svet\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `veta` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Ahoj\"` and `\" svet\"` gives `\"Ahoj svet\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "veta"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "veta = \"Ahoj svet\"",
+        "hash": "78b9f18f1661",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-004",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Malý\" + \" pes\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Malý pes\"`",
+          "`\"Malýpes\"`",
+          "`\"Malý\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Malý\"` a `\" pes\"` vznikne `\"Malý pes\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Malý\"` and `\" pes\"` gives `\"Malý pes\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Malý pes\"",
+        "hash": "5f187507603b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-005",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string veta = \"Dobré\" + \" ráno\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `veta`?",
+        "answers": [
+          "`\"Dobré ráno\"`",
+          "`\"Dobréráno\"`",
+          "`\"Dobré\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Dobré\"` a `\" ráno\"` vznikne `\"Dobré ráno\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `veta` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Dobré\"` and `\" ráno\"` gives `\"Dobré ráno\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "veta"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "veta = \"Dobré ráno\"",
+        "hash": "89808628d4ff",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-006",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string nazov = \"Nový\" + \" rok\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `nazov`?",
+        "answers": [
+          "`\"Nový rok\"`",
+          "`\"Novýrok\"`",
+          "`\"Nový\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Nový\"` a `\" rok\"` vznikne `\"Nový rok\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `nazov` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Nový\"` and `\" rok\"` gives `\"Nový rok\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "nazov"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "nazov = \"Nový rok\"",
+        "hash": "31b54b93236a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-007",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string nazov = \"Prvý\" + \" krok\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `nazov`?",
+        "answers": [
+          "`\"Prvý krok\"`",
+          "`\"Prvýkrok\"`",
+          "`\"Prvý\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Prvý\"` a `\" krok\"` vznikne `\"Prvý krok\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `nazov` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Prvý\"` and `\" krok\"` gives `\"Prvý krok\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "nazov"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "nazov = \"Prvý krok\"",
+        "hash": "b63d1f477cc6",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-008",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string text = \"Teplý\" + \" čaj\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"Teplý čaj\"`",
+          "`\"Teplýčaj\"`",
+          "`\"Teplý\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Teplý\"` a `\" čaj\"` vznikne `\"Teplý čaj\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Teplý\"` and `\" čaj\"` gives `\"Teplý čaj\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"Teplý čaj\"",
+        "hash": "ab0267aeb6c6",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-009",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string text = \"Hello\" + \" world\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"Hello world\"`",
+          "`\"Helloworld\"`",
+          "`\"Hello\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Hello\"` a `\" world\"` vznikne `\"Hello world\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Hello\"` and `\" world\"` gives `\"Hello world\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"Hello world\"",
+        "hash": "aad5306dd70b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-010",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string text = \"Biely\" + \" sneh\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"Biely sneh\"`",
+          "`\"Bielysneh\"`",
+          "`\"Biely\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Biely\"` a `\" sneh\"` vznikne `\"Biely sneh\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Biely\"` and `\" sneh\"` gives `\"Biely sneh\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"Biely sneh\"",
+        "hash": "c936a4f24573",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-011",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string text = \"Veselé\" + \" Vianoce\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"Veselé Vianoce\"`",
+          "`\"VeseléVianoce\"`",
+          "`\"Veselé\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Veselé\"` a `\" Vianoce\"` vznikne `\"Veselé Vianoce\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Veselé\"` and `\" Vianoce\"` gives `\"Veselé Vianoce\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"Veselé Vianoce\"",
+        "hash": "6910fcdd2ffe",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-012",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Zelená\" + \" lúka\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `slovo`?",
+        "answers": [
+          "`\"Zelená lúka\"`",
+          "`\"Zelenálúka\"`",
+          "`\"Zelená\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Zelená\"` a `\" lúka\"` vznikne `\"Zelená lúka\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `slovo` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Zelená\"` and `\" lúka\"` gives `\"Zelená lúka\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "slovo"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "slovo = \"Zelená lúka\"",
+        "hash": "b7ebbf6dca74",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-013",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string nazov = \"Vysoké\" + \" Tatry\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `nazov`?",
+        "answers": [
+          "`\"Vysoké Tatry\"`",
+          "`\"VysokéTatry\"`",
+          "`\"Vysoké\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Vysoké\"` a `\" Tatry\"` vznikne `\"Vysoké Tatry\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `nazov` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Vysoké\"` and `\" Tatry\"` gives `\"Vysoké Tatry\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "nazov"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "nazov = \"Vysoké Tatry\"",
+        "hash": "88fe0f6a9892",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-014",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string sprava = \"Stará\" + \" mama\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `sprava`?",
+        "answers": [
+          "`\"Stará mama\"`",
+          "`\"Starámama\"`",
+          "`\"Stará\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Stará\"` a `\" mama\"` vznikne `\"Stará mama\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `sprava` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Stará\"` and `\" mama\"` gives `\"Stará mama\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "sprava"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "sprava = \"Stará mama\"",
+        "hash": "f860d5a5aefa",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-015",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Modré\" + \" more\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Modré more\"`",
+          "`\"Modrémore\"`",
+          "`\"Modré\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Modré\"` a `\" more\"` vznikne `\"Modré more\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Modré\"` and `\" more\"` gives `\"Modré more\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Modré more\"",
+        "hash": "6bbc43f174bd",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-016",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Dobrý\" + \" deň\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Dobrý deň\"`",
+          "`\"Dobrýdeň\"`",
+          "`\"Dobrý\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Dobrý\"` a `\" deň\"` vznikne `\"Dobrý deň\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Dobrý\"` and `\" deň\"` gives `\"Dobrý deň\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Dobrý deň\"",
+        "hash": "cc865c119652",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-017",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Letné\" + \" prázdniny\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Letné prázdniny\"`",
+          "`\"Letnéprázdniny\"`",
+          "`\"Letné\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Letné\"` a `\" prázdniny\"` vznikne `\"Letné prázdniny\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Letné\"` and `\" prázdniny\"` gives `\"Letné prázdniny\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Letné prázdniny\"",
+        "hash": "4584d61c7bb3",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-018",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string veta = \"Žltý\" + \" citrón\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `veta`?",
+        "answers": [
+          "`\"Žltý citrón\"`",
+          "`\"Žltýcitrón\"`",
+          "`\"Žltý\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Žltý\"` a `\" citrón\"` vznikne `\"Žltý citrón\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `veta` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Žltý\"` and `\" citrón\"` gives `\"Žltý citrón\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "veta"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "veta = \"Žltý citrón\"",
+        "hash": "bbfb9dfe4e6f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-019",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string sprava = \"Čierna\" + \" mačka\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `sprava`?",
+        "answers": [
+          "`\"Čierna mačka\"`",
+          "`\"Čiernamačka\"`",
+          "`\"Čierna\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Čierna\"` a `\" mačka\"` vznikne `\"Čierna mačka\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `sprava` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Čierna\"` and `\" mačka\"` gives `\"Čierna mačka\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "sprava"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "sprava = \"Čierna mačka\"",
+        "hash": "e2399d928e02",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-020",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string text = \"Nočná\" + \" obloha\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"Nočná obloha\"`",
+          "`\"Nočnáobloha\"`",
+          "`\"Nočná\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Nočná\"` a `\" obloha\"` vznikne `\"Nočná obloha\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Nočná\"` and `\" obloha\"` gives `\"Nočná obloha\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"Nočná obloha\"",
+        "hash": "f551cf35bddb",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-021",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Moja\" + \" trieda\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Moja trieda\"`",
+          "`\"Mojatrieda\"`",
+          "`\"Moja\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Moja\"` a `\" trieda\"` vznikne `\"Moja trieda\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Moja\"` and `\" trieda\"` gives `\"Moja trieda\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Moja trieda\"",
+        "hash": "23188a3d1a56",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-022",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Veľký\" + \" hrad\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Veľký hrad\"`",
+          "`\"Veľkýhrad\"`",
+          "`\"Veľký\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Veľký\"` a `\" hrad\"` vznikne `\"Veľký hrad\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Veľký\"` and `\" hrad\"` gives `\"Veľký hrad\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Veľký hrad\"",
+        "hash": "c0392b2e3d24",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-023",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string pozdrav = \"Tvoj\" + \" kód\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pozdrav`?",
+        "answers": [
+          "`\"Tvoj kód\"`",
+          "`\"Tvojkód\"`",
+          "`\"Tvoj\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Tvoj\"` a `\" kód\"` vznikne `\"Tvoj kód\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pozdrav` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Tvoj\"` and `\" kód\"` gives `\"Tvoj kód\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pozdrav"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pozdrav = \"Tvoj kód\"",
+        "hash": "7c49d696ba50",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-024",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string veta = \"Môj\" + \" program\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `veta`?",
+        "answers": [
+          "`\"Môj program\"`",
+          "`\"Môjprogram\"`",
+          "`\"Môj\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Môj\"` a `\" program\"` vznikne `\"Môj program\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `veta` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Môj\"` and `\" program\"` gives `\"Môj program\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "veta"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "veta = \"Môj program\"",
+        "hash": "1b3f35d56324",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-concat-025",
+      "template": "dt-string-concat",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string text = \"Studená\" + \" voda\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `text`?",
+        "answers": [
+          "`\"Studená voda\"`",
+          "`\"Studenávoda\"`",
+          "`\"Studená\"`",
+          "`string`"
+        ],
+        "explanation": "Operátor `+` pri reťazcoch spája texty. Spojením `\"Studená\"` a `\" voda\"` vznikne `\"Studená voda\"` – medzera je súčasťou druhého textu."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `text` have?",
+        "answers": null,
+        "explanation": "With strings, the `+` operator joins the texts. Joining `\"Studená\"` and `\" voda\"` gives `\"Studená voda\"` – the space is part of the second text."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"Studená voda\"",
+        "hash": "004cafd60b1e",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-001",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Dunaj\";\nchar znak = slovo[2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`'n'`",
+          "`\"n\"`",
+          "`'a'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `2` v texte `\"Dunaj\"` sa nachádza znak `'n'`, preto ho bude obsahovať premenná `znak`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `2` in `\"Dunaj\"` is the character `'n'`, so the variable `znak` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"n\"",
+        "hash": "4727a4aa9dc4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-002",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Skola\";\nchar z = slovo[2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'o'`",
+          "`\"o\"`",
+          "`'l'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `2` v texte `\"Skola\"` sa nachádza znak `'o'`, preto ho bude obsahovať premenná `z`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `2` in `\"Skola\"` is the character `'o'`, so the variable `z` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"o\"",
+        "hash": "52bdbc645b22",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-003",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Kocka\";\nchar c = slovo[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `c`?",
+        "answers": [
+          "`'o'`",
+          "`\"o\"`",
+          "`'c'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `1` v texte `\"Kocka\"` sa nachádza znak `'o'`, preto ho bude obsahovať premenná `c`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `c` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `1` in `\"Kocka\"` is the character `'o'`, so the variable `c` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "c"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "c = \"o\"",
+        "hash": "1226dd3da7af",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-004",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Jablko\";\nchar c = slovo[3];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `c`?",
+        "answers": [
+          "`'l'`",
+          "`\"l\"`",
+          "`'k'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `3` v texte `\"Jablko\"` sa nachádza znak `'l'`, preto ho bude obsahovať premenná `c`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `c` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `3` in `\"Jablko\"` is the character `'l'`, so the variable `c` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "c"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "c = \"l\"",
+        "hash": "2615cb3974b2",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-005",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Kocka\";\nchar pismeno = slovo[0];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'K'`",
+          "`\"K\"`",
+          "`'o'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `0` v texte `\"Kocka\"` sa nachádza znak `'K'`, preto ho bude obsahovať premenná `pismeno`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `0` in `\"Kocka\"` is the character `'K'`, so the variable `pismeno` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"K\"",
+        "hash": "2b12df109f72",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-006",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Dunaj\";\nchar pismeno = slovo[2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'n'`",
+          "`\"n\"`",
+          "`'a'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `2` v texte `\"Dunaj\"` sa nachádza znak `'n'`, preto ho bude obsahovať premenná `pismeno`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `2` in `\"Dunaj\"` is the character `'n'`, so the variable `pismeno` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"n\"",
+        "hash": "8f718b8ca7e1",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-007",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Jablko\";\nchar z = slovo[4];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'k'`",
+          "`\"k\"`",
+          "`'o'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `4` v texte `\"Jablko\"` sa nachádza znak `'k'`, preto ho bude obsahovať premenná `z`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `4` in `\"Jablko\"` is the character `'k'`, so the variable `z` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"k\"",
+        "hash": "a1c5cd6ae2c2",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-008",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Pocitac\";\nchar znak = slovo[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`'o'`",
+          "`\"o\"`",
+          "`'c'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `1` v texte `\"Pocitac\"` sa nachádza znak `'o'`, preto ho bude obsahovať premenná `znak`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `1` in `\"Pocitac\"` is the character `'o'`, so the variable `znak` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"o\"",
+        "hash": "c5c7fb679600",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-009",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Zemiak\";\nchar c = slovo[3];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `c`?",
+        "answers": [
+          "`'i'`",
+          "`\"i\"`",
+          "`'a'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `3` v texte `\"Zemiak\"` sa nachádza znak `'i'`, preto ho bude obsahovať premenná `c`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `c` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `3` in `\"Zemiak\"` is the character `'i'`, so the variable `c` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "c"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "c = \"i\"",
+        "hash": "f4c6d9a6e154",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-010",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Zemiak\";\nchar pismeno = slovo[0];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'Z'`",
+          "`\"Z\"`",
+          "`'e'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `0` v texte `\"Zemiak\"` sa nachádza znak `'Z'`, preto ho bude obsahovať premenná `pismeno`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `0` in `\"Zemiak\"` is the character `'Z'`, so the variable `pismeno` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"Z\"",
+        "hash": "44657a3d0d99",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-011",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Ceruzka\";\nchar z = slovo[4];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'z'`",
+          "`\"z\"`",
+          "`'k'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `4` v texte `\"Ceruzka\"` sa nachádza znak `'z'`, preto ho bude obsahovať premenná `z`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `4` in `\"Ceruzka\"` is the character `'z'`, so the variable `z` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"z\"",
+        "hash": "a1b3595bec66",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-012",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Pocitac\";\nchar znak = slovo[3];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`'i'`",
+          "`\"i\"`",
+          "`'t'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `3` v texte `\"Pocitac\"` sa nachádza znak `'i'`, preto ho bude obsahovať premenná `znak`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `3` in `\"Pocitac\"` is the character `'i'`, so the variable `znak` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"i\"",
+        "hash": "cbc60bf10443",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-013",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Pocitac\";\nchar c = slovo[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `c`?",
+        "answers": [
+          "`'o'`",
+          "`\"o\"`",
+          "`'c'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `1` v texte `\"Pocitac\"` sa nachádza znak `'o'`, preto ho bude obsahovať premenná `c`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `c` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `1` in `\"Pocitac\"` is the character `'o'`, so the variable `c` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "c"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "c = \"o\"",
+        "hash": "31ed2d974d20",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-014",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Pocitac\";\nchar c = slovo[4];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `c`?",
+        "answers": [
+          "`'t'`",
+          "`\"t\"`",
+          "`'a'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `4` v texte `\"Pocitac\"` sa nachádza znak `'t'`, preto ho bude obsahovať premenná `c`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `c` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `4` in `\"Pocitac\"` is the character `'t'`, so the variable `c` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "c"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "c = \"t\"",
+        "hash": "b22d77115740",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-015",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Telefon\";\nchar znak = slovo[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`'e'`",
+          "`\"e\"`",
+          "`'l'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `1` v texte `\"Telefon\"` sa nachádza znak `'e'`, preto ho bude obsahovať premenná `znak`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `1` in `\"Telefon\"` is the character `'e'`, so the variable `znak` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"e\"",
+        "hash": "b51ba059a1e4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-016",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Kniha\";\nchar pismeno = slovo[0];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'K'`",
+          "`\"K\"`",
+          "`'n'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `0` v texte `\"Kniha\"` sa nachádza znak `'K'`, preto ho bude obsahovať premenná `pismeno`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `0` in `\"Kniha\"` is the character `'K'`, so the variable `pismeno` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"K\"",
+        "hash": "b0f6a30cba2f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-017",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Bratislava\";\nchar znak = slovo[5];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `znak`?",
+        "answers": [
+          "`'s'`",
+          "`\"s\"`",
+          "`'l'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `5` v texte `\"Bratislava\"` sa nachádza znak `'s'`, preto ho bude obsahovať premenná `znak`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `znak` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `5` in `\"Bratislava\"` is the character `'s'`, so the variable `znak` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"s\"",
+        "hash": "705dbfe21265",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-018",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Lavica\";\nchar z = slovo[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'a'`",
+          "`\"a\"`",
+          "`'v'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `1` v texte `\"Lavica\"` sa nachádza znak `'a'`, preto ho bude obsahovať premenná `z`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `1` in `\"Lavica\"` is the character `'a'`, so the variable `z` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"a\"",
+        "hash": "ecdf701ed26c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-019",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Kniha\";\nchar z = slovo[0];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'K'`",
+          "`\"K\"`",
+          "`'n'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `0` v texte `\"Kniha\"` sa nachádza znak `'K'`, preto ho bude obsahovať premenná `z`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `0` in `\"Kniha\"` is the character `'K'`, so the variable `z` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"K\"",
+        "hash": "bca4db02b0d7",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-020",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Okno\";\nchar z = slovo[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'k'`",
+          "`\"k\"`",
+          "`'n'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `1` v texte `\"Okno\"` sa nachádza znak `'k'`, preto ho bude obsahovať premenná `z`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `1` in `\"Okno\"` is the character `'k'`, so the variable `z` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"k\"",
+        "hash": "4e8ce04b8e98",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-021",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Trieda\";\nchar pismeno = slovo[4];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'d'`",
+          "`\"d\"`",
+          "`'a'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `4` v texte `\"Trieda\"` sa nachádza znak `'d'`, preto ho bude obsahovať premenná `pismeno`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `4` in `\"Trieda\"` is the character `'d'`, so the variable `pismeno` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"d\"",
+        "hash": "e0574b99dccb",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-022",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Dunaj\";\nchar c = slovo[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `c`?",
+        "answers": [
+          "`'u'`",
+          "`\"u\"`",
+          "`'n'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `1` v texte `\"Dunaj\"` sa nachádza znak `'u'`, preto ho bude obsahovať premenná `c`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `c` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `1` in `\"Dunaj\"` is the character `'u'`, so the variable `c` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "c"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "c = \"u\"",
+        "hash": "427429145307",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-023",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Kocka\";\nchar pismeno = slovo[2];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `pismeno`?",
+        "answers": [
+          "`'c'`",
+          "`\"c\"`",
+          "`'k'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `2` v texte `\"Kocka\"` sa nachádza znak `'c'`, preto ho bude obsahovať premenná `pismeno`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `pismeno` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `2` in `\"Kocka\"` is the character `'c'`, so the variable `pismeno` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"c\"",
+        "hash": "4a5b05b5c3c5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-024",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Kocka\";\nchar z = slovo[1];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'o'`",
+          "`\"o\"`",
+          "`'c'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `1` v texte `\"Kocka\"` sa nachádza znak `'o'`, preto ho bude obsahovať premenná `z`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `1` in `\"Kocka\"` is the character `'o'`, so the variable `z` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"o\"",
+        "hash": "03ac152654e1",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-string-index-025",
+      "template": "dt-string-index",
+      "difficulty": 2,
+      "status": "approved",
+      "code": "string slovo = \"Dunaj\";\nchar z = slovo[0];",
+      "sk": {
+        "body": "{code}\nAkú hodnotu bude mať premenná `z`?",
+        "answers": [
+          "`'D'`",
+          "`\"D\"`",
+          "`'u'`",
+          "`char`"
+        ],
+        "explanation": "Indexovanie reťazca začína od `0`. Na indexe `0` v texte `\"Dunaj\"` sa nachádza znak `'D'`, preto ho bude obsahovať premenná `z`."
+      },
+      "en": {
+        "body": "{code}\nWhat value will the variable `z` have?",
+        "answers": null,
+        "explanation": "String indexing starts at `0`. At index `0` in `\"Dunaj\"` is the character `'D'`, so the variable `z` will contain it."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "z"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "z = \"D\"",
+        "hash": "b42f10110174",
+        "at": "2026-10-22"
+      }
+    }
+  ]
+}

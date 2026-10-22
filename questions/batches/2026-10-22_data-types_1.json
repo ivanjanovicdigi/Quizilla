@@ -1,0 +1,1658 @@
+{
+  "batch": "2026-10-22_data-types_1",
+  "subject": "prog-1-digi",
+  "topic": "data-types",
+  "created": "2026-10-22",
+  "questions": [
+    {
+      "id": "dt-var-type-001",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int vysledok = 100;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `vysledok`?",
+        "answers": [
+          "`int`",
+          "`double`",
+          "`string`",
+          "`char`"
+        ],
+        "explanation": "Premenná `vysledok` je deklarovaná kľúčovým slovom `int` pred názvom premennej. Preto je jej dátový typ `int`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `vysledok`?",
+        "answers": null,
+        "explanation": "The variable `vysledok` is declared with the keyword `int` before its name, so its data type is `int`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok.GetType().Name",
+        "expected": "Int32"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok.GetType().Name = \"Int32\"",
+        "hash": "368b6b1f911e",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-002",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int nazov = -3;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `nazov`?",
+        "answers": [
+          "`int`",
+          "`string`",
+          "`double`",
+          "`char`"
+        ],
+        "explanation": "Premenná `nazov` je deklarovaná kľúčovým slovom `int` pred názvom premennej. Preto je jej dátový typ `int`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `nazov`?",
+        "answers": null,
+        "explanation": "The variable `nazov` is declared with the keyword `int` before its name, so its data type is `int`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "nazov.GetType().Name",
+        "expected": "Int32"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "nazov.GetType().Name = \"Int32\"",
+        "hash": "f5f7da4cf652",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-003",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int zostatok = 99;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `zostatok`?",
+        "answers": [
+          "`int`",
+          "`bool`",
+          "`char`",
+          "`string`"
+        ],
+        "explanation": "Premenná `zostatok` je deklarovaná kľúčovým slovom `int` pred názvom premennej. Preto je jej dátový typ `int`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `zostatok`?",
+        "answers": null,
+        "explanation": "The variable `zostatok` is declared with the keyword `int` before its name, so its data type is `int`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "zostatok.GetType().Name",
+        "expected": "Int32"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "zostatok.GetType().Name = \"Int32\"",
+        "hash": "6a102dd718ae",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-004",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int hodnota = 0;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `hodnota`?",
+        "answers": [
+          "`int`",
+          "`double`",
+          "`string`",
+          "`bool`"
+        ],
+        "explanation": "Premenná `hodnota` je deklarovaná kľúčovým slovom `int` pred názvom premennej. Preto je jej dátový typ `int`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `hodnota`?",
+        "answers": null,
+        "explanation": "The variable `hodnota` is declared with the keyword `int` before its name, so its data type is `int`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "hodnota.GetType().Name",
+        "expected": "Int32"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "hodnota.GetType().Name = \"Int32\"",
+        "hash": "3babc93b1d09",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-005",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int mesto = 12;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `mesto`?",
+        "answers": [
+          "`int`",
+          "`string`",
+          "`double`",
+          "`bool`"
+        ],
+        "explanation": "Premenná `mesto` je deklarovaná kľúčovým slovom `int` pred názvom premennej. Preto je jej dátový typ `int`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `mesto`?",
+        "answers": null,
+        "explanation": "The variable `mesto` is declared with the keyword `int` before its name, so its data type is `int`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "mesto.GetType().Name",
+        "expected": "Int32"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "mesto.GetType().Name = \"Int32\"",
+        "hash": "1568dd413de8",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-006",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double sirka = 36.6;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `sirka`?",
+        "answers": [
+          "`double`",
+          "`bool`",
+          "`int`",
+          "`char`"
+        ],
+        "explanation": "Premenná `sirka` je deklarovaná kľúčovým slovom `double` pred názvom premennej. Preto je jej dátový typ `double`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `sirka`?",
+        "answers": null,
+        "explanation": "The variable `sirka` is declared with the keyword `double` before its name, so its data type is `double`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "sirka.GetType().Name",
+        "expected": "Double"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "sirka.GetType().Name = \"Double\"",
+        "hash": "6b3c71165f65",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-007",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double slovo = 12.8;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `slovo`?",
+        "answers": [
+          "`double`",
+          "`char`",
+          "`int`",
+          "`bool`"
+        ],
+        "explanation": "Premenná `slovo` je deklarovaná kľúčovým slovom `double` pred názvom premennej. Preto je jej dátový typ `double`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `slovo`?",
+        "answers": null,
+        "explanation": "The variable `slovo` is declared with the keyword `double` before its name, so its data type is `double`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "slovo.GetType().Name",
+        "expected": "Double"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "slovo.GetType().Name = \"Double\"",
+        "hash": "e78b1b06d296",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-008",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double meno = 3.5;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `meno`?",
+        "answers": [
+          "`double`",
+          "`bool`",
+          "`int`",
+          "`char`"
+        ],
+        "explanation": "Premenná `meno` je deklarovaná kľúčovým slovom `double` pred názvom premennej. Preto je jej dátový typ `double`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `meno`?",
+        "answers": null,
+        "explanation": "The variable `meno` is declared with the keyword `double` before its name, so its data type is `double`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "meno.GetType().Name",
+        "expected": "Double"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "meno.GetType().Name = \"Double\"",
+        "hash": "49931d189286",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-009",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double cena = -1.5;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `cena`?",
+        "answers": [
+          "`double`",
+          "`int`",
+          "`bool`",
+          "`string`"
+        ],
+        "explanation": "Premenná `cena` je deklarovaná kľúčovým slovom `double` pred názvom premennej. Preto je jej dátový typ `double`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `cena`?",
+        "answers": null,
+        "explanation": "The variable `cena` is declared with the keyword `double` before its name, so its data type is `double`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cena.GetType().Name",
+        "expected": "Double"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cena.GetType().Name = \"Double\"",
+        "hash": "983faeec6b4f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-010",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double dlzka = 0.5;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `dlzka`?",
+        "answers": [
+          "`double`",
+          "`string`",
+          "`bool`",
+          "`int`"
+        ],
+        "explanation": "Premenná `dlzka` je deklarovaná kľúčovým slovom `double` pred názvom premennej. Preto je jej dátový typ `double`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `dlzka`?",
+        "answers": null,
+        "explanation": "The variable `dlzka` is declared with the keyword `double` before its name, so its data type is `double`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "dlzka.GetType().Name",
+        "expected": "Double"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "dlzka.GetType().Name = \"Double\"",
+        "hash": "6c0e2e763921",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-011",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool trieda = true;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `trieda`?",
+        "answers": [
+          "`bool`",
+          "`string`",
+          "`int`",
+          "`double`"
+        ],
+        "explanation": "Premenná `trieda` je deklarovaná kľúčovým slovom `bool` pred názvom premennej. Preto je jej dátový typ `bool`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `trieda`?",
+        "answers": null,
+        "explanation": "The variable `trieda` is declared with the keyword `bool` before its name, so its data type is `bool`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "trieda.GetType().Name",
+        "expected": "Boolean"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "trieda.GetType().Name = \"Boolean\"",
+        "hash": "5a6ac54925db",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-012",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool farba = true;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `farba`?",
+        "answers": [
+          "`bool`",
+          "`int`",
+          "`string`",
+          "`char`"
+        ],
+        "explanation": "Premenná `farba` je deklarovaná kľúčovým slovom `bool` pred názvom premennej. Preto je jej dátový typ `bool`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `farba`?",
+        "answers": null,
+        "explanation": "The variable `farba` is declared with the keyword `bool` before its name, so its data type is `bool`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "farba.GetType().Name",
+        "expected": "Boolean"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "farba.GetType().Name = \"Boolean\"",
+        "hash": "e0ac81ef9114",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-013",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool mena = true;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `mena`?",
+        "answers": [
+          "`bool`",
+          "`double`",
+          "`string`",
+          "`char`"
+        ],
+        "explanation": "Premenná `mena` je deklarovaná kľúčovým slovom `bool` pred názvom premennej. Preto je jej dátový typ `bool`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `mena`?",
+        "answers": null,
+        "explanation": "The variable `mena` is declared with the keyword `bool` before its name, so its data type is `bool`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "mena.GetType().Name",
+        "expected": "Boolean"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "mena.GetType().Name = \"Boolean\"",
+        "hash": "c125d3838778",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-014",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool teplota = false;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `teplota`?",
+        "answers": [
+          "`bool`",
+          "`int`",
+          "`double`",
+          "`char`"
+        ],
+        "explanation": "Premenná `teplota` je deklarovaná kľúčovým slovom `bool` pred názvom premennej. Preto je jej dátový typ `bool`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `teplota`?",
+        "answers": null,
+        "explanation": "The variable `teplota` is declared with the keyword `bool` before its name, so its data type is `bool`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "teplota.GetType().Name",
+        "expected": "Boolean"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "teplota.GetType().Name = \"Boolean\"",
+        "hash": "46e216f1c8a6",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-015",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool smer = false;",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `smer`?",
+        "answers": [
+          "`bool`",
+          "`int`",
+          "`string`",
+          "`char`"
+        ],
+        "explanation": "Premenná `smer` je deklarovaná kľúčovým slovom `bool` pred názvom premennej. Preto je jej dátový typ `bool`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `smer`?",
+        "answers": null,
+        "explanation": "The variable `smer` is declared with the keyword `bool` before its name, so its data type is `bool`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "smer.GetType().Name",
+        "expected": "Boolean"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "smer.GetType().Name = \"Boolean\"",
+        "hash": "63c7363f27df",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-016",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char pismeno = 'R';",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `pismeno`?",
+        "answers": [
+          "`char`",
+          "`int`",
+          "`double`",
+          "`bool`"
+        ],
+        "explanation": "Premenná `pismeno` je deklarovaná kľúčovým slovom `char` pred názvom premennej. Preto je jej dátový typ `char`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `pismeno`?",
+        "answers": null,
+        "explanation": "The variable `pismeno` is declared with the keyword `char` before its name, so its data type is `char`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno.GetType().Name",
+        "expected": "Char"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno.GetType().Name = \"Char\"",
+        "hash": "a845867f5e65",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-017",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char znak = 'A';",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `znak`?",
+        "answers": [
+          "`char`",
+          "`string`",
+          "`int`",
+          "`double`"
+        ],
+        "explanation": "Premenná `znak` je deklarovaná kľúčovým slovom `char` pred názvom premennej. Preto je jej dátový typ `char`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `znak`?",
+        "answers": null,
+        "explanation": "The variable `znak` is declared with the keyword `char` before its name, so its data type is `char`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak.GetType().Name",
+        "expected": "Char"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak.GetType().Name = \"Char\"",
+        "hash": "dd10f3c012cd",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-018",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char vaha = 'Q';",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `vaha`?",
+        "answers": [
+          "`char`",
+          "`bool`",
+          "`string`",
+          "`int`"
+        ],
+        "explanation": "Premenná `vaha` je deklarovaná kľúčovým slovom `char` pred názvom premennej. Preto je jej dátový typ `char`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `vaha`?",
+        "answers": null,
+        "explanation": "The variable `vaha` is declared with the keyword `char` before its name, so its data type is `char`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vaha.GetType().Name",
+        "expected": "Char"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vaha.GetType().Name = \"Char\"",
+        "hash": "65b0c150ba6c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-019",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char skore = 'b';",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `skore`?",
+        "answers": [
+          "`char`",
+          "`bool`",
+          "`string`",
+          "`double`"
+        ],
+        "explanation": "Premenná `skore` je deklarovaná kľúčovým slovom `char` pred názvom premennej. Preto je jej dátový typ `char`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `skore`?",
+        "answers": null,
+        "explanation": "The variable `skore` is declared with the keyword `char` before its name, so its data type is `char`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "skore.GetType().Name",
+        "expected": "Char"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "skore.GetType().Name = \"Char\"",
+        "hash": "baddc3bdfd20",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-020",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char stav = 's';",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `stav`?",
+        "answers": [
+          "`char`",
+          "`bool`",
+          "`string`",
+          "`double`"
+        ],
+        "explanation": "Premenná `stav` je deklarovaná kľúčovým slovom `char` pred názvom premennej. Preto je jej dátový typ `char`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `stav`?",
+        "answers": null,
+        "explanation": "The variable `stav` is declared with the keyword `char` before its name, so its data type is `char`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav.GetType().Name",
+        "expected": "Char"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav.GetType().Name = \"Char\"",
+        "hash": "a7aacd15fcb3",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-021",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string vek = \"Ahoj\";",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `vek`?",
+        "answers": [
+          "`string`",
+          "`bool`",
+          "`char`",
+          "`double`"
+        ],
+        "explanation": "Premenná `vek` je deklarovaná kľúčovým slovom `string` pred názvom premennej. Preto je jej dátový typ `string`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `vek`?",
+        "answers": null,
+        "explanation": "The variable `vek` is declared with the keyword `string` before its name, so its data type is `string`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vek.GetType().Name",
+        "expected": "String"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vek.GetType().Name = \"String\"",
+        "hash": "edfb63bd9cff",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-022",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string rok = \"Program\";",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `rok`?",
+        "answers": [
+          "`string`",
+          "`double`",
+          "`int`",
+          "`bool`"
+        ],
+        "explanation": "Premenná `rok` je deklarovaná kľúčovým slovom `string` pred názvom premennej. Preto je jej dátový typ `string`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `rok`?",
+        "answers": null,
+        "explanation": "The variable `rok` is declared with the keyword `string` before its name, so its data type is `string`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "rok.GetType().Name",
+        "expected": "String"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "rok.GetType().Name = \"String\"",
+        "hash": "c2a63eabac6e",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-023",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string cas = \"Dunaj\";",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `cas`?",
+        "answers": [
+          "`string`",
+          "`char`",
+          "`bool`",
+          "`double`"
+        ],
+        "explanation": "Premenná `cas` je deklarovaná kľúčovým slovom `string` pred názvom premennej. Preto je jej dátový typ `string`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `cas`?",
+        "answers": null,
+        "explanation": "The variable `cas` is declared with the keyword `string` before its name, so its data type is `string`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cas.GetType().Name",
+        "expected": "String"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cas.GetType().Name = \"String\"",
+        "hash": "95c1dd34d2c0",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-024",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string cislo = \"Zuzana\";",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `cislo`?",
+        "answers": [
+          "`string`",
+          "`char`",
+          "`int`",
+          "`bool`"
+        ],
+        "explanation": "Premenná `cislo` je deklarovaná kľúčovým slovom `string` pred názvom premennej. Preto je jej dátový typ `string`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `cislo`?",
+        "answers": null,
+        "explanation": "The variable `cislo` is declared with the keyword `string` before its name, so its data type is `string`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo.GetType().Name",
+        "expected": "String"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo.GetType().Name = \"String\"",
+        "hash": "4efff814451b",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-type-025",
+      "template": "dt-var-type",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string pocet = \"Peter\";",
+      "sk": {
+        "body": "{code}\nAkého dátového typu je premenná `pocet`?",
+        "answers": [
+          "`string`",
+          "`int`",
+          "`bool`",
+          "`double`"
+        ],
+        "explanation": "Premenná `pocet` je deklarovaná kľúčovým slovom `string` pred názvom premennej. Preto je jej dátový typ `string`."
+      },
+      "en": {
+        "body": "{code}\nWhat is the data type of the variable `pocet`?",
+        "answers": null,
+        "explanation": "The variable `pocet` is declared with the keyword `string` before its name, so its data type is `string`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pocet.GetType().Name",
+        "expected": "String"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pocet.GetType().Name = \"String\"",
+        "hash": "52ae3cd1b6d5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-001",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int cislo = 42;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `cislo`?",
+        "answers": [
+          "`42`",
+          "`int`",
+          "`cislo`",
+          "`43`"
+        ],
+        "explanation": "`int` je typ premennej, `cislo` je jej názov a hodnota priradená za znakom `=` je `42`. Premenná `cislo` teda obsahuje `42`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `cislo` contain?",
+        "answers": null,
+        "explanation": "`int` is the variable's type, `cislo` is its name, and the value assigned after `=` is `42`. So `cislo` contains `42`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "cislo",
+        "expected": "42"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "cislo = \"42\"",
+        "hash": "6550bc0f1e6a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-002",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int kluc = 0;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `kluc`?",
+        "answers": [
+          "`0`",
+          "`int`",
+          "`1`",
+          "`kluc`"
+        ],
+        "explanation": "`int` je typ premennej, `kluc` je jej názov a hodnota priradená za znakom `=` je `0`. Premenná `kluc` teda obsahuje `0`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `kluc` contain?",
+        "answers": null,
+        "explanation": "`int` is the variable's type, `kluc` is its name, and the value assigned after `=` is `0`. So `kluc` contains `0`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "kluc",
+        "expected": "0"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "kluc = \"0\"",
+        "hash": "6b5a14f5852c",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-003",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int trieda = 12;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `trieda`?",
+        "answers": [
+          "`12`",
+          "`trieda`",
+          "`13`",
+          "`int`"
+        ],
+        "explanation": "`int` je typ premennej, `trieda` je jej názov a hodnota priradená za znakom `=` je `12`. Premenná `trieda` teda obsahuje `12`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `trieda` contain?",
+        "answers": null,
+        "explanation": "`int` is the variable's type, `trieda` is its name, and the value assigned after `=` is `12`. So `trieda` contains `12`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "trieda",
+        "expected": "12"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "trieda = \"12\"",
+        "hash": "9a7f2dd81ab4",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-004",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int zostatok = 100;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `zostatok`?",
+        "answers": [
+          "`100`",
+          "`zostatok`",
+          "`101`",
+          "`int`"
+        ],
+        "explanation": "`int` je typ premennej, `zostatok` je jej názov a hodnota priradená za znakom `=` je `100`. Premenná `zostatok` teda obsahuje `100`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `zostatok` contain?",
+        "answers": null,
+        "explanation": "`int` is the variable's type, `zostatok` is its name, and the value assigned after `=` is `100`. So `zostatok` contains `100`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "zostatok",
+        "expected": "100"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "zostatok = \"100\"",
+        "hash": "6723e8eadad5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-005",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "int smer = -3;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `smer`?",
+        "answers": [
+          "`-3`",
+          "`-2`",
+          "`int`",
+          "`smer`"
+        ],
+        "explanation": "`int` je typ premennej, `smer` je jej názov a hodnota priradená za znakom `=` je `-3`. Premenná `smer` teda obsahuje `-3`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `smer` contain?",
+        "answers": null,
+        "explanation": "`int` is the variable's type, `smer` is its name, and the value assigned after `=` is `-3`. So `smer` contains `-3`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "smer",
+        "expected": "-3"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "smer = \"-3\"",
+        "hash": "7b1e435a6d20",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-006",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double nazov = -1.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `nazov`?",
+        "answers": [
+          "`-1.5`",
+          "`nazov`",
+          "`-0.5`",
+          "`double`"
+        ],
+        "explanation": "`double` je typ premennej, `nazov` je jej názov a hodnota priradená za znakom `=` je `-1.5`. Premenná `nazov` teda obsahuje `-1.5`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `nazov` contain?",
+        "answers": null,
+        "explanation": "`double` is the variable's type, `nazov` is its name, and the value assigned after `=` is `-1.5`. So `nazov` contains `-1.5`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "nazov",
+        "expected": "-1.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "nazov = \"-1.5\"",
+        "hash": "53eb0a6c9091",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-007",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double mena = 99.9;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `mena`?",
+        "answers": [
+          "`99.9`",
+          "`double`",
+          "`100.9`",
+          "`mena`"
+        ],
+        "explanation": "`double` je typ premennej, `mena` je jej názov a hodnota priradená za znakom `=` je `99.9`. Premenná `mena` teda obsahuje `99.9`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `mena` contain?",
+        "answers": null,
+        "explanation": "`double` is the variable's type, `mena` is its name, and the value assigned after `=` is `99.9`. So `mena` contains `99.9`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "mena",
+        "expected": "99.9"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "mena = \"99.9\"",
+        "hash": "a4b7fb059b93",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-008",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double sirka = 7.1;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `sirka`?",
+        "answers": [
+          "`7.1`",
+          "`8.1`",
+          "`double`",
+          "`sirka`"
+        ],
+        "explanation": "`double` je typ premennej, `sirka` je jej názov a hodnota priradená za znakom `=` je `7.1`. Premenná `sirka` teda obsahuje `7.1`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `sirka` contain?",
+        "answers": null,
+        "explanation": "`double` is the variable's type, `sirka` is its name, and the value assigned after `=` is `7.1`. So `sirka` contains `7.1`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "sirka",
+        "expected": "7.1"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "sirka = \"7.1\"",
+        "hash": "1276a4cdf6c5",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-009",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double body = 36.6;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `body`?",
+        "answers": [
+          "`36.6`",
+          "`double`",
+          "`body`",
+          "`37.6`"
+        ],
+        "explanation": "`double` je typ premennej, `body` je jej názov a hodnota priradená za znakom `=` je `36.6`. Premenná `body` teda obsahuje `36.6`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `body` contain?",
+        "answers": null,
+        "explanation": "`double` is the variable's type, `body` is its name, and the value assigned after `=` is `36.6`. So `body` contains `36.6`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "body",
+        "expected": "36.6"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "body = \"36.6\"",
+        "hash": "d4ad19f724ff",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-010",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "double slovo = 0.5;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `slovo`?",
+        "answers": [
+          "`0.5`",
+          "`double`",
+          "`1.5`",
+          "`slovo`"
+        ],
+        "explanation": "`double` je typ premennej, `slovo` je jej názov a hodnota priradená za znakom `=` je `0.5`. Premenná `slovo` teda obsahuje `0.5`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `slovo` contain?",
+        "answers": null,
+        "explanation": "`double` is the variable's type, `slovo` is its name, and the value assigned after `=` is `0.5`. So `slovo` contains `0.5`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "slovo",
+        "expected": "0.5"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "slovo = \"0.5\"",
+        "hash": "aa4689d2a754",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-011",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool stav = true;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `stav`?",
+        "answers": [
+          "`true`",
+          "`false`",
+          "`bool`",
+          "`stav`"
+        ],
+        "explanation": "`bool` je typ premennej, `stav` je jej názov a hodnota priradená za znakom `=` je `true`. Premenná `stav` teda obsahuje `true`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `stav` contain?",
+        "answers": null,
+        "explanation": "`bool` is the variable's type, `stav` is its name, and the value assigned after `=` is `true`. So `stav` contains `true`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "stav",
+        "expected": "true"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "stav = \"True\"",
+        "hash": "50fc29c9d6dc",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-012",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool vysledok = false;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `vysledok`?",
+        "answers": [
+          "`false`",
+          "`true`",
+          "`bool`",
+          "`vysledok`"
+        ],
+        "explanation": "`bool` je typ premennej, `vysledok` je jej názov a hodnota priradená za znakom `=` je `false`. Premenná `vysledok` teda obsahuje `false`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `vysledok` contain?",
+        "answers": null,
+        "explanation": "`bool` is the variable's type, `vysledok` is its name, and the value assigned after `=` is `false`. So `vysledok` contains `false`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vysledok",
+        "expected": "false"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vysledok = \"False\"",
+        "hash": "178a15c74630",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-013",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool farba = false;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `farba`?",
+        "answers": [
+          "`false`",
+          "`true`",
+          "`farba`",
+          "`bool`"
+        ],
+        "explanation": "`bool` je typ premennej, `farba` je jej názov a hodnota priradená za znakom `=` je `false`. Premenná `farba` teda obsahuje `false`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `farba` contain?",
+        "answers": null,
+        "explanation": "`bool` is the variable's type, `farba` is its name, and the value assigned after `=` is `false`. So `farba` contains `false`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "farba",
+        "expected": "false"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "farba = \"False\"",
+        "hash": "d317973ae938",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-014",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool dlzka = true;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `dlzka`?",
+        "answers": [
+          "`true`",
+          "`false`",
+          "`dlzka`",
+          "`bool`"
+        ],
+        "explanation": "`bool` je typ premennej, `dlzka` je jej názov a hodnota priradená za znakom `=` je `true`. Premenná `dlzka` teda obsahuje `true`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `dlzka` contain?",
+        "answers": null,
+        "explanation": "`bool` is the variable's type, `dlzka` is its name, and the value assigned after `=` is `true`. So `dlzka` contains `true`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "dlzka",
+        "expected": "true"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "dlzka = \"True\"",
+        "hash": "20282c039b8f",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-015",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "bool vyska = true;",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `vyska`?",
+        "answers": [
+          "`true`",
+          "`bool`",
+          "`false`",
+          "`vyska`"
+        ],
+        "explanation": "`bool` je typ premennej, `vyska` je jej názov a hodnota priradená za znakom `=` je `true`. Premenná `vyska` teda obsahuje `true`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `vyska` contain?",
+        "answers": null,
+        "explanation": "`bool` is the variable's type, `vyska` is its name, and the value assigned after `=` is `true`. So `vyska` contains `true`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vyska",
+        "expected": "true"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vyska = \"True\"",
+        "hash": "9f2f6ebd3eb9",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-016",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char vek = 'b';",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `vek`?",
+        "answers": [
+          "`'b'`",
+          "`vek`",
+          "`\"b\"`",
+          "`char`"
+        ],
+        "explanation": "`char` je typ premennej, `vek` je jej názov a hodnota priradená za znakom `=` je `'b'`. Premenná `vek` teda obsahuje `'b'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `vek` contain?",
+        "answers": null,
+        "explanation": "`char` is the variable's type, `vek` is its name, and the value assigned after `=` is `'b'`. So `vek` contains `'b'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "vek",
+        "expected": "'b'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "vek = \"b\"",
+        "hash": "05faff0d9e67",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-017",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char odpoved = 'M';",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `odpoved`?",
+        "answers": [
+          "`'M'`",
+          "`odpoved`",
+          "`char`",
+          "`\"M\"`"
+        ],
+        "explanation": "`char` je typ premennej, `odpoved` je jej názov a hodnota priradená za znakom `=` je `'M'`. Premenná `odpoved` teda obsahuje `'M'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `odpoved` contain?",
+        "answers": null,
+        "explanation": "`char` is the variable's type, `odpoved` is its name, and the value assigned after `=` is `'M'`. So `odpoved` contains `'M'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "odpoved",
+        "expected": "'M'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "odpoved = \"M\"",
+        "hash": "c06ffbd0e3e6",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-018",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char mesto = 's';",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `mesto`?",
+        "answers": [
+          "`'s'`",
+          "`char`",
+          "`\"s\"`",
+          "`mesto`"
+        ],
+        "explanation": "`char` je typ premennej, `mesto` je jej názov a hodnota priradená za znakom `=` je `'s'`. Premenná `mesto` teda obsahuje `'s'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `mesto` contain?",
+        "answers": null,
+        "explanation": "`char` is the variable's type, `mesto` is its name, and the value assigned after `=` is `'s'`. So `mesto` contains `'s'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "mesto",
+        "expected": "'s'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "mesto = \"s\"",
+        "hash": "15961ef70c21",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-019",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char text = 'A';",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `text`?",
+        "answers": [
+          "`'A'`",
+          "`\"A\"`",
+          "`text`",
+          "`char`"
+        ],
+        "explanation": "`char` je typ premennej, `text` je jej názov a hodnota priradená za znakom `=` je `'A'`. Premenná `text` teda obsahuje `'A'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `text` contain?",
+        "answers": null,
+        "explanation": "`char` is the variable's type, `text` is its name, and the value assigned after `=` is `'A'`. So `text` contains `'A'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "text",
+        "expected": "'A'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "text = \"A\"",
+        "hash": "bb8ad2ed6276",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-020",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "char teplota = 'R';",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `teplota`?",
+        "answers": [
+          "`'R'`",
+          "`teplota`",
+          "`char`",
+          "`\"R\"`"
+        ],
+        "explanation": "`char` je typ premennej, `teplota` je jej názov a hodnota priradená za znakom `=` je `'R'`. Premenná `teplota` teda obsahuje `'R'`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `teplota` contain?",
+        "answers": null,
+        "explanation": "`char` is the variable's type, `teplota` is its name, and the value assigned after `=` is `'R'`. So `teplota` contains `'R'`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "teplota",
+        "expected": "'R'"
+      },
+      "check": {
+        "status": "ok",
+        "detail": "teplota = \"R\"",
+        "hash": "9acdcb4d4edc",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-021",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string pismeno = \"Robot\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `pismeno`?",
+        "answers": [
+          "`\"Robot\"`",
+          "`Robot`",
+          "`string`",
+          "`pismeno`"
+        ],
+        "explanation": "`string` je typ premennej, `pismeno` je jej názov a hodnota priradená za znakom `=` je `\"Robot\"`. Premenná `pismeno` teda obsahuje `\"Robot\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `pismeno` contain?",
+        "answers": null,
+        "explanation": "`string` is the variable's type, `pismeno` is its name, and the value assigned after `=` is `\"Robot\"`. So `pismeno` contains `\"Robot\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pismeno",
+        "expected": "\"Robot\""
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pismeno = \"Robot\"",
+        "hash": "a6db75e78f6a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-022",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string hodnota = \"Eva\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `hodnota`?",
+        "answers": [
+          "`\"Eva\"`",
+          "`hodnota`",
+          "`string`",
+          "`Eva`"
+        ],
+        "explanation": "`string` je typ premennej, `hodnota` je jej názov a hodnota priradená za znakom `=` je `\"Eva\"`. Premenná `hodnota` teda obsahuje `\"Eva\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `hodnota` contain?",
+        "answers": null,
+        "explanation": "`string` is the variable's type, `hodnota` is its name, and the value assigned after `=` is `\"Eva\"`. So `hodnota` contains `\"Eva\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "hodnota",
+        "expected": "\"Eva\""
+      },
+      "check": {
+        "status": "ok",
+        "detail": "hodnota = \"Eva\"",
+        "hash": "31a79850f61a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-023",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string meno = \"Program\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `meno`?",
+        "answers": [
+          "`\"Program\"`",
+          "`string`",
+          "`meno`",
+          "`Program`"
+        ],
+        "explanation": "`string` je typ premennej, `meno` je jej názov a hodnota priradená za znakom `=` je `\"Program\"`. Premenná `meno` teda obsahuje `\"Program\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `meno` contain?",
+        "answers": null,
+        "explanation": "`string` is the variable's type, `meno` is its name, and the value assigned after `=` is `\"Program\"`. So `meno` contains `\"Program\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "meno",
+        "expected": "\"Program\""
+      },
+      "check": {
+        "status": "ok",
+        "detail": "meno = \"Program\"",
+        "hash": "5074f39d830a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-024",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string znak = \"Ahoj\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `znak`?",
+        "answers": [
+          "`\"Ahoj\"`",
+          "`Ahoj`",
+          "`znak`",
+          "`string`"
+        ],
+        "explanation": "`string` je typ premennej, `znak` je jej názov a hodnota priradená za znakom `=` je `\"Ahoj\"`. Premenná `znak` teda obsahuje `\"Ahoj\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `znak` contain?",
+        "answers": null,
+        "explanation": "`string` is the variable's type, `znak` is its name, and the value assigned after `=` is `\"Ahoj\"`. So `znak` contains `\"Ahoj\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "znak",
+        "expected": "\"Ahoj\""
+      },
+      "check": {
+        "status": "ok",
+        "detail": "znak = \"Ahoj\"",
+        "hash": "4653f591848a",
+        "at": "2026-10-22"
+      }
+    },
+    {
+      "id": "dt-var-value-025",
+      "template": "dt-var-value",
+      "difficulty": 1,
+      "status": "approved",
+      "code": "string pocet = \"Peter\";",
+      "sk": {
+        "body": "{code}\nAkú hodnotu obsahuje premenná `pocet`?",
+        "answers": [
+          "`\"Peter\"`",
+          "`Peter`",
+          "`string`",
+          "`pocet`"
+        ],
+        "explanation": "`string` je typ premennej, `pocet` je jej názov a hodnota priradená za znakom `=` je `\"Peter\"`. Premenná `pocet` teda obsahuje `\"Peter\"`."
+      },
+      "en": {
+        "body": "{code}\nWhat value does the variable `pocet` contain?",
+        "answers": null,
+        "explanation": "`string` is the variable's type, `pocet` is its name, and the value assigned after `=` is `\"Peter\"`. So `pocet` contains `\"Peter\"`."
+      },
+      "verify": {
+        "type": "value",
+        "expr": "pocet",
+        "expected": "\"Peter\""
+      },
+      "check": {
+        "status": "ok",
+        "detail": "pocet = \"Peter\"",
+        "hash": "a8d265c7fa4f",
+        "at": "2026-10-22"
+      }
+    }
+  ]
+}
