@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
-  import TierBadge from '../components/TierBadge.svelte';
+  import MedalBadge from '../components/MedalBadge.svelte';
   import RankBadge from '../components/RankBadge.svelte';
   import { api, ApiError } from '../lib/api';
   import { session, setStudent } from '../lib/session.svelte';
@@ -83,7 +83,6 @@
           {@const locked = !tier?.unlocked}
           <section class="tier" class:locked>
             <div class="tier-head">
-              <TierBadge tier={tierNo} size={52} {locked} />
               <div class="grow">
                 <h3>{t('tier.name', { n: tierNo })}</h3>
                 {#if locked}
@@ -104,6 +103,7 @@
               {@const s = summary(topic)}
               <a class="card tappable topic" class:disabled={locked} href={locked ? undefined : `#/topic/${topic.id}`}>
                 <div class="row">
+                  <MedalBadge medal={locked ? null : topic.medal} size={44} />
                   <div class="grow">
                     <h3>{pick(topic.name_sk, topic.name_en)}</h3>
                     {#if topic.description_sk || topic.description_en}
@@ -149,6 +149,7 @@
   .topic.disabled { cursor: default; opacity: .6; box-shadow: none; }
   .topic.disabled:active { transform: none; }
   .topic .desc { margin: 2px 0 0; }
+  .topic .row { gap: 12px; }
   .topic .bar { margin: 12px 0 10px; }
   .grow { flex: 1; min-width: 0; }
   .chev { color: var(--muted); }

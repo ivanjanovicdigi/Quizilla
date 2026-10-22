@@ -38,6 +38,8 @@ export interface Pass {
   passed: boolean;
 }
 
+export type MedalKey = 'bronze' | 'silver' | 'gold';
+
 export interface Topic {
   id: number;
   slug: string;
@@ -45,6 +47,8 @@ export interface Topic {
   tier: number;
   tier_unlocked?: boolean; // only from get_topic
   pass: Pass;
+  medal?: MedalKey | null; // from 012_topic_medals.sql
+  levels_cleared?: number;
   name_sk: string;
   name_en: string | null;
   description_sk: string | null;

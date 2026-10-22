@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
+  import MedalBadge from '../components/MedalBadge.svelte';
   import { api, ApiError } from '../lib/api';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
@@ -41,6 +42,8 @@
   const pass = $derived(topic?.pass);
   const passPct = $derived(pass ? Math.round(pass.accuracy * 100) : 0);
   const passRate = $derived(pass ? rate(pass.correct, pass.answers) : 0);
+  const cleared = $derived(topic?.levels_cleared ?? 0);
+  const levelCount = $derived(p?.levels.length ?? 0);
   const levelOf = (difficulty: number) => p?.levels.find((l) => l.difficulty === difficulty)?.level ?? difficulty;
 </script>
 
@@ -62,6 +65,17 @@
     {#if topic.description_sk || topic.description_en}
       <p class="muted">{pick(topic.description_sk, topic.description_en)}</p>
     {/if}
+    <section class="card medal-card">
+      <MedalBadge medal={topic.medal} size={64} />
+      <div class="grow">
+        <h3>{t(`medal.${topic.medal ?? 'none'}`)}</h3>
+        <p class="small muted">
+          {t('medal.cleared', { c: Math.min(cleared, levelCount), n: levelCount })} ·
+          {cleared >= levelCount ? t('medal.all') : t('medal.next', { n: cleared + 1 })}
+        </p>
+      </div>
+    </section>
+
     {#if pass}
       <section class="card pass" class:done={pass.passed}>
         <div class="row">
@@ -168,6 +182,9 @@
 </main>
 
 <style>
+  .medal-card { display: flex; align-items: center; gap: 14px; }
+  .medal-card h3 { margin: 0; }
+  .medal-card p { margin: 4px 0 0; }
   .rule { background: var(--surface-2); border-radius: 12px; padding: 10px 12px; }
   .level h3 { margin: 0; }
   .level p { margin: 2px 0 0; }

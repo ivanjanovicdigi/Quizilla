@@ -71,6 +71,14 @@ const sk = {
   'tier.accuracy': 'Úspešnosť',
   'tier.locked_topic': 'Táto téma je v stupni {n}, ktorý je ešte zamknutý. Najprv splň všetky témy stupňa {prev}.',
 
+  'medal.none': 'Zatiaľ bez medaily',
+  'medal.bronze': 'Bronzová medaila',
+  'medal.silver': 'Strieborná medaila',
+  'medal.gold': 'Zlatá medaila',
+  'medal.cleared': 'Zvládnuté úrovne: {c}/{n}',
+  'medal.next': 'ďalšia medaila za zvládnutie úrovne {n}',
+  'medal.all': 'všetky úrovne zvládnuté',
+
   'pass.title': 'Splnenie témy',
   'pass.rule': 'Tému splníš, keď v teste odpovieš na viac ako {min} otázok na úrovni {level} alebo vyššej a aspoň {pct} % bude správne.',
   'pass.answers': 'Odpovede (úroveň {level}+)',
@@ -203,6 +211,14 @@ const en: Record<Key, string> = {
   'tier.passed': 'Topics passed: {p}/{n}',
   'tier.accuracy': 'Accuracy',
   'tier.locked_topic': 'This topic is in tier {n}, which is still locked. Pass all topics of tier {prev} first.',
+
+  'medal.none': 'No medal yet',
+  'medal.bronze': 'Bronze medal',
+  'medal.silver': 'Silver medal',
+  'medal.gold': 'Gold medal',
+  'medal.cleared': 'Levels cleared: {c}/{n}',
+  'medal.next': 'next medal for clearing level {n}',
+  'medal.all': 'all levels cleared',
 
   'pass.title': 'Passing the topic',
   'pass.rule': 'You pass the topic after more than {min} test answers on level {level} or higher with at least {pct} % correct.',

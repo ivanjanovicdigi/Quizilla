@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
-  import TierBadge from '../components/TierBadge.svelte';
   import RankBadge, { rankImage } from '../components/RankBadge.svelte';
   import AccuracyChart from '../components/AccuracyChart.svelte';
   import { api, ApiError } from '../lib/api';
@@ -90,7 +89,9 @@
       {#each data.tiers as tier (tier.tier)}
         {@const r = pct(tier.correct, tier.answers)}
         <div class="tier-row">
-          <TierBadge tier={tier.tier} size={36} locked={!tier.unlocked} />
+          <span class="tier-no" class:locked={!tier.unlocked}>
+            {#if tier.unlocked}{tier.tier}{:else}<Icon name="lock" size={16} />{/if}
+          </span>
           <div class="grow">
             <div class="row small">
               <strong>{t('tier.name', { n: tier.tier })}</strong>
@@ -151,6 +152,11 @@
   .rank-row:not(.earned) .rank-ico img { filter: grayscale(1); opacity: .45; }
   .tier-row { display: flex; align-items: center; gap: 12px; }
   .tier-row .bar { margin: 4px 0; }
+  .tier-no {
+    width: 36px; height: 36px; border-radius: 10px; flex: none; display: grid; place-items: center;
+    font-weight: 800; background: var(--accent-soft); color: var(--accent-strong);
+  }
+  .tier-no.locked { background: var(--surface-2); color: var(--lock); }
   .topic h3 { margin: 0; }
   .topic :global(.chart) { margin-top: 28px; }
   .empty { margin: 8px 0 0; }
