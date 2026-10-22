@@ -9,14 +9,14 @@
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { neededCorrect, pct as rateOf } from '../lib/util';
   import { load as loadPref, save as savePref } from '../lib/storage';
-  import { QUIZ_SIZE } from '../lib/modes';
+  import { LEARNING_ENABLED, QUIZ_SIZE } from '../lib/modes';
   import type { Mode, Topic } from '../lib/types';
 
   let { topicId }: { topicId: number } = $props();
 
   let topic = $state<Topic | null>(null);
   let error = $state('');
-  let mode = $state<Mode>(loadPref<Mode>('quizilla.mode', 'test') === 'learn' ? 'learn' : 'test');
+  let mode = $state<Mode>(LEARNING_ENABLED && loadPref<Mode>('quizilla.mode', 'test') === 'learn' ? 'learn' : 'test');
 
   function setMode(m: Mode) {
     mode = m;
@@ -129,6 +129,12 @@
     {/if}
     {/if}
 
+    {#if !LEARNING_ENABLED}
+      <p class="small muted play-info">
+        <Icon name="play" size={14} />
+        {isGuest ? t('guest.test_info', { n: QUIZ_SIZE.test }) : t('mode.test_info', { n: QUIZ_SIZE.test })}
+      </p>
+    {:else}
     <section class="card stack">
       <h3>{t('mode.title')}</h3>
       <div class="segmented">
@@ -147,6 +153,7 @@
             : t('mode.test_info', { n: QUIZ_SIZE.test })}
       </p>
     </section>
+    {/if}
 
     <p class="small muted rule">
       {#if p.unlock_window}
@@ -172,7 +179,7 @@
           </div>
           {#if lvl.unlocked}
             <a class="btn small" class:secondary={mode === 'learn'} href={`#/quiz/${topic.id}/${lvl.difficulty}/${mode}`}>
-              <Icon name={mode === 'learn' ? 'book' : 'play'} size={14} /> {mode === 'learn' ? t('mode.learn') : lvl.met ? t('topic.train') : t('topic.play')}
+              <Icon name={mode === 'learn' ? 'book' : 'play'} size={14} /> {mode === 'learn' ? t('mode.learn') : LEARNING_ENABLED && lvl.met ? t('topic.train') : t('topic.play')}
             </a>
           {/if}
         </div>
@@ -180,7 +187,7 @@
         {#if !lvl.unlocked}
           <p class="small muted lockmsg">{t('topic.locked', { n: lvl.level - 1 })}</p>
         {:else}
-          <div class="stats">
+          <div class="stats two">
             <div>
               <span class="muted small">{t('topic.answered')}</span>
               <strong>{Math.min(lvl.total_answers, p.unlock_min_answers)}/{p.unlock_min_answers}</strong>
@@ -200,11 +207,6 @@
                 <div class="bar"><i style:width={`${Math.min(100, (r / Math.max(pct, 1)) * 100)}%`}></i></div>
               </div>
             {/if}
-            <div>
-              <span class="muted small">{t('topic.mastered')}</span>
-              <strong>{lvl.mastered}/{lvl.question_count}</strong>
-              <div class="bar"><i style:width={`${(lvl.mastered / Math.max(lvl.question_count, 1)) * 100}%`}></i></div>
-            </div>
           </div>
         {/if}
       </section>
@@ -223,6 +225,7 @@
   .gm-level strong { min-width: 3.5em; text-align: right; }
   .gm-level strong.ok { color: var(--ok); }
   .rule { background: var(--surface-2); border-radius: 12px; padding: 10px 12px; }
+  .play-info { display: flex; align-items: center; gap: 6px; margin: 0; }
   .guest-note {
     display: flex; align-items: center; gap: 6px; margin: 0;
     background: var(--info-soft); color: var(--info); border-radius: 12px; padding: 10px 12px;

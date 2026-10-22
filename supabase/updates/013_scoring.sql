@@ -1,4 +1,6 @@
 -- Quizilla – new scoring (2026-10-22)
+--   !! Point VALUES were changed later by 019_unlock20_and_points.sql. Do NOT re-run this file:
+--   !! it would put the old values back and rescore everything with them.
 --   * correct answer: easy +5, medium +10, hard +20
 --     While points_first_correct_only = 1 only the FIRST correct answer of a question scores
 --     (repeats give 0). Set it to 0 to score every correct answer.

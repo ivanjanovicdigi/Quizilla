@@ -31,17 +31,26 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 ## Domain rules (current)
 - Classes: Lambda, Ró, Teachers. Login = school email that must be in `quiz.roster` (010);
   name/class come from the roster.
+- Learning mode is HIDDEN (`LEARNING_ENABLED = false` in src/lib/modes.ts); the UI calls testing
+  mode "Play" / "Hrať" (internal mode name stays 'test'). Old #/quiz/…/learn links open Play.
 - Testing mode → `submit_answer` stores into `quiz.attempts`. Learning mode → `check_answer`
   stores nothing. All stats/points/unlocks count testing answers only.
-- Unlock next level: ≥ 10 answers on the level and ≥ 80 % of all of them correct (004). Sticky.
+- Unlock next level: ≥ 20 answers on the level (019; was 10 in 004) and ≥ 80 % of all of them correct. Sticky.
 - Tiers, topic passes, ranks (009); topic medals (012). Topic Grand Master (018): gold medal +
   ≥ topic_gm_accuracy (0.99) correct on EVERY level with ≥ topic_gm_min_answers (50) answers per level;
   not sticky; topic JSON medal = 'grand_master' (crown image) + `grand_master` progress object.
   Global ranks (Padawan … Grand Master over all topics) are unchanged – the user wants them as they are.
-- Scoring (013): correct +5/+10/+20 (easy/medium/hard), first correct answer of a question only
-  (`points_first_correct_only`); wrong −2/−3/−5; total never below 0 – `attempts.points` stores the
+- Scoring (013, values changed in 019 – never re-run 013): correct +3/+5/+7 (easy/medium/hard),
+  wrong −1/−1/−2; first correct answer of a question only
+  (`points_first_correct_only`); total never below 0 – `attempts.points` stores the
   real (floored) change so totals are plain sums. `quiz.student_points(p_days)` floors period sums at 0.
   Config keys in `quiz.config`; helper `quiz.answer_points(difficulty, correct)`.
+- Old update files are NOT safe to re-run once later files redefined their functions (009, 013).
+  020 re-created get_stats after topic points showed 0 in production: 013 and 014 had never been
+  applied there. 021 re-applies all scoring (013 functions + 019 values/unlock 20 + rescore) and
+  prints a live/not-live row for every update 012–020 – reuse that check when something looks off.
+- Personal stats are shown by `src/components/StatsPanel.svelte` – on the Stats page (Profile) and in
+  the Leaderboard "Moje / Mine" tab (Leaderboard opens on "Triedy / Classes" every time).
 - Personal stats (014): `get_stats` per topic adds points, tier_unlocked, progress and `trend`
   (running accuracy over all answers, `[[n, correct_so_far]]`, ~60 points). UI: `Stats.svelte` +
   `TrendChart.svelte`. Students only ever see their own stats.

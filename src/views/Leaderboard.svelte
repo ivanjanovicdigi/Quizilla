@@ -2,12 +2,15 @@
   import { onMount } from 'svelte';
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
+  import StatsPanel from '../components/StatsPanel.svelte';
   import { api, ApiError } from '../lib/api';
   import { session } from '../lib/session.svelte';
   import { errorText, t } from '../lib/i18n.svelte';
   import type { ClassRow } from '../lib/types';
 
   // Global class leaderboard: one column per class with its all-time total points.
+  // Students also get a "Mine" tab with their own statistics. Opens on "Class" every time.
+  let tab = $state<'class' | 'mine'>('class');
   let classes = $state<ClassRow[] | null>(null);
   let error = $state('');
 
@@ -29,7 +32,16 @@
 <TopBar title={t('nav.leaderboard')} />
 
 <main class="page stack">
-  {#if error}
+  {#if session.student}
+    <div class="segmented">
+      <button class:active={tab === 'class'} onclick={() => (tab = 'class')}>{t('lb.tab_class')}</button>
+      <button class:active={tab === 'mine'} onclick={() => (tab = 'mine')}>{t('lb.tab_mine')}</button>
+    </div>
+  {/if}
+
+  {#if tab === 'mine' && session.student}
+    <StatsPanel />
+  {:else if error}
     <div class="error">{error}</div>
     <button class="btn secondary" onclick={load}>{t('common.retry')}</button>
   {:else if !classes}

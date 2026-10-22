@@ -1,3 +1,5 @@
+import { LEARNING_ENABLED } from './modes';
+
 // Tiny hash router – works on GitHub Pages without server rewrites and keeps
 // the phone's back gesture working.
 export type Route =
@@ -20,7 +22,8 @@ function parse(hash: string): Route {
     case 'quiz': {
       const id = num(parts[1]);
       const d = num(parts[2]);
-      const mode = parts[3] === 'learn' ? 'learn' : 'test';
+      // learning mode hidden → old /learn links open a normal Play round
+      const mode = parts[3] === 'learn' && LEARNING_ENABLED ? 'learn' : 'test';
       if (!isNaN(id) && !isNaN(d)) return { name: 'quiz', topicId: id, difficulty: d, mode };
       break;
     }

@@ -26,7 +26,6 @@ const sk = {
   'topic.recent': 'Správne z posledných {window}',
   'topic.rule_all': 'Ďalšiu úroveň odomkneš, keď odpovieš aspoň na {min} otázok a aspoň {pct} % tvojich odpovedí na tejto úrovni bude správnych.',
   'topic.rate': 'Úspešnosť (treba {pct} %)',
-  'topic.mastered': 'Zvládnuté otázky',
   'topic.met': 'Splnené',
   'topic.points': '{n} b.',
 
@@ -51,6 +50,8 @@ const sk = {
   'lb.points': '{n} b.',
   'lb.how': 'Súčet bodov všetkých žiakov triedy od začiatku.',
   'lb.mine': 'Tvoja trieda',
+  'lb.tab_class': 'Triedy',
+  'lb.tab_mine': 'Moje',
   'lb.leader': 'Vedie',
   'lb.empty': 'Zatiaľ žiadne výsledky.',
 
@@ -75,13 +76,13 @@ const sk = {
   'gm.rule': 'Nad zlatou medailou: aspoň {pct} % správne na každej úrovni, z aspoň {min} odpovedí na úrovni. Keď úspešnosť klesne, titul sa stratí (zlatá medaila zostáva).',
   'gm.answers': '{a}/{min} odpovedí',
   'gm.earned': 'Získané',
-  'gm.note': 'Počítajú sa všetky tvoje odpovede v teste na danej úrovni.',
+  'gm.note': 'Počítajú sa všetky tvoje odpovede v hre na danej úrovni.',
   'medal.cleared': 'Zvládnuté úrovne: {c}/{n}',
   'medal.next': 'ďalšia medaila za zvládnutie úrovne {n}',
   'medal.all': 'všetky úrovne zvládnuté',
 
   'pass.title': 'Splnenie témy',
-  'pass.rule': 'Tému splníš, keď v teste odpovieš na viac ako {min} otázok na úrovni {level} alebo vyššej a aspoň {pct} % bude správne.',
+  'pass.rule': 'Tému splníš, keď v hre odpovieš na viac ako {min} otázok na úrovni {level} alebo vyššej a aspoň {pct} % bude správne.',
   'pass.answers': 'Odpovede (úroveň {level}+)',
   'pass.rate': 'Úspešnosť (treba {pct} %)',
   'pass.done': 'Téma splnená',
@@ -89,7 +90,7 @@ const sk = {
 
   'mode.title': 'Režim',
   'mode.learn': 'Učenie',
-  'mode.test': 'Test',
+  'mode.test': 'Hrať',
   'mode.learn_info': '{n} otázok · výsledky sa neukladajú',
   'mode.test_info': '{n} otázok · body, úrovne a štatistiky',
 
@@ -152,7 +153,7 @@ const sk = {
   'rank.rule.jedi': '{pct} % správne na úrovni 2',
   'rank.rule.master': '{pct} % správne na úrovni 3',
   'rank.rule.grand_master': '{pct} % správne na každej úrovni',
-  'rank.min': 'Hodnosť sa počíta z testov vo všetkých témach, treba aspoň {n} odpovedí na úrovni.',
+  'rank.min': 'Hodnosť sa počíta z tvojich odpovedí v hre vo všetkých témach, treba aspoň {n} odpovedí na úrovni.',
   'rank.progress': '{a}/{min} odpovedí · {pct}',
 
   'stats.title': 'Štatistiky',
@@ -161,8 +162,8 @@ const sk = {
   'stats.ranks': 'Hodnosti',
   'stats.tiers': 'Úspešnosť podľa stupňov',
   'stats.topics': 'Moje témy',
-  'stats.trend_info': 'Graf ukazuje priebežnú úspešnosť zo všetkých tvojich odpovedí v teste, od prvej po poslednú. Prerušovaná čiara = {pct} % na odomknutie ďalšej úrovne.',
-  'stats.no_data': 'Zatiaľ žiadne odpovede v teste.',
+  'stats.trend_info': 'Graf ukazuje priebežnú úspešnosť zo všetkých tvojich odpovedí v hre, od prvej po poslednú. Prerušovaná čiara = {pct} % na odomknutie ďalšej úrovne.',
+  'stats.no_data': 'Zatiaľ žiadne odpovede v hre.',
   'stats.points': 'Body',
   'stats.level_of': 'Úroveň {n} z {m}',
   'stats.next_unlock': 'Na odomknutie úrovne {n}',
@@ -221,7 +222,6 @@ const en: Record<Key, string> = {
   'topic.recent': 'Correct of last {window}',
   'topic.rule_all': 'You unlock the next level after answering at least {min} questions with at least {pct} % of your answers on this level correct.',
   'topic.rate': 'Success rate (need {pct} %)',
-  'topic.mastered': 'Questions mastered',
   'topic.met': 'Completed',
   'topic.points': '{n} pts',
 
@@ -246,6 +246,8 @@ const en: Record<Key, string> = {
   'lb.points': '{n} pts',
   'lb.how': 'Total points of all students in the class, all time.',
   'lb.mine': 'Your class',
+  'lb.tab_class': 'Classes',
+  'lb.tab_mine': 'Mine',
   'lb.leader': 'Leading',
   'lb.empty': 'No results yet.',
 
@@ -270,13 +272,13 @@ const en: Record<Key, string> = {
   'gm.rule': 'Beyond the gold medal: at least {pct} % correct on every level, from at least {min} answers per level. If your accuracy drops, the title is lost (the gold medal stays).',
   'gm.answers': '{a}/{min} answers',
   'gm.earned': 'Earned',
-  'gm.note': 'All your test answers on each level count.',
+  'gm.note': 'All your Play answers on each level count.',
   'medal.cleared': 'Levels cleared: {c}/{n}',
   'medal.next': 'next medal for clearing level {n}',
   'medal.all': 'all levels cleared',
 
   'pass.title': 'Passing the topic',
-  'pass.rule': 'You pass the topic after more than {min} test answers on level {level} or higher with at least {pct} % correct.',
+  'pass.rule': 'You pass the topic after more than {min} Play answers on level {level} or higher with at least {pct} % correct.',
   'pass.answers': 'Answers (level {level}+)',
   'pass.rate': 'Accuracy (need {pct} %)',
   'pass.done': 'Topic passed',
@@ -284,7 +286,7 @@ const en: Record<Key, string> = {
 
   'mode.title': 'Mode',
   'mode.learn': 'Learning',
-  'mode.test': 'Test',
+  'mode.test': 'Play',
   'mode.learn_info': '{n} questions · results are not saved',
   'mode.test_info': '{n} questions · points, levels and statistics',
 
@@ -347,7 +349,7 @@ const en: Record<Key, string> = {
   'rank.rule.jedi': '{pct} % correct on level 2',
   'rank.rule.master': '{pct} % correct on level 3',
   'rank.rule.grand_master': '{pct} % correct on every level',
-  'rank.min': 'Ranks count test answers in all topics; you need at least {n} answers on the level.',
+  'rank.min': 'Ranks count your Play answers in all topics; you need at least {n} answers on the level.',
   'rank.progress': '{a}/{min} answers · {pct}',
 
   'stats.title': 'Statistics',
@@ -356,8 +358,8 @@ const en: Record<Key, string> = {
   'stats.ranks': 'Ranks',
   'stats.tiers': 'Accuracy per tier',
   'stats.topics': 'My topics',
-  'stats.trend_info': 'The chart shows your running accuracy over all your test answers, from first to last. Dashed line = {pct} % needed to unlock the next level.',
-  'stats.no_data': 'No test answers yet.',
+  'stats.trend_info': 'The chart shows your running accuracy over all your Play answers, from first to last. Dashed line = {pct} % needed to unlock the next level.',
+  'stats.no_data': 'No Play answers yet.',
   'stats.points': 'Points',
   'stats.level_of': 'Level {n} of {m}',
   'stats.next_unlock': 'To unlock level {n}',

@@ -26,12 +26,12 @@ Production bundle ≈ 40 kB gzipped JS + 4 kB CSS.
   *No password – a student could type a classmate's email. Upgrade path: Supabase email OTP.*
 - **Levels** are derived from the distinct `difficulty` values of a topic's active questions
   (e.g. 1, 2, 3 → levels 1–3). Add questions with a new difficulty and a new level appears.
-- **Unlock rule** (per topic, configurable): at least `unlock_min_answers` answers on the
+- **Unlock rule** (per topic, configurable; currently 20 answers and 80 %): at least `unlock_min_answers` answers on the
   current level **and** ≥ `unlock_accuracy` correct in the last `unlock_window` answers.
   Unlocks are sticky. The server refuses questions/answers for locked levels.
-- **Points (testing mode only):** correct answer easy +5, medium +10, hard +20 – only the
-  **first** correct answer of each question scores (repeats give 0). Wrong answer easy −2,
-  medium −3, hard −5. A student's total never goes below 0 (a penalty is cut to the current
+- **Points (Play mode only):** correct answer easy +3, medium +5, hard +7 – only the
+  **first** correct answer of each question scores (repeats give 0). Wrong answer easy −1,
+  medium −1, hard −2. A student's total never goes below 0 (a penalty is cut to the current
   total). Values are in `quiz.config` (`points_correct_1..3`, `points_wrong_1..3`,
   `points_first_correct_only`).
 - **Guest mode:** "Try as guest" on the login page – no roster needed, nothing is saved (no

@@ -1,3 +1,5 @@
+-- !! Do NOT re-run this file: later updates (012–020) redefine many of its functions
+-- !! (get_stats, submit_answer, topic_json, …). Re-running it brings the old versions back.
 -- Quizilla – gamification
 --   * tiers: T1 = data-types, logic, cycles · T2 = functions, arrays, lists, classes · T3 = git
 --   * a topic is PASSED with more than 30 answers on medium or harder and at least 75 % correct
