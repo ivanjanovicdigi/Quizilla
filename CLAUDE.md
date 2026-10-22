@@ -74,4 +74,6 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 - Test accounts (023): test1…test15@lyceum.sk in class Teachers. Remove them (with progress) via
   `supabase/maintenance/delete_test_accounts.sql` – one-off scripts that are not numbered updates live
   in supabase/maintenance/.
+- Load simulation: `node loadtest/simulate.mjs` (plain Node, uses the test accounts) – see
+  loadtest/README.md for how to run and the 2026-10-23 results (15 users, 0 errors).
 - Answer keys never leave the DB before the student answers.
