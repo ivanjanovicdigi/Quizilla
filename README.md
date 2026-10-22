@@ -36,6 +36,8 @@ Production bundle ≈ 40 kB gzipped JS + 4 kB CSS.
   `points_first_correct_only`).
 - **Guest mode:** "Try as guest" on the login page – no roster needed, nothing is saved (no
   attempts, points or leaderboard). Levels unlock during the visit only; a reload starts from zero.
+- **Report a bug:** small button in the lower left corner → GitHub issue via the Supabase Edge
+  Function `report-bug` (token stays on the server). Setup: [docs/BUG_REPORTS.md](docs/BUG_REPORTS.md).
 - **Class leaderboard:** visible to everyone – one column per class (Lambda, Ró, Teachers) with the
   class total: plain sum of all-time points of its roster students. Students see only their own
   detailed statistics, never classmates' points.

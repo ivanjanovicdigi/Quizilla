@@ -50,4 +50,8 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   `get_guest_catalog`, `get_guest_questions`, `check_guest_answer` take no student id and record
   nothing. Levels unlock with the student rule during the visit; tiers are all open for guests.
   Level locks for guests are enforced client-side only (server has no guest state).
+- Report a bug: `src/components/BugReport.svelte` (fixed button, lower left) → Edge Function
+  `supabase/functions/report-bug` (handler.ts) → public GitHub issue. Token only in Supabase secret
+  `GITHUB_TOKEN`. Repo is PUBLIC → issues never contain name/email (class + first 8 chars of id).
+  Quiz context comes from `src/lib/bugctx.svelte.ts` (set by Quiz.svelte). Setup: docs/BUG_REPORTS.md.
 - Answer keys never leave the DB before the student answers.

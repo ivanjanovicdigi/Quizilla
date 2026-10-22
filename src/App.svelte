@@ -4,6 +4,7 @@
   import { router } from './lib/router.svelte';
   import { api, ApiError } from './lib/api';
   import BottomNav from './components/BottomNav.svelte';
+  import BugReport from './components/BugReport.svelte';
   import Register from './views/Register.svelte';
   import Home from './views/Home.svelte';
   import TopicView from './views/Topic.svelte';
@@ -47,4 +48,5 @@
   {#if router.route.name !== 'quiz'}
     <BottomNav />
   {/if}
+  <BugReport />
 {/if}

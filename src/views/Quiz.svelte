@@ -9,6 +9,7 @@
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { shuffledIndices, signed } from '../lib/util';
   import { QUIZ_SIZE } from '../lib/modes';
+  import { bugCtx } from '../lib/bugctx.svelte';
   import type { AnswerResult, Mode, Progress, Question, Topic } from '../lib/types';
 
   let { topicId, difficulty, mode = 'test' }: { topicId: number; difficulty: number; mode?: Mode } = $props();
@@ -121,6 +122,32 @@
     }
     window.scrollTo({ top: 0 });
   }
+
+  // keep the "Report a bug" context up to date (cleared when this screen closes)
+  $effect(() => {
+    const q = current;
+    if (!q || finished) {
+      bugCtx.quiz = null;
+      return;
+    }
+    bugCtx.quiz = {
+      topic_id: topicId,
+      topic: topic ? pick(topic.name_sk, topic.name_en) : '',
+      level: levelNo,
+      difficulty,
+      mode,
+      question_id: q.id,
+      question: pick(q.body, q.body_en),
+      selected: chosen !== null ? pick(q.answers[chosen], q.answers_en?.[chosen]) : null,
+      answered: !!result,
+      correct: result ? result.correct : null,
+      score: scored ? signed(pointsEarned) : '–',
+      progress: `question ${index + 1}/${questions.length}, ${correctCount} correct so far`
+    };
+  });
+  $effect(() => () => {
+    bugCtx.quiz = null;
+  });
 
   function stateOf(original: number): string {
     if (!result) return chosen === original ? 'pending' : '';

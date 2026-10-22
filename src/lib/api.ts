@@ -11,18 +11,39 @@ export class ApiError extends Error {
   }
 }
 
-async function rpc<T>(fn: string, args: Record<string, unknown> = {}): Promise<T> {
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+function headers(): Record<string, string> {
+  const h: Record<string, string> = { 'Content-Type': 'application/json' };
   if (KEY) {
-    headers.apikey = KEY;
+    h.apikey = KEY;
     // Legacy anon keys are JWTs and may also go in Authorization; new sb_publishable_ keys must not.
-    if (!KEY.startsWith('sb_')) headers.Authorization = `Bearer ${KEY}`;
+    if (!KEY.startsWith('sb_')) h.Authorization = `Bearer ${KEY}`;
   }
+  return h;
+}
+
+/** "Report a bug" → Supabase Edge Function report-bug → GitHub issue. Returns the issue number. */
+export async function reportBug(payload: Record<string, unknown>): Promise<number> {
+  let res: Response;
+  try {
+    res = await fetch(`${BASE}/functions/v1/report-bug`, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify(payload)
+    });
+  } catch {
+    throw new ApiError('network');
+  }
+  const body = await res.json().catch(() => null);
+  if (!res.ok) throw new ApiError(typeof body?.error === 'string' ? body.error : 'server');
+  return body.number as number;
+}
+
+async function rpc<T>(fn: string, args: Record<string, unknown> = {}): Promise<T> {
   let res: Response;
   try {
     res = await fetch(`${BASE}/rest/v1/rpc/${fn}`, {
       method: 'POST',
-      headers,
+      headers: headers(),
       body: JSON.stringify(args)
     });
   } catch {
