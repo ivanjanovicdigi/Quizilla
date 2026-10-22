@@ -41,8 +41,8 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   not sticky; topic JSON medal = 'grand_master' (crown image) + `grand_master` progress object.
   Global ranks (Padawan … Grand Master over all topics) are unchanged – the user wants them as they are.
 - Scoring (013, values changed in 019 – never re-run 013): correct +3/+5/+7 (easy/medium/hard),
-  wrong −1/−1/−2; first correct answer of a question only
-  (`points_first_correct_only`); total never below 0 – `attempts.points` stores the
+  wrong −1/−1/−2; since 022 EVERY answer scores, repeats included
+  (`points_first_correct_only` = 0; 1 = first correct answer only); total never below 0 – `attempts.points` stores the
   real (floored) change so totals are plain sums. `quiz.student_points(p_days)` floors period sums at 0.
   Config keys in `quiz.config`; helper `quiz.answer_points(difficulty, correct)`.
 - Old update files are NOT safe to re-run once later files redefined their functions (009, 013).
@@ -71,4 +71,7 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   reset progress). The phrase is NEVER in the repo (public): only a salted SHA-256 hash in
   quiz.config, set with `quiz.set_admin_passphrase()` from git-ignored `private/set_admin_passphrase.sql`.
   Admin actions are logged in quiz.admin_log.
+- Test accounts (023): test1…test15@lyceum.sk in class Teachers. Remove them (with progress) via
+  `supabase/maintenance/delete_test_accounts.sql` – one-off scripts that are not numbered updates live
+  in supabase/maintenance/.
 - Answer keys never leave the DB before the student answers.
