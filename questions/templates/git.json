@@ -1,0 +1,360 @@
+{
+  "topic": "git",
+  "source": "Templates by Claude from the teacher's scope (2026-10-22): students use Git only from the IDE; high-level concepts only; known commands in theory: commit, push, fetch, pull. All templates are easy (difficulty 1) – the whole topic is available from the start.",
+  "conventions": {
+    "placeholders": "{prompt} / {scenario} = generated question text",
+    "style": "No command-line syntax (no `git add`, `git commit -m`, flags). Talk about commit, push, pull, fetch as actions, plus repository, conflict, .gitignore, history. IDE-neutral wording.",
+    "answers": "Answers are plain text (translated in EN) except file names (`bin/`, `Program.cs`), which are inline code. The correct answer is stored first.",
+    "difficulty": "All templates are 1 – one level, unlocked from the start.",
+    "explanation": "One sentence from the template; add a second sentence only for scenarios that need it.",
+    "english": "Everything is translated; there is no shared code."
+  },
+  "templates": [
+    {
+      "id": "git-term-purpose",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 20,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "\"Čo je / Čo robí {term}?\" with {term} ∈ repozitár / repository (priečinok projektu, ktorého históriu Git sleduje), commit (uložený stav zmien so správou), push (pošle moje commity na server, napr. GitHub), pull (stiahne nové commity zo servera a zapracuje ich do mojich súborov), fetch (iba zistí/stiahne, čo je nové na serveri, moje súbory nezmení), konflikt / conflict (dvaja zmenili to isté miesto v súbore), `.gitignore` (zoznam súborov, ktoré Git nemá sledovať).",
+      "wrong": "Meanings of other terms (push ↔ pull, pull ↔ fetch, commit ↔ push), or a fake (commit = pošle zmeny na GitHub / sends changes to GitHub).",
+      "explanation": {
+        "sk": "{term}: {meaning}.",
+        "en": "{term}: {meaning}."
+      },
+      "example": {
+        "prompt": "Čo robí push?",
+        "correct": "pošle moje commity na server (napr. GitHub)",
+        "wrong": [
+          "stiahne nové commity zo servera",
+          "uloží zmeny ako nový commit na mojom počítači",
+          "zistí, čo je nové na serveri, ale moje súbory nezmení"
+        ]
+      },
+      "notes": "Each term 2–3 times. Translate text answers in EN."
+    },
+    {
+      "id": "git-purpose-term",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 15,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Reverse of git-term-purpose: the description is given, the answer is the term (commit, push, pull, fetch, repozitár, konflikt, .gitignore).",
+      "wrong": "Three other terms, preferring look-alikes (push ↔ pull ↔ fetch).",
+      "explanation": {
+        "sk": "{meaning_cap} – to je {term}.",
+        "en": "{meaning_cap} – that's {term}."
+      },
+      "example": {
+        "prompt": "Ako sa volá krok, ktorý stiahne nové commity zo servera a zapracuje ich do mojich súborov?",
+        "correct": "pull",
+        "wrong": [
+          "push",
+          "fetch",
+          "commit"
+        ]
+      }
+    },
+    {
+      "id": "git-vs-github",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Questions about the difference: Git = nástroj na počítači, ktorý sleduje históriu zmien / a tool on the computer that tracks history; GitHub = služba na internete, kde sú repozitáre uložené a zdieľané / an online service that stores and shares repositories. Variants: \"Čo je GitHub?\", \"Potrebujem internet na commit?\" (nie / no), \"Kde je uložený repozitár po commite?\".",
+      "wrong": "Swapped definitions, \"Git a GitHub sú to isté\" / \"Git and GitHub are the same thing\", \"Git je programovací jazyk\".",
+      "explanation": {
+        "sk": "Git pracuje na mojom počítači, GitHub je server, kam repozitár posielam.",
+        "en": "Git works on my computer; GitHub is the server I send the repository to."
+      }
+    },
+    {
+      "id": "git-commit-meaning",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "What a commit is and isn't: uložený stav (snímka) zmien s popisom, iba na mojom počítači / a saved snapshot of changes with a message, only on my computer. Variants: \"Čo obsahuje commit?\", \"Na čo slúži správa commitu?\".",
+      "wrong": "\"pošle zmeny na GitHub\", \"uloží súbor ako Ctrl+S\", \"vytvorí zálohu celého disku\".",
+      "explanation": {
+        "sk": "Commit je uložený stav projektu s popisom – zatiaľ iba lokálne.",
+        "en": "A commit is a saved state of the project with a description – only locally so far."
+      }
+    },
+    {
+      "id": "git-whats-on-remote",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{scenario}\nČo je teraz na GitHube?",
+        "en": "{scenario}\nWhat is on GitHub now?"
+      },
+      "code": null,
+      "correct": "A scenario of 2–4 steps in the IDE: upravil som súbor, dal commit A, push, potom ďalší commit B (bez push) / or changed files without commit. The answer is what reached the server (commit A only).",
+      "wrong": "Everything including the unpushed commit, nothing, the uncommitted changes too.",
+      "explanation": {
+        "sk": "Na server sa dostane iba to, čo som commitol a potom pushol.",
+        "en": "Only what I committed and then pushed reaches the server."
+      },
+      "example": {
+        "scenario": "Upravil som súbor, dal som commit A a push. Potom som urobil commit B, ale push som už nedal.",
+        "correct": "iba commit A",
+        "wrong": [
+          "commity A aj B",
+          "nič",
+          "commit B"
+        ]
+      }
+    },
+    {
+      "id": "git-workflow-order",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Order of steps, as text answers: \"V akom poradí odošlem svoju prácu na GitHub?\" → commit, potom push; \"Čo urobím na začiatku práce, keď spolužiak niečo zmenil?\" → pull. Answers are sequences like \"commit → push\".",
+      "wrong": "Wrong orders: \"push → commit\", \"pull → push\" (without commit), \"iba push\".",
+      "explanation": {
+        "sk": "Najprv sa zmeny uložia commitom na mojom počítači, až potom ich push pošle na server.",
+        "en": "First the changes are saved with a commit on my computer, then push sends them to the server."
+      },
+      "example": {
+        "prompt": "V akom poradí odošlem svoju prácu na GitHub?",
+        "correct": "commit → push",
+        "wrong": [
+          "push → commit",
+          "iba push",
+          "pull → commit"
+        ]
+      }
+    },
+    {
+      "id": "git-push-vs-pull",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Direction questions: \"Ktorým smerom ide push?\" → z môjho počítača na server; pull → zo servera k mne. Variant scenarios: \"Chcem, aby učiteľ videl moje riešenie\" → push; \"Chcem si stiahnuť zadanie, ktoré učiteľ pridal\" → pull.",
+      "wrong": "The opposite direction, commit, fetch (for the pull scenario: fetch only downloads info, my files don't change).",
+      "explanation": {
+        "sk": "push = k serveru, pull = zo servera k mne.",
+        "en": "push = to the server, pull = from the server to me."
+      },
+      "example": {
+        "prompt": "Učiteľ pridal do repozitára nové zadanie. Ako ho dostanem do svojho projektu?",
+        "correct": "pull",
+        "wrong": [
+          "push",
+          "commit",
+          "fetch"
+        ]
+      }
+    },
+    {
+      "id": "git-fetch-vs-pull",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "The difference: fetch stiahne informácie o nových commitoch, ale moje súbory nezmení / downloads info about new commits but doesn't change my files; pull ich aj zapracuje do mojich súborov / also brings them into my files. Variants: \"Spravil som fetch. Zmenili sa moje súbory?\" (nie / no).",
+      "wrong": "Swapped meanings, \"fetch a pull sú to isté\", \"fetch pošle zmeny na server\".",
+      "explanation": {
+        "sk": "fetch iba zistí, čo je nové; pull to aj zapracuje do mojich súborov.",
+        "en": "fetch only finds out what's new; pull also brings it into my files."
+      }
+    },
+    {
+      "id": "git-good-message",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "Ktorá správa commitu je najlepšia?",
+        "en": "Which commit message is best?"
+      },
+      "code": null,
+      "correct": "A short, specific message describing the change (\"Pridaný výpočet priemeru známok\", \"Opravené delenie nulou vo funkcii Priemer\").",
+      "wrong": "Vague or useless messages: \"zmena\", \"asdf\", \"oprava\", \"posledná verzia FINAL2\", \"commit\".",
+      "explanation": {
+        "sk": "Dobrá správa stručne povie, čo sa zmenilo – aby sa dala história neskôr čítať.",
+        "en": "A good message briefly says what changed – so the history can be read later."
+      },
+      "example": {
+        "correct": "Pridaný výpočet priemeru známok",
+        "wrong": [
+          "zmena",
+          "asdf",
+          "posledná verzia FINAL2"
+        ]
+      },
+      "notes": "Translate the messages in EN too (\"Add average grade calculation\")."
+    },
+    {
+      "id": "git-push-rejected",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{scenario}\nČo mám urobiť?",
+        "en": "{scenario}\nWhat should I do?"
+      },
+      "code": null,
+      "correct": "Scenario: push sa nepodaril, lebo na serveri sú novšie commity (spolužiak / iný počítač pushol skôr). Correct: najprv pull, potom znova push / pull first, then push again.",
+      "wrong": "\"Vymazať repozitár a začať odznova\", \"Dať commit ešte raz\", \"Počkať, kým sa to opraví samo\".",
+      "explanation": {
+        "sk": "Server odmietne push, keď nemám jeho najnovšie commity – najprv ich stiahnem pullom.",
+        "en": "The server refuses a push when I don't have its newest commits – I download them with pull first."
+      }
+    },
+    {
+      "id": "git-gitignore",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Which file/folder belongs into .gitignore: build outputs (`bin/`, `obj/`), IDE settings folders, files with passwords. Variant: \"Ktorý súbor by NEMAL byť v .gitignore?\" → `Program.cs`.",
+      "wrong": "Source code files (`Program.cs`, `.csproj`), the `.gitignore` itself, README (or the reverse for the NOT variant).",
+      "explanation": {
+        "sk": "Do .gitignore patria súbory, ktoré sa dajú znova vytvoriť alebo sú súkromné – nie zdrojový kód.",
+        "en": "`.gitignore` is for files that can be regenerated or are private – not source code."
+      },
+      "example": {
+        "prompt": "Ktorý priečinok patrí do súboru .gitignore v C# projekte?",
+        "correct": "`bin/`",
+        "wrong": [
+          "`Program.cs`",
+          "`.gitignore`",
+          "`README.md`"
+        ]
+      }
+    },
+    {
+      "id": "git-conflict",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "When a conflict happens and what it means: dvaja zmenili ten istý riadok toho istého súboru / two people changed the same line of the same file; Git nevie sám rozhodnúť, ktorú verziu ponechať → rozhodne človek. Variants with scenarios (same line → conflict, different files → no conflict).",
+      "wrong": "\"Keď dvaja pracujú v rovnakom repozitári\" (always), \"keď niekto zmaže repozitár\", \"Git konflikt vyrieši sám\".",
+      "explanation": {
+        "sk": "Konflikt vznikne, keď sa zmeny prekrývajú na rovnakom mieste – Git potrebuje, aby som vybral výslednú verziu.",
+        "en": "A conflict happens when changes overlap in the same place – Git needs me to choose the final version."
+      }
+    },
+    {
+      "id": "git-history",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Why history (commits) is useful: dá sa vrátiť k staršej verzii, vidno kto a kedy čo zmenil, porovnať zmeny. Variants: \"Pokazil som program, ktorý včera fungoval. Ako pomôže Git?\".",
+      "wrong": "\"Git automaticky opraví chyby\", \"história sa maže po pushi\", \"Git zálohuje iba posledný súbor\".",
+      "explanation": {
+        "sk": "Každý commit je uložený stav – môžem sa k nemu vrátiť alebo s ním porovnať.",
+        "en": "Every commit is a saved state – I can go back to it or compare with it."
+      }
+    },
+    {
+      "id": "git-commit-often",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "When to commit: po každom menšom ucelenom kroku, ktorý funguje / after each small working step. Variants with scenarios (\"Dopísal som funkciu a funguje\" → commit).",
+      "wrong": "\"Iba raz na konci projektu\", \"po každom napísanom riadku\", \"iba keď to prikáže učiteľ\".",
+      "explanation": {
+        "sk": "Malé časté commity s jasnou správou robia históriu prehľadnou a návrat jednoduchým.",
+        "en": "Small, frequent commits with clear messages keep the history readable and going back easy."
+      }
+    },
+    {
+      "id": "git-uncommitted",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{scenario}\nČo sa stane s mojimi zmenami?",
+        "en": "{scenario}\nWhat happens to my changes?"
+      },
+      "code": null,
+      "correct": "Scenarios about where changes are: zmeny bez commitu sú iba v súboroch na počítači (Git ich zatiaľ neuložil), commit bez push je iba v lokálnom repozitári, po push sú na serveri. E.g. \"Pracoval som na školskom PC, dal som commit, ale nie push. Doma dám pull.\" → zmeny doma nebudú.",
+      "wrong": "\"Zmeny budú doma, Git ich synchronizuje sám\", \"zmeny sa stratili\", \"objavia sa po fetch\".",
+      "explanation": {
+        "sk": "Na iný počítač sa dostane iba to, čo som pushol na server.",
+        "en": "Only what I pushed to the server reaches another computer."
+      },
+      "example": {
+        "scenario": "V škole som dal commit, ale nie push. Doma som otvoril projekt a dal pull.",
+        "correct": "doma ich nemám – na serveri nie sú",
+        "wrong": [
+          "doma ich mám, pull ich stiahol",
+          "stratili sa navždy",
+          "objavia sa až po fetch"
+        ]
+      }
+    },
+    {
+      "id": "git-ide-buttons",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 10,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Concepts behind the IDE actions students click: \"Sync / Synchronizovať\" = pull + push, \"Commit\" = local save with a message, \"Commit and Push\" = both. Phrase generally (\"tlačidlo Sync v IDE\"), without depending on one IDE.",
+      "wrong": "Swapped meanings, \"Sync uloží súbor\", \"Commit pošle na server\".",
+      "explanation": {
+        "sk": "{button} v IDE robí {meaning}.",
+        "en": "{button} in the IDE does {meaning}."
+      },
+      "notes": "Keep the wording IDE-neutral (VS Code, Visual Studio and Rider all have Commit / Push / Pull / Sync)."
+    }
+  ]
+}

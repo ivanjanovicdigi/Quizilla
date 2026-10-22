@@ -1,0 +1,827 @@
+{
+  "topic": "classes",
+  "source": "Templates chosen by the teacher from Claude's suggestions (2026-10-22). Scope: classes, objects, new, public/private fields, methods. NO constructors, properties (get/set), static, this, inheritance.",
+  "conventions": {
+    "placeholders": "{code} = C# block (```csharp), other {…} = values of the generated question",
+    "style": "One file: top-level main program first, then local functions (if any), then the class declarations. Objects are created with `new Trieda()` and fields set one by one (no constructors, no object initializers `{ … }`). Public fields PascalCase (`Meno`), private fields camelCase (`zostatok`). No properties, static, this, inheritance, ToString override.",
+    "easy": "Easy questions never pass a call directly into another call: store the result in a variable first.",
+    "answers": "Answers are written as inline code, except text answers (meanings, Nič/Nothing, crash messages, Chyba pri preklade/Compile error), which are plain text and translated in EN. The correct answer is stored first.",
+    "output": "Programs print only letters or digits with Console.Write. Never print a bool, a double or an object.",
+    "crash": "A runtime crash is written as *Program spadne (NullReferenceException)* / *The program crashes (NullReferenceException)*.",
+    "bool": "Bool answers use the set `true`, `false`, `1`, `0`.",
+    "difficulty": "1 = easy, 2 = medium, 3 = hard.",
+    "explanation": "One sentence from the template; add a second sentence only when the code has a trap.",
+    "english": "Code (class names, fields, strings) is shared by SK and EN; only the wording is translated."
+  },
+  "templates": [
+    {
+      "id": "cl-term-purpose",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "\"Čo je {term}?\" with {term} ∈ trieda / class (predpis, podľa ktorého sa vytvárajú objekty), objekt / object (konkrétna inštancia triedy), `new` (vytvorí nový objekt), atribút (pole) / field (premenná patriaca objektu), metóda / method (funkcia patriaca triede), `public` (prístupné aj mimo triedy), `private` (prístupné iba vnútri triedy). Text answers.",
+      "wrong": "Meanings of the other terms, or a fake (trieda = jeden konkrétny pes / a class is one specific dog).",
+      "explanation": {
+        "sk": "{term}: {meaning}.",
+        "en": "{term}: {meaning}."
+      },
+      "example": {
+        "code": null,
+        "prompt": "Čo je objekt?",
+        "correct": "konkrétna inštancia vytvorená podľa triedy",
+        "wrong": [
+          "predpis, podľa ktorého sa vytvárajú objekty",
+          "funkcia patriaca triede",
+          "premenná, ktorá je prístupná iba vnútri triedy"
+        ]
+      },
+      "notes": "Translate text answers in EN."
+    },
+    {
+      "id": "cl-purpose-term",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Reverse of cl-term-purpose: description given, the answer is the term (trieda, objekt, `new`, atribút, metóda, `public`, `private`).",
+      "wrong": "Three other terms from the list, preferring look-alikes (trieda ↔ objekt, atribút ↔ metóda, public ↔ private).",
+      "explanation": {
+        "sk": "{meaning_cap} – to je {term}.",
+        "en": "{meaning_cap} – that's {term}."
+      },
+      "example": {
+        "code": null,
+        "prompt": "Ako sa volá predpis, podľa ktorého sa vytvárajú objekty?",
+        "correct": "trieda",
+        "wrong": [
+          "objekt",
+          "metóda",
+          "atribút"
+        ]
+      }
+    },
+    {
+      "id": "cl-create-object",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKtorý riadok správne vytvorí objekt triedy `{cls}`?",
+        "en": "{code}\nWhich line correctly creates an object of the class `{cls}`?"
+      },
+      "code": "A short class declaration with 1–2 public fields (`class Pes { public string Meno; }`).",
+      "correct": "`Pes p = new Pes();`.",
+      "wrong": "`Pes p = Pes();`, `Pes p = new Pes;`, `p Pes = new Pes();`, `Pes p = new p();`, `new Pes p;`.",
+      "explanation": {
+        "sk": "Objekt sa vytvára ako `Trieda premenná = new Trieda();`.",
+        "en": "An object is created as `Class variable = new Class();`."
+      },
+      "example": {
+        "code": "class Pes\n{\n    public string Meno;\n}",
+        "cls": "Pes",
+        "correct": "`Pes p = new Pes();`",
+        "wrong": [
+          "`Pes p = Pes();`",
+          "`Pes p = new Pes;`",
+          "`new Pes p;`"
+        ]
+      }
+    },
+    {
+      "id": "cl-read-field",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "Create an object, set 1–3 public fields (`p.Meno = \"Rex\"; p.Vek = 3;`), then `<type> <name> = p.<Field>;`. The class is declared below.",
+      "correct": "The assigned value (string in quotes).",
+      "wrong": "The value of another field, the field name, the type / class name.",
+      "explanation": {
+        "sk": "Do atribútu `{field}` sme priradili `{value}`.",
+        "en": "We assigned `{value}` to the field `{field}`."
+      },
+      "example": {
+        "code": "Pes p = new Pes();\np.Meno = \"Rex\";\np.Vek = 3;\nint v = p.Vek;\n\nclass Pes\n{\n    public string Meno;\n    public int Vek;\n}",
+        "name": "v",
+        "correct": "`3`",
+        "wrong": [
+          "`\"Rex\"`",
+          "`Vek`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "cl-method-return",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "An object with fields set from outside, then `int <name> = obj.Method();` where the method returns a value computed from the fields (`Obsah()` = A * B).",
+      "correct": "The returned value.",
+      "wrong": "A field value, the result of another operation (A + B), 0.",
+      "explanation": {
+        "sk": "Metóda `{method}` použije atribúty objektu: {expr} = {value}.",
+        "en": "The method `{method}` uses the object's fields: {expr} = {value}."
+      },
+      "example": {
+        "code": "Obdlznik o = new Obdlznik();\no.A = 3;\no.B = 4;\nint v = o.Obsah();\n\nclass Obdlznik\n{\n    public int A;\n    public int B;\n\n    public int Obsah()\n    {\n        return A * B;\n    }\n}",
+        "name": "v",
+        "correct": "`12`",
+        "wrong": [
+          "`7`",
+          "`3`",
+          "`0`"
+        ]
+      },
+      "notes": "Easy: the result is stored in a variable first – no call directly inside another call."
+    },
+    {
+      "id": "cl-fields-then-method",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "Several public fields set one by one, then a method combining them (`Sucet()`, `Popis()` returning a string), result stored in a variable.",
+      "correct": "The returned value.",
+      "wrong": "Value using only one field, the fields in the wrong order (for strings), the method name.",
+      "explanation": {
+        "sk": "Metóda pracuje s hodnotami, ktoré sme nastavili do atribútov: {steps}.",
+        "en": "The method works with the values we set into the fields: {steps}."
+      }
+    },
+    {
+      "id": "cl-default-values",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`Trieda o = new Trieda();` WITHOUT setting a field, then `<type> <name> = o.<Field>;` – int (0), bool (false), string (null).",
+      "correct": "The default value.",
+      "wrong": "\"Random\" value / 1, the field name, `\"\"` for string, *Chyba pri preklade* / *Compile error*.",
+      "explanation": {
+        "sk": "Nenastavený atribút má predvolenú hodnotu – pre `{type}` je to `{value}`.",
+        "en": "An unset field has the default value – for `{type}` it's `{value}`."
+      },
+      "example": {
+        "code": "Ziak z = new Ziak();\nint v = z.Body;\n\nclass Ziak\n{\n    public string Meno;\n    public int Body;\n}",
+        "name": "v",
+        "correct": "`0`",
+        "wrong": [
+          "`1`",
+          "`Body`",
+          "Chyba pri preklade"
+        ]
+      }
+    },
+    {
+      "id": "cl-void-method",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "An object and 1–3 calls of a void method that prints a letter (or a field value as a digit); sometimes two different methods.",
+      "correct": "The combined output.",
+      "wrong": "One call only, wrong order, nothing printed (*Nič* / *Nothing* – as if creating the object were enough).",
+      "explanation": {
+        "sk": "Telo metódy sa vykoná pri každom volaní.",
+        "en": "The method body runs on every call."
+      },
+      "example": {
+        "code": "Pes p = new Pes();\np.Stekaj();\np.Stekaj();\n\nclass Pes\n{\n    public void Stekaj()\n    {\n        Console.Write(\"H\");\n    }\n}",
+        "correct": "`HH`",
+        "wrong": [
+          "`H`",
+          "Nič",
+          "`HHH`"
+        ]
+      }
+    },
+    {
+      "id": "cl-independent-objects",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "Two objects of the same class, the same field set to different values on each, then `<name> = a.<Field>;`.",
+      "correct": "a's own value.",
+      "wrong": "b's value (\"the field is shared\"), the sum, 0.",
+      "explanation": {
+        "sk": "Každý objekt má vlastné atribúty – zmena `b` neovplyvní `a`.",
+        "en": "Each object has its own fields – changing `b` doesn't affect `a`."
+      },
+      "example": {
+        "code": "Bod a = new Bod();\nBod b = new Bod();\na.X = 1;\nb.X = 2;\nint v = a.X;\n\nclass Bod\n{\n    public int X;\n}",
+        "name": "v",
+        "correct": "`1`",
+        "wrong": [
+          "`2`",
+          "`3`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "cl-class-vs-object",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nV ktorom riadku sa **{what}**?",
+        "en": "{code}\nIn which line is **{what}**?"
+      },
+      "code": "A short program: `class Auto { … }`, `Auto a = new Auto();`, `a.Rychlost = 50;`, `a.Trubi();`. {what} = deklaruje trieda / a class declared, vytvára objekt / an object created, nastavuje atribút / a field set, volá metóda / a method called.",
+      "correct": "The matching line.",
+      "wrong": "The other lines of the program.",
+      "explanation": {
+        "sk": "{reason}",
+        "en": "{reason}"
+      },
+      "example": {
+        "code": null,
+        "what": "vytvára objekt",
+        "correct": "`Auto a = new Auto();`",
+        "wrong": [
+          "`class Auto`",
+          "`a.Rychlost = 50;`",
+          "`a.Trubi();`"
+        ]
+      },
+      "notes": "Answers are the lines (inline code); the code block shows the whole program."
+    },
+    {
+      "id": "cl-field-or-method",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo je `{member}` v tejto triede?",
+        "en": "{code}\nWhat is `{member}` in this class?"
+      },
+      "code": "A class with 2 fields and 2 methods (one void, one returning a value), with `public` and `private` members.",
+      "correct": "atribút / field, or metóda / method (text answer).",
+      "wrong": "The other kind, trieda / class, objekt / object.",
+      "explanation": {
+        "sk": "{reason}",
+        "en": "{reason}"
+      },
+      "notes": "{reason}: \"Má zátvorky a telo – je to metóda.\" / \"It has brackets and a body – it's a method.\" (or: \"Je to premenná v triede – atribút.\")"
+    },
+    {
+      "id": "cl-private-meaning",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nOdkiaľ je prístupný atribút `{field}`?",
+        "en": "{code}\nWhere can the field `{field}` be accessed from?"
+      },
+      "code": "A class with one `public` and one `private` field (and a method using both). {field} = one of them.",
+      "correct": "private → iba z metód tej istej triedy / only from the class's own methods; public → odkiaľkoľvek, aj z hlavného programu / from anywhere, including the main program.",
+      "wrong": "The other meaning, odnikiaľ / nowhere, iba z hlavného programu / only from the main program.",
+      "explanation": {
+        "sk": "`{modifier}` znamená: {meaning}.",
+        "en": "`{modifier}` means: {meaning}."
+      }
+    },
+    {
+      "id": "cl-method-changes-field",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A class with a field and methods changing it (`Vloz(int suma)`, `Vyber(int suma)`, `Pridaj()`), 2–4 calls, then `int <name> = u.Zostatok;`.",
+      "correct": "The final field value.",
+      "wrong": "The value with one call missed, the last argument, the starting value.",
+      "explanation": {
+        "sk": "Po volaniach: {steps}.",
+        "en": "After the calls: {steps}."
+      },
+      "example": {
+        "code": "Ucet u = new Ucet();\nu.Vloz(50);\nu.Vloz(20);\nu.Vyber(30);\nint v = u.Zostatok;\n\nclass Ucet\n{\n    public int Zostatok;\n\n    public void Vloz(int suma)\n    {\n        Zostatok = Zostatok + suma;\n    }\n\n    public void Vyber(int suma)\n    {\n        Zostatok = Zostatok - suma;\n    }\n}",
+        "name": "v",
+        "correct": "`40`",
+        "wrong": [
+          "`70`",
+          "`30`",
+          "`100`"
+        ]
+      }
+    },
+    {
+      "id": "cl-validating-method",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A private field changed only through a public method with validation (`NastavVek(int v) { if (v >= 0) vek = v; }`) and read through a public method (`int Vek() { return vek; }`); calls include an invalid value.",
+      "correct": "The value after the valid calls only.",
+      "wrong": "The invalid value (as if stored), 0, the previous valid value / the first value.",
+      "explanation": {
+        "sk": "Metóda uloží hodnotu iba vtedy, keď {cond}; `{bad}` sa ignoruje.",
+        "en": "The method stores the value only when {cond}; `{bad}` is ignored."
+      },
+      "example": {
+        "code": "Osoba o = new Osoba();\no.NastavVek(15);\no.NastavVek(-3);\nint v = o.Vek();\n\nclass Osoba\n{\n    private int vek;\n\n    public void NastavVek(int novy)\n    {\n        if (novy >= 0)\n            vek = novy;\n    }\n\n    public int Vek()\n    {\n        return vek;\n    }\n}",
+        "name": "v",
+        "correct": "`15`",
+        "wrong": [
+          "`-3`",
+          "`0`",
+          "`12`"
+        ]
+      }
+    },
+    {
+      "id": "cl-list-of-objects",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`List<Ziak> ziaci = new List<Ziak>();`, 2–4 objects created, fields set, added; then a `for` loop summing / finding max / counting by a field.",
+      "correct": "The result.",
+      "wrong": "Result with one object missed, the count of objects, a single field value.",
+      "explanation": {
+        "sk": "Cyklus prejde všetky objekty v zozname: {steps}.",
+        "en": "The loop goes through all objects in the list: {steps}."
+      }
+    },
+    {
+      "id": "cl-method-calls-method",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A class where one method calls another method of the same class (`Obvod()` uses `Strana()`, `Popis()` uses `Vek()`), called from outside.",
+      "correct": "The returned value.",
+      "wrong": "Result of only the inner method, the inner method applied twice / not at all.",
+      "explanation": {
+        "sk": "`{outer}` zavolá `{inner}` = {iv}, potom vráti {value}.",
+        "en": "`{outer}` calls `{inner}` = {iv}, then returns {value}."
+      }
+    },
+    {
+      "id": "cl-private-compile",
+      "difficulty": 2,
+      "kind": "compile-error",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKtorý riadok v hlavnom programe spôsobí chybu pri preklade?",
+        "en": "{code}\nWhich line in the main program causes a compile error?"
+      },
+      "code": "A class with a `private` field, a `public` field, and public methods; the object is created in the main program. Answers are single lines of the main program.",
+      "correct": "A line accessing the private member from outside (`u.zostatok = 100;`, `int x = u.zostatok;`) or calling a private method.",
+      "wrong": "Three valid lines: the public field, a public method that reads/changes the private field.",
+      "explanation": {
+        "sk": "`{member}` je `private` – je prístupný iba v metódach triedy `{cls}`.",
+        "en": "`{member}` is `private` – it can only be used in the methods of `{cls}`."
+      },
+      "example": {
+        "code": "Ucet u = new Ucet();\n\nclass Ucet\n{\n    private int zostatok;\n    public string Majitel;\n\n    public void Vloz(int suma)\n    {\n        zostatok = zostatok + suma;\n    }\n}",
+        "correct": "`u.zostatok = 100;`",
+        "wrong": [
+          "`u.Majitel = \"Eva\";`",
+          "`u.Vloz(100);`",
+          "`string m = u.Majitel;`"
+        ]
+      }
+    },
+    {
+      "id": "cl-private-via-method",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A private field (`skore`) changed and read only through public methods (`Pridaj(int b)`, `Skore()`), 2–4 calls in sequence or a loop.",
+      "correct": "The final value returned by the read method.",
+      "wrong": "Value with one call missed, the last argument, 0.",
+      "explanation": {
+        "sk": "Súkromný atribút sa mení iba cez metódy: {steps}.",
+        "en": "The private field changes only through methods: {steps}."
+      }
+    },
+    {
+      "id": "cl-object-to-function",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "An object passed to a local function in the main program, which changes one of its public fields; then read the field.",
+      "correct": "The changed value.",
+      "wrong": "The original value (as if copied like an int), the change applied twice, 0.",
+      "explanation": {
+        "sk": "Funkcia dostane ten istý objekt, nie kópiu – zmena atribútu je viditeľná aj mimo nej.",
+        "en": "The function gets the same object, not a copy – the field change is visible outside it."
+      },
+      "example": {
+        "code": "Bod b = new Bod();\nb.X = 4;\nPosun(b);\nint v = b.X;\n\nvoid Posun(Bod bod)\n{\n    bod.X = bod.X + 10;\n}\n\nclass Bod\n{\n    public int X;\n}",
+        "name": "v",
+        "correct": "`14`",
+        "wrong": [
+          "`4`",
+          "`10`",
+          "`24`"
+        ]
+      },
+      "notes": "Local functions go before the class declarations."
+    },
+    {
+      "id": "cl-bool-method",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A class with a bool method (`MozeVybrat(int suma)` → suma <= Zostatok, `JePlnolety()` → Vek >= 18) used as `if (obj.Method(…)) Console.Write(\"A\"); else Console.Write(\"B\");` – boundary values.",
+      "correct": "`A` or `B`.",
+      "wrong": "The other letter, `AB`, *Nič* / *Nothing*.",
+      "explanation": {
+        "sk": "`{call}` vráti `{value}`, preto sa vypíše `{letter}`.",
+        "en": "`{call}` returns `{value}`, so `{letter}` is printed."
+      }
+    },
+    {
+      "id": "cl-counter-loop",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A class with a counter field and a method incrementing it (by 1 or by a parameter); called in a `for` loop n times, sometimes on two different objects.",
+      "correct": "The counter of the asked object.",
+      "wrong": "The total over both objects, n ± 1, 0.",
+      "explanation": {
+        "sk": "Metóda sa zavolá {n}-krát: {steps}.",
+        "en": "The method is called {n} times: {steps}."
+      }
+    },
+    {
+      "id": "cl-param-and-field",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A method using both a parameter and a field (`Zvacsi(int k) { Strana = Strana * k; }`, `Posun(int dx) { X = X + dx; }`), 1–3 calls.",
+      "correct": "The final field value.",
+      "wrong": "The parameter only, the result of one call less, + instead of *.",
+      "explanation": {
+        "sk": "Po volaniach: {steps}.",
+        "en": "After the calls: {steps}."
+      }
+    },
+    {
+      "id": "cl-text-method",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A method building a string from fields (`return Meno + \" (\" + Vek + \")\";`), called after setting fields.",
+      "correct": "The resulting string in quotes.",
+      "wrong": "Missing spaces/brackets, field names instead of values, values swapped.",
+      "explanation": {
+        "sk": "Metóda spojí atribúty do textu: `{value}`.",
+        "en": "The method joins the fields into text: `{value}`."
+      },
+      "example": {
+        "code": "Pes p = new Pes();\np.Meno = \"Rex\";\np.Vek = 3;\nstring s = p.Popis();\n\nclass Pes\n{\n    public string Meno;\n    public int Vek;\n\n    public string Popis()\n    {\n        return Meno + \" (\" + Vek + \")\";\n    }\n}",
+        "name": "s",
+        "correct": "`\"Rex (3)\"`",
+        "wrong": [
+          "`\"Rex(3)\"`",
+          "`\"Meno (Vek)\"`",
+          "`\"3 (Rex)\"`"
+        ]
+      }
+    },
+    {
+      "id": "cl-list-field",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A class with a field initialized with a list (`private List<int> znamky = new List<int>();`), methods `Pridaj(int z)` and `Pocet()` / `Sucet()` / `Najlepsia()`; 2–4 Pridaj calls.",
+      "correct": "The returned value.",
+      "wrong": "Result with one call missed, the last added value, 0.",
+      "explanation": {
+        "sk": "Každé `Pridaj` vloží známku do zoznamu objektu: {steps}.",
+        "en": "Each `Pridaj` adds a grade to the object's list: {steps}."
+      }
+    },
+    {
+      "id": "cl-reference-copy",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`Bod a = new Bod(); a.X = 1; Bod b = a; b.X = 9;` then `int <name> = a.X;` – in about a third, b is a NEW object with copied field values (unchanged a).",
+      "correct": "The value from the shared object (changed) or from the separate one.",
+      "wrong": "The other of changed/unchanged, the sum, 0.",
+      "explanation": {
+        "sk": "{why}",
+        "en": "{why}"
+      },
+      "example": {
+        "code": "Bod a = new Bod();\na.X = 1;\nBod b = a;\nb.X = 9;\nint v = a.X;\n\nclass Bod\n{\n    public int X;\n}",
+        "name": "v",
+        "correct": "`9`",
+        "wrong": [
+          "`1`",
+          "`10`",
+          "`0`"
+        ]
+      },
+      "notes": "{why}: \"`b = a` nevytvorí nový objekt – obe premenné ukazujú na ten istý.\" / \"`b = a` doesn't create a new object – both variables point to the same one.\""
+    },
+    {
+      "id": "cl-param-shadows-field",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A method whose parameter has the same name as the field: `public void NastavX(int X) { X = X; }` (assigns the parameter to itself) – in about a third the parameter has a different name and works.",
+      "correct": "The unchanged field value (default or previous), or the new value for the working version.",
+      "wrong": "The value passed to the method (as if stored), the other version's result, *Chyba pri preklade* / *Compile error*.",
+      "explanation": {
+        "sk": "V metóde `X` znamená parameter, nie atribút – `X = X` priradí parameter sám sebe a atribút sa nezmení.",
+        "en": "Inside the method `X` means the parameter, not the field – `X = X` assigns the parameter to itself and the field doesn't change."
+      },
+      "example": {
+        "code": "Bod b = new Bod();\nb.NastavX(5);\nint v = b.X;\n\nclass Bod\n{\n    public int X;\n\n    public void NastavX(int X)\n    {\n        X = X;\n    }\n}",
+        "name": "v",
+        "correct": "`0`",
+        "wrong": [
+          "`5`",
+          "`10`",
+          "Chyba pri preklade"
+        ]
+      },
+      "notes": "Compiles with warning CS1717 (assignment to same variable)."
+    },
+    {
+      "id": "cl-null-object",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`Pes p = null;` or a declared but replaced reference (`p = null;` after use), then `Console.Write(p.Meno);` or `p.Stekaj();` – sometimes the print happens before the null assignment.",
+      "correct": "*Program spadne (NullReferenceException)* / *The program crashes (NullReferenceException)*, or the output printed before the crash / before null was assigned.",
+      "wrong": "Empty output, \"null\" printed, *Chyba pri preklade* / *Compile error*.",
+      "explanation": {
+        "sk": "Premenná `p` neukazuje na žiadny objekt (`null`), preto prístup k atribútu spôsobí pád.",
+        "en": "The variable `p` doesn't point to any object (`null`), so accessing a field crashes."
+      }
+    },
+    {
+      "id": "cl-compare-objects",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "Two objects with the same field values (`==` → false), a copied reference (`==` → true), or comparing fields (`a.X == b.X` → true).",
+      "correct": "`true` or `false`.",
+      "wrong": "Always the set `true`, `false`, `1`, `0`.",
+      "explanation": {
+        "sk": "`==` pri objektoch porovnáva, či ide o ten istý objekt, nie či majú rovnaké atribúty.",
+        "en": "`==` on objects checks whether it's the same object, not whether the fields are equal."
+      }
+    },
+    {
+      "id": "cl-list-shared-object",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "An object added to a list, then changed through the original variable (or the same object added twice), then read through the list (`zoznam[0].Body`).",
+      "correct": "The changed value (the list holds a reference).",
+      "wrong": "The value at the time of adding, the change counted twice / once, 0.",
+      "explanation": {
+        "sk": "Zoznam neobsahuje kópiu, ale ten istý objekt – zmena cez `{var}` je viditeľná aj v zozname.",
+        "en": "The list doesn't hold a copy but the same object – the change through `{var}` is visible in the list too."
+      },
+      "example": {
+        "code": "List<Ziak> trieda = new List<Ziak>();\nZiak z = new Ziak();\nz.Body = 5;\ntrieda.Add(z);\nz.Body = 8;\nint v = trieda[0].Body;\n\nclass Ziak\n{\n    public int Body;\n}",
+        "name": "v",
+        "correct": "`8`",
+        "wrong": [
+          "`5`",
+          "`13`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "cl-param-reassign",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A local function that REASSIGNS its object parameter (`p = new Pes(); p.Meno = \"Max\";`) vs one that changes a field (`p.Meno = \"Max\";`) – one of them per question, or both in sequence.",
+      "correct": "The field value seen by the caller.",
+      "wrong": "The value set inside the function after reassignment, the original/changed (whichever is wrong), null.",
+      "explanation": {
+        "sk": "{why}",
+        "en": "{why}"
+      },
+      "example": {
+        "code": "Pes pes = new Pes();\npes.Meno = \"Rex\";\nZmen(pes);\nstring v = pes.Meno;\n\nvoid Zmen(Pes p)\n{\n    p = new Pes();\n    p.Meno = \"Max\";\n}\n\nclass Pes\n{\n    public string Meno;\n}",
+        "name": "v",
+        "correct": "`\"Rex\"`",
+        "wrong": [
+          "`\"Max\"`",
+          "`null`",
+          "`\"RexMax\"`"
+        ]
+      },
+      "notes": "{why}: \"`p = new Pes()` presmeruje iba parameter na nový objekt; pôvodný pes sa nezmení.\" / \"`p = new Pes()` only points the parameter to a new object; the original dog doesn't change.\""
+    },
+    {
+      "id": "cl-output-order",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "Two objects whose methods print letters; calls interleaved in the main program, one method calling another object's method (passed as a parameter).",
+      "correct": "The output in execution order.",
+      "wrong": "Order as written in the class declarations, one call missed, objects swapped.",
+      "explanation": {
+        "sk": "Kód sa vykonáva podľa poradia volaní v hlavnom programe: {steps}.",
+        "en": "Code runs in the order of the calls in the main program: {steps}."
+      }
+    },
+    {
+      "id": "cl-object-in-object",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A class with a field of another class type (`public Ucitel Triedny;`), the inner object created and assigned, then `string <name> = t.Triedny.Meno;` – sometimes the inner object is changed through another variable after assigning.",
+      "correct": "The value through the chain.",
+      "wrong": "The value before the change, the outer object's own field, *Program spadne (NullReferenceException)* / *The program crashes (NullReferenceException)* (as if the inner object were missing).",
+      "explanation": {
+        "sk": "`{chain}` – najprv objekt `{outer}`, z neho `{inner}`, z neho atribút.",
+        "en": "`{chain}` – first the object `{outer}`, then its `{inner}`, then the field."
+      }
+    },
+    {
+      "id": "cl-array-of-objects",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`Pes[] psy = new Pes[2];` then `psy[0].Meno = \"Rex\";` (crash – elements are null) – in about half the objects are created first (`psy[0] = new Pes();`) and the output is a field.",
+      "correct": "*Program spadne (NullReferenceException)* / *The program crashes (NullReferenceException)*, or the printed value.",
+      "wrong": "The value (as if objects existed), empty output, *Chyba pri preklade* / *Compile error*.",
+      "explanation": {
+        "sk": "`new Pes[2]` vytvorí pole s dvoma prázdnymi miestami (`null`), nie dvoch psov.",
+        "en": "`new Pes[2]` creates an array with two empty slots (`null`), not two dogs."
+      }
+    },
+    {
+      "id": "cl-field-initializer",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A field with an initializer (`public int Zivoty = 3;`), a method changing it (`Zasah()` → Zivoty − 1, `Bonus()` → * 2), calls on one object, then a NEW object read (starts again at the initial value) or the old one.",
+      "correct": "The value of the asked object.",
+      "wrong": "The other object's value, 0 (ignoring the initializer), the initial value.",
+      "explanation": {
+        "sk": "Každý nový objekt začína s hodnotou `{init}`; {steps}.",
+        "en": "Every new object starts with `{init}`; {steps}."
+      }
+    },
+    {
+      "id": "cl-state-series",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A bank account-like class: `Vyber(int suma)` refuses (does nothing) when the balance is too low, `Vloz` adds; 4–6 calls including a refused one.",
+      "correct": "The final balance.",
+      "wrong": "Balance with the refused withdrawal applied (can be negative), with one call missed, the last value.",
+      "explanation": {
+        "sk": "Po volaniach: {steps} – výber {refused} sa nevykoná.",
+        "en": "After the calls: {steps} – the withdrawal of {refused} is refused."
+      }
+    },
+    {
+      "id": "cl-two-objects-interact",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAké hodnoty budú mať `{a}` a `{b}`?",
+        "en": "{code}\nWhat values will `{a}` and `{b}` have?"
+      },
+      "code": "A method taking another object of the same class as a parameter (`a.Prevod(b, 30)`: own balance − 30, other's + 30; or `p.Zautoc(q)`), 1–3 calls.",
+      "correct": "Both final values (`a.Zostatok = 70, b.Zostatok = 80`).",
+      "wrong": "Swapped values, only one changed, the change applied twice.",
+      "explanation": {
+        "sk": "Metóda mení vlastný objekt aj objekt v parametri: {steps}.",
+        "en": "The method changes its own object and the one in the parameter: {steps}."
+      },
+      "example": {
+        "code": "Ucet a = new Ucet();\nUcet b = new Ucet();\na.Zostatok = 100;\nb.Zostatok = 50;\na.Prevod(b, 30);\n\nclass Ucet\n{\n    public int Zostatok;\n\n    public void Prevod(Ucet ciel, int suma)\n    {\n        Zostatok = Zostatok - suma;\n        ciel.Zostatok = ciel.Zostatok + suma;\n    }\n}",
+        "a": "a.Zostatok",
+        "b": "b.Zostatok",
+        "correct": "`a.Zostatok = 70, b.Zostatok = 80`",
+        "wrong": [
+          "`a.Zostatok = 130, b.Zostatok = 20`",
+          "`a.Zostatok = 70, b.Zostatok = 50`",
+          "`a.Zostatok = 100, b.Zostatok = 80`"
+        ]
+      }
+    }
+  ]
+}

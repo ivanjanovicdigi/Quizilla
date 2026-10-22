@@ -1,0 +1,764 @@
+{
+  "topic": "logic",
+  "source": "Templates chosen by the teacher from Claude's suggestions (2026-10-22)",
+  "conventions": {
+    "placeholders": "{code} = C# block (```csharp), other {…} = values of the generated question",
+    "answers": "Answers are written as inline code (`A`), except text answers (meanings, Nič/Nothing, error messages), which are plain text and translated in EN. The correct answer is stored first; the app shuffles them.",
+    "output": "Programs print only single letters or numbers with Console.Write, so the output is the same in SK and EN. Never print a bool or a double (culture-dependent formatting).",
+    "bool": "Bool answers use the set `true`, `false`, `1`, `0`.",
+    "difficulty": "1 = easy, 2 = medium, 3 = hard.",
+    "names": "Variable names are short (x, y, a, b) or Slovak words.",
+    "english": "Code is shared by SK and EN; only the wording is translated."
+  },
+  "templates": [
+    {
+      "id": "lg-compare-result",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "Akú hodnotu má výraz `{expr}`?",
+        "en": "What is the value of the expression `{expr}`?"
+      },
+      "code": "No code block. `{expr}` = two int literals (0–20) compared with one of == != < <= > >=. About a third of the questions use equal numbers (7 <= 7, 7 < 7).",
+      "correct": "`true` or `false`.",
+      "wrong": "Always the set `true`, `false`, `1`, `0` – the correct one plus the other three (C# bool is not a number).",
+      "explanation": {
+        "sk": "Výraz `{expr}` {reason}, preto je jeho hodnota `{value}`.",
+        "en": "The expression `{expr}` {reason}, so its value is `{value}`."
+      },
+      "example": {
+        "code": null,
+        "expr": "7 < 7",
+        "correct": "`false`",
+        "wrong": [
+          "`true`",
+          "`1`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "lg-op-meaning-to-symbol",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Ktorý operátor znamená „{meaning}“?",
+        "en": "Which operator means “{meaning}”?"
+      },
+      "code": null,
+      "correct": "The operator for {meaning}: rovná sa / equal `==`, nerovná sa / not equal `!=`, menší ako `<`, menší alebo rovný `<=`, väčší ako `>`, väčší alebo rovný `>=`, a zároveň (AND) `&&`, alebo (OR) `||`, negácia (NOT) `!`, priradenie / assignment `=`.",
+      "wrong": "Look-alike operators: real ones with a different meaning (`=` vs `==`, `<` vs `<=`, `&&` vs `||`) and invalid ones from other languages (`=<`, `<>`, `===`, `and`, `or`, `not`). At least one invalid one.",
+      "explanation": {
+        "sk": "Operátor `{op}` znamená „{meaning}“.",
+        "en": "The operator `{op}` means “{meaning}”."
+      },
+      "example": {
+        "code": null,
+        "meaning": "nerovná sa",
+        "correct": "`!=`",
+        "wrong": [
+          "`<>`",
+          "`==`",
+          "`=!`"
+        ]
+      },
+      "notes": "Cover each of the 10 meanings at least twice."
+    },
+    {
+      "id": "lg-assign-vs-compare",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "V ktorom riadku sa hodnota premennej `x` **{action}**?",
+        "en": "In which line is the value of `x` **{action}**?"
+      },
+      "code": "No code block; the 4 answers are single lines with a declared `int x`. {action} = porovnáva / compared (correct line uses `==`) or priraďuje / assigned (correct line uses `=`). Half and half.",
+      "correct": "The one line that compares (`if (x == 5)`, `bool b = x == 5;`) or the one that assigns (`x = 5;`).",
+      "wrong": "Three lines of the other kind – e.g. for *compared*: `x = 5;`, `x = x + 1;`, `int x = 5;`.",
+      "explanation": {
+        "sk": "`=` priraďuje hodnotu, `==` porovnáva dve hodnoty.",
+        "en": "`=` assigns a value, `==` compares two values."
+      },
+      "example": {
+        "code": null,
+        "action": "porovnáva",
+        "correct": "`if (x == 5)`",
+        "wrong": [
+          "`x = 5;`",
+          "`int x = 5;`",
+          "`x = x + 1;`"
+        ]
+      }
+    },
+    {
+      "id": "lg-not-simple",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "Akú hodnotu má výraz `{expr}`?",
+        "en": "What is the value of the expression `{expr}`?"
+      },
+      "code": "No code block. `{expr}` = `!true`, `!false` or `!(a op b)` with two int literals and one comparison operator.",
+      "correct": "`true` or `false`.",
+      "wrong": "Always the set `true`, `false`, `1`, `0` – the correct one plus the other three (C# bool is not a number).",
+      "explanation": {
+        "sk": "`{inner}` je `{inner_value}`, negácia `!` ho otočí na `{value}`.",
+        "en": "`{inner}` is `{inner_value}`; the negation `!` flips it to `{value}`."
+      },
+      "example": {
+        "code": null,
+        "expr": "!(5 > 3)",
+        "correct": "`false`",
+        "wrong": [
+          "`true`",
+          "`1`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "lg-and-or-literals",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "Akú hodnotu má výraz `{expr}`?",
+        "en": "What is the value of the expression `{expr}`?"
+      },
+      "code": "No code block. `{expr}` = two operands joined with `&&` or `||` (half each). Operands are `true`/`false` or simple comparisons of int literals (`3 > 1 && 2 > 5`).",
+      "correct": "`true` or `false`.",
+      "wrong": "Always the set `true`, `false`, `1`, `0` – the correct one plus the other three (C# bool is not a number).",
+      "explanation": {
+        "sk": "`&&` je `true` len vtedy, keď sú obe strany `true`; `||` je `true`, keď je aspoň jedna strana `true`. {steps}",
+        "en": "`&&` is `true` only when both sides are `true`; `||` is `true` when at least one side is `true`. {steps}"
+      },
+      "example": {
+        "code": null,
+        "expr": "false || true",
+        "correct": "`true`",
+        "wrong": [
+          "`false`",
+          "`1`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "lg-if-only",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;`, then `if (<x op m>)` with one `Console.Write(\"A\");` (no else), then `Console.Write(\"B\");`. No braces needed, but use them in half of the questions.",
+      "correct": "`AB` when the condition is true, `B` when false.",
+      "wrong": "From `AB`, `B`, `A`, `BA` – the three that are not correct.",
+      "explanation": {
+        "sk": "Podmienka `{cond}` je `{value}`, preto sa {what}. Riadok s `B` je mimo `if` a vypíše sa vždy.",
+        "en": "The condition `{cond}` is `{value}`, so {what}. The line with `B` is outside the `if` and always runs."
+      },
+      "example": {
+        "code": "int x = 4;\nif (x > 5)\n    Console.Write(\"A\");\nConsole.Write(\"B\");",
+        "correct": "`B`",
+        "wrong": [
+          "`AB`",
+          "`A`",
+          "`BA`"
+        ]
+      }
+    },
+    {
+      "id": "lg-if-else",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;` then `if (<x op m>) Console.Write(\"A\"); else Console.Write(\"B\");` (with or without braces). Mix all comparison operators; sometimes x equals m.",
+      "correct": "`A` or `B`.",
+      "wrong": "The other letter, `AB`, and *Nič* / *Nothing* (translated).",
+      "explanation": {
+        "sk": "Podmienka `{cond}` je `{value}`, preto sa vykoná vetva {branch}.",
+        "en": "The condition `{cond}` is `{value}`, so the {branch} branch runs."
+      },
+      "example": {
+        "code": "int x = 10;\nif (x >= 10)\n    Console.Write(\"A\");\nelse\n    Console.Write(\"B\");",
+        "correct": "`A`",
+        "wrong": [
+          "`B`",
+          "`AB`",
+          "Nič"
+        ]
+      }
+    },
+    {
+      "id": "lg-bool-from-compare",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "Two lines: `int x = <n>;` and `bool <name> = x <op> <m>;`. Often the boundary (x == m with < or >=).",
+      "correct": "`true` or `false`.",
+      "wrong": "Always the set `true`, `false`, `1`, `0` – the correct one plus the other three (C# bool is not a number).",
+      "explanation": {
+        "sk": "Výraz `{expr}` sa vyhodnotí na `{value}` a táto hodnota sa uloží do `{name}`.",
+        "en": "The expression `{expr}` evaluates to `{value}`, and that value is stored in `{name}`."
+      },
+      "example": {
+        "code": "int x = 7;\nbool b = x >= 7;",
+        "correct": "`true`",
+        "wrong": [
+          "`false`",
+          "`1`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "lg-op-symbol-to-meaning",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Čo znamená operátor `{op}`?",
+        "en": "What does the operator `{op}` mean?"
+      },
+      "code": null,
+      "correct": "The meaning of `{op}` in words (same list as lg-op-meaning-to-symbol).",
+      "wrong": "Meanings of look-alike operators (for `!=`: rovná sa, priradenie, negácia; for `<=`: menší ako, väčší alebo rovný, …). Text answers are translated in EN.",
+      "explanation": {
+        "sk": "Operátor `{op}` znamená „{meaning}“.",
+        "en": "The operator `{op}` means “{meaning}”."
+      },
+      "example": {
+        "code": null,
+        "op": "!=",
+        "correct": "nerovná sa",
+        "wrong": [
+          "rovná sa",
+          "priradenie",
+          "negácia (NOT)"
+        ]
+      },
+      "notes": "Reverse of lg-op-meaning-to-symbol. Cover each of the 10 operators at least twice."
+    },
+    {
+      "id": "lg-which-true",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Premenná `x` má hodnotu `{v}`. Ktorá podmienka je pravdivá?",
+        "en": "The variable `x` has the value `{v}`. Which condition is true?"
+      },
+      "code": null,
+      "correct": "The one true condition, e.g. `x > 3` for x = 4. About a third use `&&` or `||` (`x > 0 && x < 5`).",
+      "wrong": "Three false conditions with the same operators, often near the boundary (`x > 4`, `x != 4`, `x < 0 || x > 10`).",
+      "explanation": {
+        "sk": "Pre `x = {v}` platí iba `{cond}`.",
+        "en": "For `x = {v}`, only `{cond}` is true."
+      },
+      "example": {
+        "code": null,
+        "v": "4",
+        "correct": "`x > 3`",
+        "wrong": [
+          "`x > 4`",
+          "`x != 4`",
+          "`x < 0 || x > 10`"
+        ]
+      }
+    },
+    {
+      "id": "lg-boundary",
+      "difficulty": 2,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nPre ktorú hodnotu `x` vypíše program `A`?",
+        "en": "{code}\nFor which value of `x` does the program print `A`?"
+      },
+      "code": "`if (x <op> <m>) Console.Write(\"A\"); else Console.Write(\"B\");` – one comparison, ops < <= > >=.",
+      "correct": "The only one of the 4 offered values that prints A.",
+      "wrong": "The other values around the boundary: m − 1, m, m + 1, m + 2 (exactly one of the four prints A). The value m is always offered.",
+      "explanation": {
+        "sk": "Podmienka `{cond}` platí iba pre `{value}`. Pozor na rozdiel medzi `<` a `<=`.",
+        "en": "The condition `{cond}` holds only for `{value}`. Mind the difference between `<` and `<=`."
+      },
+      "example": {
+        "code": "if (x > 10)\n    Console.Write(\"A\");\nelse\n    Console.Write(\"B\");",
+        "correct": "`11`",
+        "wrong": [
+          "`10`",
+          "`9`",
+          "`8`"
+        ]
+      },
+      "notes": "Values offered must make exactly one answer correct – choose the 4 values accordingly."
+    },
+    {
+      "id": "lg-else-if-chain",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;` then `if` / `else if` / `else if` / `else` with letters A–D. Two or more conditions are true for x – only the first one counts.",
+      "correct": "The letter of the first true branch.",
+      "wrong": "Letters of other true branches, the concatenation of all true branches (`AB`), the else letter.",
+      "explanation": {
+        "sk": "Vykoná sa iba prvá vetva, ktorej podmienka platí: `{cond}`.",
+        "en": "Only the first branch whose condition holds runs: `{cond}`."
+      },
+      "example": {
+        "code": "int x = 15;\nif (x > 10)\n    Console.Write(\"A\");\nelse if (x > 5)\n    Console.Write(\"B\");\nelse\n    Console.Write(\"C\");",
+        "correct": "`A`",
+        "wrong": [
+          "`B`",
+          "`AB`",
+          "`C`"
+        ]
+      }
+    },
+    {
+      "id": "lg-nested-if",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "Two variables (`int x`, `int y`), an outer `if/else` and an inner `if/else` inside one branch, with braces. Letters A–D.",
+      "correct": "The printed letter(s).",
+      "wrong": "Letters from the other branches; the result if the inner `if` were outside.",
+      "explanation": {
+        "sk": "Najprv sa vyhodnotí vonkajšia podmienka `{outer}`, potom vnútorná `{inner}`.",
+        "en": "First the outer condition `{outer}` is evaluated, then the inner one `{inner}`."
+      }
+    },
+    {
+      "id": "lg-even-odd",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;` then `if (x % <k> == 0) Console.Write(\"A\"); else Console.Write(\"B\");` with k = 2 (half), 3, 4 or 5. Sometimes `!= 0`.",
+      "correct": "`A` or `B`.",
+      "wrong": "The other letter, `AB`, and *Nič* / *Nothing*.",
+      "explanation": {
+        "sk": "`{x} % {k}` je `{rem}`, preto je podmienka `{value}`.",
+        "en": "`{x} % {k}` is `{rem}`, so the condition is `{value}`."
+      }
+    },
+    {
+      "id": "lg-change-then-decide",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;`, 1–2 lines that change x (`x = x + 3;`, `x = x * 2;`), then `if/else` printing A or B. The original value and the new value fall on different sides of the condition.",
+      "correct": "The letter for the NEW value of x.",
+      "wrong": "The letter for the original value, `AB`, *Nič* / *Nothing*.",
+      "explanation": {
+        "sk": "Pred podmienkou má `x` hodnotu `{newvalue}`, preto {what}.",
+        "en": "Before the condition `x` is `{newvalue}`, so {what}."
+      }
+    },
+    {
+      "id": "lg-separate-ifs",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;` then three SEPARATE `if` statements (no else), each `Console.Write` of A, B, C. Two or three conditions are true.",
+      "correct": "All letters whose condition is true, in order (`AC`).",
+      "wrong": "Only the first true letter (as if it were else-if), all three `ABC`, a wrong combination.",
+      "explanation": {
+        "sk": "Každý `if` sa vyhodnocuje samostatne, preto sa vypíše každé písmeno, ktorého podmienka platí.",
+        "en": "Each `if` is evaluated separately, so every letter whose condition holds is printed."
+      },
+      "example": {
+        "code": "int x = 8;\nif (x > 5) Console.Write(\"A\");\nif (x > 10) Console.Write(\"B\");\nif (x % 2 == 0) Console.Write(\"C\");",
+        "correct": "`AC`",
+        "wrong": [
+          "`A`",
+          "`ABC`",
+          "`C`"
+        ]
+      }
+    },
+    {
+      "id": "lg-negated-compare",
+      "difficulty": 2,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Ktorá podmienka znamená to isté ako `{expr}`?",
+        "en": "Which condition means the same as `{expr}`?"
+      },
+      "code": null,
+      "correct": "`{expr}` = `!(a op b)` with variables a, b; correct = the opposite comparison: `!(a < b)` → `a >= b`, `!(a == b)` → `a != b`, `!(a > b)` → `a <= b`.",
+      "wrong": "The \"almost\" opposite (`a > b` for `!(a < b)`), the original without `!` (`a < b`), the mirrored one (`a <= b`).",
+      "explanation": {
+        "sk": "Opak `{inner}` je `{correct}` – nezabudni na prípad, keď sú hodnoty rovnaké.",
+        "en": "The opposite of `{inner}` is `{correct}` – don't forget the case when the values are equal."
+      },
+      "example": {
+        "code": null,
+        "expr": "!(a < b)",
+        "correct": "`a >= b`",
+        "wrong": [
+          "`a > b`",
+          "`a < b`",
+          "`a <= b`"
+        ]
+      }
+    },
+    {
+      "id": "lg-range-and",
+      "difficulty": 2,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": "Two variants (about half each): (a) `Ktorá podmienka platí práve vtedy, keď je x od {a} do {b} (vrátane)?` / `Which condition is true exactly when x is from {a} to {b} (inclusive)?` – no code; (b) code `if (x >= a && x <= b) Console.Write(\"A\"); else Console.Write(\"B\");` with `int x = <n>;`, question \"Čo vypíše tento kód?\".",
+      "correct": "(a) `x >= a && x <= b`; (b) A or B.",
+      "wrong": "(a) `x >= a || x <= b`, `x > a && x < b`, `a <= x <= b` (invalid in C#); (b) other letter, `AB`, *Nič* / *Nothing*.",
+      "explanation": {
+        "sk": "`&&` vyžaduje, aby platili obe podmienky naraz – `x` musí byť zároveň aspoň {a} a najviac {b}.",
+        "en": "`&&` requires both conditions to hold at once – `x` must be at least {a} and at most {b}."
+      },
+      "example": {
+        "code": null,
+        "correct": "`x >= 1 && x <= 10`",
+        "wrong": [
+          "`x >= 1 || x <= 10`",
+          "`x > 1 && x < 10`",
+          "`1 <= x <= 10`"
+        ]
+      }
+    },
+    {
+      "id": "lg-either-or",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;` then `if (x < <a> || x > <b>) Console.Write(\"A\"); else Console.Write(\"B\");` (outside a range), sometimes `x == <a> || x == <b>`. x is inside, outside, or on the boundary.",
+      "correct": "`A` or `B`.",
+      "wrong": "The other letter, `AB`, *Nič* / *Nothing*.",
+      "explanation": {
+        "sk": "`||` je `true`, keď platí aspoň jedna strana. {steps}",
+        "en": "`||` is `true` when at least one side holds. {steps}"
+      }
+    },
+    {
+      "id": "lg-reverse",
+      "difficulty": 2,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nPre ktorú hodnotu `x` vypíše program `A`?",
+        "en": "{code}\nFor which value of `x` does the program print `A`?"
+      },
+      "code": "`if (<compound condition>) Console.Write(\"A\"); else Console.Write(\"B\");` – the condition always uses `&&` or `||` (and maybe `%` or `!`).",
+      "correct": "The only offered value that prints A.",
+      "wrong": "Three values that print B, chosen to catch typical mistakes (satisfies only one side of `&&`, boundary values).",
+      "explanation": {
+        "sk": "Pre `{value}` platí `{cond}`; ostatné hodnoty podmienku nesplnia.",
+        "en": "For `{value}` the condition `{cond}` holds; the other values don't satisfy it."
+      },
+      "example": {
+        "code": "if (x > 0 && x % 2 == 0)\n    Console.Write(\"A\");\nelse\n    Console.Write(\"B\");",
+        "correct": "`4`",
+        "wrong": [
+          "`3`",
+          "`-2`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "lg-no-braces",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;` then `if (<cond>)` WITHOUT braces followed by TWO indented lines (`Console.Write(\"A\");`, `Console.Write(\"B\");`), then maybe a third. The condition is false.",
+      "correct": "The output where only the first indented line depends on the `if` (e.g. `B`).",
+      "wrong": "Nothing printed (*Nič* / *Nothing*) – as if both lines were inside, `AB`, `A`.",
+      "explanation": {
+        "sk": "Bez zložených zátvoriek patrí k `if` iba prvý príkaz. Odsadenie na tom nič nemení.",
+        "en": "Without braces only the first statement belongs to the `if`. Indentation doesn't change that."
+      },
+      "example": {
+        "code": "int x = 2;\nif (x > 5)\n    Console.Write(\"A\");\n    Console.Write(\"B\");",
+        "correct": "`B`",
+        "wrong": [
+          "Nič",
+          "`AB`",
+          "`A`"
+        ]
+      }
+    },
+    {
+      "id": "lg-dangling-else",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "Nested `if` without braces, with an `else` indented as if it belonged to the OUTER `if`. Letters A, B.",
+      "correct": "The output when `else` belongs to the nearest (inner) `if`.",
+      "wrong": "The output if `else` belonged to the outer `if`, `AB`, *Nič* / *Nothing*.",
+      "explanation": {
+        "sk": "`else` patrí vždy k najbližšiemu `if`, ktorý ešte nemá `else` – odsadenie na tom nič nemení.",
+        "en": "`else` always belongs to the nearest `if` without an `else` – indentation doesn't matter."
+      },
+      "example": {
+        "code": "int x = 5;\nif (x > 3)\n    if (x > 10)\n        Console.Write(\"A\");\nelse\n    Console.Write(\"B\");",
+        "correct": "`B`",
+        "wrong": [
+          "Nič",
+          "`A`",
+          "`AB`"
+        ]
+      }
+    },
+    {
+      "id": "lg-semicolon-if",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int x = <n>;` then `if (<false condition>);` – with a semicolon – followed by `Console.Write(\"A\");` or a `{ … }` block, then `Console.Write(\"B\");`.",
+      "correct": "The output where the line/block after `if (…);` always runs (`AB`).",
+      "wrong": "The output as if the `if` worked (`B`), *Nič* / *Nothing*, `A`.",
+      "explanation": {
+        "sk": "Bodkočiarka za `if (…)` ukončí príkaz – `if` má prázdne telo a nasledujúci riadok sa vykoná vždy.",
+        "en": "The semicolon after `if (…)` ends the statement – the `if` has an empty body and the next line always runs."
+      },
+      "example": {
+        "code": "int x = 3;\nif (x > 10);\n    Console.Write(\"A\");\nConsole.Write(\"B\");",
+        "correct": "`AB`",
+        "wrong": [
+          "`B`",
+          "Nič",
+          "`A`"
+        ]
+      },
+      "notes": "Compiles with warning CS0642 only."
+    },
+    {
+      "id": "lg-compile-error",
+      "difficulty": 3,
+      "kind": "compile-error",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKtorý riadok spôsobí chybu pri preklade?",
+        "en": "{code}\nWhich line causes a compile error?"
+      },
+      "code": "Code block only declares the variables: `int x = 5;` and `bool b = false;`. The 4 answers are `if` lines.",
+      "correct": "One invalid `if`: `if (x = 5)`, `if (x)`, `if (1 <= x <= 10)`, `if (!x > 3)`, `if (x > 3 && 10)`, `if (x == 1 || 2)`.",
+      "wrong": "Three valid lines, at least one that looks wrong but compiles: `if (b = true)` (assigns, compiles with a warning), `if (b)`, `if (!b)`, `if (x != 5 || b)`.",
+      "explanation": {
+        "sk": "`{line}` sa nedá preložiť: {reason}.",
+        "en": "`{line}` does not compile: {reason}."
+      },
+      "example": {
+        "code": "int x = 5;\nbool b = false;",
+        "correct": "`if (x = 5)`",
+        "wrong": [
+          "`if (b = true)`",
+          "`if (!b)`",
+          "`if (x != 5 || b)`"
+        ]
+      }
+    },
+    {
+      "id": "lg-else-if-order",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "Grading-style chain with conditions in the WRONG order (wider first): `if (body > 50) … else if (body > 80) … else …` printing letters; the value would fit the later, more specific branch.",
+      "correct": "The letter of the first true branch (the wider one).",
+      "wrong": "The letter the author intended (more specific branch), both letters, the else letter.",
+      "explanation": {
+        "sk": "Vetvy sa skúšajú zhora: `{cond}` platí už pre `{value}`, takže ďalšie vetvy sa nikdy nevyskúšajú.",
+        "en": "Branches are tried from the top: `{cond}` already holds for `{value}`, so the later branches are never tried."
+      },
+      "example": {
+        "code": "int body = 90;\nif (body > 50)\n    Console.Write(\"C\");\nelse if (body > 80)\n    Console.Write(\"A\");\nelse\n    Console.Write(\"F\");",
+        "correct": "`C`",
+        "wrong": [
+          "`A`",
+          "`CA`",
+          "`F`"
+        ]
+      }
+    },
+    {
+      "id": "lg-short-circuit",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int a = 0;` (or another value) and a condition where the right side would divide by a: `if (a != 0 && 10 / a > 1)` or `if (a == 0 || 10 / a > 1)`, printing A / B.",
+      "correct": "The letter printed thanks to short-circuit evaluation (no exception).",
+      "wrong": "The other letter, *Program spadne (DivideByZeroException)* / *The program crashes (DivideByZeroException)*, *Chyba pri preklade* / *Compile error*.",
+      "explanation": {
+        "sk": "`&&` a `||` sú skrátené: ak ľavá strana rozhodne o výsledku, pravá sa vôbec nevyhodnotí – k deleniu nulou nedôjde.",
+        "en": "`&&` and `||` short-circuit: if the left side decides the result, the right side is never evaluated – no division by zero happens."
+      },
+      "example": {
+        "code": "int a = 0;\nif (a != 0 && 10 / a > 1)\n    Console.Write(\"A\");\nelse\n    Console.Write(\"B\");",
+        "correct": "`B`",
+        "wrong": [
+          "`A`",
+          "Program spadne (DivideByZeroException)",
+          "Chyba pri preklade"
+        ]
+      }
+    },
+    {
+      "id": "lg-and-or-precedence",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "Akú hodnotu má výraz `{expr}`?",
+        "en": "What is the value of the expression `{expr}`?"
+      },
+      "code": "No code block, or `int x = <n>;` + `bool b = <expr>;`. Three operands mixing `&&` and `||` without parentheses, where left-to-right evaluation gives a different result than the real one (`true || false && false`, `x < 0 || x > 5 && x < 3`).",
+      "correct": "The value with `&&` evaluated before `||`.",
+      "wrong": "Always the set `true`, `false`, `1`, `0` – the correct one plus the other three (C# bool is not a number). Make sure the left-to-right result is the opposite of the correct one.",
+      "explanation": {
+        "sk": "`&&` má prednosť pred `||`, výraz sa vyhodnotí ako `{grouped}` = `{value}`.",
+        "en": "`&&` has higher precedence than `||`, so the expression is evaluated as `{grouped}` = `{value}`."
+      },
+      "example": {
+        "code": null,
+        "expr": "true || false && false",
+        "correct": "`true`",
+        "wrong": [
+          "`false`",
+          "`1`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "lg-precedence",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`int x = <n>;` then `bool <name> = <expr>;` where expr mixes arithmetic and comparison and maybe `!` with parentheses: `x + 2 > 3 * 2`, `!(x % 3 == 0)`, `x * 2 == x + 4`.",
+      "correct": "`true` or `false`.",
+      "wrong": "Always the set `true`, `false`, `1`, `0` – the correct one plus the other three (C# bool is not a number).",
+      "explanation": {
+        "sk": "Najprv sa vypočíta aritmetika (`*`, `/`, `%` pred `+`, `-`), potom porovnanie: {steps}.",
+        "en": "Arithmetic is done first (`*`, `/`, `%` before `+`, `-`), then the comparison: {steps}."
+      }
+    },
+    {
+      "id": "lg-de-morgan",
+      "difficulty": 3,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Ktorá podmienka znamená to isté ako `{expr}`?",
+        "en": "Which condition means the same as `{expr}`?"
+      },
+      "code": null,
+      "correct": "`{expr}` = `!(A && B)` or `!(A || B)` with simple comparisons of x, y; correct = De Morgan form with both comparisons flipped and the operator swapped: `!(x > 0 && y > 0)` → `x <= 0 || y <= 0`.",
+      "wrong": "Flipped comparisons but operator NOT swapped (`x <= 0 && y <= 0`), operator swapped but comparisons flipped wrong (`x < 0 || y < 0`), and `!x > 0 || !y > 0` (invalid).",
+      "explanation": {
+        "sk": "Negácia `&&` je `||` (a naopak) a každá podmienka sa otočí: `{correct}`.",
+        "en": "The negation of `&&` is `||` (and vice versa), and each condition is flipped: `{correct}`."
+      },
+      "example": {
+        "code": null,
+        "expr": "!(x > 0 && y > 0)",
+        "correct": "`x <= 0 || y <= 0`",
+        "wrong": [
+          "`x <= 0 && y <= 0`",
+          "`x < 0 || y < 0`",
+          "`!x > 0 || !y > 0`"
+        ]
+      }
+    },
+    {
+      "id": "lg-trace-branches",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "6–10 lines: `int x = <n>;`, an `if/else` that changes x differently in each branch, then a second `if` (using `&&`/`||` or `%`) that changes x again. Braces everywhere.",
+      "correct": "The final value of x.",
+      "wrong": "Values from taking the wrong branch in the first or the second `if`, and the value after only the first `if`.",
+      "explanation": {
+        "sk": "Postupne: {steps}. Na konci má `{name}` hodnotu `{value}`.",
+        "en": "Step by step: {steps}. At the end `{name}` is `{value}`."
+      },
+      "example": {
+        "code": "int x = 7;\nif (x % 2 == 0)\n{\n    x = x / 2;\n}\nelse\n{\n    x = x * 3;\n}\nif (x > 20 || x < 5)\n{\n    x = x - 10;\n}",
+        "correct": "`11`",
+        "wrong": [
+          "`21`",
+          "`-7`",
+          "`-3`"
+        ]
+      }
+    }
+  ]
+}

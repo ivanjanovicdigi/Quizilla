@@ -1,0 +1,830 @@
+{
+  "topic": "lists",
+  "source": "Templates chosen by the teacher from Claude's suggestions (2026-10-22). Allowed members: Add, Insert, Remove, RemoveAt, Count, Contains, IndexOf, Clear, Sort, Reverse, indexer, new List<T>(other).",
+  "conventions": {
+    "placeholders": "{code} = C# block (```csharp), other {…} = values of the generated question",
+    "style": "Top-level program; lists created with `new List<int>()` or a collection initializer `new List<int> { 1, 2, 3 }` (not `[1, 2, 3]`). No foreach, no lambdas (Find, RemoveAll, ForEach), no LINQ (`Count()`, `Max()`). Local functions as in functions.json.",
+    "answers": "Answers are written as inline code, except text answers (meanings, Nič/Nothing, Nekonečný cyklus/Infinite loop, crash messages), which are plain text and translated in EN. The correct answer is stored first.",
+    "output": "Lists are printed with a `for` loop (`i < z.Count`) and Console.Write – single digits without separators. Never Console.Write(z) directly. Never print a bool or a double.",
+    "crash": "A runtime crash is written as *Program spadne (ArgumentOutOfRangeException)* / *The program crashes (ArgumentOutOfRangeException)*.",
+    "bool": "Bool answers use the set `true`, `false`, `1`, `0`.",
+    "difficulty": "1 = easy, 2 = medium, 3 = hard.",
+    "explanation": "One sentence from the template; add a second sentence only when the code has a trap.",
+    "english": "Code is shared by SK and EN; only the wording is translated."
+  },
+  "templates": [
+    {
+      "id": "ls-count-after-add",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`List<int> z = new List<int>();`, 2–5 `z.Add(…)` calls (values that look like counts), then `int <name> = z.Count;`.",
+      "correct": "The number of Add calls.",
+      "wrong": "Count − 1 (last index), the last added value, 0.",
+      "explanation": {
+        "sk": "Každé `Add` pridá jeden prvok – v zozname sú {value} prvky.",
+        "en": "Each `Add` adds one element – the list has {value} elements."
+      },
+      "example": {
+        "code": "List<int> z = new List<int>();\nz.Add(5);\nz.Add(8);\nz.Add(2);\nint v = z.Count;",
+        "name": "v",
+        "correct": "`3`",
+        "wrong": [
+          "`2`",
+          "`0`",
+          "`5`"
+        ]
+      }
+    },
+    {
+      "id": "ls-index-value",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A list filled with Add or an initializer, then `int <name> = z[<i>];`.",
+      "correct": "The element at index i.",
+      "wrong": "The element at i − 1 / i + 1, and i itself.",
+      "explanation": {
+        "sk": "Indexy v zozname začínajú od `0` rovnako ako v poli.",
+        "en": "List indexes start at `0`, just like in an array."
+      },
+      "example": {
+        "code": "List<int> z = new List<int>();\nz.Add(5);\nz.Add(8);\nz.Add(3);\nint v = z[1];",
+        "name": "v",
+        "correct": "`8`",
+        "wrong": [
+          "`5`",
+          "`3`",
+          "`1`"
+        ]
+      }
+    },
+    {
+      "id": "ls-creation",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Ktorý riadok správne vytvorí zoznam celých čísel?",
+        "en": "Which line correctly creates a list of integers?"
+      },
+      "code": null,
+      "correct": "One valid creation: `List<int> z = new List<int>();` or `List<int> z = new List<int> { 1, 2 };`.",
+      "wrong": "`List z = new List();`, `List<int> z = new List<int>;`, `List<int> z = new List<int>[3];`, `List<int> z = new int[3];`, `int<List> z = …`.",
+      "explanation": {
+        "sk": "Zoznam sa vytvára ako `new List<typ>()` – so zátvorkami a typom v `< >`.",
+        "en": "A list is created with `new List<type>()` – with brackets and the type in `< >`."
+      },
+      "example": {
+        "code": null,
+        "correct": "`List<int> z = new List<int>();`",
+        "wrong": [
+          "`List z = new List();`",
+          "`List<int> z = new List<int>;`",
+          "`List<int> z = new int[3];`"
+        ]
+      }
+    },
+    {
+      "id": "ls-add-order",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "Empty list, 3–5 Add calls with single digits, then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The digits in the order of adding.",
+      "wrong": "Reversed order, sorted order, missing the last one.",
+      "explanation": {
+        "sk": "`Add` vždy pridá prvok na koniec zoznamu.",
+        "en": "`Add` always appends the element to the end of the list."
+      },
+      "example": {
+        "code": "List<int> z = new List<int>();\nz.Add(5);\nz.Add(8);\nz.Add(3);\nfor (int i = 0; i < z.Count; i++)\n    Console.Write(z[i]);",
+        "correct": "`583`",
+        "wrong": [
+          "`385`",
+          "`358`",
+          "`58`"
+        ]
+      }
+    },
+    {
+      "id": "ls-term-purpose",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "\"Na čo slúži / Čo robí `{term}`?\" with {term} ∈ `Add` (pridá prvok na koniec), `Remove` (odstráni prvý výskyt hodnoty), `RemoveAt` (odstráni prvok na indexe), `Insert` (vloží prvok na daný index), `Count` (počet prvkov), `Contains` (zistí, či zoznam obsahuje hodnotu), `IndexOf` (index prvého výskytu alebo -1), `Clear` (odstráni všetky prvky), `Sort` (zoradí vzostupne), `Reverse` (otočí poradie). Text answers.",
+      "wrong": "Meanings of similar members (Remove ↔ RemoveAt, Add ↔ Insert, Count ↔ IndexOf), or a fake (Remove odstráni posledný prvok / removes the last element).",
+      "explanation": {
+        "sk": "`{term}`: {meaning}.",
+        "en": "`{term}`: {meaning}."
+      },
+      "example": {
+        "code": null,
+        "prompt": "Čo robí `z.RemoveAt(2)`?",
+        "correct": "odstráni prvok na indexe 2",
+        "wrong": [
+          "odstráni prvý výskyt hodnoty 2",
+          "odstráni posledné 2 prvky",
+          "vloží hodnotu 2 na koniec"
+        ]
+      },
+      "notes": "Translate text answers in EN."
+    },
+    {
+      "id": "ls-purpose-term",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "Reverse of ls-term-purpose: description given, the answer is the member.",
+      "wrong": "Three other members from the same list, preferring look-alikes.",
+      "explanation": {
+        "sk": "{meaning_cap} – to je `{term}`.",
+        "en": "{meaning_cap} – that's `{term}`."
+      },
+      "example": {
+        "code": null,
+        "prompt": "Ktorá metóda vloží prvok na zadaný index?",
+        "correct": "`Insert`",
+        "wrong": [
+          "`Add`",
+          "`IndexOf`",
+          "`RemoveAt`"
+        ]
+      }
+    },
+    {
+      "id": "ls-count-vs-length",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{prompt}",
+        "en": "{prompt}"
+      },
+      "code": null,
+      "correct": "\"Ako zistíme počet prvkov zoznamu `z`?\" → `z.Count`; or the array version \"… poľa `a`?\" → `a.Length` (about a third).",
+      "wrong": "`z.Length`, `z.Count()`, `z.Size`, `a.Count` (for the array version).",
+      "explanation": {
+        "sk": "Pole má `Length`, zoznam má `Count`.",
+        "en": "An array has `Length`, a list has `Count`."
+      },
+      "example": {
+        "code": null,
+        "prompt": "Ako zistíme počet prvkov zoznamu `z`?",
+        "correct": "`z.Count`",
+        "wrong": [
+          "`z.Length`",
+          "`z.Size`",
+          "`z.Count()`"
+        ]
+      },
+      "notes": "`z.Count()` compiles only with LINQ – it's a wrong answer here because LINQ isn't used in the course."
+    },
+    {
+      "id": "ls-contains",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A list (initializer) and `bool <name> = z.Contains(<x>);` – x present, missing, or equal to an index but not a value.",
+      "correct": "`true` or `false`.",
+      "wrong": "Always the set `true`, `false`, `1`, `0`.",
+      "explanation": {
+        "sk": "`Contains` hľadá hodnotu, nie index – {why}.",
+        "en": "`Contains` looks for a value, not an index – {why}."
+      }
+    },
+    {
+      "id": "ls-clear",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A list with 2–5 elements, `z.Clear();`, sometimes followed by one `Add`, then `int <name> = z.Count;`.",
+      "correct": "0 (or 1 after an Add).",
+      "wrong": "The count before Clear, 1 / 0 (whichever is wrong), the added value.",
+      "explanation": {
+        "sk": "`Clear` odstráni všetky prvky.",
+        "en": "`Clear` removes all elements."
+      }
+    },
+    {
+      "id": "ls-new-empty",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`List<int> z = new List<int>();` and `int <name> = z.Count;` – in about a third, compare with `int[] a = new int[n]; int <name> = a.Length;`.",
+      "correct": "0 for the list (n for the array).",
+      "wrong": "n / 0 (whichever is wrong), 1, −1.",
+      "explanation": {
+        "sk": "Nový zoznam je prázdny – na rozdiel od `new int[n]`, ktoré má hneď n prvkov.",
+        "en": "A new list is empty – unlike `new int[n]`, which has n elements right away."
+      }
+    },
+    {
+      "id": "ls-loop-print",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A list (initializer, single digits) and `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`, sometimes backwards.",
+      "correct": "The printed digits.",
+      "wrong": "Indexes instead of values, reversed / not reversed, one element missing.",
+      "explanation": {
+        "sk": "Cyklus prejde indexy 0 až `Count - 1`.",
+        "en": "The loop goes through indexes 0 to `Count - 1`."
+      }
+    },
+    {
+      "id": "ls-string-list",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`List<string> mena = new List<string> { … };` and `string <name> = mena[i];` or `int <name> = mena.Count;`.",
+      "correct": "The string in quotes, or the count.",
+      "wrong": "A neighbouring name, the name without quotes, the type.",
+      "explanation": {
+        "sk": "`mena[{i}]` je {pos}. meno v zozname.",
+        "en": "`mena[{i}]` is name number {pos} in the list."
+      }
+    },
+    {
+      "id": "ls-remove-value",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A list with a duplicated value (initializer), `z.Remove(<x>);`, then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The list without the FIRST occurrence of x.",
+      "wrong": "All occurrences removed, the last occurrence removed, the element at index x removed.",
+      "explanation": {
+        "sk": "`Remove` odstráni iba prvý výskyt hodnoty {x}.",
+        "en": "`Remove` removes only the first occurrence of {x}."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 4, 2, 7, 2 };\nz.Remove(2);\nfor (int i = 0; i < z.Count; i++)\n    Console.Write(z[i]);",
+        "correct": "`472`",
+        "wrong": [
+          "`47`",
+          "`427`",
+          "`422`"
+        ]
+      }
+    },
+    {
+      "id": "ls-removeat",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A list, `z.RemoveAt(<i>);`, then `int <name> = z[<i>];` (the element that moved into place i) or `z.Count`.",
+      "correct": "The element that shifted into index i.",
+      "wrong": "The removed element, the element two places further, the value i.",
+      "explanation": {
+        "sk": "Po `RemoveAt({i})` sa prvky za ním posunú o jedno dopredu.",
+        "en": "After `RemoveAt({i})` the elements behind it move one place forward."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 5, 6, 7, 8 };\nz.RemoveAt(1);\nint v = z[1];",
+        "name": "v",
+        "correct": "`7`",
+        "wrong": [
+          "`6`",
+          "`8`",
+          "`1`"
+        ]
+      }
+    },
+    {
+      "id": "ls-insert",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A list, `z.Insert(<i>, <x>);` (i = 0, middle, or Count), then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The list with x at index i and the rest shifted.",
+      "wrong": "x replacing the element at i, x at i + 1, x at the end.",
+      "explanation": {
+        "sk": "`Insert` vloží `{x}` na index {i} a ostatné prvky posunie dozadu.",
+        "en": "`Insert` puts `{x}` at index {i} and shifts the rest back."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 1, 2, 3 };\nz.Insert(1, 9);\nfor (int i = 0; i < z.Count; i++)\n    Console.Write(z[i]);",
+        "correct": "`1923`",
+        "wrong": [
+          "`193`",
+          "`1293`",
+          "`1239`"
+        ]
+      }
+    },
+    {
+      "id": "ls-remove-vs-removeat",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`List<int>` where a value equals another element's index (`{ 3, 1, 2, 1 }`), and `z.Remove(1);` or `z.RemoveAt(1);`, then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The result of the method actually used.",
+      "wrong": "The result of the other method, both occurrences removed, unchanged.",
+      "explanation": {
+        "sk": "`Remove(1)` hľadá hodnotu 1, `RemoveAt(1)` odstráni prvok na indexe 1.",
+        "en": "`Remove(1)` looks for the value 1; `RemoveAt(1)` removes the element at index 1."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 3, 1, 2, 1 };\nz.Remove(2);\nfor (int i = 0; i < z.Count; i++)\n    Console.Write(z[i]);",
+        "correct": "`311`",
+        "wrong": [
+          "`321`",
+          "`3121`",
+          "`31`"
+        ]
+      }
+    },
+    {
+      "id": "ls-ops-sequence",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "3–5 operations mixing `Add`, `Insert`, `Remove`, `RemoveAt` on a small list, then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The final content.",
+      "wrong": "Results with one operation misread (Remove as RemoveAt, Insert as Add), the content before the last operation.",
+      "explanation": {
+        "sk": "Po krokoch: {steps}.",
+        "en": "Step by step: {steps}."
+      }
+    },
+    {
+      "id": "ls-sum-max",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A list (initializer, some negatives) and a loop computing sum, max or min.",
+      "correct": "The result.",
+      "wrong": "Off-by-one results, the first/last element, Count.",
+      "explanation": {
+        "sk": "{steps}",
+        "en": "{steps}"
+      }
+    },
+    {
+      "id": "ls-indexof",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`int <name> = z.IndexOf(<x>);` – x once, several times, or missing; sometimes after a `Remove` / `Insert` that shifted it.",
+      "correct": "The index of the first occurrence, or `-1`.",
+      "wrong": "The last occurrence, position from 1, 0 for missing, the index before the shift.",
+      "explanation": {
+        "sk": "`IndexOf` vráti index prvého výskytu, alebo `-1`.",
+        "en": "`IndexOf` returns the index of the first occurrence, or `-1`."
+      }
+    },
+    {
+      "id": "ls-filter-new",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`List<int> b = new List<int>();` and a loop over list a with `if (<cond>) b.Add(a[i]);`, then `int <name> = b.Count;` or `b[k]`.",
+      "correct": "The count (or element) of the filtered list.",
+      "wrong": "a.Count, count ± 1, an element of a that doesn't match.",
+      "explanation": {
+        "sk": "Do `b` sa pridajú iba {values}.",
+        "en": "Only {values} are added to `b`."
+      }
+    },
+    {
+      "id": "ls-sort-reverse",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A list, `z.Sort();` and/or `z.Reverse();` (one or both, either order), then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The resulting order.",
+      "wrong": "Original order, sorted when it should be reversed, descending vs ascending mix-up.",
+      "explanation": {
+        "sk": "`Sort` zoradí vzostupne, `Reverse` otočí aktuálne poradie.",
+        "en": "`Sort` sorts ascending; `Reverse` reverses the current order."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 3, 1, 2 };\nz.Sort();\nz.Reverse();\nfor (int i = 0; i < z.Count; i++)\n    Console.Write(z[i]);",
+        "correct": "`321`",
+        "wrong": [
+          "`213`",
+          "`123`",
+          "`312`"
+        ]
+      }
+    },
+    {
+      "id": "ls-function-adds",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "A list passed to a void local function that calls `Add` / `RemoveAt` on its parameter; then `int <name> = z.Count;` or `z[k]`.",
+      "correct": "The value after the function's change.",
+      "wrong": "The value before the call, the count with one change missed, 0.",
+      "explanation": {
+        "sk": "Funkcia dostane ten istý zoznam, nie kópiu – zmena je viditeľná aj mimo nej.",
+        "en": "The function gets the same list, not a copy – the change is visible outside it."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 1, 2 };\nPridaj(z);\nint v = z.Count;\n\nvoid Pridaj(List<int> zoznam)\n{\n    zoznam.Add(5);\n}",
+        "name": "v",
+        "correct": "`3`",
+        "wrong": [
+          "`2`",
+          "`5`",
+          "`1`"
+        ]
+      }
+    },
+    {
+      "id": "ls-out-of-range",
+      "difficulty": 2,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKtorý riadok spôsobí pád programu?",
+        "en": "{code}\nWhich line makes the program crash?"
+      },
+      "code": "A list (initializer, 3–5 elements). Answers are single lines.",
+      "correct": "An invalid access: `z[z.Count]`, `z[-1]`, `z.RemoveAt(z.Count)`, `z.Insert(z.Count + 1, 0)`.",
+      "wrong": "Three valid lines including tempting ones: `z.Insert(z.Count, 0)` (= add at the end), `z.Remove(99)` (missing value – no error), `z[z.Count - 1]`.",
+      "explanation": {
+        "sk": "Platné indexy sú 0 až `Count - 1` (pri `Insert` aj `Count`).",
+        "en": "Valid indexes are 0 to `Count - 1` (for `Insert` also `Count`)."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 4, 5, 6 };",
+        "correct": "`int x = z[3];`",
+        "wrong": [
+          "`z.Insert(3, 7);`",
+          "`z.Remove(99);`",
+          "`int x = z[2];`"
+        ]
+      }
+    },
+    {
+      "id": "ls-remove-missing",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A list, `z.Remove(<x>);` with x NOT in the list (sometimes x equals a valid index), then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The unchanged list.",
+      "wrong": "*Program spadne (ArgumentOutOfRangeException)* / *The program crashes (ArgumentOutOfRangeException)*, the list without the element at index x, the list without the last element.",
+      "explanation": {
+        "sk": "`Remove` hodnotu `{x}` nenájde, preto nič neodstráni a nespadne.",
+        "en": "`Remove` doesn't find `{x}`, so it removes nothing and doesn't crash."
+      }
+    },
+    {
+      "id": "ls-remove-forward-loop",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`for (int i = 0; i < z.Count; i++) if (<cond>) z.RemoveAt(i);` on a list where two matching elements are next to each other, then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The list with the second of the adjacent matches left (skipped).",
+      "wrong": "The correctly filtered list, the original list, a crash.",
+      "explanation": {
+        "sk": "Po `RemoveAt(i)` sa ďalší prvok posunie na index i, ale cyklus pokračuje s `i + 1` – preskočí ho.",
+        "en": "After `RemoveAt(i)` the next element moves to index i, but the loop continues with `i + 1` – it's skipped."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 1, 2, 4, 5 };\nfor (int i = 0; i < z.Count; i++)\n{\n    if (z[i] % 2 == 0)\n        z.RemoveAt(i);\n}\nfor (int i = 0; i < z.Count; i++)\n    Console.Write(z[i]);",
+        "correct": "`145`",
+        "wrong": [
+          "`15`",
+          "`1245`",
+          "`125`"
+        ]
+      }
+    },
+    {
+      "id": "ls-remove-backward-loop",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`for (int i = z.Count - 1; i >= 0; i--) if (<cond>) z.RemoveAt(i);` on a list with adjacent matches, then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The correctly filtered list.",
+      "wrong": "The forward-loop result (skipped element), the removed elements only, the original.",
+      "explanation": {
+        "sk": "Pri mazaní odzadu sa posúvajú iba už skontrolované prvky, takže sa nič nepreskočí.",
+        "en": "When removing from the back, only already-checked elements move, so nothing is skipped."
+      }
+    },
+    {
+      "id": "ls-add-in-loop",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`for (int i = 0; i < z.Count; i++) { Console.Write(z[i]); z.Add(…); }` → infinite; in about a third the loop uses a saved `int n = z.Count;` → finite output.",
+      "correct": "*Nekonečný cyklus* / *Infinite loop*, or the printed digits for the saved-count version.",
+      "wrong": "The output as if Count stayed the same, *Program spadne (ArgumentOutOfRangeException)* / *The program crashes (ArgumentOutOfRangeException)*, only the original elements.",
+      "explanation": {
+        "sk": "{why}",
+        "en": "{why}"
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 1, 2 };\nfor (int i = 0; i < z.Count; i++)\n{\n    Console.Write(z[i]);\n    z.Add(0);\n}",
+        "correct": "Nekonečný cyklus",
+        "wrong": [
+          "`12`",
+          "Program spadne (ArgumentOutOfRangeException)",
+          "`1200`"
+        ]
+      },
+      "notes": "{why}: \"Každá iterácia pridá prvok, takže `z.Count` rastie rovnako rýchlo ako `i`.\" / \"Every iteration adds an element, so `z.Count` grows as fast as `i`.\""
+    },
+    {
+      "id": "ls-reference-copy",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`List<int> b = a;` then changes through b (`b.Add`, `b.RemoveAt`), then `int <name> = a.Count;` or `a[k]`.",
+      "correct": "The value from the shared list (changed).",
+      "wrong": "The value before the change, the change applied twice, 0.",
+      "explanation": {
+        "sk": "`b = a` neskopíruje zoznam – obe premenné ukazujú na ten istý.",
+        "en": "`b = a` doesn't copy the list – both variables point to the same one."
+      },
+      "example": {
+        "code": "List<int> a = new List<int> { 1, 2 };\nList<int> b = a;\nb.Add(3);\nint v = a.Count;",
+        "name": "v",
+        "correct": "`3`",
+        "wrong": [
+          "`2`",
+          "`4`",
+          "`1`"
+        ]
+      }
+    },
+    {
+      "id": "ls-real-copy",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAké hodnoty budú mať `a.Count` a `b.Count`?",
+        "en": "{code}\nWhat values will `a.Count` and `b.Count` have?"
+      },
+      "code": "`List<int> b = new List<int>(a);` (or copied with a loop), then changes to b (and sometimes a).",
+      "correct": "Independent counts (`a.Count = 2, b.Count = 3`).",
+      "wrong": "Both changed, swapped, both unchanged.",
+      "explanation": {
+        "sk": "`new List<int>(a)` vytvorí nový zoznam s kópiou prvkov – zmeny sa navzájom neovplyvňujú.",
+        "en": "`new List<int>(a)` creates a new list with copies of the elements – changes don't affect each other."
+      },
+      "example": {
+        "code": "List<int> a = new List<int> { 1, 2 };\nList<int> b = new List<int>(a);\nb.Add(3);",
+        "correct": "`a.Count = 2, b.Count = 3`",
+        "wrong": [
+          "`a.Count = 3, b.Count = 3`",
+          "`a.Count = 2, b.Count = 2`",
+          "`a.Count = 3, b.Count = 2`"
+        ]
+      }
+    },
+    {
+      "id": "ls-insert-bounds",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`z.Insert(z.Count, x);` (valid – same as Add) or `z.Insert(z.Count + 1, x);` (crash) or `z[z.Count] = x;` (crash), then print.",
+      "correct": "The list with x at the end, or *Program spadne (ArgumentOutOfRangeException)* / *The program crashes (ArgumentOutOfRangeException)*.",
+      "wrong": "The other outcome, x at the beginning, the list unchanged.",
+      "explanation": {
+        "sk": "`Insert` dovolí index 0 až `Count`; indexovanie `z[i]` iba 0 až `Count - 1`.",
+        "en": "`Insert` allows index 0 to `Count`; indexing `z[i]` only 0 to `Count - 1`."
+      }
+    },
+    {
+      "id": "ls-remove-dupes-index",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A list like `{ 3, 1, 2, 1 }` and 2–3 calls mixing `Remove(x)` and `RemoveAt(i)` where values equal indexes, then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "The final list.",
+      "wrong": "Results with Remove and RemoveAt swapped, all occurrences removed, one step missing.",
+      "explanation": {
+        "sk": "Po krokoch: {steps}.",
+        "en": "Step by step: {steps}."
+      },
+      "example": {
+        "code": "List<int> z = new List<int> { 3, 1, 2, 1 };\nz.Remove(1);\nz.RemoveAt(1);\nfor (int i = 0; i < z.Count; i++)\n    Console.Write(z[i]);",
+        "correct": "`31`",
+        "wrong": [
+          "`32`",
+          "`3`",
+          "`21`"
+        ]
+      }
+    },
+    {
+      "id": "ls-stale-index",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "`int idx = z.IndexOf(<x>);` saved, then `z.Insert(0, …)` or `z.RemoveAt(0)`, then `int <name> = z[idx];`.",
+      "correct": "The element now at the old index (not x).",
+      "wrong": "x itself (as if the index still pointed to it), the element on the other side, idx.",
+      "explanation": {
+        "sk": "Po zmene sa prvky posunuli, takže na indexe {idx} je teraz `{value}`.",
+        "en": "After the change the elements moved, so index {idx} now holds `{value}`."
+      }
+    },
+    {
+      "id": "ls-while-count",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`while (z.Count > k) z.RemoveAt(0);` (or `RemoveAt(z.Count - 1)`, or alternating), then print with `for (int i = 0; i < z.Count; i++) Console.Write(z[i]);`",
+      "correct": "What's left.",
+      "wrong": "Removed from the wrong end, one element more / less left, the removed elements.",
+      "explanation": {
+        "sk": "Cyklus maže, kým je v zozname viac ako {k} prvkov.",
+        "en": "The loop removes elements while the list has more than {k}."
+      }
+    },
+    {
+      "id": "ls-vs-array-compile",
+      "difficulty": 3,
+      "kind": "compile-error",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKtorý riadok spôsobí chybu pri preklade?",
+        "en": "{code}\nWhich line causes a compile error?"
+      },
+      "code": "`int[] a = { 1, 2, 3 };` and `List<int> z = new List<int> { 1, 2, 3 };`. Answers are single lines.",
+      "correct": "One invalid line: `a.Add(4);`, `int n = z.Length;`, `int n = a.Count;`, `int[] b = z;`, `List<int> y = a;`.",
+      "wrong": "Three valid lines: `z.Add(4);`, `int n = a.Length;`, `int x = z[0] + a[0];`, `Array.Sort(a);`, `z.Sort();`.",
+      "explanation": {
+        "sk": "{reason}",
+        "en": "{reason}"
+      },
+      "example": {
+        "code": "int[] a = { 1, 2, 3 };\nList<int> z = new List<int> { 1, 2, 3 };",
+        "correct": "`a.Add(4);`",
+        "wrong": [
+          "`z.Add(4);`",
+          "`int n = a.Length;`",
+          "`int x = z[0] + a[0];`"
+        ]
+      },
+      "notes": "Don't use `a.Count` as valid – it only compiles with LINQ (`Count()`), and `a.Count` without brackets never compiles."
+    },
+    {
+      "id": "ls-unique",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`List<int> b = new List<int>();` and a loop over a with `if (!b.Contains(a[i])) b.Add(a[i]);` – a has duplicates; print b.",
+      "correct": "The values in order of first appearance, without duplicates.",
+      "wrong": "Sorted unique values, the original a, only the values that were duplicated.",
+      "explanation": {
+        "sk": "Hodnota sa pridá iba vtedy, keď ešte v `b` nie je.",
+        "en": "A value is added only when it isn't in `b` yet."
+      },
+      "example": {
+        "code": "List<int> a = new List<int> { 3, 1, 3, 2, 1 };\nList<int> b = new List<int>();\nfor (int i = 0; i < a.Count; i++)\n{\n    if (!b.Contains(a[i]))\n        b.Add(a[i]);\n}\nfor (int i = 0; i < b.Count; i++)\n    Console.Write(b[i]);",
+        "correct": "`312`",
+        "wrong": [
+          "`123`",
+          "`31321`",
+          "`31`"
+        ]
+      }
+    },
+    {
+      "id": "ls-trace",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A loop (3–5 iterations) doing mixed operations depending on values (`if (z[i] > 3) z.Insert(…); else …`) or a counter, then print.",
+      "correct": "The final content.",
+      "wrong": "Result with one operation misread, the content after one iteration less, the original.",
+      "explanation": {
+        "sk": "Po krokoch: {steps}.",
+        "en": "Step by step: {steps}."
+      }
+    }
+  ]
+}

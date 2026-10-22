@@ -1,0 +1,951 @@
+{
+  "topic": "cycles",
+  "source": "Templates chosen by the teacher from Claude's suggestions (2026-10-22). No do-while.",
+  "conventions": {
+    "placeholders": "{code} = C# block (```csharp), other {…} = values of the generated question",
+    "answers": "Answers are written as inline code, except text answers (purposes, Nič/Nothing, Nekonečný cyklus/Infinite loop, Chyba pri preklade/Compile error), which are plain text and translated in EN. The correct answer is stored first; the app shuffles them.",
+    "output": "Programs print with Console.Write: single digits without separators, larger numbers with `i + \" \"` (answers without the trailing space). New lines are replaced by `|`. Never print a bool or a double.",
+    "difficulty": "1 = easy (incl. introduction of while, for, break, continue), 2 = medium, 3 = hard.",
+    "names": "Loop counters i, j; other variables short or Slovak words (sucet, pocet).",
+    "english": "Code is shared by SK and EN; only the wording is translated."
+  },
+  "templates": [
+    {
+      "id": "cy-for-count",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKoľkokrát sa vypíše `A`?",
+        "en": "{code}\nHow many times is `A` printed?"
+      },
+      "code": "`for (int i = 0; i < n; i++)` or `for (int i = 1; i <= n; i++)` (the natural forms) with `Console.Write(\"A\");`, n = 2–8.",
+      "correct": "The number of iterations.",
+      "wrong": "The count ± 1 and one other tempting number (the end value from the condition, or 0). All different.",
+      "explanation": {
+        "sk": "Premenná `i` nadobudne hodnoty {values}, teda telo sa vykoná {n}-krát.",
+        "en": "The variable `i` takes the values {values}, so the body runs {n} times."
+      },
+      "example": {
+        "code": "for (int i = 0; i < 3; i++)\n    Console.Write(\"A\");",
+        "correct": "`3`",
+        "wrong": [
+          "`2`",
+          "`4`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "cy-for-print",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`for (int i = a; i < / <= b; i++) Console.Write(i);` – single-digit values only, so the output is a row of digits.",
+      "correct": "The printed digits (`123`).",
+      "wrong": "The output with one value more / less at the end, and starting from 0 instead of 1 (or vice versa).",
+      "explanation": {
+        "sk": "Cyklus vypíše hodnoty `i` od {a}, kým platí `{cond}`: {values}.",
+        "en": "The loop prints `i` from {a} while `{cond}` holds: {values}."
+      },
+      "example": {
+        "code": "for (int i = 1; i <= 3; i++)\n    Console.Write(i);",
+        "correct": "`123`",
+        "wrong": [
+          "`12`",
+          "`1234`",
+          "`0123`"
+        ]
+      }
+    },
+    {
+      "id": "cy-for-down",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`for (int i = a; i > / >= b; i--) Console.Write(i);` – single digits.",
+      "correct": "The digits counting down (`321`).",
+      "wrong": "Counting up (`123`), one value more or less at the end (`3210`, `32`).",
+      "explanation": {
+        "sk": "`i--` zmenšuje `i` o 1; cyklus beží, kým platí `{cond}`: {values}.",
+        "en": "`i--` decreases `i` by 1; the loop runs while `{cond}` holds: {values}."
+      },
+      "example": {
+        "code": "for (int i = 3; i > 0; i--)\n    Console.Write(i);",
+        "correct": "`321`",
+        "wrong": [
+          "`123`",
+          "`3210`",
+          "`32`"
+        ]
+      }
+    },
+    {
+      "id": "cy-for-step",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`for (int i = a; i < b; i = i + k) Console.Write(i + \" \");` with k = 2, 3 or 5. Answers without the trailing space.",
+      "correct": "The printed values (`0 2 4 6`).",
+      "wrong": "Including the end value (`0 2 4 6 8`), step 1 (`0 1 2 3`), starting from k (`2 4 6`).",
+      "explanation": {
+        "sk": "Krok `i = i + {k}` zväčší `i` o {k}: {values}. Hodnota {stop} už podmienku nesplní.",
+        "en": "The step `i = i + {k}` increases `i` by {k}: {values}. The value {stop} no longer satisfies the condition."
+      },
+      "example": {
+        "code": "for (int i = 0; i < 8; i = i + 2)\n    Console.Write(i + \" \");",
+        "correct": "`0 2 4 6`",
+        "wrong": [
+          "`0 2 4 6 8`",
+          "`2 4 6`",
+          "`0 1 2 3`"
+        ]
+      }
+    },
+    {
+      "id": "cy-for-parts",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "V cykle `for ({init}; {cond}; {step})` čo je **{part}**?",
+        "en": "In the loop `for ({init}; {cond}; {step})`, what is the **{part}**?"
+      },
+      "code": "No code block. {part} = inicializácia / initialisation, podmienka / condition, krok / step (each about a third). Vary the header (`int i = 1; i <= 10; i++`, `int k = 10; k > 0; k--`).",
+      "correct": "The matching part of the header.",
+      "wrong": "The other two parts and the keyword `for`.",
+      "explanation": {
+        "sk": "`for` má tri časti oddelené bodkočiarkou: inicializácia, podmienka, krok.",
+        "en": "A `for` header has three parts separated by semicolons: initialisation, condition, step."
+      },
+      "example": {
+        "code": null,
+        "part": "podmienka",
+        "correct": "`i < 5`",
+        "wrong": [
+          "`int i = 0`",
+          "`i++`",
+          "`for`"
+        ]
+      }
+    },
+    {
+      "id": "cy-while-simple",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int i = a;` then `while (i < / <= b) { Console.Write(i); i++; }` – single digits; sometimes `i--` counting down.",
+      "correct": "The printed digits.",
+      "wrong": "One value more or less at the end, the output without the first value (as if `i++` came first).",
+      "explanation": {
+        "sk": "Telo sa opakuje, kým platí `{cond}`: {values}.",
+        "en": "The body repeats while `{cond}` holds: {values}."
+      },
+      "example": {
+        "code": "int i = 1;\nwhile (i <= 4)\n{\n    Console.Write(i);\n    i++;\n}",
+        "correct": "`1234`",
+        "wrong": [
+          "`123`",
+          "`12345`",
+          "`234`"
+        ]
+      }
+    },
+    {
+      "id": "cy-while-never",
+      "difficulty": 1,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int i = a;` then a `while` whose condition is false from the start, with `Console.Write(i)` and `i++` inside; after the loop `Console.Write(\"K\");`.",
+      "correct": "`K`.",
+      "wrong": "The start value followed by K (`10K`), *Nekonečný cyklus* / *Infinite loop*, *Nič* / *Nothing*.",
+      "explanation": {
+        "sk": "Podmienka `{cond}` neplatí hneď na začiatku, telo sa nevykoná ani raz. Vypíše sa iba riadok za cyklom.",
+        "en": "The condition `{cond}` is false right at the start, so the body never runs. Only the line after the loop prints."
+      },
+      "example": {
+        "code": "int i = 10;\nwhile (i < 5)\n{\n    Console.Write(i);\n    i++;\n}\nConsole.Write(\"K\");",
+        "correct": "`K`",
+        "wrong": [
+          "`10K`",
+          "Nekonečný cyklus",
+          "Nič"
+        ]
+      }
+    },
+    {
+      "id": "cy-while-count",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKoľkokrát sa vykoná telo cyklu?",
+        "en": "{code}\nHow many times does the loop body run?"
+      },
+      "code": "`int i = a;` then `while (<cond>) { …; i = i + k; }` – k = 1 or 2, up to 8 iterations.",
+      "correct": "The number of iterations.",
+      "wrong": "The count ± 1 and one other tempting number (the end value from the condition, or 0). All different.",
+      "explanation": {
+        "sk": "`i` postupne nadobúda {values}; pri hodnote {stop} podmienka neplatí. Telo sa vykoná {n}-krát.",
+        "en": "`i` takes the values {values}; at {stop} the condition fails. The body runs {n} times."
+      }
+    },
+    {
+      "id": "cy-keyword-purpose",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Na čo slúži `{kw}`?",
+        "en": "What is `{kw}` used for?"
+      },
+      "code": null,
+      "correct": "The purpose of {kw} ∈ `while`, `for`, `break`, `continue`: while – opakuje telo, kým platí podmienka / repeats the body while a condition holds; for – opakuje telo s počítadlom (inicializácia, podmienka a krok v jednom riadku) / repeats with a counter (initialisation, condition and step in one line); break – okamžite ukončí celý cyklus / ends the whole loop immediately; continue – preskočí zvyšok tela a pokračuje ďalšou iteráciou / skips the rest of the body and goes to the next iteration.",
+      "wrong": "Purposes of the other three keywords, or one plausible fake (ukončí celý program / ends the whole program; zopakuje aktuálnu iteráciu / repeats the current iteration). Text answers, translated in EN.",
+      "explanation": {
+        "sk": "`{kw}`: {purpose}.",
+        "en": "`{kw}`: {purpose}."
+      },
+      "example": {
+        "code": null,
+        "kw": "break",
+        "correct": "okamžite ukončí celý cyklus",
+        "wrong": [
+          "preskočí zvyšok tela a pokračuje ďalšou iteráciou",
+          "ukončí celý program",
+          "opakuje telo, kým platí podmienka"
+        ]
+      },
+      "notes": "Each of the 4 keywords about 6 times."
+    },
+    {
+      "id": "cy-purpose-keyword",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Ktorý príkaz {purpose}?",
+        "en": "Which statement {purpose}?"
+      },
+      "code": null,
+      "correct": "The keyword for the described purpose (same 4 purposes as cy-keyword-purpose, phrased as a question: \"okamžite ukončí cyklus\", \"preskočí zvyšok tela cyklu\", \"opakuje telo, kým platí podmienka\", \"má inicializáciu, podmienku a krok v jednom riadku\").",
+      "wrong": "The other three of `while`, `for`, `break`, `continue`.",
+      "explanation": {
+        "sk": "{purpose_cap} – to je `{kw}`.",
+        "en": "{purpose_cap} – that's `{kw}`."
+      },
+      "example": {
+        "code": null,
+        "purpose": "preskočí zvyšok tela cyklu a pokračuje ďalšou iteráciou",
+        "correct": "`continue`",
+        "wrong": [
+          "`break`",
+          "`while`",
+          "`for`"
+        ]
+      }
+    },
+    {
+      "id": "cy-sum",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "`int sucet = 0;` then `for (int i = 1; i <= n; i++) sucet = sucet + i;` (n = 3–6), sometimes adding a constant or `i * 2`.",
+      "correct": "The final sum.",
+      "wrong": "The sum with one term less / more, and the last value of i (n).",
+      "explanation": {
+        "sk": "`sucet` postupne: {steps}.",
+        "en": "`sucet` step by step: {steps}."
+      },
+      "example": {
+        "code": "int sucet = 0;\nfor (int i = 1; i <= 4; i++)\n    sucet = sucet + i;",
+        "correct": "`10`",
+        "wrong": [
+          "`6`",
+          "`15`",
+          "`4`"
+        ]
+      }
+    },
+    {
+      "id": "cy-for-to-while",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKtorý cyklus `while` robí to isté?",
+        "en": "{code}\nWhich `while` loop does the same?"
+      },
+      "code": "A short `for` loop printing i. Answers are one-line `while` versions: `int i = 0; while (i < 3) { Console.Write(i); i++; }`.",
+      "correct": "The equivalent `while` (same start, condition, step, step at the END of the body).",
+      "wrong": "Wrong start value, wrong condition (`<=` instead of `<`), step before the print (`i++; Console.Write(i);`).",
+      "explanation": {
+        "sk": "Inicializácia ide pred `while`, podmienka do zátvorky a krok na koniec tela.",
+        "en": "The initialisation goes before `while`, the condition into the brackets, and the step at the end of the body."
+      },
+      "notes": "Answers are single lines, so they fit on a phone."
+    },
+    {
+      "id": "cy-lt-vs-le",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKoľkokrát sa vypíše `A`?",
+        "en": "{code}\nHow many times is `A` printed?"
+      },
+      "code": "`for` with an \"unnatural\" combination of start and condition: `i = 1; i < n`, `i = 0; i <= n`, `i = n; i >= 0`, `i = 2; i <= n` (n = 3–9).",
+      "correct": "The number of iterations.",
+      "wrong": "n, n ± 1 (the off-by-one counts).",
+      "explanation": {
+        "sk": "`i` nadobúda {values}, to je {count} hodnôt.",
+        "en": "`i` takes the values {values}, that's {count} values."
+      },
+      "example": {
+        "code": "for (int i = 0; i <= 5; i++)\n    Console.Write(\"A\");",
+        "correct": "`6`",
+        "wrong": [
+          "`5`",
+          "`4`",
+          "`7`"
+        ]
+      }
+    },
+    {
+      "id": "cy-i-after-loop",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "`int i;` declared before the loop, then `for (i = a; i < b; i++) { }` or a `while`; question about i after the loop.",
+      "correct": "The first value that fails the condition (b for `<`).",
+      "wrong": "The last value inside the loop (b − 1), b + 1, the start value.",
+      "explanation": {
+        "sk": "Cyklus skončí, keď podmienka prvýkrát neplatí – vtedy má `i` hodnotu `{value}`.",
+        "en": "The loop ends when the condition first fails – at that moment `i` is `{value}`."
+      },
+      "example": {
+        "code": "int i;\nfor (i = 0; i < 4; i++)\n{\n}",
+        "name": "i",
+        "correct": "`4`",
+        "wrong": [
+          "`3`",
+          "`5`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "cy-if-in-loop",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`for` over single digits with `if (<cond on i>) Console.Write(i);` – even, odd, divisible by 3, greater than k.",
+      "correct": "The printed digits.",
+      "wrong": "All digits (if ignored), the complement (odd instead of even), one digit missing / extra at the boundary.",
+      "explanation": {
+        "sk": "Vypíšu sa iba hodnoty `i`, pre ktoré platí `{cond}`: {values}.",
+        "en": "Only values of `i` for which `{cond}` holds are printed: {values}."
+      },
+      "example": {
+        "code": "for (int i = 1; i <= 6; i++)\n{\n    if (i % 2 == 0)\n        Console.Write(i);\n}",
+        "correct": "`246`",
+        "wrong": [
+          "`135`",
+          "`123456`",
+          "`24`"
+        ]
+      }
+    },
+    {
+      "id": "cy-count-matches",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "`int pocet = 0;` then a loop over 1..n (n = 10–30) with `if (<cond>) pocet = pocet + 1;` – divisible by k, greater than m, i % 10 == 3, etc.",
+      "correct": "The count.",
+      "wrong": "Count ± 1 (boundary mistakes), and the sum of the matching numbers or n.",
+      "explanation": {
+        "sk": "Podmienku spĺňajú čísla {values}, to je {value}.",
+        "en": "The numbers {values} satisfy the condition, that's {value}."
+      },
+      "example": {
+        "code": "int pocet = 0;\nfor (int i = 1; i <= 20; i++)\n{\n    if (i % 3 == 0)\n        pocet = pocet + 1;\n}",
+        "name": "pocet",
+        "correct": "`6`",
+        "wrong": [
+          "`7`",
+          "`5`",
+          "`63`"
+        ]
+      }
+    },
+    {
+      "id": "cy-product",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "`int f = 1;` then a loop multiplying: factorial (`f = f * i` for i = 1..n, n = 3–6) or a power (`f = f * 2` n times).",
+      "correct": "The final product.",
+      "wrong": "Product with one factor less / more, the sum instead of the product, and starting from f = 0 (→ 0).",
+      "explanation": {
+        "sk": "`f` postupne: {steps}.",
+        "en": "`f` step by step: {steps}."
+      },
+      "example": {
+        "code": "int f = 1;\nfor (int i = 1; i <= 5; i++)\n    f = f * i;",
+        "name": "f",
+        "correct": "`120`",
+        "wrong": [
+          "`24`",
+          "`15`",
+          "`0`"
+        ]
+      }
+    },
+    {
+      "id": "cy-doubling",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\n{ask}",
+        "en": "{code}\n{ask}"
+      },
+      "code": "`int x = a;` then `while (x < limit) x = x * 2;` (or `* 3`, or `+ k`). {ask} = \"Koľkokrát sa vykoná telo cyklu?\" / \"How many times does the body run?\" or \"Akú hodnotu bude mať `x` na konci?\" / \"What value will `x` have at the end?\" (half each).",
+      "correct": "The number of iterations or the final value (first value ≥ limit).",
+      "wrong": "Count ± 1; the last value below the limit, the limit itself, the next value after the correct one.",
+      "explanation": {
+        "sk": "`x` postupne: {steps}; pri {value} podmienka `{cond}` neplatí.",
+        "en": "`x` step by step: {steps}; at {value} the condition `{cond}` fails."
+      },
+      "example": {
+        "code": "int x = 3;\nwhile (x < 100)\n    x = x * 2;",
+        "ask": "Akú hodnotu bude mať `x` na konci?",
+        "correct": "`192`",
+        "wrong": [
+          "`96`",
+          "`100`",
+          "`384`"
+        ]
+      }
+    },
+    {
+      "id": "cy-cond-and-or",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "`while` with a compound condition: `while (i < 10 && sucet < 20)` adding i, or `while (x > 0 || y > 0)` decreasing both. Only one side stops the loop.",
+      "correct": "The final value of the asked variable.",
+      "wrong": "The value if only the other side of the condition stopped the loop, ± one iteration.",
+      "explanation": {
+        "sk": "Cyklus skončí, keď prestane platiť `{cond}` – tu kvôli `{part}`. {steps}",
+        "en": "The loop ends when `{cond}` stops holding – here because of `{part}`. {steps}"
+      },
+      "example": {
+        "code": "int i = 1;\nint sucet = 0;\nwhile (i < 10 && sucet < 20)\n{\n    sucet = sucet + i;\n    i++;\n}",
+        "name": "sucet",
+        "correct": "`21`",
+        "wrong": [
+          "`45`",
+          "`15`",
+          "`28`"
+        ]
+      }
+    },
+    {
+      "id": "cy-build-string",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "`string s = \"\";` then a loop with `s = s + i;` (append) or `s = i + s;` (prepend), single digits. Sometimes letters from a string.",
+      "correct": "The final string in quotes (`\"123\"` or `\"321\"`).",
+      "wrong": "The reversed order, the numeric sum without quotes (`6`), one value missing.",
+      "explanation": {
+        "sk": "{how}: {steps}.",
+        "en": "{how}: {steps}."
+      },
+      "example": {
+        "code": "string s = \"\";\nfor (int i = 1; i <= 3; i++)\n    s = i + s;",
+        "name": "s",
+        "correct": "`\"321\"`",
+        "wrong": [
+          "`\"123\"`",
+          "`6`",
+          "`\"21\"`"
+        ]
+      },
+      "notes": "{how} = \"Každá nová hodnota sa pridá na začiatok\" / \"Each new value is added to the front\" (or to the end)."
+    },
+    {
+      "id": "cy-string-walk",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`string s = \"<word>\";` (4–7 letters) and a `for` over its indexes printing `s[i]`: backwards (`i = s.Length - 1; i >= 0; i--`), every second letter (`i = i + 2`), from index 1.",
+      "correct": "The printed letters.",
+      "wrong": "The word forwards (for backwards), off-by-one at start / end, the other letters (odd instead of even indexes).",
+      "explanation": {
+        "sk": "Indexy idú {indexes}, teda sa vypíšu znaky {chars}.",
+        "en": "The indexes go {indexes}, so the characters {chars} are printed."
+      },
+      "example": {
+        "code": "string s = \"Robot\";\nfor (int i = s.Length - 1; i >= 0; i--)\n    Console.Write(s[i]);",
+        "correct": "`toboR`",
+        "wrong": [
+          "`Robot`",
+          "`tobo`",
+          "`oboR`"
+        ]
+      }
+    },
+    {
+      "id": "cy-break",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A `for` or `while` printing single digits with `if (<cond>) break;` placed before or after the `Console.Write`.",
+      "correct": "The digits printed before the loop ends.",
+      "wrong": "Including the value at which break happens (or excluding it, if printed before), the whole range (break ignored), the output of `continue` instead.",
+      "explanation": {
+        "sk": "`break` okamžite ukončí celý cyklus pri `{cond}`.",
+        "en": "`break` ends the whole loop immediately when `{cond}`."
+      },
+      "example": {
+        "code": "for (int i = 1; i <= 5; i++)\n{\n    if (i == 3)\n        break;\n    Console.Write(i);\n}",
+        "correct": "`12`",
+        "wrong": [
+          "`123`",
+          "`1245`",
+          "`12345`"
+        ]
+      }
+    },
+    {
+      "id": "cy-continue",
+      "difficulty": 2,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A `for` printing single digits with `if (<cond>) continue;` before the `Console.Write`.",
+      "correct": "The digits except the skipped ones.",
+      "wrong": "Only the skipped ones, all digits, the output of `break` instead.",
+      "explanation": {
+        "sk": "`continue` preskočí zvyšok tela pre {skipped} a cyklus pokračuje ďalej.",
+        "en": "`continue` skips the rest of the body for {skipped}, and the loop goes on."
+      },
+      "example": {
+        "code": "for (int i = 1; i <= 5; i++)\n{\n    if (i % 2 == 0)\n        continue;\n    Console.Write(i);\n}",
+        "correct": "`135`",
+        "wrong": [
+          "`24`",
+          "`12345`",
+          "`1`"
+        ]
+      }
+    },
+    {
+      "id": "cy-infinite",
+      "difficulty": 2,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "Ktorý z týchto cyklov sa nikdy neskončí?",
+        "en": "Which of these loops never ends?"
+      },
+      "code": "No code block; 4 one-line loops with `int i` declared before or inside.",
+      "correct": "The infinite one: missing step in `while`, step in the wrong direction (`i--` with `i < 10`), condition always true.",
+      "wrong": "Three loops that end, at least one that looks suspicious but ends (`for (int i = 10; i > 0; i = i - 3)`, `while (i < 10) i = i * 2;` with i starting at 1).",
+      "explanation": {
+        "sk": "{reason} – podmienka bude platiť stále.",
+        "en": "{reason} – the condition will hold forever."
+      },
+      "example": {
+        "code": null,
+        "correct": "`for (int i = 0; i < 10; i--) { }`",
+        "wrong": [
+          "`for (int i = 10; i > 0; i = i - 3) { }`",
+          "`for (int i = 0; i < 10; i = i + 4) { }`",
+          "`for (int i = 1; i < 100; i = i * 2) { }`"
+        ]
+      }
+    },
+    {
+      "id": "cy-nested-count",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKoľkokrát sa vypíše `*`?",
+        "en": "{code}\nHow many times is `*` printed?"
+      },
+      "code": "Two nested `for` loops with fixed bounds (`i < a`, `j < b`, a, b = 2–6), `Console.Write(\"*\");` in the inner one; sometimes a third `Console.Write` in the outer loop only.",
+      "correct": "a × b (for the inner print).",
+      "wrong": "a + b, a × b ± a, the inner count only (b).",
+      "explanation": {
+        "sk": "Vnútorný cyklus prebehne {b}-krát pre každú z {a} iterácií vonkajšieho: {a} · {b} = {value}.",
+        "en": "The inner loop runs {b} times for each of the {a} outer iterations: {a} · {b} = {value}."
+      },
+      "example": {
+        "code": "for (int i = 0; i < 3; i++)\n    for (int j = 0; j < 4; j++)\n        Console.Write(\"*\");",
+        "correct": "`12`",
+        "wrong": [
+          "`7`",
+          "`15`",
+          "`4`"
+        ]
+      }
+    },
+    {
+      "id": "cy-nested-dependent",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "`int pocet = 0;` and nested loops where the inner bound depends on the outer (`j = i; j < n`, `j < i`, `j <= i`), `pocet = pocet + 1;` inside.",
+      "correct": "The total count (e.g. 3 + 2 + 1 = 6).",
+      "wrong": "n × n, the count with an off-by-one in the inner bound, n.",
+      "explanation": {
+        "sk": "Vnútorný cyklus prebehne {parts}-krát, spolu {value}.",
+        "en": "The inner loop runs {parts} times, {value} in total."
+      },
+      "example": {
+        "code": "int pocet = 0;\nfor (int i = 0; i < 3; i++)\n    for (int j = i; j < 3; j++)\n        pocet = pocet + 1;",
+        "name": "pocet",
+        "correct": "`6`",
+        "wrong": [
+          "`9`",
+          "`3`",
+          "`10`"
+        ]
+      }
+    },
+    {
+      "id": "cy-nested-break",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "Nested loops printing single digits or letters, with `break` in the INNER loop (`if (j == k) break;`). Rows separated by `Console.Write(\"|\");` in the outer loop.",
+      "correct": "The output where break ends only the inner loop.",
+      "wrong": "The output as if break ended both loops (only the first row), as if break were ignored, as if it were continue.",
+      "explanation": {
+        "sk": "`break` ukončí iba najvnútornejší cyklus; vonkajší pokračuje ďalšou iteráciou.",
+        "en": "`break` ends only the innermost loop; the outer one continues with its next iteration."
+      },
+      "example": {
+        "code": "for (int i = 1; i <= 2; i++)\n{\n    for (int j = 1; j <= 3; j++)\n    {\n        if (j == 2)\n            break;\n        Console.Write(j);\n    }\n    Console.Write(\"|\");\n}",
+        "correct": "`1|1|`",
+        "wrong": [
+          "`1|`",
+          "`123|123|`",
+          "`13|13|`"
+        ]
+      }
+    },
+    {
+      "id": "cy-pattern",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "Nested loops drawing a pattern of `*` (or digits) where rows are separated by `Console.Write(\"|\");` instead of new lines: triangle (`j <= i`), reversed triangle, rectangle, row numbers.",
+      "correct": "The pattern as one line (`*|**|***|`).",
+      "wrong": "The reversed triangle, a rectangle (`***|***|***|`), off-by-one in the inner bound.",
+      "explanation": {
+        "sk": "V riadku {i} sa vypíše {count} hviezdičiek, lebo vnútorný cyklus beží {why}.",
+        "en": "Row {i} prints {count} stars because the inner loop runs {why}."
+      },
+      "example": {
+        "code": "for (int i = 1; i <= 3; i++)\n{\n    for (int j = 1; j <= i; j++)\n        Console.Write(\"*\");\n    Console.Write(\"|\");\n}",
+        "correct": "`*|**|***|`",
+        "wrong": [
+          "`***|**|*|`",
+          "`***|***|***|`",
+          "`|*|**|`"
+        ]
+      },
+      "notes": "| is used instead of new lines so the output fits in one answer line."
+    },
+    {
+      "id": "cy-counter-modified",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`for (int i = 0; i < n; i++)` printing i, where the body ALSO changes i (`i = i + 1;`, `i = i * 2;`) before or after the print.",
+      "correct": "The printed values.",
+      "wrong": "The output as if the change inside the body did not exist, off-by-one variants.",
+      "explanation": {
+        "sk": "`i` sa mení dvakrát za iteráciu – v tele aj v kroku `i++`: {steps}.",
+        "en": "`i` changes twice per iteration – in the body and in the step `i++`: {steps}."
+      },
+      "example": {
+        "code": "for (int i = 0; i < 6; i++)\n{\n    Console.Write(i);\n    i = i + 1;\n}",
+        "correct": "`024`",
+        "wrong": [
+          "`012345`",
+          "`0246`",
+          "`135`"
+        ]
+      }
+    },
+    {
+      "id": "cy-semicolon",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A loop header followed by a semicolon: `for (int i = 0; i < 3; i++);` then `Console.Write(\"A\");` (the body must NOT use i – it's out of scope), or `int x = 0; while (x < 5); { … }` → infinite. About half each.",
+      "correct": "`A` (the line runs once after the empty loop) or *Nekonečný cyklus* / *Infinite loop*.",
+      "wrong": "`AAA` (as if the loop worked), *Nič* / *Nothing*, *Nekonečný cyklus* / *Infinite loop* / `A` (whichever is not correct), *Chyba pri preklade* / *Compile error*.",
+      "explanation": {
+        "sk": "Bodkočiarka za hlavičkou je prázdne telo cyklu – {what}.",
+        "en": "The semicolon after the header is an empty loop body – {what}."
+      },
+      "example": {
+        "code": "for (int i = 0; i < 3; i++);\n    Console.Write(\"A\");",
+        "correct": "`A`",
+        "wrong": [
+          "`AAA`",
+          "Nič",
+          "Chyba pri preklade"
+        ]
+      },
+      "notes": "Compiles with warning CS0642."
+    },
+    {
+      "id": "cy-no-braces",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "A `for` WITHOUT braces followed by two indented lines (`Console.Write(\"A\");`, `Console.Write(\"B\");`), the loop runs 2–4 times.",
+      "correct": "Only the first line repeats: `AAAB`.",
+      "wrong": "`ABABAB` (both lines repeated), `AB`, `AAABBB`.",
+      "explanation": {
+        "sk": "Bez zložených zátvoriek patrí do cyklu iba prvý príkaz; odsadenie na tom nič nemení.",
+        "en": "Without braces only the first statement belongs to the loop; indentation doesn't matter."
+      },
+      "example": {
+        "code": "for (int i = 0; i < 3; i++)\n    Console.Write(\"A\");\n    Console.Write(\"B\");",
+        "correct": "`AAAB`",
+        "wrong": [
+          "`ABABAB`",
+          "`AB`",
+          "`AAABBB`"
+        ]
+      }
+    },
+    {
+      "id": "cy-scope",
+      "difficulty": 3,
+      "kind": "compile-error",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKtorý riadok, pridaný **za** cyklus, spôsobí chybu pri preklade?",
+        "en": "{code}\nWhich line, added **after** the loop, causes a compile error?"
+      },
+      "code": "A short `for (int i …)` loop that changes a variable declared before it (`int sucet = 0;`).",
+      "correct": "`Console.Write(i);` (or another use of i) – i exists only inside the loop.",
+      "wrong": "Three valid lines using the outer variable (`Console.Write(sucet);`, `sucet = sucet * 2;`, `int j = sucet;`). Never `int i = …;` – that is also an error in C# (CS0136).",
+      "explanation": {
+        "sk": "Premenná `i` deklarovaná v hlavičke `for` existuje iba vnútri cyklu.",
+        "en": "The variable `i` declared in the `for` header exists only inside the loop."
+      },
+      "example": {
+        "code": "int sucet = 0;\nfor (int i = 0; i < 3; i++)\n{\n    sucet = sucet + i;\n}",
+        "correct": "`Console.Write(i);`",
+        "wrong": [
+          "`Console.Write(sucet);`",
+          "`sucet = sucet * 2;`",
+          "`int j = sucet;`"
+        ]
+      }
+    },
+    {
+      "id": "cy-digits",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "`int n = <3–4 digit number>;` and a `while (n > 0)` loop using `n % 10` and `n / 10`: digit sum, digit count, reversed number (`r = r * 10 + n % 10`).",
+      "correct": "The result (sum, count or reversed number).",
+      "wrong": "The number itself, the result missing the first or last digit, the digits joined instead of summed.",
+      "explanation": {
+        "sk": "`n % 10` dá poslednú cifru, `n / 10` ju odstráni: {steps}.",
+        "en": "`n % 10` gives the last digit, `n / 10` removes it: {steps}."
+      },
+      "example": {
+        "code": "int n = 472;\nint s = 0;\nwhile (n > 0)\n{\n    s = s + n % 10;\n    n = n / 10;\n}",
+        "name": "s",
+        "correct": "`13`",
+        "wrong": [
+          "`472`",
+          "`11`",
+          "`274`"
+        ]
+      }
+    },
+    {
+      "id": "cy-off-by-one-ends",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nKoľkokrát sa vykoná telo cyklu?",
+        "en": "{code}\nHow many times does the loop body run?"
+      },
+      "code": "`int n = <4–9>;` and a loop with expressions on both ends: `i = 1; i < n`, `i = 0; i <= n - 1`, `i = 2; i < n + 1`, `i = n; i > 1`.",
+      "correct": "The number of iterations.",
+      "wrong": "n, n ± 1, n − 2 (whichever are not correct).",
+      "explanation": {
+        "sk": "Pre `n = {n}` nadobúda `i` hodnoty {values}, to je {value}.",
+        "en": "For `n = {n}`, `i` takes the values {values}, that's {value}."
+      },
+      "example": {
+        "code": "int n = 6;\nfor (int i = 2; i < n + 1; i++)\n    Console.Write(\"A\");",
+        "correct": "`5`",
+        "wrong": [
+          "`6`",
+          "`4`",
+          "`7`"
+        ]
+      }
+    },
+    {
+      "id": "cy-while-continue",
+      "difficulty": 3,
+      "kind": "output",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nČo vypíše tento kód?",
+        "en": "{code}\nWhat does this code print?"
+      },
+      "code": "`int i = 0; while (i < n) { if (<cond>) continue; Console.Write(i); i++; }` – continue BEFORE the increment → infinite loop; in about half the questions the increment is correctly placed before `continue` (`i++; if (…) continue; Console.Write(i);`).",
+      "correct": "*Nekonečný cyklus* / *Infinite loop*, or the printed digits for the correct version.",
+      "wrong": "The output as if continue only skipped the print, the output with break, *Nič* / *Nothing* / *Nekonečný cyklus* / *Infinite loop* (whichever is not correct).",
+      "explanation": {
+        "sk": "{why}",
+        "en": "{why}"
+      },
+      "example": {
+        "code": "int i = 0;\nwhile (i < 5)\n{\n    if (i == 2)\n        continue;\n    Console.Write(i);\n    i++;\n}",
+        "correct": "Nekonečný cyklus",
+        "wrong": [
+          "`0134`",
+          "`01`",
+          "Nič"
+        ]
+      },
+      "notes": "{why} for the infinite case: \"Pri `i == 2` sa `continue` vykoná skôr ako `i++`, takže `i` zostane 2 navždy.\" / \"At `i == 2`, `continue` runs before `i++`, so `i` stays 2 forever.\" Note: the program prints `01` and then hangs – the answer is still the infinite loop."
+    },
+    {
+      "id": "cy-trace",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAké hodnoty budú mať `{a}` a `{b}` na konci?",
+        "en": "{code}\nWhat values will `{a}` and `{b}` have at the end?"
+      },
+      "code": "2–3 int variables changing in each iteration of a short loop (3–4 iterations), e.g. Fibonacci-like (`c = a + b; a = b; b = c;`), swapping, or one depending on the other.",
+      "correct": "Both final values: `a = 5, b = 8`.",
+      "wrong": "Values one iteration earlier / later, swapped values, a mistake from updating in the wrong order.",
+      "explanation": {
+        "sk": "Po iteráciách: {steps}.",
+        "en": "After each iteration: {steps}."
+      },
+      "example": {
+        "code": "int a = 1;\nint b = 1;\nfor (int i = 0; i < 4; i++)\n{\n    int c = a + b;\n    a = b;\n    b = c;\n}",
+        "a": "a",
+        "b": "b",
+        "correct": "`a = 5, b = 8`",
+        "wrong": [
+          "`a = 3, b = 5`",
+          "`a = 8, b = 13`",
+          "`a = 8, b = 5`"
+        ]
+      }
+    }
+  ]
+}

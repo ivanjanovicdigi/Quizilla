@@ -244,7 +244,7 @@
           "`string s = \"5\";`"
         ]
       },
-      "notes": "Answers are the lines themselves (no code block), so they work in SK and EN. "
+      "notes": "Answers are the lines themselves (no code block), so they work in SK and EN."
     },
     {
       "id": "dt-trace",
