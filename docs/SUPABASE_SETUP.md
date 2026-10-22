@@ -15,7 +15,8 @@ About 15 minutes, done once.
 2. Paste the whole content of [`supabase/migrations/20261021000000_init.sql`](../supabase/migrations/20261021000000_init.sql) → **Run**.
    It should finish with "Success. No rows returned".
 3. New query again → paste [`supabase/seed.sql`](../supabase/seed.sql) → **Run**.
-   This adds example classes (I.A, I.B, II.A, II.B) and 36 sample C# questions.
+   This adds example classes (I.A, I.B, II.A, II.B), the subject and topics. Questions are imported
+   later from `supabase/updates/` (generated from `questions/templates/`).
    Run it only once.
 4. Rename the example classes to your real ones, e.g.:
 

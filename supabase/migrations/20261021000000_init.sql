@@ -72,9 +72,10 @@ create table if not exists quiz.topics (
   sort_order         int  not null default 0,
   is_active          boolean not null default true,
   -- Unlock rule for the NEXT level: at least unlock_min_answers answers on the
-  -- current level AND accuracy of the last unlock_window answers >= unlock_accuracy.
+  -- current level AND accuracy of the last unlock_window answers >= unlock_accuracy
+  -- (unlock_window null = all answers on the level).
   unlock_min_answers int not null default 10 check (unlock_min_answers > 0),
-  unlock_window      int not null default 10 check (unlock_window > 0),
+  unlock_window      int check (unlock_window is null or unlock_window > 0),
   unlock_accuracy    numeric(3,2) not null default 0.80 check (unlock_accuracy between 0 and 1),
   unique (subject_id, slug)
 );

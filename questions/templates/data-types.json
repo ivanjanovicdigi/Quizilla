@@ -1,0 +1,303 @@
+{
+  "topic": "data-types",
+  "source": "Easy/medium patterns from Knowledge Base Coach Database (Google Sheet); hard (3) templates specified by the teacher",
+  "conventions": {
+    "placeholders": "{code} = C# block (```csharp), other {…} = values of the generated question",
+    "answers": "Answers are written as inline code (`42`). The correct answer is stored first; the app shuffles them.",
+    "difficulty": "1 = easy, 2 = medium, 3 = hard (hard templates added later).",
+    "names": "Variable names are random Slovak words – they may fit or mislead, and may be used as wrong answers.",
+    "english": "Code (variable names, strings) is shared by SK and EN; only the wording is translated."
+  },
+  "templates": [
+    {
+      "id": "dt-var-type",
+      "difficulty": 1,
+      "kind": "concept",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkého dátového typu je premenná `{name}`?",
+        "en": "{code}\nWhat is the data type of the variable `{name}`?"
+      },
+      "code": "One line: `<type> <name> = <literal>;`. Type is one of int, double, bool, char, string (5 questions per type). Literal fits the type (int 12, double 12.8, bool true, char 'A', string \"Bratislava\"). The variable name is a random Slovak word; it may fit or mislead (e.g. `string pocet`, `char skore`).",
+      "correct": "The declared type, e.g. `int`.",
+      "wrong": "3 of the other 4 types, chosen at random.",
+      "explanation": {
+        "sk": "Premenná `{name}` je deklarovaná kľúčovým slovom `{type}` pred názvom premennej. Preto je jej dátový typ `{type}`.",
+        "en": "The variable `{name}` is declared with the keyword `{type}` before its name, so its data type is `{type}`."
+      },
+      "example": {
+        "code": "int vek = 12;",
+        "correct": "`int`",
+        "wrong": [
+          "`string`",
+          "`double`",
+          "`char`"
+        ]
+      },
+      "notes": "The sheet had 5 options (all types); the database allows exactly 4, so one wrong type is dropped."
+    },
+    {
+      "id": "dt-var-value",
+      "difficulty": 1,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu obsahuje premenná `{name}`?",
+        "en": "{code}\nWhat value does the variable `{name}` contain?"
+      },
+      "code": "One line: `<type> <name> = <literal>;`, 5 questions per type (int, double, bool, char, string). int may be negative; double has one decimal place (12.8, 10.0); char is a letter; string is a short Slovak word or name. Variable name is a random Slovak word; it may fit or mislead (`int text = -3`).",
+      "correct": "The literal exactly as written in the code, including quotes: `42`, `12.8`, `true`, `'Z'`, `\"Eva\"`.",
+      "wrong": "Always the type name and the variable name. The fourth depends on the type: int/double → the value + 1 (`43`, `13.8`); bool → the opposite value; char → the letter in double quotes (`\"Z\"`); string → the text without quotes (`Eva`).",
+      "explanation": {
+        "sk": "`{type}` je typ premennej, `{name}` je jej názov a hodnota priradená za znakom `=` je `{value}`. Premenná `{name}` teda obsahuje `{value}`.",
+        "en": "`{type}` is the variable's type, `{name}` is its name, and the value assigned after `=` is `{value}`. So `{name}` contains `{value}`."
+      },
+      "example": {
+        "code": "char vyska = 'Z';",
+        "correct": "`'Z'`",
+        "wrong": [
+          "`\"Z\"`",
+          "`vyska`",
+          "`char`"
+        ]
+      }
+    },
+    {
+      "id": "dt-int-arith",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "One line: `int <name> = <a> <op> <b>;` with two positive int literals (2–40). Operators: + (6), - (6), * (6), / (7). For / the division is exact (30 / 6).",
+      "correct": "The exact int result of the expression – always a whole number.",
+      "wrong": "Results of the same two numbers with the other three operators (+, -, *, /). The / result may be a decimal (8 / 7 → 1.1428571428571428) – at most one wrong answer is a decimal. No duplicates of the correct answer.",
+      "explanation": {
+        "sk": "Najskôr sa vypočíta výraz `{expr}`, ktorého výsledok je `{value}`. Táto hodnota sa priradí do premennej `{name}`.",
+        "en": "First the expression `{expr}` is evaluated; its result is `{value}`. This value is assigned to the variable `{name}`."
+      },
+      "example": {
+        "code": "int cislo = 30 / 6;",
+        "correct": "`5`",
+        "wrong": [
+          "`36`",
+          "`24`",
+          "`180`"
+        ]
+      }
+    },
+    {
+      "id": "dt-int-mod",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "One line: `int <name> = <a> % <b>;` with a = 20–40, b = 3–9, a not divisible by b.",
+      "correct": "The remainder a % b.",
+      "wrong": "a + b, a - b, a * b.",
+      "explanation": {
+        "sk": "Najskôr sa vypočíta výraz `{expr}`, ktorého výsledok je `{value}`. Táto hodnota sa priradí do premennej `{name}`.",
+        "en": "First the expression `{expr}` is evaluated; its result is `{value}`. This value is assigned to the variable `{name}`."
+      },
+      "example": {
+        "code": "int cena = 36 % 5;",
+        "correct": "`1`",
+        "wrong": [
+          "`41`",
+          "`31`",
+          "`180`"
+        ]
+      }
+    },
+    {
+      "id": "dt-double-arith",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "One line: `double <name> = <a> <op> <b>;`, op is + (12) or * (13). Usually one operand has a .5 decimal (7.5 * 4, 15 + 2.5).",
+      "correct": "The result written as C# prints it, with a decimal point: `30`, `37.5`.",
+      "wrong": "Results of the same numbers with the other operators (+, -, *, /).",
+      "explanation": {
+        "sk": "Najskôr sa vypočíta výraz `{expr}`, ktorého výsledok je `{value}`. Táto hodnota sa priradí do premennej `{name}`.",
+        "en": "First the expression `{expr}` is evaluated; its result is `{value}`. This value is assigned to the variable `{name}`."
+      },
+      "example": {
+        "code": "double vysledok = 7.5 * 4;",
+        "correct": "`30`",
+        "wrong": [
+          "`11.5`",
+          "`3.5`",
+          "`1.875`"
+        ]
+      }
+    },
+    {
+      "id": "dt-string-concat",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "One line: `string <name> = \"<word>\" + \" <rest>\";` – the second string starts with a space. Short Slovak words.",
+      "correct": "The joined text in quotes: `\"Ahoj svet\"`.",
+      "wrong": "The joined text without the space (`\"Ahojsvet\"`), only the first part (`\"Ahoj\"`), and `string`.",
+      "explanation": {
+        "sk": "Operátor `+` pri reťazcoch spája texty. Spojením `{a}` a `{b}` vznikne `{value}`.",
+        "en": "With strings, the `+` operator joins the texts. Joining `{a}` and `{b}` gives `{value}`."
+      },
+      "example": {
+        "code": "string meno = \"Ahoj\" + \" svet\";",
+        "correct": "`\"Ahoj svet\"`",
+        "wrong": [
+          "`\"Ahojsvet\"`",
+          "`\"Ahoj\"`",
+          "`string`"
+        ]
+      }
+    },
+    {
+      "id": "dt-string-index",
+      "difficulty": 2,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "Two lines: `string slovo = \"<word>\";` and `char <name> = slovo[<i>];`. Word of 5–10 letters (Robot, Program, Bratislava); i from 0 to length − 2.",
+      "correct": "The character at index i in single quotes: `'o'`.",
+      "wrong": "The same character in double quotes (`\"o\"`), the character at index i + 1 (counting from 1 by mistake), and `char`. If the character at i + 1 is the same letter, use i − 1.",
+      "explanation": {
+        "sk": "Indexovanie reťazca začína od `0`. Na indexe `{i}` v texte `{word}` sa nachádza znak `{value}`, preto ho bude obsahovať premenná `{name}`.",
+        "en": "String indexing starts at `0`. At index `{i}` in `{word}` is the character `{value}`, so the variable `{name}` will contain it."
+      },
+      "example": {
+        "code": "string slovo = \"Robot\";\nchar pismeno = slovo[1];",
+        "correct": "`'o'`",
+        "wrong": [
+          "`\"o\"`",
+          "`'b'`",
+          "`char`"
+        ]
+      }
+    },
+    {
+      "id": "dt-plus-mixed",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "One line: `string <name> = <expr>;` – 3 operands joined with +, a mix of small int literals and short string literals (\"1\" + 2 + 3, 1 + 2 + \"3\", 1 + \"2\" + 3, \"A\" + 1 + 2). Vary where the string is: first, middle, last.",
+      "correct": "The resulting string in quotes: `\"123\"`, `\"33\"`.",
+      "wrong": "Pick 3 different from the correct one: everything joined as text (`\"123\"`), everything added as numbers (`\"6\"`), evaluated right to left (`\"15\"` for \"1\" + 2 + 3), the numeric sum without quotes (`6`).",
+      "explanation": {
+        "sk": "Operátor `+` sa vyhodnocuje zľava doprava. Kým sú oba operandy čísla, sčítava; keď je jeden z nich reťazec, spája text. {steps}",
+        "en": "The `+` operator is evaluated left to right. While both operands are numbers it adds them; once one of them is a string it joins text. {steps}"
+      },
+      "example": {
+        "code": "string text = 1 + 2 + \"3\";",
+        "correct": "`\"33\"`",
+        "wrong": [
+          "`\"123\"`",
+          "`\"6\"`",
+          "`6`"
+        ]
+      },
+      "notes": "{steps} = the evaluation step by step, e.g. 1 + 2 = 3, then 3 + \"3\" = \"33\"."
+    },
+    {
+      "id": "dt-compile-error",
+      "difficulty": 3,
+      "kind": "compile-error",
+      "count": 25,
+      "question": {
+        "sk": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
+        "en": "Which of these lines causes a compile error?"
+      },
+      "code": null,
+      "correct": "One single-line declaration with an invalid assignment: `int x = 3.5;`, `char c = \"A\";`, `string s = 5;`, `bool b = 1;`, `int n = \"5\";`, `string s = 'A';`, `bool b = \"true\";`.",
+      "wrong": "3 valid declarations of other types. At least one looks wrong but compiles: `double d = 5;` (int → double), `int n = 'A';` (char → int), `string s = \"5\";`, `char c = '5';`.",
+      "explanation": {
+        "sk": "`{line}` sa nedá preložiť: hodnotu typu `{from}` nemožno priradiť do premennej typu `{to}`.",
+        "en": "`{line}` does not compile: a value of type `{from}` cannot be assigned to a variable of type `{to}`."
+      },
+      "example": {
+        "code": null,
+        "correct": "`char c = \"A\";`",
+        "wrong": [
+          "`double d = 5;`",
+          "`int n = 'A';`",
+          "`string s = \"5\";`"
+        ]
+      },
+      "notes": "Answers are the lines themselves (no code block), so they work in SK and EN. "
+    },
+    {
+      "id": "dt-trace",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}` na konci?",
+        "en": "{code}\nWhat value will the variable `{name}` have at the end?"
+      },
+      "code": "4–5 lines with one int variable: a declaration, then reassignments of the form `x = x <op> <n>;` using + - * / % (at least 3 different operators). Small numbers, final value 0–100.",
+      "correct": "The value after the last line.",
+      "wrong": "Results when one line is skipped (a different line for each wrong answer). If two coincide or equal the correct one, use correct ± 1.",
+      "explanation": {
+        "sk": "Riadky sa vykonávajú postupne: {steps}. Na konci má `{name}` hodnotu `{value}`.",
+        "en": "The lines run one after another: {steps}. At the end, `{name}` is `{value}`."
+      },
+      "example": {
+        "code": "int x = 4;\nx = x * 2;\nx = x - 3;\nx = x % 4;",
+        "correct": "`1`",
+        "wrong": [
+          "`5`",
+          "`0`",
+          "`2`"
+        ]
+      },
+      "notes": "{steps} = the value after each line, e.g. 4 → 8 → 5 → 1. No += / ++ (belongs to the logic topic)."
+    },
+    {
+      "id": "dt-string-index-hard",
+      "difficulty": 3,
+      "kind": "value",
+      "count": 25,
+      "question": {
+        "sk": "{code}\nAkú hodnotu bude mať premenná `{name}`?",
+        "en": "{code}\nWhat value will the variable `{name}` have?"
+      },
+      "code": "Two lines: `string text = \"<text>\";` and `char <name> = text[<index>];`. Text of 2–3 Slovak words with spaces (\"Ahoj svet\"). Index is any position written as a number or an expression: `text.Length - 1`, `text.Length - 4`, `text.Length / 2`. Sometimes the answer is the space.",
+      "correct": "The character at that index in single quotes; a space is `' '`.",
+      "wrong": "The character at index + 1 and at index − 1 (off by one), and the correct character in double quotes. If neighbours are the same letter, use the next different one.",
+      "explanation": {
+        "sk": "Text `{text}` má dĺžku `{length}` (medzera sa tiež počíta), indexy idú od `0` po `{last}`. Index `{expr}` = `{i}`, na ňom je znak `{value}`.",
+        "en": "The text `{text}` has length `{length}` (the space counts too); indexes go from `0` to `{last}`. Index `{expr}` = `{i}`, and the character there is `{value}`."
+      },
+      "example": {
+        "code": "string text = \"Ahoj svet\";\nchar znak = text[text.Length - 4];",
+        "correct": "`'s'`",
+        "wrong": [
+          "`'v'`",
+          "`' '`",
+          "`\"s\"`"
+        ]
+      }
+    }
+  ]
+}

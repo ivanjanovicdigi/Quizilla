@@ -22,7 +22,7 @@ export interface Level {
 export interface Progress {
   topic_id: number;
   unlock_min_answers: number;
-  unlock_window: number;
+  unlock_window: number | null; // null = all answers on the level
   unlock_accuracy: number;
   completed: boolean;
   points: number;

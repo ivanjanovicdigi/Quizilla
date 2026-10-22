@@ -26,7 +26,10 @@
   onMount(load);
 
   const p = $derived(topic?.progress);
-  const need = $derived(p ? neededCorrect(p.unlock_window, p.unlock_accuracy) : 0);
+  const need = $derived(p?.unlock_window ? neededCorrect(p.unlock_window, p.unlock_accuracy) : 0);
+  const pct = $derived(p ? Math.round(p.unlock_accuracy * 100) : 0);
+  // success rate in % (rounded down, so 79.5 % shows as 79 – not yet enough for 80 %)
+  const rate = (correct: number, total: number) => (total ? Math.floor((correct * 100) / total) : 0);
 </script>
 
 <TopBar title={topic ? pick(topic.name_sk, topic.name_en) : ''} back="#/" />
@@ -42,7 +45,11 @@
       <p class="muted">{pick(topic.description_sk, topic.description_en)}</p>
     {/if}
     <p class="small muted rule">
-      {t('topic.rule', { min: p.unlock_min_answers, window: p.unlock_window, need })}
+      {#if p.unlock_window}
+        {t('topic.rule', { min: p.unlock_min_answers, window: p.unlock_window, need })}
+      {:else}
+        {t('topic.rule_all', { min: p.unlock_min_answers, pct })}
+      {/if}
     </p>
 
     {#each p.levels as lvl (lvl.difficulty)}
@@ -75,11 +82,20 @@
               <strong>{Math.min(lvl.total_answers, p.unlock_min_answers)}/{p.unlock_min_answers}</strong>
               <div class="bar"><i style:width={`${Math.min(100, (lvl.total_answers / p.unlock_min_answers) * 100)}%`}></i></div>
             </div>
-            <div>
-              <span class="muted small">{t('topic.recent', { window: p.unlock_window })}</span>
-              <strong>{lvl.recent_correct}/{need}</strong>
-              <div class="bar"><i style:width={`${Math.min(100, (lvl.recent_correct / Math.max(need, 1)) * 100)}%`}></i></div>
-            </div>
+            {#if p.unlock_window}
+              <div>
+                <span class="muted small">{t('topic.recent', { window: p.unlock_window })}</span>
+                <strong>{lvl.recent_correct}/{need}</strong>
+                <div class="bar"><i style:width={`${Math.min(100, (lvl.recent_correct / Math.max(need, 1)) * 100)}%`}></i></div>
+              </div>
+            {:else}
+              {@const r = rate(lvl.recent_correct, lvl.recent_total)}
+              <div>
+                <span class="muted small">{t('topic.rate', { pct })}</span>
+                <strong>{lvl.recent_total ? `${r} %` : '–'}</strong>
+                <div class="bar"><i style:width={`${Math.min(100, (r / Math.max(pct, 1)) * 100)}%`}></i></div>
+              </div>
+            {/if}
             <div>
               <span class="muted small">{t('topic.mastered')}</span>
               <strong>{lvl.mastered}/{lvl.question_count}</strong>

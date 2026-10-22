@@ -47,7 +47,7 @@ src/
   lib/rich.ts           Markdown subset + Prism
 supabase/
   migrations/…_init.sql schema, RPC functions, teacher views
-  seed.sql              sample classes + 36 C# questions
+  seed.sql              sample classes, subject and topics (no questions)
   tests/api_test.sql    SQL smoke test (run as superuser on a test DB)
 ```
 
