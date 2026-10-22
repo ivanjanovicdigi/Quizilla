@@ -153,7 +153,7 @@
     </div>
 
     <section class="card question">
-      <Rich text={current.body} />
+      <Rich text={pick(current.body, current.body_en)} />
     </section>
 
     <div class="answers">
@@ -167,7 +167,7 @@
             {:else if stateOf(original) === 'wrong'}<Icon name="x" size={16} />
             {:else}{LETTERS[pos]}{/if}
           </span>
-          <span class="text"><Rich text={current.answers[original]} short /></span>
+          <span class="text"><Rich text={pick(current.answers[original], current.answers_en?.[original])} short /></span>
         </button>
       {/each}
     </div>
@@ -183,8 +183,8 @@
             <span class="small">{result.points > 0 ? t('quiz.points', { n: result.points }) : t('quiz.no_points')}</span>
           {/if}
         </div>
-        {#if result.explanation}
-          <div class="small expl"><Rich text={result.explanation} short /></div>
+        {#if result.explanation || result.explanation_en}
+          <div class="small expl"><Rich text={pick(result.explanation, result.explanation_en)} short /></div>
         {/if}
         {#each result.newly_unlocked as n (n)}
           <div class="unlock"><Icon name="unlock" /> {t('quiz.unlocked', { n })}</div>

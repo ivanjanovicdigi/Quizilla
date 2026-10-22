@@ -60,6 +60,7 @@ supabase/
 | `answers` | `text[]` with exactly 4 items (same Markdown subset; the app shuffles them) |
 | `correct_index` | 0–3 |
 | `explanation` | optional, shown after answering |
+| `body_en`, `answers_en`, `explanation_en` | optional English versions; shown when the UI is in English, otherwise the Slovak columns are used |
 
 Bulk import is a separate task (planned).
 

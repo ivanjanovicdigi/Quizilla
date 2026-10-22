@@ -60,12 +60,15 @@ export interface Question {
   difficulty: number;
   body: string;
   answers: string[];
+  body_en: string | null;
+  answers_en: string[] | null;
 }
 
 export interface AnswerResult {
   correct: boolean;
   correct_index: number;
   explanation: string | null;
+  explanation_en: string | null;
   points: number;
   newly_unlocked: number[];
   progress: Progress;

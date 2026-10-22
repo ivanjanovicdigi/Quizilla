@@ -89,6 +89,10 @@ create table if not exists quiz.questions (
   answers       text[] not null check (array_length(answers, 1) = 4),
   correct_index smallint not null check (correct_index between 0 and 3),
   explanation   text,                      -- shown after answering (optional)
+  -- English versions (optional; the app falls back to the Slovak columns above)
+  body_en        text,
+  answers_en     text[] check (answers_en is null or array_length(answers_en, 1) = 4),
+  explanation_en text,
   is_active     boolean not null default true,
   created_at    timestamptz not null default now()
 );
@@ -473,16 +477,17 @@ begin
   return (
     select coalesce(jsonb_agg(jsonb_build_object(
                      'id', x.id, 'difficulty', x.difficulty,
-                     'body', x.body, 'answers', x.answers)
+                     'body', x.body, 'answers', x.answers,
+                     'body_en', x.body_en, 'answers_en', x.answers_en)
                    order by x.ever_correct, x.r), '[]'::jsonb)
       from (
-        select q.id, q.difficulty, q.body, q.answers,
+        select q.id, q.difficulty, q.body, q.answers, q.body_en, q.answers_en,
                exists (select 1 from quiz.attempts a
                         where a.student_id = s.id and a.question_id = q.id and a.is_correct) as ever_correct,
                random() as r
           from quiz.questions q
          where q.topic_id = p_topic_id and q.difficulty = p_difficulty and q.is_active
-         order by 5, 6
+         order by 7, 8
          limit least(greatest(coalesce(p_limit, 10), 1), 50)
       ) x);
 end $$;
@@ -545,6 +550,7 @@ begin
     'correct',         v_correct,
     'correct_index',   q.correct_index,
     'explanation',     q.explanation,
+    'explanation_en',  q.explanation_en,
     'points',          v_points,
     'newly_unlocked',  v_new,
     'progress',        v_after);
