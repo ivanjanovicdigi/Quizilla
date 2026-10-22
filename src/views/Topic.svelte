@@ -5,13 +5,21 @@
   import { api, ApiError } from '../lib/api';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
-  import { neededCorrect } from '../lib/util';
-  import type { Topic } from '../lib/types';
+  import { neededCorrect, pct as rateOf } from '../lib/util';
+  import { load as loadPref, save as savePref } from '../lib/storage';
+  import { QUIZ_SIZE } from '../lib/modes';
+  import type { Mode, Topic } from '../lib/types';
 
   let { topicId }: { topicId: number } = $props();
 
   let topic = $state<Topic | null>(null);
   let error = $state('');
+  let mode = $state<Mode>(loadPref<Mode>('quizilla.mode', 'test') === 'learn' ? 'learn' : 'test');
+
+  function setMode(m: Mode) {
+    mode = m;
+    savePref('quizilla.mode', m);
+  }
 
   async function load() {
     error = '';
@@ -29,7 +37,11 @@
   const need = $derived(p?.unlock_window ? neededCorrect(p.unlock_window, p.unlock_accuracy) : 0);
   const pct = $derived(p ? Math.round(p.unlock_accuracy * 100) : 0);
   // success rate in % (rounded down, so 79.5 % shows as 79 – not yet enough for 80 %)
-  const rate = (correct: number, total: number) => (total ? Math.floor((correct * 100) / total) : 0);
+  const rate = rateOf;
+  const pass = $derived(topic?.pass);
+  const passPct = $derived(pass ? Math.round(pass.accuracy * 100) : 0);
+  const passRate = $derived(pass ? rate(pass.correct, pass.answers) : 0);
+  const levelOf = (difficulty: number) => p?.levels.find((l) => l.difficulty === difficulty)?.level ?? difficulty;
 </script>
 
 <TopBar title={topic ? pick(topic.name_sk, topic.name_en) : ''} back="#/" />
@@ -40,10 +52,57 @@
     <button class="btn secondary" onclick={load}>{t('common.retry')}</button>
   {:else if !topic || !p}
     <div class="spinner"></div>
+  {:else if topic.tier_unlocked === false}
+    <div class="card center stack">
+      <Icon name="lock" size={28} />
+      <p>{t('tier.locked_topic', { n: topic.tier, prev: topic.tier - 1 })}</p>
+      <a class="btn secondary nolink" href="#/">{t('common.back')}</a>
+    </div>
   {:else}
     {#if topic.description_sk || topic.description_en}
       <p class="muted">{pick(topic.description_sk, topic.description_en)}</p>
     {/if}
+    {#if pass}
+      <section class="card pass" class:done={pass.passed}>
+        <div class="row">
+          <h3 class="grow">{t('pass.title')}</h3>
+          {#if pass.passed}<span class="pill ok"><Icon name="check" size={14} /> {t('pass.done')}</span>{/if}
+        </div>
+        <p class="small muted">
+          {t('pass.rule', { min: pass.min_answers - 1, level: levelOf(pass.min_difficulty), pct: passPct })}
+        </p>
+        <div class="stats two">
+          <div>
+            <span class="muted small">{t('pass.answers', { level: levelOf(pass.min_difficulty) })}</span>
+            <strong>{Math.min(pass.answers, pass.min_answers)}/{pass.min_answers}</strong>
+            <div class="bar"><i style:width={`${Math.min(100, (pass.answers / pass.min_answers) * 100)}%`}></i></div>
+          </div>
+          <div>
+            <span class="muted small">{t('pass.rate', { pct: passPct })}</span>
+            <strong>{pass.answers ? `${passRate} %` : '–'}</strong>
+            <div class="bar"><i style:width={`${Math.min(100, (passRate / Math.max(passPct, 1)) * 100)}%`}></i></div>
+          </div>
+        </div>
+      </section>
+    {/if}
+
+    <section class="card stack">
+      <h3>{t('mode.title')}</h3>
+      <div class="segmented">
+        <button class:active={mode === 'learn'} onclick={() => setMode('learn')}>
+          <Icon name="book" size={16} /> {t('mode.learn')}
+        </button>
+        <button class:active={mode === 'test'} onclick={() => setMode('test')}>
+          <Icon name="target" size={16} /> {t('mode.test')}
+        </button>
+      </div>
+      <p class="small muted">
+        {mode === 'learn'
+          ? t('mode.learn_info', { n: QUIZ_SIZE.learn })
+          : t('mode.test_info', { n: QUIZ_SIZE.test })}
+      </p>
+    </section>
+
     <p class="small muted rule">
       {#if p.unlock_window}
         {t('topic.rule', { min: p.unlock_min_answers, window: p.unlock_window, need })}
@@ -67,8 +126,8 @@
             </p>
           </div>
           {#if lvl.unlocked}
-            <a class="btn small" href={`#/quiz/${topic.id}/${lvl.difficulty}`}>
-              <Icon name="play" size={14} /> {lvl.met ? t('topic.train') : t('topic.play')}
+            <a class="btn small" class:secondary={mode === 'learn'} href={`#/quiz/${topic.id}/${lvl.difficulty}/${mode}`}>
+              <Icon name={mode === 'learn' ? 'book' : 'play'} size={14} /> {mode === 'learn' ? t('mode.learn') : lvl.met ? t('topic.train') : t('topic.play')}
             </a>
           {/if}
         </div>
@@ -126,5 +185,10 @@
   .stats > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .stats span { line-height: 1.2; min-height: 2.4em; }
   .stats strong { font-size: 1.05rem; }
-  .btn.small { text-decoration: none; }
+  .btn.small, .nolink { text-decoration: none; }
+  .pass h3 { margin: 0; }
+  .pass p { margin: 6px 0 0; }
+  .pass.done { border-color: var(--ok); }
+  .stats.two { grid-template-columns: repeat(2, 1fr); }
+  .segmented button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
 </style>

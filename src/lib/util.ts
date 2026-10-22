@@ -12,3 +12,8 @@ export function shuffledIndices(n: number): number[] {
 export function neededCorrect(window: number, accuracy: number): number {
   return Math.ceil(window * accuracy - 1e-9);
 }
+
+/** Success rate in whole %, rounded down (79.9 % shows as 79 – not yet 80 %). */
+export function pct(correct: number, total: number): number {
+  return total ? Math.floor((correct * 100) / total) : 0;
+}

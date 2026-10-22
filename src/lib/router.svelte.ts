@@ -3,9 +3,10 @@
 export type Route =
   | { name: 'home' }
   | { name: 'topic'; topicId: number }
-  | { name: 'quiz'; topicId: number; difficulty: number }
+  | { name: 'quiz'; topicId: number; difficulty: number; mode: 'learn' | 'test' }
   | { name: 'leaderboard' }
-  | { name: 'profile' };
+  | { name: 'profile' }
+  | { name: 'stats' };
 
 function parse(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
@@ -19,13 +20,16 @@ function parse(hash: string): Route {
     case 'quiz': {
       const id = num(parts[1]);
       const d = num(parts[2]);
-      if (!isNaN(id) && !isNaN(d)) return { name: 'quiz', topicId: id, difficulty: d };
+      const mode = parts[3] === 'learn' ? 'learn' : 'test';
+      if (!isNaN(id) && !isNaN(d)) return { name: 'quiz', topicId: id, difficulty: d, mode };
       break;
     }
     case 'leaderboard':
       return { name: 'leaderboard' };
     case 'profile':
       return { name: 'profile' };
+    case 'stats':
+      return { name: 'stats' };
   }
   return { name: 'home' };
 }

@@ -29,10 +29,22 @@ export interface Progress {
   levels: Level[];
 }
 
+export interface Pass {
+  min_answers: number;
+  min_difficulty: number;
+  accuracy: number;
+  answers: number; // testing answers on min_difficulty or harder
+  correct: number;
+  passed: boolean;
+}
+
 export interface Topic {
   id: number;
   slug: string;
   subject_id: number;
+  tier: number;
+  tier_unlocked?: boolean; // only from get_topic
+  pass: Pass;
   name_sk: string;
   name_en: string | null;
   description_sk: string | null;
@@ -49,11 +61,64 @@ export interface Subject {
   topics: Topic[];
 }
 
+export interface TierState {
+  tier: number;
+  unlocked: boolean;
+  topic_count: number;
+  passed_count: number;
+  answers: number;
+  correct: number;
+}
+
+export type RankKey = 'padawan' | 'jedi' | 'master' | 'grand_master';
+
+export interface RankRow {
+  key: RankKey;
+  difficulty: number | null;
+  accuracy: number; // needed accuracy (0–1)
+  answers: number;
+  correct: number;
+  earned: boolean;
+}
+
+export interface RankInfo {
+  current: RankKey | null;
+  min_answers: number;
+  ranks: RankRow[];
+}
+
 export interface Catalog {
   student: Student;
   points: number;
+  tiers: TierState[];
+  rank: RankInfo;
   subjects: Subject[];
 }
+
+export interface StatsDay {
+  day: string; // YYYY-MM-DD
+  answers: number;
+  correct: number;
+}
+
+export interface StatsTopic {
+  id: number;
+  slug: string;
+  tier: number;
+  name_sk: string;
+  name_en: string | null;
+  answers: number;
+  correct: number;
+  days: StatsDay[];
+}
+
+export interface Stats {
+  tiers: TierState[];
+  rank: RankInfo;
+  topics: StatsTopic[];
+}
+
+export type Mode = 'learn' | 'test';
 
 export interface Question {
   id: number;
@@ -71,6 +136,7 @@ export interface AnswerResult {
   explanation_en: string | null;
   points: number;
   newly_unlocked: number[];
+  newly_passed: boolean;
   progress: Progress;
 }
 

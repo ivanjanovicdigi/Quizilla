@@ -10,6 +10,7 @@
   import Quiz from './views/Quiz.svelte';
   import Leaderboard from './views/Leaderboard.svelte';
   import Profile from './views/Profile.svelte';
+  import Stats from './views/Stats.svelte';
 
   // Validate the stored session once per app start (e.g. student deleted by teacher).
   onMount(async () => {
@@ -34,11 +35,13 @@
     {:else if router.route.name === 'topic'}
       <TopicView topicId={router.route.topicId} />
     {:else if router.route.name === 'quiz'}
-      <Quiz topicId={router.route.topicId} difficulty={router.route.difficulty} />
+      <Quiz topicId={router.route.topicId} difficulty={router.route.difficulty} mode={router.route.mode} />
     {:else if router.route.name === 'leaderboard'}
       <Leaderboard />
     {:else if router.route.name === 'profile'}
       <Profile />
+    {:else if router.route.name === 'stats'}
+      <Stats />
     {/if}
   {/key}
   {#if router.route.name !== 'quiz'}

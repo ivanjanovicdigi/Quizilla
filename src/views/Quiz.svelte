@@ -7,9 +7,11 @@
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { shuffledIndices } from '../lib/util';
-  import type { AnswerResult, Progress, Question, Topic } from '../lib/types';
+  import { QUIZ_SIZE } from '../lib/modes';
+  import type { AnswerResult, Mode, Progress, Question, Topic } from '../lib/types';
 
-  let { topicId, difficulty }: { topicId: number; difficulty: number } = $props();
+  let { topicId, difficulty, mode = 'test' }: { topicId: number; difficulty: number; mode?: Mode } = $props();
+  const learning = $derived(mode === 'learn');
 
   const LETTERS = ['A', 'B', 'C', 'D'];
 
@@ -27,6 +29,7 @@
   let correctCount = $state(0);
   let pointsEarned = $state(0);
   let unlockedLevels = $state<number[]>([]);
+  let passedNow = $state(false);
   let progress = $state<Progress | null>(null);
 
   const studentId = () => session.student!.id;
@@ -47,10 +50,11 @@
     correctCount = 0;
     pointsEarned = 0;
     unlockedLevels = [];
+    passedNow = false;
     try {
       const [tp, qs] = await Promise.all([
         topic ? Promise.resolve(topic) : api.getTopic(studentId(), topicId),
-        api.getQuestions(studentId(), topicId, difficulty, 10)
+        api.getQuestions(studentId(), topicId, difficulty, QUIZ_SIZE[mode])
       ]);
       topic = tp;
       progress = tp.progress;
@@ -78,12 +82,15 @@
     chosen = original;
     busy = true;
     try {
-      const r = await api.submitAnswer(studentId(), current.id, original);
+      const r = learning
+        ? await api.checkAnswer(studentId(), current.id, original)
+        : await api.submitAnswer(studentId(), current.id, original);
       result = r;
       progress = r.progress;
       if (r.correct) correctCount++;
       pointsEarned += r.points;
       if (r.newly_unlocked.length) unlockedLevels = [...unlockedLevels, ...r.newly_unlocked];
+      if (r.newly_passed) passedNow = true;
       navigator.vibrate?.(r.correct ? 15 : [30, 40, 30]);
     } catch (e) {
       chosen = null;
@@ -114,7 +121,9 @@
 </script>
 
 <TopBar
-  title={topic ? `${pick(topic.name_sk, topic.name_en)} · ${t('topic.level', { n: levelNo })}` : ''}
+  title={topic
+    ? `${pick(topic.name_sk, topic.name_en)} · ${t('topic.level', { n: levelNo })}${learning ? ` · ${t('mode.learn')}` : ''}`
+    : ''}
   back={`#/topic/${topicId}`} />
 
 <main class="page stack quiz">
@@ -131,14 +140,21 @@
       <h2>{t('quiz.summary')}</h2>
       <div class="big">{correctCount}<span class="muted">/{questions.length}</span></div>
       <p class="muted">{t('quiz.score', { c: correctCount, n: questions.length })}</p>
-      <p class="gold"><Icon name="star" size={18} /> {t('quiz.earned', { n: pointsEarned })}</p>
+      {#if learning}
+        <p class="pill learn"><Icon name="book" size={14} /> {t('quiz.not_saved')}</p>
+      {:else}
+        <p class="gold"><Icon name="star" size={18} /> {t('quiz.earned', { n: pointsEarned })}</p>
+      {/if}
+      {#if passedNow}
+        <div class="unlock"><Icon name="check" /> {t('pass.new')}</div>
+      {/if}
       {#each unlockedLevels as n (n)}
         <div class="unlock"><Icon name="unlock" /> {t('quiz.unlocked', { n })}</div>
       {/each}
     </section>
     <div class="stack">
       {#if nextLevel}
-        <a class="btn block" href={`#/quiz/${topicId}/${nextLevel.difficulty}`}>
+        <a class="btn block" href={`#/quiz/${topicId}/${nextLevel.difficulty}/${mode}`}>
           {t('quiz.next_level', { n: nextLevel.level })}
         </a>
       {/if}
@@ -149,7 +165,11 @@
     <div class="row progress">
       <span class="small muted">{t('quiz.of', { i: index + 1, n: questions.length })}</span>
       <div class="bar grow"><i style:width={`${((index + (result ? 1 : 0)) / questions.length) * 100}%`}></i></div>
-      <span class="small gold"><Icon name="star" size={14} /> {pointsEarned}</span>
+      {#if learning}
+        <span class="small learn-tag"><Icon name="book" size={14} /> {t('mode.learn')}</span>
+      {:else}
+        <span class="small gold"><Icon name="star" size={14} /> {pointsEarned}</span>
+      {/if}
     </div>
 
     <section class="card question">
@@ -179,12 +199,15 @@
         <div class="row">
           <strong>{result.correct ? t('quiz.correct') : t('quiz.wrong')}</strong>
           <span class="spacer"></span>
-          {#if result.correct}
+          {#if result.correct && !learning}
             <span class="small">{result.points > 0 ? t('quiz.points', { n: result.points }) : t('quiz.no_points')}</span>
           {/if}
         </div>
         {#if result.explanation || result.explanation_en}
           <div class="small expl"><Rich text={pick(result.explanation, result.explanation_en)} short /></div>
+        {/if}
+        {#if result.newly_passed}
+          <div class="unlock"><Icon name="check" /> {t('pass.new')}</div>
         {/if}
         {#each result.newly_unlocked as n (n)}
           <div class="unlock"><Icon name="unlock" /> {t('quiz.unlocked', { n })}</div>
@@ -251,4 +274,6 @@
   .summary .big { font-size: 3rem; font-weight: 800; line-height: 1; }
   .summary .big span { font-size: 1.5rem; }
   a.btn { text-decoration: none; }
+  .learn-tag { color: var(--info); display: inline-flex; align-items: center; gap: 4px; font-weight: 700; }
+  .pill.learn { background: var(--info-soft); color: var(--info); }
 </style>

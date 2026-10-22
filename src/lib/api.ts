@@ -1,5 +1,5 @@
 import type {
-  AnswerResult, Catalog, ClassInfo, ClassRanking, ClassRow, Question, Student, Topic
+  AnswerResult, Catalog, ClassInfo, ClassRanking, ClassRow, Question, Stats, Student, Topic
 } from './types';
 
 const BASE = ((import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '').replace(/\/+$/, '');
@@ -55,6 +55,10 @@ export const api = {
     }),
   submitAnswer: (id: string, questionId: number, chosen: number) =>
     rpc<AnswerResult>('submit_answer', { p_student_id: id, p_question_id: questionId, p_chosen: chosen }),
+  /** Learning mode – checks the answer, nothing is recorded. */
+  checkAnswer: (id: string, questionId: number, chosen: number) =>
+    rpc<AnswerResult>('check_answer', { p_student_id: id, p_question_id: questionId, p_chosen: chosen }),
+  getStats: (id: string, days: number | null) => rpc<Stats>('get_stats', { p_student_id: id, p_days: days }),
   classLeaderboard: (days: number | null) => rpc<ClassRow[]>('get_class_leaderboard', { p_days: days }),
   classRanking: (id: string, days: number | null) =>
     rpc<ClassRanking>('get_class_ranking', { p_student_id: id, p_days: days })

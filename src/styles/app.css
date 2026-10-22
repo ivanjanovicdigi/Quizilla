@@ -16,6 +16,8 @@
   --gold: #d97706;
   --gold-soft: #fef3c7;
   --lock: #94a3b8;
+  --info: #2563eb;
+  --info-soft: #dbeafe;
   --shadow: 0 1px 2px rgba(15, 26, 20, .06), 0 4px 16px rgba(15, 26, 20, .06);
   --radius: 14px;
   --code-bg: #f6f8fa;
@@ -42,6 +44,8 @@
     --gold: #fbbf24;
     --gold-soft: #3a2a0a;
     --lock: #64748b;
+    --info: #60a5fa;
+    --info-soft: #172554;
     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
     --code-bg: #0d1117;
     --code-text: #e6edf3;
