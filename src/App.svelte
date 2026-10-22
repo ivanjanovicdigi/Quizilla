@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { session, setStudent } from './lib/session.svelte';
+  import { session, setAdmin, setStudent } from './lib/session.svelte';
+  import Admin from './views/Admin.svelte';
   import { router } from './lib/router.svelte';
   import { api, ApiError } from './lib/api';
   import BottomNav from './components/BottomNav.svelte';
@@ -15,6 +16,15 @@
 
   // Validate the stored session once per app start (e.g. student deleted by teacher).
   onMount(async () => {
+    const a = session.admin;
+    if (a) {
+      try {
+        if (!(await api.adminCheck(a.token))) setAdmin(null);
+      } catch {
+        /* network errors: keep the stored admin session */
+      }
+      return;
+    }
     const s = session.student;
     if (!s) return;
     try {
@@ -27,7 +37,9 @@
   });
 </script>
 
-{#if !session.student && !session.guest}
+{#if session.admin}
+  <Admin />
+{:else if !session.student && !session.guest}
   <Register />
 {:else}
   {#key router.route}

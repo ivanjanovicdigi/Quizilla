@@ -38,7 +38,15 @@ export interface Pass {
   passed: boolean;
 }
 
-export type MedalKey = 'bronze' | 'silver' | 'gold';
+export type MedalKey = 'bronze' | 'silver' | 'gold' | 'grand_master';
+
+/** Topic Grand Master (018_topic_grand_master.sql): gold + accuracy on every level, not sticky. */
+export interface TopicGrandMaster {
+  min_answers: number;
+  accuracy: number; // 0–1
+  earned: boolean;
+  levels: { level: number; difficulty: number; answers: number; correct: number }[];
+}
 
 export interface Topic {
   id: number;
@@ -49,6 +57,7 @@ export interface Topic {
   pass: Pass;
   medal?: MedalKey | null; // from 012_topic_medals.sql
   levels_cleared?: number;
+  grand_master?: TopicGrandMaster | null;
   name_sk: string;
   name_en: string | null;
   description_sk: string | null;
@@ -180,6 +189,29 @@ export interface GuestCheck {
   correct_index: number;
   explanation: string | null;
   explanation_en: string | null;
+}
+
+// Admin (017_admin.sql)
+export interface AdminSession {
+  token: string;
+  expires_at: string;
+}
+
+export type AdminLoginResult =
+  | { ok: true; token: string; expires_at: string }
+  | { ok: false; error: 'invalid' | 'too_many_attempts' };
+
+export interface AdminUser {
+  email: string;
+  name: string;
+  class_id: number;
+  class_name: string;
+  is_active: boolean;
+  student_id: string | null;
+  logged_in: boolean;
+  last_seen_at: string | null;
+  answers: number;
+  points: number;
 }
 
 export interface ClassInfo {

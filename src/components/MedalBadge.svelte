@@ -1,9 +1,10 @@
 <script module lang="ts">
   import type { MedalKey } from '../lib/types';
 
-  /** Topic medal image in public/badges: bronze / silver / gold. */
+  /** Topic medal image in public/badges: bronze / silver / gold; topic Grand Master = crown. */
   export function medalImage(medal: MedalKey): string {
-    return `${import.meta.env.BASE_URL}badges/medal-${medal}.png`;
+    const file = medal === 'grand_master' ? 'rank-grand-master' : `medal-${medal}`;
+    return `${import.meta.env.BASE_URL}badges/${file}.png`;
   }
 </script>
 

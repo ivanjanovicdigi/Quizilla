@@ -1,7 +1,7 @@
 <script lang="ts">
   import Logo from '../components/Logo.svelte';
   import { api, ApiError, emailDomain } from '../lib/api';
-  import { setGuest, setStudent } from '../lib/session.svelte';
+  import { setAdmin, setGuest, setStudent } from '../lib/session.svelte';
   import { resetGuest } from '../lib/guest';
   import { errorText, i18n, setLang, t } from '../lib/i18n.svelte';
 
@@ -37,6 +37,24 @@
     ev.preventDefault();
     error = '';
     const e = email.trim().toLowerCase();
+    // No "@" → admin phrase, checked on the server only (017_admin.sql).
+    if (e && !e.includes('@')) {
+      busy = true;
+      try {
+        const r = await api.adminLogin(e);
+        if (r.ok) {
+          setAdmin({ token: r.token, expires_at: r.expires_at });
+          location.hash = '#/';
+        } else {
+          error = r.error === 'too_many_attempts' ? t('admin.too_many') : message('invalid_email');
+        }
+      } catch (err) {
+        error = message(err instanceof ApiError ? err.code : 'server');
+      } finally {
+        busy = false;
+      }
+      return;
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) || !e.endsWith('@' + emailDomain)) {
       error = message('invalid_email');
       return;

@@ -1,5 +1,5 @@
 import type {
-  AnswerResult, Catalog, ClassInfo, ClassRow, GuestCheck, GuestSubject, Question, Stats, Student, Topic
+  AdminLoginResult, AdminUser, AnswerResult, Catalog, ClassInfo, ClassRow, GuestCheck, GuestSubject, Question, Stats, Student, Topic
 } from './types';
 
 const BASE = ((import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '').replace(/\/+$/, '');
@@ -88,6 +88,16 @@ export const api = {
     }),
   guestCheck: (questionId: number, chosen: number) =>
     rpc<GuestCheck>('check_guest_answer', { p_question_id: questionId, p_chosen: chosen }),
+  // Admin (017_admin.sql) – the phrase is checked on the server only.
+  adminLogin: (phrase: string) => rpc<AdminLoginResult>('admin_login', { p_phrase: phrase }),
+  adminCheck: (token: string) => rpc<{ expires_at: string } | null>('admin_check', { p_token: token }),
+  adminLogout: (token: string) => rpc<null>('admin_logout', { p_token: token }),
+  adminUsers: (token: string) => rpc<AdminUser[]>('admin_list_users', { p_token: token }),
+  adminSetActive: (token: string, email: string, active: boolean) =>
+    rpc<{ email: string; is_active: boolean }>('admin_set_active', { p_token: token, p_email: email, p_active: active }),
+  adminResetProgress: (token: string, email: string) =>
+    rpc<{ email: string; answers: number; unlocks: number; passes: number; medal_levels: number }>(
+      'admin_reset_progress', { p_token: token, p_email: email }),
   /** Class totals (all time), visible to everyone. */
   classLeaderboard: () => rpc<ClassRow[]>('get_class_leaderboard')
 };

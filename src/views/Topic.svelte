@@ -46,6 +46,7 @@
   const passPct = $derived(pass ? Math.round(pass.accuracy * 100) : 0);
   const passRate = $derived(pass ? rate(pass.correct, pass.answers) : 0);
   const cleared = $derived(topic?.levels_cleared ?? 0);
+  const gm = $derived(topic?.grand_master ?? null);
   const levelCount = $derived(p?.levels.length ?? 0);
   const levelOf = (difficulty: number) => p?.levels.find((l) => l.difficulty === difficulty)?.level ?? difficulty;
 </script>
@@ -81,6 +82,27 @@
         </p>
       </div>
     </section>
+
+    {#if gm && cleared >= levelCount}
+      {@const need = Math.round(gm.accuracy * 100)}
+      <section class="card gm" class:done={gm.earned}>
+        <div class="row">
+          <h3 class="grow">{t('gm.title')}</h3>
+          {#if gm.earned}<span class="pill ok"><Icon name="check" size={14} /> {t('gm.earned')}</span>{/if}
+        </div>
+        <p class="small muted">{t('gm.rule', { pct: need, min: gm.min_answers })}</p>
+        {#each gm.levels as l (l.difficulty)}
+          {@const r = rate(l.correct, l.answers)}
+          {@const ok = l.answers >= gm.min_answers && l.correct >= l.answers * gm.accuracy}
+          <div class="gm-level small">
+            <span class="grow">{t('topic.level', { n: l.level })}</span>
+            <span class="muted">{t('gm.answers', { a: Math.min(l.answers, gm.min_answers), min: gm.min_answers })}</span>
+            <strong class:ok>{l.answers ? `${r} %` : '–'}</strong>
+          </div>
+        {/each}
+        {#if !gm.earned}<p class="small muted">{t('gm.note')}</p>{/if}
+      </section>
+    {/if}
 
     {#if pass}
       <section class="card pass" class:done={pass.passed}>
@@ -194,6 +216,12 @@
   .medal-card { display: flex; align-items: center; gap: 14px; }
   .medal-card h3 { margin: 0; }
   .medal-card p { margin: 4px 0 0; }
+  .gm { display: flex; flex-direction: column; gap: 8px; }
+  .gm h3, .gm p { margin: 0; }
+  .gm.done { border-color: var(--gold); }
+  .gm-level { display: flex; align-items: center; gap: 10px; }
+  .gm-level strong { min-width: 3.5em; text-align: right; }
+  .gm-level strong.ok { color: var(--ok); }
   .rule { background: var(--surface-2); border-radius: 12px; padding: 10px 12px; }
   .guest-note {
     display: flex; align-items: center; gap: 6px; margin: 0;

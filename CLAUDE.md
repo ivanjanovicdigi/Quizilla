@@ -34,7 +34,10 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 - Testing mode → `submit_answer` stores into `quiz.attempts`. Learning mode → `check_answer`
   stores nothing. All stats/points/unlocks count testing answers only.
 - Unlock next level: ≥ 10 answers on the level and ≥ 80 % of all of them correct (004). Sticky.
-- Tiers, topic passes, ranks (009); topic medals (012).
+- Tiers, topic passes, ranks (009); topic medals (012). Topic Grand Master (018): gold medal +
+  ≥ topic_gm_accuracy (0.99) correct on EVERY level with ≥ topic_gm_min_answers (50) answers per level;
+  not sticky; topic JSON medal = 'grand_master' (crown image) + `grand_master` progress object.
+  Global ranks (Padawan … Grand Master over all topics) are unchanged – the user wants them as they are.
 - Scoring (013): correct +5/+10/+20 (easy/medium/hard), first correct answer of a question only
   (`points_first_correct_only`); wrong −2/−3/−5; total never below 0 – `attempts.points` stores the
   real (floored) change so totals are plain sums. `quiz.student_points(p_days)` floors period sums at 0.
@@ -54,4 +57,9 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   `supabase/functions/report-bug` (handler.ts) → public GitHub issue. Token only in Supabase secret
   `GITHUB_TOKEN`. Repo is PUBLIC → issues never contain name/email (class + first 8 chars of id).
   Quiz context comes from `src/lib/bugctx.svelte.ts` (set by Quiz.svelte). Setup: docs/BUG_REPORTS.md.
+- Admin (017): typing the admin phrase (no "@") on the login page → `admin_login` → session token
+  (12 h) in `session.admin` → `src/views/Admin.svelte` (list roster users, activate/deactivate,
+  reset progress). The phrase is NEVER in the repo (public): only a salted SHA-256 hash in
+  quiz.config, set with `quiz.set_admin_passphrase()` from git-ignored `private/set_admin_passphrase.sql`.
+  Admin actions are logged in quiz.admin_log.
 - Answer keys never leave the DB before the student answers.
