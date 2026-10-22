@@ -1,110 +1,82 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import TopBar from '../components/TopBar.svelte';
+  import Icon from '../components/Icon.svelte';
   import { api, ApiError } from '../lib/api';
-  import { session, setStudent } from '../lib/session.svelte';
+  import { session } from '../lib/session.svelte';
   import { errorText, t } from '../lib/i18n.svelte';
-  import { load as loadPref, save as savePref } from '../lib/storage';
-  import type { ClassRanking, ClassRow } from '../lib/types';
+  import type { ClassRow } from '../lib/types';
 
-  type Tab = 'classes' | 'mine';
-  let tab = $state<Tab>(loadPref<Tab>('quizilla.lb.tab', 'classes'));
-  let days = $state<number | null>(loadPref<number | null>('quizilla.lb.days', 7));
-
+  // Global class leaderboard: one column per class with its all-time total points.
   let classes = $state<ClassRow[] | null>(null);
-  let ranking = $state<ClassRanking | null>(null);
   let error = $state('');
-  let loading = $state(false);
 
   async function load() {
-    loading = true;
     error = '';
     try {
-      if (tab === 'classes') classes = await api.classLeaderboard(days);
-      else ranking = await api.classRanking(session.student!.id, days);
+      classes = await api.classLeaderboard();
     } catch (e) {
-      const code = e instanceof ApiError ? e.code : 'server';
-      if (code === 'unknown_student') setStudent(null);
-      error = errorText(code);
-    } finally {
-      loading = false;
+      error = errorText(e instanceof ApiError ? e.code : 'server');
     }
   }
-
-  $effect(() => {
-    savePref('quizilla.lb.tab', tab);
-    savePref('quizilla.lb.days', days);
-    load();
-  });
+  onMount(load);
 
   const myClassId = $derived(session.student?.class_id);
+  const max = $derived(Math.max(1, ...(classes ?? []).map((c) => c.points)));
+  const leader = (c: ClassRow) => c.rank === 1 && c.points > 0;
 </script>
 
 <TopBar title={t('nav.leaderboard')} />
 
 <main class="page stack">
-  <div class="segmented">
-    <button class:active={tab === 'classes'} onclick={() => (tab = 'classes')}>{t('lb.classes')}</button>
-    <button class:active={tab === 'mine'} onclick={() => (tab = 'mine')}>{t('lb.my_class')}</button>
-  </div>
-  <div class="segmented period">
-    <button class:active={days === 7} onclick={() => (days = 7)}>{t('lb.week')}</button>
-    <button class:active={days === null} onclick={() => (days = null)}>{t('lb.all')}</button>
-  </div>
-
   {#if error}
     <div class="error">{error}</div>
     <button class="btn secondary" onclick={load}>{t('common.retry')}</button>
-  {:else if loading && !(tab === 'classes' ? classes : ranking)}
+  {:else if !classes}
     <div class="spinner"></div>
-  {:else if tab === 'classes' && classes}
-    <p class="small muted">{t('lb.how')}</p>
-    <ol class="list card">
+  {:else if !classes.length}
+    <p class="muted center">{t('lb.empty')}</p>
+  {:else}
+    <section class="card podium" style:--cols={classes.length}>
       {#each classes as c (c.class_id)}
-        <li class:me={c.class_id === myClassId}>
-          <span class="rank r{c.rank}">{c.rank}</span>
-          <div class="grow">
-            <strong>{c.name}</strong>
-            <div class="small muted">{t('lb.students', { active: c.active_students, total: c.students })}</div>
+        <div class="col" class:mine={c.class_id === myClassId} class:lead={leader(c)}>
+          <div class="tag small">
+            {#if leader(c)}<Icon name="trophy" size={14} /> {t('lb.leader')}{/if}
           </div>
-          <div class="right">
-            <strong>{t('lb.avg', { n: c.avg_points })}</strong>
-            <div class="small muted">{t('lb.points', { n: c.points })}</div>
+          <strong class="pts">{c.points}</strong>
+          <div class="track">
+            <i style:height={`${Math.max(4, (c.points / max) * 100)}%`}></i>
           </div>
-        </li>
-      {:else}
-        <li class="muted">{t('lb.empty')}</li>
+          <strong class="name">{c.name}</strong>
+          <span class="small muted mine-tag">{c.class_id === myClassId ? t('lb.mine') : ''}</span>
+        </div>
       {/each}
-    </ol>
-  {:else if tab === 'mine' && ranking}
-    <h2>{ranking.class_name}</h2>
-    <ol class="list card">
-      {#each ranking.students as s, i (i)}
-        <li class:me={s.is_me}>
-          <span class="rank r{s.rank}">{s.rank}</span>
-          <div class="grow"><strong>{s.name}</strong>{#if s.is_me} <span class="pill ok">{t('lb.me')}</span>{/if}</div>
-          <strong class="right">{t('lb.points', { n: s.points })}</strong>
-        </li>
-      {:else}
-        <li class="muted">{t('lb.empty')}</li>
-      {/each}
-    </ol>
+    </section>
+    <p class="small muted center">{t('lb.how')}</p>
   {/if}
 </main>
 
 <style>
-  .period { max-width: 280px; }
-  .list { list-style: none; margin: 0; padding: 4px 0; }
-  .list li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
-  .list li + li { border-top: 1px solid var(--border); }
-  .list li.me { background: var(--accent-soft); }
-  .grow { flex: 1; min-width: 0; }
-  .right { text-align: right; white-space: nowrap; }
-  .rank {
-    width: 32px; height: 32px; border-radius: 50%; flex: none;
-    display: grid; place-items: center; font-weight: 800; font-size: .9rem;
-    background: var(--surface-2); color: var(--muted);
+  .podium {
+    display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: 10px;
+    padding: 16px 12px;
   }
-  .rank.r1 { background: #fbbf24; color: #422006; }
-  .rank.r2 { background: #cbd5e1; color: #1e293b; }
-  .rank.r3 { background: #d6a477; color: #3b2412; }
+  .col {
+    display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0;
+    padding: 8px 4px; border-radius: 14px;
+  }
+  .col.mine { background: var(--accent-soft); }
+  .tag {
+    min-height: 1.3em; display: inline-flex; align-items: center; gap: 4px;
+    color: var(--gold); font-weight: 700;
+  }
+  .pts { font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+  .track {
+    width: 100%; max-width: 64px; height: 160px; border-radius: 12px;
+    background: var(--surface-2); display: flex; align-items: flex-end; overflow: hidden;
+  }
+  .track i { display: block; width: 100%; background: var(--accent); border-radius: 12px 12px 0 0; transition: height .4s ease; }
+  .lead .track i { background: var(--gold); }
+  .name { text-align: center; overflow-wrap: anywhere; }
+  .mine-tag { min-height: 1.2em; text-align: center; }
 </style>

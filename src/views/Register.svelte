@@ -1,7 +1,8 @@
 <script lang="ts">
   import Logo from '../components/Logo.svelte';
   import { api, ApiError, emailDomain } from '../lib/api';
-  import { setStudent } from '../lib/session.svelte';
+  import { setGuest, setStudent } from '../lib/session.svelte';
+  import { resetGuest } from '../lib/guest';
   import { errorText, i18n, setLang, t } from '../lib/i18n.svelte';
 
   // Login with the school email only. The student must be in the roster (quiz.roster);
@@ -51,6 +52,12 @@
       busy = false;
     }
   }
+
+  function tryAsGuest() {
+    resetGuest();
+    setGuest(true);
+    location.hash = '#/';
+  }
 </script>
 
 <main class="page reg">
@@ -86,6 +93,11 @@
     <button class="btn block" type="submit" disabled={busy}>{busy ? t('common.loading') : L.submit}</button>
     <p class="small muted">{L.note}</p>
   </form>
+
+  <section class="guest stack">
+    <button class="btn block secondary" type="button" onclick={tryAsGuest}>{t('guest.try')}</button>
+    <p class="small muted center">{t('guest.try_info')}</p>
+  </section>
 </main>
 
 <style>
@@ -94,4 +106,6 @@
   .lang .segmented { width: 220px; }
   .hero { text-align: center; margin: 24px 0 20px; }
   .hero h1 { margin: 12px 0 6px; font-size: 1.6rem; }
+  .guest { margin-top: 20px; }
+  .guest p { margin: 0; }
 </style>

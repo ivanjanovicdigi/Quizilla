@@ -1,5 +1,5 @@
 import type {
-  AnswerResult, Catalog, ClassInfo, ClassRanking, ClassRow, Question, Stats, Student, Topic
+  AnswerResult, Catalog, ClassInfo, ClassRow, GuestCheck, GuestSubject, Question, Stats, Student, Topic
 } from './types';
 
 const BASE = ((import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '').replace(/\/+$/, '');
@@ -59,9 +59,16 @@ export const api = {
   checkAnswer: (id: string, questionId: number, chosen: number) =>
     rpc<AnswerResult>('check_answer', { p_student_id: id, p_question_id: questionId, p_chosen: chosen }),
   getStats: (id: string, days: number | null) => rpc<Stats>('get_stats', { p_student_id: id, p_days: days }),
-  classLeaderboard: (days: number | null) => rpc<ClassRow[]>('get_class_leaderboard', { p_days: days }),
-  classRanking: (id: string, days: number | null) =>
-    rpc<ClassRanking>('get_class_ranking', { p_student_id: id, p_days: days })
+  // Guest mode (016_guest_mode.sql) – no student, nothing is recorded on the server.
+  guestCatalog: () => rpc<GuestSubject[]>('get_guest_catalog'),
+  guestQuestions: (topicId: number, difficulty: number, limit: number, seen: number[]) =>
+    rpc<Question[]>('get_guest_questions', {
+      p_topic_id: topicId, p_difficulty: difficulty, p_limit: limit, p_seen: seen
+    }),
+  guestCheck: (questionId: number, chosen: number) =>
+    rpc<GuestCheck>('check_guest_answer', { p_question_id: questionId, p_chosen: chosen }),
+  /** Class totals (all time), visible to everyone. */
+  classLeaderboard: () => rpc<ClassRow[]>('get_class_leaderboard')
 };
 
 export const emailDomain = (import.meta.env.VITE_EMAIL_DOMAIN as string | undefined) || 'lyceum.sk';

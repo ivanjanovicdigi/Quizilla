@@ -29,10 +29,16 @@ Production bundle ≈ 40 kB gzipped JS + 4 kB CSS.
 - **Unlock rule** (per topic, configurable): at least `unlock_min_answers` answers on the
   current level **and** ≥ `unlock_accuracy` correct in the last `unlock_window` answers.
   Unlocks are sticky. The server refuses questions/answers for locked levels.
-- **Points:** `difficulty × 10` for the **first** correct answer of each question
-  (repeating known questions gives practice, not points).
-- **Class leaderboard:** average points per registered student (fair for different class sizes),
-  last 7 days or all time. Inside a class, classmates are shown as "Ján N.".
+- **Points (testing mode only):** correct answer easy +5, medium +10, hard +20 – only the
+  **first** correct answer of each question scores (repeats give 0). Wrong answer easy −2,
+  medium −3, hard −5. A student's total never goes below 0 (a penalty is cut to the current
+  total). Values are in `quiz.config` (`points_correct_1..3`, `points_wrong_1..3`,
+  `points_first_correct_only`).
+- **Guest mode:** "Try as guest" on the login page – no roster needed, nothing is saved (no
+  attempts, points or leaderboard). Levels unlock during the visit only; a reload starts from zero.
+- **Class leaderboard:** visible to everyone – one column per class (Lambda, Ró, Teachers) with the
+  class total: plain sum of all-time points of its roster students. Students see only their own
+  detailed statistics, never classmates' points.
 - **Answer keys never leave the database** before the student answers.
 
 ## Project structure

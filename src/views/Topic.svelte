@@ -4,6 +4,7 @@
   import Icon from '../components/Icon.svelte';
   import MedalBadge from '../components/MedalBadge.svelte';
   import { api, ApiError } from '../lib/api';
+  import { guest } from '../lib/guest';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { neededCorrect, pct as rateOf } from '../lib/util';
@@ -22,10 +23,12 @@
     savePref('quizilla.mode', m);
   }
 
+  const isGuest = $derived(session.guest);
+
   async function load() {
     error = '';
     try {
-      topic = await api.getTopic(session.student!.id, topicId);
+      topic = session.guest ? await guest.topic(topicId) : await api.getTopic(session.student!.id, topicId);
     } catch (e) {
       const code = e instanceof ApiError ? e.code : 'server';
       if (code === 'unknown_student') setStudent(null);
@@ -65,6 +68,9 @@
     {#if topic.description_sk || topic.description_en}
       <p class="muted">{pick(topic.description_sk, topic.description_en)}</p>
     {/if}
+    {#if isGuest}
+      <p class="small guest-note"><Icon name="user" size={14} /> {t('guest.topic_note')}</p>
+    {:else}
     <section class="card medal-card">
       <MedalBadge medal={topic.medal} size={64} />
       <div class="grow">
@@ -99,6 +105,7 @@
         </div>
       </section>
     {/if}
+    {/if}
 
     <section class="card stack">
       <h3>{t('mode.title')}</h3>
@@ -113,7 +120,9 @@
       <p class="small muted">
         {mode === 'learn'
           ? t('mode.learn_info', { n: QUIZ_SIZE.learn })
-          : t('mode.test_info', { n: QUIZ_SIZE.test })}
+          : isGuest
+            ? t('guest.test_info', { n: QUIZ_SIZE.test })
+            : t('mode.test_info', { n: QUIZ_SIZE.test })}
       </p>
     </section>
 
@@ -136,7 +145,7 @@
           <div class="grow">
             <h3>{t('topic.level', { n: lvl.level })}</h3>
             <p class="muted small">
-              {t('topic.questions', { n: lvl.question_count })} · {t('topic.points', { n: lvl.points })}
+              {t('topic.questions', { n: lvl.question_count })}{#if !isGuest} · {t('topic.points', { n: lvl.points })}{/if}
             </p>
           </div>
           {#if lvl.unlocked}
@@ -186,6 +195,10 @@
   .medal-card h3 { margin: 0; }
   .medal-card p { margin: 4px 0 0; }
   .rule { background: var(--surface-2); border-radius: 12px; padding: 10px 12px; }
+  .guest-note {
+    display: flex; align-items: center; gap: 6px; margin: 0;
+    background: var(--info-soft); color: var(--info); border-radius: 12px; padding: 10px 12px;
+  }
   .level h3 { margin: 0; }
   .level p { margin: 2px 0 0; }
   .level.locked { opacity: .7; box-shadow: none; }

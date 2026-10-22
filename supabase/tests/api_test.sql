@@ -64,8 +64,7 @@ begin
   raise notice 'after wrong answers levels: %', (select jsonb_agg(jsonb_build_object('lvl',e->'level','unlocked',e->'unlocked','met',e->'met','recent',e->'recent_correct')) from jsonb_array_elements(r->'progress'->'levels') e);
 end $$;
 
-select jsonb_pretty(public.get_class_leaderboard(null));
-select jsonb_pretty(public.get_class_ranking((select v::uuid from t_ctx where k='sid2'), 7));
+select jsonb_pretty(public.get_class_leaderboard());
 select public.get_catalog((select v::uuid from t_ctx where k='sid'))->'student';
 reset role;
 select * from quiz.v_student_totals;

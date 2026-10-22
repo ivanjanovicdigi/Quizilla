@@ -26,11 +26,11 @@
   });
 </script>
 
-{#if !session.student}
+{#if !session.student && !session.guest}
   <Register />
 {:else}
   {#key router.route}
-    {#if router.route.name === 'home'}
+    {#if router.route.name === 'home' || (session.guest && router.route.name === 'stats')}
       <Home />
     {:else if router.route.name === 'topic'}
       <TopicView topicId={router.route.topicId} />

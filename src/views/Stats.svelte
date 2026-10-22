@@ -3,42 +3,51 @@
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
   import RankBadge, { rankImage } from '../components/RankBadge.svelte';
-  import AccuracyChart from '../components/AccuracyChart.svelte';
+  import TrendChart from '../components/TrendChart.svelte';
   import { api, ApiError } from '../lib/api';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
-  import { load as loadPref, save as savePref } from '../lib/storage';
-  import { pct } from '../lib/util';
-  import type { Stats } from '../lib/types';
-
-  const PASS = 0.75; // matches topic_pass_accuracy in quiz.config (dashed line in the charts)
+  import { pct, signed } from '../lib/util';
+  import type { Progress, Stats } from '../lib/types';
 
   let data = $state<Stats | null>(null);
   let error = $state('');
-  let loading = $state(false);
-  let days = $state<number | null>(loadPref<number | null>('quizilla.stats.days', 30));
 
   async function load() {
-    loading = true;
     error = '';
     try {
-      data = await api.getStats(session.student!.id, days);
+      data = await api.getStats(session.student!.id, null); // all time
     } catch (e) {
       const code = e instanceof ApiError ? e.code : 'server';
       if (code === 'unknown_student') setStudent(null);
       error = errorText(code);
-    } finally {
-      loading = false;
     }
   }
 
-  function setDays(d: number | null) {
-    days = d;
-    savePref('quizilla.stats.days', d);
-    load();
+  onMount(load);
+
+  /** Current level (highest unlocked) and progress toward unlocking the next one. */
+  function unlockInfo(p: Progress) {
+    const levels = p.levels;
+    let i = 0;
+    levels.forEach((l, k) => { if (l.unlocked) i = k; });
+    const cur = levels[i];
+    const next = levels[i + 1] ?? null;
+    const min = p.unlock_min_answers;
+    const need = Math.round(p.unlock_accuracy * 100);
+    return {
+      level: cur?.level ?? 1,
+      count: levels.length,
+      next,
+      answers: cur?.total_answers ?? 0,
+      min,
+      acc: pct(cur?.recent_correct ?? 0, cur?.recent_total ?? 0),
+      need,
+      answersPct: Math.min(100, ((cur?.total_answers ?? 0) / Math.max(min, 1)) * 100)
+    };
   }
 
-  onMount(load);
+  const unlockAcc = $derived(data?.topics.find((x) => x.progress)?.progress?.unlock_accuracy ?? 0.8);
 </script>
 
 <TopBar title={t('stats.title')} back="#/profile" />
@@ -107,28 +116,63 @@
       {/each}
     </section>
 
-    <!-- per topic over time -->
-    <div class="row">
-      <h3 class="grow">{t('stats.topics')}</h3>
-    </div>
-    <div class="segmented">
-      <button class:active={days === 30} onclick={() => setDays(30)}>{t('stats.days30')}</button>
-      <button class:active={days === 90} onclick={() => setDays(90)}>{t('stats.days90')}</button>
-      <button class:active={days === null} onclick={() => setDays(null)}>{t('stats.all')}</button>
-    </div>
-    <p class="small muted">{t('stats.chart_info', { pct: Math.round(PASS * 100) })}</p>
+    <!-- per topic: points, accuracy, unlock progress, running-accuracy trend -->
+    <h3>{t('stats.topics')}</h3>
+    <p class="small muted">{t('stats.trend_info', { pct: Math.round(unlockAcc * 100) })}</p>
 
-    <div class="stack" class:dim={loading}>
+    <div class="stack">
       {#each data.topics as topic (topic.id)}
-        <section class="card topic">
-          <div class="row">
-            <h3 class="grow">{pick(topic.name_sk, topic.name_en)}</h3>
-            {#if topic.answers}
-              <span class="small muted">{t('stats.summary', { a: topic.answers, pct: pct(topic.correct, topic.answers) })}</span>
-            {/if}
+        {@const pts = topic.points ?? 0}
+        <section class="card topic stack">
+          <h3>{pick(topic.name_sk, topic.name_en)}</h3>
+
+          <div class="kpis">
+            <div>
+              <strong class:plus={pts > 0} class:minus={pts < 0}>{signed(pts)}</strong>
+              <span class="small muted">{t('stats.points')}</span>
+            </div>
+            <div>
+              <strong>{topic.answers ? `${pct(topic.correct, topic.answers)} %` : '–'}</strong>
+              <span class="small muted">{t('stats.rate')}</span>
+            </div>
+            <div>
+              <strong>{topic.answers}</strong>
+              <span class="small muted">{t('stats.answers')}</span>
+            </div>
           </div>
-          {#if topic.days.length}
-            <AccuracyChart days={topic.days} threshold={PASS} />
+
+          {#if topic.tier_unlocked === false}
+            <p class="small muted lock"><Icon name="lock" size={14} /> {t('stats.tier_locked', { n: topic.tier })}</p>
+          {:else if topic.progress && topic.progress.levels.length}
+            {@const u = unlockInfo(topic.progress)}
+            <div class="unlock-box small">
+              <div class="row">
+                <strong>{t('stats.level_of', { n: u.level, m: u.count })}</strong>
+                <span class="spacer"></span>
+                {#if u.next}
+                  <span class="muted">{t('stats.next_unlock', { n: u.next.level })}</span>
+                {:else}
+                  <span class="done"><Icon name="check" size={14} /> {t('stats.all_unlocked')}</span>
+                {/if}
+              </div>
+              {#if u.next}
+                <div class="need">
+                  <span>{t('stats.need_answers', { a: Math.min(u.answers, u.min), min: u.min })}</span>
+                  <div class="bar" class:ok={u.answers >= u.min}><i style:width={`${u.answersPct}%`}></i></div>
+                </div>
+                <div class="need">
+                  <span>{t('stats.need_acc', { pct: u.answers ? u.acc : 0, need: u.need })}</span>
+                  <div class="bar acc" class:ok={u.answers > 0 && u.acc >= u.need}>
+                    <i style:width={`${u.answers ? u.acc : 0}%`}></i>
+                    <b style:left={`${u.need}%`}></b>
+                  </div>
+                </div>
+              {/if}
+            </div>
+          {/if}
+
+          {#if topic.trend?.length}
+            <TrendChart trend={topic.trend} threshold={topic.progress?.unlock_accuracy ?? unlockAcc} />
           {:else}
             <p class="small muted empty">{t('stats.no_data')}</p>
           {/if}
@@ -159,6 +203,17 @@
   .tier-no.locked { background: var(--surface-2); color: var(--lock); }
   .topic h3 { margin: 0; }
   .topic :global(.chart) { margin-top: 28px; }
-  .empty { margin: 8px 0 0; }
-  .dim { opacity: .5; transition: opacity .2s; }
+  .empty { margin: 0; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+  .kpis div { display: flex; flex-direction: column; padding: 8px 4px; border-radius: 12px; background: var(--surface-2); }
+  .kpis strong { font-size: 1.15rem; }
+  .kpis .plus { color: var(--ok); }
+  .kpis .minus { color: var(--bad); }
+  .lock { display: flex; align-items: center; gap: 6px; margin: 0; }
+  .unlock-box { display: flex; flex-direction: column; gap: 8px; }
+  .done { color: var(--ok); display: inline-flex; align-items: center; gap: 4px; font-weight: 700; }
+  .need { display: flex; flex-direction: column; gap: 3px; }
+  .need .bar.ok i { background: var(--ok); }
+  .bar.acc { position: relative; }
+  .bar.acc b { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--text); opacity: .55; }
 </style>

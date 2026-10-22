@@ -2,7 +2,8 @@
   import TopBar from '../components/TopBar.svelte';
   import Logo from '../components/Logo.svelte';
   import Icon from '../components/Icon.svelte';
-  import { session, setStudent } from '../lib/session.svelte';
+  import { session, setGuest, setStudent } from '../lib/session.svelte';
+  import { resetGuest } from '../lib/guest';
   import { i18n, setLang, t } from '../lib/i18n.svelte';
 
   function logout() {
@@ -11,12 +12,39 @@
       location.hash = '#/';
     }
   }
+
+  function leaveGuest() {
+    if (confirm(t('guest.leave_confirm'))) {
+      resetGuest();
+      setGuest(false);
+      location.hash = '#/';
+    }
+  }
 </script>
 
 <TopBar title={t('profile.title')} />
 
 <main class="page stack">
-  {#if session.student}
+  {#if session.guest}
+    <section class="card who">
+      <Logo size={48} />
+      <div>
+        <h2>{t('guest.name')}</h2>
+        <div class="muted small">{t('guest.info')}</div>
+      </div>
+    </section>
+
+    <section class="card stack">
+      <h3>{t('profile.language')}</h3>
+      <div class="segmented">
+        <button class:active={i18n.lang === 'sk'} onclick={() => setLang('sk')}>Slovensky</button>
+        <button class:active={i18n.lang === 'en'} onclick={() => setLang('en')}>English</button>
+      </div>
+    </section>
+
+    <button class="btn block" onclick={leaveGuest}>{t('guest.login')}</button>
+    <p class="small muted center">Quizilla v{__APP_VERSION__}</p>
+  {:else if session.student}
     <section class="card who">
       <Logo size={48} />
       <div>

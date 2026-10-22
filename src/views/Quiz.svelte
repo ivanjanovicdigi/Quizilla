@@ -4,14 +4,17 @@
   import Icon from '../components/Icon.svelte';
   import Rich from '../components/Rich.svelte';
   import { api, ApiError } from '../lib/api';
+  import { guest } from '../lib/guest';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
-  import { shuffledIndices } from '../lib/util';
+  import { shuffledIndices, signed } from '../lib/util';
   import { QUIZ_SIZE } from '../lib/modes';
   import type { AnswerResult, Mode, Progress, Question, Topic } from '../lib/types';
 
   let { topicId, difficulty, mode = 'test' }: { topicId: number; difficulty: number; mode?: Mode } = $props();
   const learning = $derived(mode === 'learn');
+  const isGuest = $derived(session.guest);
+  const scored = $derived(!learning && !isGuest); // points shown only for students in testing mode
 
   const LETTERS = ['A', 'B', 'C', 'D'];
 
@@ -52,10 +55,15 @@
     unlockedLevels = [];
     passedNow = false;
     try {
-      const [tp, qs] = await Promise.all([
-        topic ? Promise.resolve(topic) : api.getTopic(studentId(), topicId),
-        api.getQuestions(studentId(), topicId, difficulty, QUIZ_SIZE[mode])
-      ]);
+      const [tp, qs] = session.guest
+        ? await Promise.all([
+            guest.topic(topicId),
+            guest.questions(topicId, difficulty, QUIZ_SIZE[mode])
+          ])
+        : await Promise.all([
+            topic ? Promise.resolve(topic) : api.getTopic(studentId(), topicId),
+            api.getQuestions(studentId(), topicId, difficulty, QUIZ_SIZE[mode])
+          ]);
       topic = tp;
       progress = tp.progress;
       questions = qs;
@@ -82,9 +90,11 @@
     chosen = original;
     busy = true;
     try {
-      const r = learning
-        ? await api.checkAnswer(studentId(), current.id, original)
-        : await api.submitAnswer(studentId(), current.id, original);
+      const r = session.guest
+        ? await guest.answer(topicId, current, original, !learning)
+        : learning
+          ? await api.checkAnswer(studentId(), current.id, original)
+          : await api.submitAnswer(studentId(), current.id, original);
       result = r;
       progress = r.progress;
       if (r.correct) correctCount++;
@@ -142,8 +152,10 @@
       <p class="muted">{t('quiz.score', { c: correctCount, n: questions.length })}</p>
       {#if learning}
         <p class="pill learn"><Icon name="book" size={14} /> {t('quiz.not_saved')}</p>
+      {:else if isGuest}
+        <p class="pill learn"><Icon name="user" size={14} /> {t('guest.round_note')}</p>
       {:else}
-        <p class="gold"><Icon name="star" size={18} /> {t('quiz.earned', { n: pointsEarned })}</p>
+        <p class="gold" class:minus={pointsEarned < 0}><Icon name="star" size={18} /> {t('quiz.earned', { n: signed(pointsEarned) })}</p>
       {/if}
       {#if passedNow}
         <div class="unlock"><Icon name="check" /> {t('pass.new')}</div>
@@ -167,8 +179,10 @@
       <div class="bar grow"><i style:width={`${((index + (result ? 1 : 0)) / questions.length) * 100}%`}></i></div>
       {#if learning}
         <span class="small learn-tag"><Icon name="book" size={14} /> {t('mode.learn')}</span>
+      {:else if isGuest}
+        <span class="small learn-tag"><Icon name="user" size={14} /> {t('guest.tag')}</span>
       {:else}
-        <span class="small gold"><Icon name="star" size={14} /> {pointsEarned}</span>
+        <span class="small gold" class:minus={pointsEarned < 0}><Icon name="star" size={14} /> {signed(pointsEarned)}</span>
       {/if}
     </div>
 
@@ -199,8 +213,14 @@
         <div class="row">
           <strong>{result.correct ? t('quiz.correct') : t('quiz.wrong')}</strong>
           <span class="spacer"></span>
-          {#if result.correct && !learning}
-            <span class="small">{result.points > 0 ? t('quiz.points', { n: result.points }) : t('quiz.no_points')}</span>
+          {#if scored}
+            {#if result.points !== 0}
+              <span class="small pts" class:plus={result.points > 0} class:minus={result.points < 0}>
+                {t('quiz.points', { n: signed(result.points) })}
+              </span>
+            {:else if result.correct}
+              <span class="small">{t('quiz.no_points')}</span>
+            {/if}
           {/if}
         </div>
         {#if result.explanation || result.explanation_en}
@@ -256,6 +276,9 @@
   .feedback.ok strong { color: var(--ok); }
   .feedback.bad strong { color: var(--bad); }
   .expl { margin-top: 8px; }
+  .pts { font-weight: 800; }
+  .pts.plus { color: var(--ok); }
+  .gold.minus, .pts.minus { color: var(--bad); }
 
   .unlock {
     margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;

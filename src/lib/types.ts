@@ -114,6 +114,11 @@ export interface StatsTopic {
   answers: number;
   correct: number;
   days: StatsDay[];
+  // from 014_topic_stats.sql (all time)
+  points?: number;
+  tier_unlocked?: boolean;
+  progress?: Progress;
+  trend?: [number, number][]; // [answer number, correct so far]
 }
 
 export interface Stats {
@@ -138,10 +143,43 @@ export interface AnswerResult {
   correct_index: number;
   explanation: string | null;
   explanation_en: string | null;
-  points: number;
+  points: number; // real point change: +5/+10/+20, 0, or a (floored) penalty
+  total?: number; // student's new total (submit_answer only, from 013_scoring.sql)
   newly_unlocked: number[];
   newly_passed: boolean;
   progress: Progress;
+}
+
+// Guest mode (016_guest_mode.sql)
+export interface GuestTopic {
+  id: number;
+  slug: string;
+  subject_id: number;
+  tier: number;
+  name_sk: string;
+  name_en: string | null;
+  description_sk: string | null;
+  description_en: string | null;
+  question_count: number;
+  unlock_min_answers: number;
+  unlock_window: number | null;
+  unlock_accuracy: number;
+  levels: { level: number; difficulty: number; question_count: number }[];
+}
+
+export interface GuestSubject {
+  id: number;
+  slug: string;
+  name_sk: string;
+  name_en: string | null;
+  topics: GuestTopic[];
+}
+
+export interface GuestCheck {
+  correct: boolean;
+  correct_index: number;
+  explanation: string | null;
+  explanation_en: string | null;
 }
 
 export interface ClassInfo {
@@ -152,15 +190,6 @@ export interface ClassInfo {
 export interface ClassRow {
   class_id: number;
   name: string;
-  students: number;
-  active_students: number;
-  points: number;
-  avg_points: number;
+  points: number; // sum of all-time points of the class's roster students
   rank: number;
-}
-
-export interface ClassRanking {
-  class_id: number;
-  class_name: string;
-  students: { name: string; points: number; rank: number; is_me: boolean }[];
 }

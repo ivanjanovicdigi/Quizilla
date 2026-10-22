@@ -8,15 +8,23 @@
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { pct } from '../lib/util';
-  import type { Catalog, TierState, Topic } from '../lib/types';
+  import { guest } from '../lib/guest';
+  import type { Catalog, Subject, TierState, Topic } from '../lib/types';
 
-  let data = $state<Catalog | null>(null);
+  let data = $state<Catalog | null>(null); // student
+  let view = $state<{ subjects: Subject[]; tiers: TierState[] } | null>(null); // student or guest
   let error = $state('');
+  const isGuest = $derived(session.guest);
 
   async function load() {
     error = '';
     try {
+      if (session.guest) {
+        view = await guest.catalog();
+        return;
+      }
       data = await api.getCatalog(session.student!.id);
+      view = data;
       setStudent(data.student);
     } catch (e) {
       const code = e instanceof ApiError ? e.code : 'server';
@@ -34,7 +42,7 @@
   }
 
   function tierOf(n: number): TierState | undefined {
-    return data?.tiers.find((x) => x.tier === n);
+    return view?.tiers.find((x) => x.tier === n);
   }
 
   /** Topics of a subject grouped by tier, in tier order. */
@@ -54,9 +62,18 @@
   {#if error}
     <div class="error">{error}</div>
     <button class="btn secondary" onclick={load}>{t('common.retry')}</button>
-  {:else if !data}
+  {:else if !view}
     <div class="spinner"></div>
   {:else}
+    {#if isGuest}
+      <section class="card guest-card">
+        <div class="grow">
+          <h2>{t('guest.hello')}</h2>
+          <p class="muted small">{t('guest.info')}</p>
+        </div>
+        <a class="btn small secondary" href="#/profile">{t('guest.login')}</a>
+      </section>
+    {:else if data}
     <section class="card hello">
       <div>
         <h2>{t('home.hello', { name: data.student.name.split(' ')[0] })}</h2>
@@ -69,12 +86,13 @@
         <span class="muted small">{t('home.points')}</span>
       </div>
     </section>
+    {/if}
 
-    {#if data.subjects.length === 0}
+    {#if view.subjects.length === 0}
       <p class="muted center">{t('home.empty')}</p>
     {/if}
 
-    {#each data.subjects as subject (subject.id)}
+    {#each view.subjects as subject (subject.id)}
       <section class="stack">
         <h2 class="subject">{pick(subject.name_sk, subject.name_en)}</h2>
 
@@ -87,11 +105,11 @@
                 <h3>{t('tier.name', { n: tierNo })}</h3>
                 {#if locked}
                   <p class="small muted"><Icon name="lock" size={14} /> {t('tier.locked', { n: tierNo - 1 })}</p>
-                {:else if tier}
+                {:else if tier && !isGuest}
                   <p class="small muted">{t('tier.passed', { p: tier.passed_count, n: tier.topic_count })}</p>
                 {/if}
               </div>
-              {#if tier && !locked}
+              {#if tier && !locked && !isGuest}
                 <div class="acc">
                   <strong>{tier.answers ? `${pct(tier.correct, tier.answers)} %` : '–'}</strong>
                   <span class="muted small">{t('tier.accuracy')}</span>
@@ -121,7 +139,9 @@
                       <span class="pill">{t('home.levels', { current: s.current, total: s.total })}</span>
                     {/if}
                     <span class="spacer"></span>
-                    <span class="muted">{t('topic.points', { n: topic.progress.points })}</span>
+                    {#if !isGuest}
+                      <span class="muted">{t('topic.points', { n: topic.progress.points })}</span>
+                    {/if}
                   </div>
                 {/if}
               </a>
@@ -136,6 +156,9 @@
 <style>
   .hello { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .hello p { margin: 2px 0 6px; }
+  .guest-card { display: flex; align-items: center; gap: 12px; }
+  .guest-card p { margin: 4px 0 0; }
+  .guest-card .btn { text-decoration: none; flex: none; }
   .rank-link { text-decoration: none; }
   .score { display: flex; align-items: center; gap: 6px; color: var(--gold); font-size: 1.25rem; }
   .score span { color: var(--muted); }

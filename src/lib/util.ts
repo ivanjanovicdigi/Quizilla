@@ -8,6 +8,13 @@ export function shuffledIndices(n: number): number[] {
   return a;
 }
 
+/** Number with its sign: +10, −3 (real minus sign), 0. */
+export function signed(n: number): string {
+  if (n > 0) return `+${n}`;
+  if (n < 0) return `−${Math.abs(n)}`;
+  return '0';
+}
+
 /** Correct answers needed in the window to meet the threshold. */
 export function neededCorrect(window: number, accuracy: number): number {
   return Math.ceil(window * accuracy - 1e-9);
