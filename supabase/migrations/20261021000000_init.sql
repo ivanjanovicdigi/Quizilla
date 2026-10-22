@@ -95,6 +95,7 @@ create table if not exists quiz.questions (
   answers_en     text[] check (answers_en is null or array_length(answers_en, 1) = 4),
   explanation_en text,
   is_active     boolean not null default true,
+  source_id     text unique,               -- id from questions/batches (generated questions)
   created_at    timestamptz not null default now()
 );
 create index if not exists questions_topic_difficulty_idx
