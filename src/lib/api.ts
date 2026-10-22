@@ -43,8 +43,8 @@ async function rpc<T>(fn: string, args: Record<string, unknown> = {}): Promise<T
 
 export const api = {
   listClasses: () => rpc<ClassInfo[]>('list_classes'),
-  register: (email: string, name: string, classId: number) =>
-    rpc<Student>('register_student', { p_email: email, p_name: name, p_class_id: classId }),
+  /** Login with the school email only – the student must be in the roster (quiz.roster). */
+  login: (email: string) => rpc<Student>('login_student', { p_email: email }),
   getStudent: (id: string) => rpc<Student | null>('get_student', { p_student_id: id }),
   getCatalog: (id: string) => rpc<Catalog>('get_catalog', { p_student_id: id }),
   getTopic: (id: string, topicId: number) =>

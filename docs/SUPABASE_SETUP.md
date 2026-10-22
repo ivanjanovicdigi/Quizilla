@@ -70,9 +70,16 @@ select * from quiz.v_student_totals;   -- per student
 select * from quiz.v_student_levels;   -- per student / topic / difficulty
 select * from quiz.v_class_totals;     -- class vs class
 
--- Move a student to another class
-update quiz.students set class_id = (select id from quiz.classes where name = 'I.B')
+-- Roster (who may log in) – normally maintained with `npm run q:roster`, see below
+select * from quiz.v_roster;                  -- roster + who has logged in
+select * from quiz.v_students_not_on_roster;  -- students with progress who cannot log in
+
+-- Move a student to another class (the roster is the source of truth; the student follows)
+update quiz.roster set class_id = (select id from quiz.classes where name = 'Ró'), updated_at = now()
  where email = 'jan.novak@lyceum.sk';
+
+-- Block a student (history is kept; the device is logged out on the next app start)
+update quiz.roster set is_active = false, updated_at = now() where email = 'x@lyceum.sk';
 
 -- Allowed email domains (comma separated)
 update quiz.config set value = 'lyceum.sk' where key = 'allowed_email_domains';
@@ -86,7 +93,39 @@ update quiz.questions set is_active = false where id = 42;
 
 -- Remove a student completely (attempts are deleted too)
 delete from quiz.students where email = 'x@lyceum.sk';
+delete from quiz.roster   where email = 'x@lyceum.sk';
 ```
+
+## Student roster (login whitelist)
+
+Only students in `quiz.roster` can log in. They type just their school email; name and class come
+from the roster, and the device remembers them (logging out is in Profile).
+
+1. Once: `npm run q:import -- supabase/updates/010_roster.sql`
+2. Export the list from Excel / EduPage as **CSV UTF-8** into `private/roster.csv`
+   (the `private/` folder is gitignored – the file contains students' personal data, never commit it).
+   Columns (header row, separator `;` or `,`), see [`roster.example.csv`](roster.example.csv):
+
+   ```
+   name;email;class
+   Ján Novák;jan.novak@lyceum.sk;Lambda
+   ```
+
+   Columns are found by their header name, so the order does not matter (Slovak headers
+   `meno;e-mail;trieda` work too). `class` must be a class name from `quiz.classes` (Lambda, Ró, Teachers).
+3. Check first, then load:
+
+   ```bash
+   npm run q:roster -- private/roster.csv --dry-run
+   npm run q:roster -- private/roster.csv
+   ```
+
+   Run it again whenever the list changes – new students are added, changed names/classes updated.
+   Add `--sync` to also deactivate students that are no longer in the file.
+   If the file has any error (bad email, unknown class, duplicate), nothing is changed.
+
+Students who used the app before keep all their progress – they are matched by email. The script
+lists existing students that are not in the roster (usually a typo in the file).
 
 The tables are also visible in **Table Editor → schema `quiz`**.
 

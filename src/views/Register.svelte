@@ -1,49 +1,52 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import Logo from '../components/Logo.svelte';
   import { api, ApiError, emailDomain } from '../lib/api';
   import { setStudent } from '../lib/session.svelte';
   import { errorText, i18n, setLang, t } from '../lib/i18n.svelte';
-  import type { ClassInfo } from '../lib/types';
 
-  let classes = $state<ClassInfo[]>([]);
-  let name = $state('');
+  // Login with the school email only. The student must be in the roster (quiz.roster);
+  // name and class come from there. The device remembers the student (session.svelte.ts).
+  const TEXT = {
+    sk: {
+      title: 'Prihlásenie',
+      email: 'Školský e-mail',
+      submit: 'Prihlásiť sa',
+      note: 'Zadaj svoj školský e-mail. Zariadenie si ťa zapamätá, takže nabudúce sa už prihlasovať nemusíš.',
+      not_on_roster: 'Tento e-mail nie je v zozname žiakov. Skontroluj ho, prípadne sa obráť na učiteľa.'
+    },
+    en: {
+      title: 'Log in',
+      email: 'School email',
+      submit: 'Log in',
+      note: 'Enter your school email. This device will remember you, so you won’t have to log in next time.',
+      not_on_roster: 'This email is not on the student list. Check it or ask your teacher.'
+    }
+  };
+  const L = $derived(TEXT[i18n.lang === 'en' ? 'en' : 'sk']);
+
   let email = $state('');
-  let classId = $state<number | ''>('');
   let busy = $state(false);
   let error = $state('');
-  let loadError = $state('');
 
-  async function loadClasses() {
-    loadError = '';
-    try {
-      classes = await api.listClasses();
-    } catch (e) {
-      loadError = errorText(e instanceof ApiError ? e.code : 'server');
-    }
-  }
-  onMount(loadClasses);
-
-  function validate(): string {
-    if (name.trim().length < 2) return errorText('invalid_name');
-    const e = email.trim().toLowerCase();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) || !e.endsWith('@' + emailDomain))
-      return errorText('invalid_email', { domain: emailDomain });
-    if (classId === '') return errorText('invalid_class');
-    return '';
+  function message(code: string): string {
+    return code === 'not_on_roster' ? L.not_on_roster : errorText(code, { domain: emailDomain });
   }
 
   async function submit(ev: SubmitEvent) {
     ev.preventDefault();
-    error = validate();
-    if (error) return;
+    error = '';
+    const e = email.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) || !e.endsWith('@' + emailDomain)) {
+      error = message('invalid_email');
+      return;
+    }
     busy = true;
     try {
-      const s = await api.register(email.trim(), name.trim(), Number(classId));
+      const s = await api.login(e);
       setStudent(s);
       location.hash = '#/';
-    } catch (e) {
-      error = errorText(e instanceof ApiError ? e.code : 'server', { domain: emailDomain });
+    } catch (err) {
+      error = message(err instanceof ApiError ? err.code : 'server');
     } finally {
       busy = false;
     }
@@ -60,17 +63,13 @@
 
   <div class="hero">
     <Logo size={72} />
-    <h1>{t('reg.title')}</h1>
+    <h1>{L.title}</h1>
     <p class="muted">{t('app.tagline')}</p>
   </div>
 
   <form class="card stack" onsubmit={submit} novalidate>
     <label class="field">
-      <span>{t('reg.name')}</span>
-      <input bind:value={name} autocomplete="name" placeholder={t('reg.name.ph')} maxlength="80" />
-    </label>
-    <label class="field">
-      <span>{t('reg.email')}</span>
+      <span>{L.email}</span>
       <input
         bind:value={email}
         type="email"
@@ -78,26 +77,14 @@
         autocomplete="email"
         autocapitalize="off"
         spellcheck="false"
+        enterkeyhint="go"
         placeholder={'meno.priezvisko@' + emailDomain} />
     </label>
-    <label class="field">
-      <span>{t('reg.class')}</span>
-      <select bind:value={classId}>
-        <option value="" disabled>{t('reg.class.ph')}</option>
-        {#each classes as c (c.id)}
-          <option value={c.id}>{c.name}</option>
-        {/each}
-      </select>
-    </label>
 
-    {#if loadError}
-      <div class="error">{loadError} <button type="button" class="btn small secondary" onclick={loadClasses}>{t('common.retry')}</button></div>
-    {/if}
     {#if error}<div class="error" role="alert">{error}</div>{/if}
 
-    <button class="btn block" type="submit" disabled={busy}>{busy ? t('common.loading') : t('reg.submit')}</button>
-    <p class="small muted">{t('reg.note')}</p>
-    <p class="small muted">{t('reg.again')}</p>
+    <button class="btn block" type="submit" disabled={busy}>{busy ? t('common.loading') : L.submit}</button>
+    <p class="small muted">{L.note}</p>
   </form>
 </main>
 

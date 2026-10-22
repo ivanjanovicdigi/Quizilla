@@ -3,7 +3,7 @@
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
   import TierBadge from '../components/TierBadge.svelte';
-  import RankBadge from '../components/RankBadge.svelte';
+  import RankBadge, { rankImage } from '../components/RankBadge.svelte';
   import AccuracyChart from '../components/AccuracyChart.svelte';
   import { api, ApiError } from '../lib/api';
   import { session, setStudent } from '../lib/session.svelte';
@@ -64,7 +64,7 @@
           : r.answers >= data.rank.min_answers}
         <div class="rank-row" class:earned={r.earned}>
           <span class="rank-ico">
-            <Icon name={r.earned ? 'check' : 'medal'} size={18} />
+            <img src={rankImage(r.key)} alt="" width="30" height="30" />
           </span>
           <div class="grow">
             <strong>{t(`rank.${r.key}`)}</strong>
@@ -147,6 +147,8 @@
     background: var(--surface-2); color: var(--lock);
   }
   .earned .rank-ico { background: var(--gold-soft); color: var(--gold); }
+  .rank-ico img { display: block; object-fit: contain; }
+  .rank-row:not(.earned) .rank-ico img { filter: grayscale(1); opacity: .45; }
   .tier-row { display: flex; align-items: center; gap: 12px; }
   .tier-row .bar { margin: 4px 0; }
   .topic h3 { margin: 0; }

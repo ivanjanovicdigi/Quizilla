@@ -11,7 +11,8 @@
     "q:check": "node scripts/check-batch.mjs",
     "q:verify": "node scripts/verify-dotnet.mjs",
     "q:sql": "node scripts/questions-to-sql.mjs",
-    "q:import": "node scripts/import-sql.mjs"
+    "q:import": "node scripts/import-sql.mjs",
+    "q:roster": "node scripts/import-roster.mjs"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.1.1",

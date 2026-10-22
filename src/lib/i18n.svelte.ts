@@ -8,16 +8,6 @@ const sk = {
   'nav.leaderboard': 'Rebríček',
   'nav.profile': 'Profil',
 
-  'reg.title': 'Vitaj v Quizille',
-  'reg.name': 'Meno a priezvisko',
-  'reg.name.ph': 'Ján Novák',
-  'reg.email': 'Školský e-mail',
-  'reg.class': 'Trieda',
-  'reg.class.ph': 'Vyber triedu',
-  'reg.submit': 'Začať',
-  'reg.note': 'Tvoje meno a body uvidí učiteľ. Spolužiaci uvidia meno v skrátenej podobe (napr. Ján N.).',
-  'reg.again': 'Už si sa prihlásil na inom zariadení? Zadaj rovnaký e-mail – body ostanú zachované.',
-
   'home.hello': 'Ahoj, {name}',
   'home.points': 'bodov',
   'home.class': 'Trieda {name}',
@@ -150,16 +140,6 @@ const en: Record<Key, string> = {
   'nav.home': 'Home',
   'nav.leaderboard': 'Leaderboard',
   'nav.profile': 'Profile',
-
-  'reg.title': 'Welcome to Quizilla',
-  'reg.name': 'Full name',
-  'reg.name.ph': 'John Smith',
-  'reg.email': 'School email',
-  'reg.class': 'Class',
-  'reg.class.ph': 'Choose your class',
-  'reg.submit': 'Start',
-  'reg.note': 'Your teacher will see your name and points. Classmates see a shortened name (e.g. John S.).',
-  'reg.again': 'Signed in on another device before? Use the same email – your points stay.',
 
   'home.hello': 'Hi, {name}',
   'home.points': 'points',
