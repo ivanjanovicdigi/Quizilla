@@ -35,8 +35,6 @@
       </div>
     </section>
 
-    <ShareQr />
-
     <section class="card stack">
       <h3>{t('profile.language')}</h3>
       <div class="segmented">
@@ -44,6 +42,8 @@
         <button class:active={i18n.lang === 'en'} onclick={() => setLang('en')}>English</button>
       </div>
     </section>
+
+    <ShareQr />
 
     <button class="btn block" onclick={leaveGuest}>{t('guest.login')}</button>
     <p class="small muted center">Quizilla v{__APP_VERSION__}</p>
@@ -67,8 +67,6 @@
       <Icon name="chevron" size={18} />
     </a>
 
-    <ShareQr />
-
     <section class="card stack">
       <h3>{t('profile.language')}</h3>
       <div class="segmented">
@@ -76,6 +74,8 @@
         <button class:active={i18n.lang === 'en'} onclick={() => setLang('en')}>English</button>
       </div>
     </section>
+
+    <ShareQr />
 
     <button class="btn danger block" onclick={logout}>{t('profile.logout')}</button>
     <p class="small muted center">Quizilla v{__APP_VERSION__}</p>
