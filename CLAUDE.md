@@ -21,7 +21,8 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 ## Layout
 - `src/views/` – Home, Topic, Quiz, Stats, Leaderboard, Profile, Register (login).
 - `src/components/` – TopBar, BottomNav, Rich (markdown + C#), Icon, Logo, AccuracyChart,
-  MedalBadge, RankBadge.
+  MedalBadge, RankBadge, ShareQr (Profile card with public/qr-quizilla.svg → the live app URL;
+  regenerate the SVG if the app URL ever changes).
 - `src/lib/api.ts` (RPC client), `types.ts`, `i18n.svelte.ts`, `util.ts` (`signed`, `pct`, …),
   `session.svelte.ts`, `router.svelte.ts` (hash router), `modes.ts` (learn/test, quiz sizes).
 - `supabase/migrations/…_init.sql` – base schema; `supabase/updates/0NN_*.sql` – later changes.

@@ -2,6 +2,7 @@
   import TopBar from '../components/TopBar.svelte';
   import Logo from '../components/Logo.svelte';
   import Icon from '../components/Icon.svelte';
+  import ShareQr from '../components/ShareQr.svelte';
   import { session, setGuest, setStudent } from '../lib/session.svelte';
   import { resetGuest } from '../lib/guest';
   import { i18n, setLang, t } from '../lib/i18n.svelte';
@@ -34,6 +35,8 @@
       </div>
     </section>
 
+    <ShareQr />
+
     <section class="card stack">
       <h3>{t('profile.language')}</h3>
       <div class="segmented">
@@ -63,6 +66,8 @@
       </span>
       <Icon name="chevron" size={18} />
     </a>
+
+    <ShareQr />
 
     <section class="card stack">
       <h3>{t('profile.language')}</h3>
