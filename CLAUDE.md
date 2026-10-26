@@ -60,6 +60,9 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 - Class leaderboard (015): `get_class_leaderboard()` (no args, public) – per class only the all-time
   total points, membership from active roster rows. No averages / counts / period switch.
   `get_class_ranking` (classmates' points) was dropped on purpose – don't bring it back.
+  The class chart is `src/components/ClassBoard.svelte` (Leaderboard page + admin). Admin has a
+  "Users | Leaderboard" switch; its Leaderboard tab adds a student ranking built from admin_list_users
+  (admin only – students never see other students' points).
 - Guest mode (016): "Try as guest" on the login page. `session.guest` is memory-only; guest
   progress lives in `src/lib/guest.ts` (no localStorage, nothing on the server). RPCs
   `get_guest_catalog`, `get_guest_questions`, `check_guest_answer` take no student id and record

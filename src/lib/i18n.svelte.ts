@@ -148,6 +148,10 @@ const sk = {
   'admin.unknown_user': 'Používateľ sa nenašiel v zozname žiakov.',
   'admin.view_stats': 'Štatistiky',
   'admin.back_to_list': 'Zoznam',
+  'admin.tab_users': 'Používatelia',
+  'admin.ranking': 'Poradie žiakov',
+  'admin.ranking_info': 'Body od začiatku. Žiaci tento zoznam nevidia. Ťukni na žiaka pre jeho štatistiky.',
+  'admin.answers_n': '{n} odp.',
   'mode.learn_note': 'Režim učenia – odpovede sa nezapočítavajú.',
 
   'rank.none': 'Bez hodnosti',
@@ -354,6 +358,10 @@ const en: Record<Key, string> = {
   'admin.unknown_user': 'User not found in the student roster.',
   'admin.view_stats': 'Statistics',
   'admin.back_to_list': 'List',
+  'admin.tab_users': 'Users',
+  'admin.ranking': 'Student ranking',
+  'admin.ranking_info': "All-time points. Students don't see this list. Tap a student for their statistics.",
+  'admin.answers_n': '{n} ans.',
   'mode.learn_note': 'Learning mode – answers do not count.',
 
   'rank.none': 'No rank yet',

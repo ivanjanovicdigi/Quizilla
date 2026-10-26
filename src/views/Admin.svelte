@@ -3,6 +3,7 @@
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
   import StatsPanel from '../components/StatsPanel.svelte';
+  import ClassBoard from '../components/ClassBoard.svelte';
   import { api, ApiError } from '../lib/api';
   import { session, setAdmin } from '../lib/session.svelte';
   import { errorText, i18n, t } from '../lib/i18n.svelte';
@@ -10,6 +11,7 @@
 
   // Admin (017_admin.sql): list roster users, activate / deactivate, reset progress.
   // Tap "Statistics" on a user → their full statistics, as they see them (024).
+  // "Leaderboard" tab: the class leaderboard students see + a student ranking (admin only).
   let users = $state<AdminUser[] | null>(null);
   let error = $state('');
   let notice = $state('');
@@ -17,6 +19,7 @@
   let query = $state('');
   let filter = $state<string>('all'); // 'all' | 'inactive' | class name
   let viewing = $state<AdminUser | null>(null); // user whose statistics are open
+  let section = $state<'users' | 'board'>('users');
   let listScroll = 0;
 
   function openStats(u: AdminUser) {
@@ -51,6 +54,11 @@
     }
   }
   onMount(load);
+
+  // Student ranking by all-time points (only users with answers).
+  const ranking = $derived(
+    (users ?? []).filter((u) => u.answers > 0).sort((a, b) => b.points - a.points || b.answers - a.answers)
+  );
 
   const classes = $derived([...new Set((users ?? []).map((u) => u.class_name))]);
   const shown = $derived.by(() => {
@@ -138,7 +146,37 @@
   {#if error}<div class="error" role="alert">{error}</div>{/if}
   {#if notice}<div class="notice small" role="status"><Icon name="check" size={16} /> {notice}</div>{/if}
 
-  {#if !users}
+  <div class="segmented">
+    <button class:active={section === 'users'} onclick={() => (section = 'users')}>{t('admin.tab_users')}</button>
+    <button class:active={section === 'board'} onclick={() => (section = 'board')}>{t('nav.leaderboard')}</button>
+  </div>
+
+  {#if section === 'board'}
+    <ClassBoard />
+    <h3>{t('admin.ranking')}</h3>
+    <p class="small muted">{t('admin.ranking_info')}</p>
+    {#if !users}
+      {#if !error}<div class="spinner"></div>{/if}
+    {:else if !ranking.length}
+      <p class="muted center">{t('lb.empty')}</p>
+    {:else}
+      <section class="card ranking">
+        {#each ranking as u, i (u.email)}
+          <button class="rank-row" onclick={() => openStats(u)}>
+            <span class="no">{i + 1}.</span>
+            <span class="grow">
+              <strong>{u.name}</strong>
+              <span class="small muted">{u.class_name}{u.is_active ? '' : ` · ${t('admin.inactive_one')}`}</span>
+            </span>
+            <span class="right">
+              <strong>{u.points}</strong>
+              <span class="small muted">{t('admin.answers_n', { n: u.answers })}</span>
+            </span>
+          </button>
+        {/each}
+      </section>
+    {/if}
+  {:else if !users}
     {#if !error}<div class="spinner"></div>{/if}
   {:else}
     <label class="field">
@@ -206,4 +244,14 @@
   .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
   .pill.bad { background: var(--bad-soft); color: var(--bad); }
   .actions { gap: 8px; flex-wrap: wrap; }
+  .ranking { display: flex; flex-direction: column; padding: 4px 0; }
+  .rank-row {
+    display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 14px;
+    border: 0; border-top: 1px solid var(--border); background: none; color: var(--text);
+    font: inherit; text-align: left; cursor: pointer;
+  }
+  .rank-row:first-child { border-top: 0; }
+  .rank-row .no { width: 2.2em; flex: none; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .rank-row .grow { display: flex; flex-direction: column; }
+  .rank-row .right { display: flex; flex-direction: column; align-items: flex-end; font-variant-numeric: tabular-nums; }
 </style>
