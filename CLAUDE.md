@@ -40,7 +40,9 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 - Tiers, topic passes, ranks (009); topic medals (012). Topic Grand Master (018): gold medal +
   ≥ topic_gm_accuracy (0.99) correct on EVERY level with ≥ topic_gm_min_answers (50) answers per level;
   not sticky; topic JSON medal = 'grand_master' (crown image) + `grand_master` progress object.
-  Global ranks (Padawan … Grand Master over all topics) are unchanged – the user wants them as they are.
+  Global ranks (Padawan … Grand Master over all topics, earned in order): since 025 each rank has its own
+  accuracy – rank_accuracy_padawan 0.75 (level 1), _jedi 0.85 (level 2), _master 0.95 (level 3),
+  rank_grand_accuracy 0.99 (every level); rank_min_answers 50 per level. Current rank_json is in 025.
 - Scoring (013, values changed in 019 – never re-run 013): correct +3/+5/+7 (easy/medium/hard),
   wrong −1/−1/−2; since 022 EVERY answer scores, repeats included
   (`points_first_correct_only` = 0; 1 = first correct answer only); total never below 0 – `attempts.points` stores the
