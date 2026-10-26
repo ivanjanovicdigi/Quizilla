@@ -98,6 +98,9 @@ export const api = {
   adminResetProgress: (token: string, email: string) =>
     rpc<{ email: string; answers: number; unlocks: number; passes: number; medal_levels: number }>(
       'admin_reset_progress', { p_token: token, p_email: email }),
+  /** Statistics of one student as they see them (024); null = never logged in. */
+  adminStudentStats: (token: string, email: string) =>
+    rpc<Stats | null>('admin_student_stats', { p_token: token, p_email: email }),
   /** Class totals (all time), visible to everyone. */
   classLeaderboard: () => rpc<ClassRow[]>('get_class_leaderboard')
 };

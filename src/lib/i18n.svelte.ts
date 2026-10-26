@@ -66,6 +66,7 @@ const sk = {
 
   'tier.name': 'Stupeň {n}',
   'tier.locked': 'Zamknuté – najprv splň všetky témy stupňa {n}',
+  'tier.locked_admin': 'Zamknuté – ešte nie sú splnené všetky témy stupňa {n}',
   'tier.passed': 'Splnené témy: {p}/{n}',
   'tier.accuracy': 'Úspešnosť',
   'tier.locked_topic': 'Táto téma je v stupni {n}, ktorý je ešte zamknutý. Najprv splň všetky témy stupňa {prev}.',
@@ -145,6 +146,8 @@ const sk = {
   'admin.done_deactivate': '{name} je deaktivovaný.',
   'admin.done_reset': 'Postup používateľa {name} bol vynulovaný ({n} odpovedí zmazaných).',
   'admin.unknown_user': 'Používateľ sa nenašiel v zozname žiakov.',
+  'admin.view_stats': 'Štatistiky',
+  'admin.back_to_list': 'Zoznam',
   'mode.learn_note': 'Režim učenia – odpovede sa nezapočítavajú.',
 
   'rank.none': 'Bez hodnosti',
@@ -157,6 +160,7 @@ const sk = {
   'rank.rule.master': '{pct} % správne na úrovni 3',
   'rank.rule.grand_master': '{pct} % správne na každej úrovni',
   'rank.min': 'Hodnosť sa počíta z tvojich odpovedí v hre vo všetkých témach, treba aspoň {n} odpovedí na úrovni.',
+  'rank.min_admin': 'Hodnosť sa počíta z odpovedí žiaka v hre vo všetkých témach, treba aspoň {n} odpovedí na úrovni.',
   'rank.progress': '{a}/{min} odpovedí · {pct}',
 
   'stats.title': 'Štatistiky',
@@ -165,8 +169,11 @@ const sk = {
   'stats.ranks': 'Hodnosti',
   'stats.tiers': 'Úspešnosť podľa stupňov',
   'stats.topics': 'Moje témy',
+  'stats.topics_admin': 'Témy',
   'stats.trend_info': 'Graf ukazuje priebežnú úspešnosť zo všetkých tvojich odpovedí v hre, od prvej po poslednú. Prerušovaná čiara = {pct} % na odomknutie ďalšej úrovne.',
+  'stats.trend_info_admin': 'Graf ukazuje priebežnú úspešnosť zo všetkých odpovedí žiaka v hre, od prvej po poslednú. Prerušovaná čiara = {pct} % na odomknutie ďalšej úrovne.',
   'stats.no_data': 'Zatiaľ žiadne odpovede v hre.',
+  'stats.never_logged_in': 'Používateľ sa ešte neprihlásil, štatistiky zatiaľ nie sú.',
   'stats.points': 'Body',
   'stats.level_of': 'Úroveň {n} z {m}',
   'stats.next_unlock': 'Na odomknutie úrovne {n}',
@@ -265,6 +272,7 @@ const en: Record<Key, string> = {
 
   'tier.name': 'Tier {n}',
   'tier.locked': 'Locked – pass all topics of tier {n} first',
+  'tier.locked_admin': 'Locked – not all topics of tier {n} are passed yet',
   'tier.passed': 'Topics passed: {p}/{n}',
   'tier.accuracy': 'Accuracy',
   'tier.locked_topic': 'This topic is in tier {n}, which is still locked. Pass all topics of tier {prev} first.',
@@ -344,6 +352,8 @@ const en: Record<Key, string> = {
   'admin.done_deactivate': '{name} is deactivated.',
   'admin.done_reset': 'Progress of {name} was reset ({n} answers deleted).',
   'admin.unknown_user': 'User not found in the student roster.',
+  'admin.view_stats': 'Statistics',
+  'admin.back_to_list': 'List',
   'mode.learn_note': 'Learning mode – answers do not count.',
 
   'rank.none': 'No rank yet',
@@ -356,6 +366,7 @@ const en: Record<Key, string> = {
   'rank.rule.master': '{pct} % correct on level 3',
   'rank.rule.grand_master': '{pct} % correct on every level',
   'rank.min': 'Ranks count your Play answers in all topics; you need at least {n} answers on the level.',
+  'rank.min_admin': "Ranks count the student's Play answers in all topics; at least {n} answers on the level are needed.",
   'rank.progress': '{a}/{min} answers · {pct}',
 
   'stats.title': 'Statistics',
@@ -364,8 +375,11 @@ const en: Record<Key, string> = {
   'stats.ranks': 'Ranks',
   'stats.tiers': 'Accuracy per tier',
   'stats.topics': 'My topics',
+  'stats.topics_admin': 'Topics',
   'stats.trend_info': 'The chart shows your running accuracy over all your Play answers, from first to last. Dashed line = {pct} % needed to unlock the next level.',
+  'stats.trend_info_admin': "The chart shows the student's running accuracy over all their Play answers, from first to last. Dashed line = {pct} % needed to unlock the next level.",
   'stats.no_data': 'No Play answers yet.',
+  'stats.never_logged_in': 'This user has not logged in yet, so there are no statistics.',
   'stats.points': 'Points',
   'stats.level_of': 'Level {n} of {m}',
   'stats.next_unlock': 'To unlock level {n}',

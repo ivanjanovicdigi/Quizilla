@@ -1,19 +1,35 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
+  import StatsPanel from '../components/StatsPanel.svelte';
   import { api, ApiError } from '../lib/api';
   import { session, setAdmin } from '../lib/session.svelte';
   import { errorText, i18n, t } from '../lib/i18n.svelte';
   import type { AdminUser } from '../lib/types';
 
   // Admin (017_admin.sql): list roster users, activate / deactivate, reset progress.
+  // Tap "Statistics" on a user → their full statistics, as they see them (024).
   let users = $state<AdminUser[] | null>(null);
   let error = $state('');
   let notice = $state('');
   let busyEmail = $state<string | null>(null);
   let query = $state('');
   let filter = $state<string>('all'); // 'all' | 'inactive' | class name
+  let viewing = $state<AdminUser | null>(null); // user whose statistics are open
+  let listScroll = 0;
+
+  function openStats(u: AdminUser) {
+    listScroll = window.scrollY;
+    viewing = u;
+    window.scrollTo(0, 0);
+  }
+
+  async function closeStats() {
+    viewing = null;
+    await tick();
+    window.scrollTo(0, listScroll);
+  }
 
   const token = () => session.admin!.token;
 
@@ -95,8 +111,24 @@
   }
 </script>
 
-<TopBar title={t('admin.title')} />
+<TopBar title={viewing ? viewing.name : t('admin.title')} />
 
+{#if viewing}
+  <main class="page stack">
+    <div class="row head">
+      <button class="btn small secondary" onclick={closeStats}><Icon name="back" size={16} /> {t('admin.back_to_list')}</button>
+      <span class="grow"></span>
+      <span class="pill">{viewing.class_name}</span>
+    </div>
+    <div class="small muted">
+      <span class="email">{viewing.email}</span> ·
+      {t('admin.stats', { a: viewing.answers, p: viewing.points })}
+    </div>
+    {#key viewing.email}
+      <StatsPanel source={() => api.adminStudentStats(token(), viewing!.email)} onError={(c) => fail(new ApiError(c))} />
+    {/key}
+  </main>
+{:else}
 <main class="page stack">
   <div class="row head">
     <p class="small muted grow">{t('admin.info')}</p>
@@ -136,6 +168,9 @@
           {u.last_seen_at ? t('admin.last_seen', { d: seen(u.last_seen_at) }) : t('admin.never')}
         </div>
         <div class="row actions">
+          <button class="btn small" disabled={!u.logged_in} onclick={() => openStats(u)}>
+            <Icon name="chart" size={16} /> {t('admin.view_stats')}
+          </button>
           <button class="btn small secondary" disabled={busyEmail === u.email} onclick={() => toggleActive(u)}>
             {u.is_active ? t('admin.deactivate') : t('admin.activate')}
           </button>
@@ -149,6 +184,7 @@
     {/each}
   {/if}
 </main>
+{/if}
 
 <style>
   .head { gap: 12px; align-items: center; }

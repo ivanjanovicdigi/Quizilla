@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   // Personal statistics (ranks, tiers, per-topic points / accuracy / unlocks / trend).
-  // Used by the Statistics page (Profile) and the "Mine" tab of the Leaderboard.
+  // Used by the Statistics page (Profile), the "Mine" tab of the Leaderboard and the admin
+  // student detail (with `source`: loads another student's stats; null = no stats yet).
   import Icon from './Icon.svelte';
   import RankBadge, { rankImage } from './RankBadge.svelte';
   import TrendChart from './TrendChart.svelte';
@@ -11,16 +12,30 @@
   import { pct, signed } from '../lib/util';
   import type { Progress, Stats } from '../lib/types';
 
+  let { source, onError }: {
+    source?: () => Promise<Stats | null>;
+    /** Called with the error code when `source` fails (e.g. admin session expired). */
+    onError?: (code: string) => void;
+  } = $props();
+
   let data = $state<Stats | null>(null);
+  let empty = $state(false); // source returned null (never logged in)
   let error = $state('');
 
   async function load() {
     error = '';
     try {
-      data = await api.getStats(session.student!.id, null); // all time
+      if (source) {
+        const r = await source();
+        empty = r === null;
+        data = r;
+      } else {
+        data = await api.getStats(session.student!.id, null); // all time
+      }
     } catch (e) {
       const code = e instanceof ApiError ? e.code : 'server';
-      if (code === 'unknown_student') setStudent(null);
+      if (source) onError?.(code);
+      else if (code === 'unknown_student') setStudent(null);
       error = errorText(code);
     }
   }
@@ -48,6 +63,9 @@
     };
   }
 
+  // Admin view (`source` set): neutral wording instead of "my / your".
+  const admin = $derived(!!source);
+
   const unlockAcc = $derived(data?.topics.find((x) => x.progress)?.progress?.unlock_accuracy ?? 0.8);
 </script>
 
@@ -55,6 +73,8 @@
   {#if error}
     <div class="error">{error}</div>
     <button class="btn secondary" onclick={load}>{t('common.retry')}</button>
+  {:else if empty}
+    <p class="muted center">{t('stats.never_logged_in')}</p>
   {:else if !data}
     <div class="spinner"></div>
   {:else}
@@ -88,7 +108,7 @@
           </div>
         </div>
       {/each}
-      <p class="small muted">{t('rank.min', { n: data.rank.min_answers })}</p>
+      <p class="small muted">{t(admin ? 'rank.min_admin' : 'rank.min', { n: data.rank.min_answers })}</p>
     </section>
 
     <!-- tiers -->
@@ -108,7 +128,7 @@
             </div>
             <div class="bar"><i style:width={`${r}%`}></i></div>
             <div class="small muted">
-              {tier.unlocked ? t('tier.passed', { p: tier.passed_count, n: tier.topic_count }) : t('tier.locked', { n: tier.tier - 1 })}
+              {tier.unlocked ? t('tier.passed', { p: tier.passed_count, n: tier.topic_count }) : t(admin ? 'tier.locked_admin' : 'tier.locked', { n: tier.tier - 1 })}
             </div>
           </div>
         </div>
@@ -116,8 +136,8 @@
     </section>
 
     <!-- per topic: points, accuracy, unlock progress, running-accuracy trend -->
-    <h3>{t('stats.topics')}</h3>
-    <p class="small muted">{t('stats.trend_info', { pct: Math.round(unlockAcc * 100) })}</p>
+    <h3>{t(admin ? 'stats.topics_admin' : 'stats.topics')}</h3>
+    <p class="small muted">{t(admin ? 'stats.trend_info_admin' : 'stats.trend_info', { pct: Math.round(unlockAcc * 100) })}</p>
 
     <div class="stack">
       {#each data.topics as topic (topic.id)}

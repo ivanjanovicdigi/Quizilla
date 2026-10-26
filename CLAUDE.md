@@ -72,6 +72,9 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   reset progress). The phrase is NEVER in the repo (public): only a salted SHA-256 hash in
   quiz.config, set with `quiz.set_admin_passphrase()` from git-ignored `private/set_admin_passphrase.sql`.
   Admin actions are logged in quiz.admin_log.
+- Admin student statistics (024): "Statistics" button on each user in Admin.svelte → `admin_student_stats(token, email)`
+  → the same StatsPanel students see (prop `source`). Data comes from `quiz.stats_json` – a COPY of the
+  get_stats body (020); when get_stats changes, change quiz.stats_json the same way. Does not touch last_seen_at.
 - Test accounts (023): test1…test15@lyceum.sk in class Teachers. Remove them (with progress) via
   `supabase/maintenance/delete_test_accounts.sql` – one-off scripts that are not numbered updates live
   in supabase/maintenance/.
