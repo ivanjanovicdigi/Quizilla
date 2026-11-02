@@ -4,6 +4,7 @@
   import Icon from '../components/Icon.svelte';
   import StatsPanel from '../components/StatsPanel.svelte';
   import ClassBoard from '../components/ClassBoard.svelte';
+  import FinalResults from '../components/FinalResults.svelte';
   import { api, ApiError } from '../lib/api';
   import { session, setAdmin } from '../lib/session.svelte';
   import { errorText, i18n, t } from '../lib/i18n.svelte';
@@ -20,6 +21,11 @@
   let filter = $state<string>('all'); // 'all' | 'inactive' | class name
   let viewing = $state<AdminUser | null>(null); // user whose statistics are open
   let section = $state<'users' | 'board'>('users');
+  let presenting = $state(false); // full-screen final results (027)
+  // last counted moment, shown on the button (the server holds the real cutoff in quiz.config)
+  const cutoffLabel = new Date('2026-11-02T22:59:59Z').toLocaleString(i18n.lang === 'sk' ? 'sk-SK' : 'en-GB', {
+    timeZone: 'Europe/Bratislava', dateStyle: 'medium', timeStyle: 'medium'
+  });
   let listScroll = 0;
 
   function openStats(u: AdminUser) {
@@ -119,6 +125,10 @@
   }
 </script>
 
+{#if presenting}
+  <FinalResults token={token()} onClose={() => (presenting = false)} onError={(c) => { presenting = false; fail(new ApiError(c)); }} />
+{/if}
+
 <TopBar title={viewing ? viewing.name : t('admin.title')} />
 
 {#if viewing}
@@ -152,6 +162,13 @@
   </div>
 
   {#if section === 'board'}
+    <section class="card final">
+      <div class="grow">
+        <strong>{t('final.open')}</strong>
+        <p class="small muted">{t('final.open_info', { d: cutoffLabel })}</p>
+      </div>
+      <button class="btn" onclick={() => (presenting = true)}><Icon name="trophy" size={16} /> {t('final.open')}</button>
+    </section>
     <ClassBoard />
     <h3>{t('admin.ranking')}</h3>
     <p class="small muted">{t('admin.ranking_info')}</p>
@@ -226,6 +243,8 @@
 
 <style>
   .head { gap: 12px; align-items: center; }
+  .final { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .final p { margin: 4px 0 0; }
   .head p { margin: 0; }
   .grow { flex: 1; min-width: 0; }
   .notice {

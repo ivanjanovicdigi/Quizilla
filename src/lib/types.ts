@@ -225,3 +225,13 @@ export interface ClassRow {
   points: number; // sum of all-time points of the class's roster students
   rank: number;
 }
+
+/** Final results of the competition (027_final_results.sql) – only answers before the cutoff. */
+export interface FinalResults {
+  cutoff: string; // first moment that no longer counts
+  now: string;
+  is_final: boolean; // now >= cutoff
+  last: { answered_at: string; name: string; class: string }[]; // Bratislava time with ms, newest first
+  top: { place: number; name: string; class: string; points: number; answers: number; correct: number }[];
+  classes: { place: number; name: string; points: number; students: number; players: number }[];
+}

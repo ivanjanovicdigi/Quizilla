@@ -1,5 +1,5 @@
 import type {
-  AdminLoginResult, AdminUser, AnswerResult, Catalog, ClassInfo, ClassRow, GuestCheck, GuestSubject, Question, Stats, Student, Topic
+  AdminLoginResult, AdminUser, AnswerResult, Catalog, ClassInfo, ClassRow, FinalResults, GuestCheck, GuestSubject, Question, Stats, Student, Topic
 } from './types';
 
 const BASE = ((import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '').replace(/\/+$/, '');
@@ -101,6 +101,8 @@ export const api = {
   /** Statistics of one student as they see them (024); null = never logged in. */
   adminStudentStats: (token: string, email: string) =>
     rpc<Stats | null>('admin_student_stats', { p_token: token, p_email: email }),
+  /** Final results: last 10 answers, top 3 students, class totals – before the cutoff (027). */
+  adminFinalResults: (token: string) => rpc<FinalResults>('admin_final_results', { p_token: token }),
   /** Class totals (all time), visible to everyone. */
   classLeaderboard: () => rpc<ClassRow[]>('get_class_leaderboard')
 };

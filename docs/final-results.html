@@ -5,11 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quizilla Final Results</title>
 <!--
-  Podium graphic for the final results (top 3 students by points).
-  Open this file in a browser (double-click). Press E (or the pencil button) to type in the
-  names / classes / points from supabase/maintenance/final_results_top3.sql.
-  Space / → reveals the places one by one (3rd, 2nd, 1st), R resets the reveal, F = full screen.
-  Names are kept only in this browser (localStorage) – nothing is sent anywhere and nothing is
+  Final results show in three screens, revealed with Space / → / click:
+    1. Last 10 students to answer before the cutoff (time with milliseconds)
+    2. Top 3 students by points – podium, 3rd → 2nd → 1st
+    3. Class (team) totals – bars count up, the winner gets confetti
+  Open this file in a browser (double-click). Press E (or ✏️) and paste the terminal output of:
+    supabase/maintenance/final_last_answers.sql   → box 1
+    supabase/maintenance/final_results_top3.sql   → box 2 (fills the top 3 fields, editable)
+    supabase/maintenance/final_class_scores.sql   → box 3
+  ← = one step back, R = back to the start, 1/2/3 = jump to a screen, F = full screen, 🌐 = SK / EN.
+  Data is kept only in this browser (localStorage) – nothing is sent anywhere and nothing is
   written into the repo, which is public.
 -->
 <style>
@@ -30,23 +35,45 @@
   }
   canvas#confetti { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
 
-  header { text-align: center; padding: clamp(16px, 4vh, 44px) 16px 0; z-index: 2; }
-  .brand { display: inline-flex; align-items: center; gap: 14px; }
-  .brand img { width: clamp(48px, 8vh, 84px); height: auto; filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
-  .brand span { font-weight: 800; font-size: clamp(28px, 5.5vh, 56px); letter-spacing: .5px; }
+  header { text-align: center; padding: clamp(12px, 3vh, 36px) 16px 0; z-index: 2; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; }
+  .brand img { width: clamp(40px, 6.5vh, 72px); height: auto; filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
+  .brand span { font-weight: 800; font-size: clamp(24px, 4.5vh, 48px); letter-spacing: .5px; }
   h1 {
-    margin: clamp(6px, 1.5vh, 14px) 0 4px; font-size: clamp(30px, 7vh, 76px); font-weight: 900;
+    margin: clamp(4px, 1vh, 10px) 0 4px; font-size: clamp(26px, 6vh, 66px); font-weight: 900;
     background: linear-gradient(180deg, #fff3c4, var(--gold) 55%, var(--gold2));
     -webkit-background-clip: text; background-clip: text; color: transparent;
     letter-spacing: 1px; text-transform: uppercase;
   }
-  .sub { color: var(--muted); font-size: clamp(14px, 2.3vh, 22px); }
+  .sub { color: var(--muted); font-size: clamp(13px, 2.2vh, 22px); }
 
-  main { flex: 1; width: 100%; max-width: 1200px; display: flex; align-items: flex-end; justify-content: center;
-         gap: clamp(8px, 2vw, 28px); padding: 0 16px; z-index: 2; }
+  .screen { display: none; flex: 1; width: 100%; z-index: 2; min-height: 0; }
+  .screen.on { display: flex; }
+  .screen.on > * { animation: fadeUp .5s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } }
+
+  /* ---------- screen 1: last 10 */
+  #sLast { max-width: 1000px; padding: clamp(8px, 2.5vh, 24px) 16px 28px; flex-direction: column; justify-content: center; }
+  #sLast ol { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(4px, .9vh, 10px); }
+  #sLast li { display: grid; grid-template-columns: 2.4em 7.6em 1fr auto; align-items: center; gap: 14px;
+              padding: clamp(4px, .9vh, 10px) 18px; border-radius: 12px; font-size: clamp(14px, 2.4vh, 26px);
+              background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+              opacity: 0; transform: translateX(-30px); animation: slideIn .5s ease forwards; }
+  #sLast li:first-child { background: rgba(251,191,36,.14); border-color: rgba(251,191,36,.5); }
+  #sLast .n { color: var(--muted); font-weight: 800; text-align: right; }
+  #sLast .time { font-weight: 900; color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  #sLast .time small { font-size: .7em; opacity: .85; }
+  #sLast .lname { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  @keyframes slideIn { to { opacity: 1; transform: none; } }
+  .none { text-align: center; color: var(--muted); font-size: 20px; padding: 24px; }
+
+  .class { display: inline-block; padding: 3px 12px; border-radius: 999px; white-space: nowrap;
+           background: rgba(34,197,94,.18); color: #86efac; font-weight: 700; font-size: clamp(12px, 2vh, 20px); }
+
+  /* ---------- screen 2: podium */
+  #sPodium { max-width: 1200px; align-items: flex-end; justify-content: center; gap: clamp(8px, 2vw, 28px); padding: 0 16px; }
   .place { flex: 1 1 0; max-width: 340px; display: flex; flex-direction: column; align-items: center; min-width: 0; }
   .p1 { order: 2; } .p2 { order: 1; } .p3 { order: 3; }
-
   .who { text-align: center; padding: 0 4px 14px; opacity: 0; transform: translateY(24px) scale(.9);
          transition: opacity .6s ease, transform .6s cubic-bezier(.2,1.4,.4,1); width: 100%; }
   .revealed .who { opacity: 1; transform: none; }
@@ -57,49 +84,74 @@
   .p1 .medal { background: radial-gradient(circle at 35% 30%, #fff7d1, var(--gold) 50%, var(--gold2)); }
   .p2 .medal { background: radial-gradient(circle at 35% 30%, #ffffff, var(--silver) 50%, var(--silver2)); }
   .p3 .medal { background: radial-gradient(circle at 35% 30%, #ffe2c9, var(--bronze) 50%, var(--bronze2)); }
-  .p1 .medal::before { content: "👑"; position: absolute; top: -0.85em; font-size: .8em; }
+  .p1 .medal::before, .crown::before { content: "👑"; position: absolute; top: -0.85em; font-size: .8em; }
   .name { font-weight: 800; font-size: clamp(18px, 3.6vh, 40px); line-height: 1.15; overflow-wrap: break-word; }
   .p1 .name { font-size: clamp(22px, 4.6vh, 50px); }
-  .class { display: inline-block; margin-top: 6px; padding: 3px 12px; border-radius: 999px;
-           background: rgba(34,197,94,.18); color: #86efac; font-weight: 700; font-size: clamp(12px, 2vh, 20px); }
-  .pts { margin-top: 8px; font-weight: 900; font-size: clamp(20px, 4vh, 44px); color: var(--gold);
-         font-variant-numeric: tabular-nums; }
+  .who .class { margin-top: 6px; }
+  .pts { margin-top: 8px; font-weight: 900; font-size: clamp(20px, 4vh, 44px); color: var(--gold); font-variant-numeric: tabular-nums; }
   .pts small { font-size: .5em; font-weight: 700; color: var(--muted); margin-left: 4px; }
-
   .block { width: 100%; border-radius: 14px 14px 0 0; display: grid; place-items: start center;
            padding-top: clamp(8px, 2vh, 20px); font-weight: 900; font-size: clamp(44px, 10vh, 120px);
            color: rgba(255,255,255,.92); text-shadow: 0 4px 0 rgba(0,0,0,.2);
            box-shadow: inset 0 6px 0 rgba(255,255,255,.25), 0 -4px 30px rgba(0,0,0,.25); }
-  .p1 .block { height: 34vh; background: linear-gradient(180deg, #fcd34d, var(--gold2)); }
-  .p2 .block { height: 25vh; background: linear-gradient(180deg, #e2e8f0, #64748b); }
-  .p3 .block { height: 18vh; background: linear-gradient(180deg, #f6b98a, var(--bronze2)); }
+  .p1 .block { height: 32vh; background: linear-gradient(180deg, #fcd34d, var(--gold2)); }
+  .p2 .block { height: 23vh; background: linear-gradient(180deg, #e2e8f0, #64748b); }
+  .p3 .block { height: 16vh; background: linear-gradient(180deg, #f6b98a, var(--bronze2)); }
   .tie { font-size: .45em; display: block; opacity: .85; }
 
-  footer { width: 100%; height: 10px; background: linear-gradient(90deg, #15803d, var(--accent), #15803d); z-index: 2; }
+  /* ---------- screen 3: classes */
+  #sClasses { max-width: 1100px; padding: clamp(10px, 3vh, 30px) 16px 40px; flex-direction: column; justify-content: center;
+              gap: clamp(14px, 3.5vh, 36px); }
+  .team { display: grid; grid-template-columns: minmax(5em, 9em) 1fr; align-items: center; gap: 18px; }
+  .team .tname { font-weight: 900; font-size: clamp(20px, 4.5vh, 48px); text-align: right; position: relative;
+                 overflow: hidden; text-overflow: ellipsis; }
+  .team .track { position: relative; height: clamp(44px, 10vh, 110px); border-radius: 16px; background: rgba(255,255,255,.07);
+                 border: 1px solid rgba(255,255,255,.12); overflow: hidden; }
+  .team .bar { position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 16px; background: var(--c);
+               box-shadow: inset 0 6px 0 rgba(255,255,255,.25); }
+  .team .tpts { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-weight: 900;
+                font-size: clamp(22px, 5vh, 54px); font-variant-numeric: tabular-nums; text-shadow: 0 2px 8px rgba(0,0,0,.6); }
+  .team .tpts small { font-size: .45em; color: var(--muted); margin-left: 4px; }
+  .team .tmeta { grid-column: 2; color: var(--muted); font-size: clamp(12px, 1.8vh, 18px); margin-top: -10px; }
+  .team.win .track { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(251,191,36,.35), 0 0 40px rgba(251,191,36,.35); }
+  .team.win .tname { color: var(--gold); }
+  .team .trophy { opacity: 0; transition: opacity .5s; }
+  .team.win .trophy { opacity: 1; }
+
+  footer { width: 100%; height: 10px; background: linear-gradient(90deg, #15803d, var(--accent), #15803d); z-index: 2; flex: none; }
+  .dots { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 8px; z-index: 3; opacity: .5; }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); }
+  .dots i.on { background: var(--gold); }
 
   .tools { position: fixed; right: 12px; top: 12px; display: flex; gap: 8px; z-index: 10; opacity: .25; transition: opacity .2s; }
   .tools:hover { opacity: 1; }
   .tools button { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25);
                   background: rgba(0,0,0,.35); color: #fff; font-size: 18px; cursor: pointer; }
 
-  dialog { border: 1px solid var(--panel-border); border-radius: 14px; padding: 20px; width: min(560px, calc(100vw - 32px));
-           background: var(--panel); color: var(--panel-text); }
+  dialog { border: 1px solid var(--panel-border); border-radius: 14px; padding: 20px; width: min(640px, calc(100vw - 32px));
+           max-height: calc(100vh - 32px); background: var(--panel); color: var(--panel-text); }
   dialog::backdrop { background: rgba(0,0,0,.6); }
   dialog h2 { margin: 0 0 4px; font-size: 20px; }
-  dialog p { margin: 0 0 14px; color: #5b6b62; font-size: 14px; }
-  .row { display: grid; grid-template-columns: 28px 1fr 90px 80px; gap: 8px; align-items: center; margin-bottom: 8px; }
+  dialog h3 { margin: 16px 0 2px; font-size: 15px; }
+  dialog p { margin: 0 0 8px; color: #5b6b62; font-size: 13px; }
+  dialog code { background: #f1f5f3; padding: 1px 5px; border-radius: 4px; }
+  dialog textarea { width: 100%; height: 84px; padding: 8px 10px; border: 1px solid var(--panel-border); border-radius: 8px;
+                    font: 12px/1.35 ui-monospace, Consolas, monospace; resize: vertical; white-space: pre; }
+  .parsed { font-size: 13px; color: #15803d; margin-top: 2px; min-height: 1.2em; }
+  .row { display: grid; grid-template-columns: 28px 1fr 90px 80px; gap: 8px; align-items: center; margin-top: 8px; }
   .row b { text-align: center; }
-  .row input { width: 100%; padding: 8px 10px; border: 1px solid var(--panel-border); border-radius: 8px; font: inherit; min-width: 0; }
-  .actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; flex-wrap: wrap; }
+  .row input { width: 100%; padding: 7px 10px; border: 1px solid var(--panel-border); border-radius: 8px; font: inherit; min-width: 0; }
+  .actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; flex-wrap: wrap; }
   .actions button { padding: 9px 16px; border-radius: 9px; border: 1px solid var(--panel-border); background: #fff; font: inherit; cursor: pointer; }
   .actions .primary { background: #16a34a; border-color: #16a34a; color: #fff; font-weight: 700; }
-  .hint { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); color: var(--muted); font-size: 14px;
-          z-index: 3; transition: opacity .4s; }
-  .done .hint { opacity: 0; }
+
   @media (max-width: 600px) {
     .row { grid-template-columns: 22px 1fr 64px 64px; }
     .name, .p1 .name { font-size: clamp(14px, 4.4vw, 22px); }
-    .p1 .block { height: 26vh; } .p2 .block { height: 19vh; } .p3 .block { height: 14vh; }
+    .p1 .block { height: 24vh; } .p2 .block { height: 17vh; } .p3 .block { height: 12vh; }
+    #sLast li { grid-template-columns: 1.6em 6.4em 1fr; gap: 8px; padding: 6px 10px; font-size: 14px; }
+    #sLast li .class { display: none; }
+    .team { grid-template-columns: 1fr; gap: 6px; } .team .tname { text-align: left; } .team .tmeta { grid-column: 1; margin-top: 0; }
   }
 </style>
 </head>
@@ -107,8 +159,9 @@
 <canvas id="confetti"></canvas>
 <div class="tools">
   <button id="btnLang" title="SK / EN">🌐</button>
-  <button id="btnEdit" title="Edit (E)">✏️</button>
-  <button id="btnReset" title="Reset reveal (R)">↺</button>
+  <button id="btnEdit" title="Data (E)">✏️</button>
+  <button id="btnBack" title="Back (←)">◀</button>
+  <button id="btnReset" title="Start again (R)">↺</button>
   <button id="btnFull" title="Full screen (F)">⛶</button>
 </div>
 
@@ -118,18 +171,32 @@
   <div class="sub" id="sub"></div>
 </header>
 
-<main>
-  <section class="place p2" data-place="2"><div class="who"><div class="medal">2</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">2</div></section>
-  <section class="place p1" data-place="1"><div class="who"><div class="medal">1</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">1</div></section>
-  <section class="place p3" data-place="3"><div class="who"><div class="medal">3</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">3</div></section>
-</main>
-<div class="hint" id="hint"></div>
+<section class="screen" id="sLast"><ol></ol></section>
+
+<section class="screen" id="sPodium">
+  <div class="place p2" data-place="2"><div class="who"><div class="medal">2</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">2</div></div>
+  <div class="place p1" data-place="1"><div class="who"><div class="medal">1</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">1</div></div>
+  <div class="place p3" data-place="3"><div class="who"><div class="medal">3</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">3</div></div>
+</section>
+
+<section class="screen" id="sClasses"></section>
+
+<div class="dots" id="dots"></div>
 <footer></footer>
 
 <dialog id="dlg">
   <h2 id="dTitle"></h2>
   <p id="dText"></p>
+  <h3 id="h1Last"></h3>
+  <textarea id="taLast" spellcheck="false"></textarea>
+  <div class="parsed" id="pLast"></div>
+  <h3 id="h1Top"></h3>
+  <textarea id="taTop" spellcheck="false"></textarea>
+  <div class="parsed" id="pTop"></div>
   <div id="rows"></div>
+  <h3 id="h1Cls"></h3>
+  <textarea id="taCls" spellcheck="false"></textarea>
+  <div class="parsed" id="pCls"></div>
   <div class="actions">
     <button id="dCancel"></button>
     <button id="dSave" class="primary"></button>
@@ -137,73 +204,207 @@
 </dialog>
 
 <script>
+const CUT_SK = '2. 11. 2026, 23:59:59', CUT_EN = '2 Nov 2026, 23:59:59';
 const T = {
-  sk: { title: 'Finálne výsledky', sub: 'Body do 2. 11. 2026, 23:59:59', pts: 'b.', hint: 'Medzerník = odhaliť ďalšie miesto',
-        dTitle: 'Víťazi', dText: 'Mená, triedy a body z final_results_top3.sql. Ukladá sa len v tomto prehliadači.',
-        name: 'Meno', cls: 'Trieda', points: 'Body', cancel: 'Zrušiť', save: 'Uložiť', empty: '—' },
-  en: { title: 'Final results', sub: 'Points until 2 Nov 2026, 23:59:59', pts: 'pts', hint: 'Space = reveal the next place',
-        dTitle: 'Winners', dText: 'Names, classes and points from final_results_top3.sql. Saved in this browser only.',
-        name: 'Name', cls: 'Class', points: 'Points', cancel: 'Cancel', save: 'Save', empty: '—' },
+  sk: { lastTitle: 'Posledných 10 odpovedí', lastSub: `Kto odpovedal tesne pred uzávierkou ${CUT_SK}`,
+        topTitle: 'Top 3 študenti', topSub: `Body do ${CUT_SK}`,
+        clsTitle: 'Výsledky tried', clsSub: `Súčet bodov všetkých študentov triedy do ${CUT_SK}`,
+        pts: 'b.', players: (p, s) => `${p} z ${s} študentov hralo`, empty: '—',
+        none: 'Zatiaľ žiadne údaje – stlač E a vlož výstup skriptu.',
+        dTitle: 'Údaje', dText: 'Vlož celú tabuľku z terminálu po spustení každého skriptu. Ukladá sa len v tomto prehliadači.',
+        hLast: '1. Posledných 10 – final_last_answers.sql', hTop: '2. Top 3 – final_results_top3.sql (polia sa dajú upraviť)',
+        hCls: '3. Triedy – final_class_scores.sql', read: (n) => n ? `Načítaných riadkov: ${n}` : '',
+        name: 'Meno', cls: 'Trieda', points: 'Body', cancel: 'Zrušiť', save: 'Uložiť' },
+  en: { lastTitle: 'Last 10 answers', lastSub: `Who answered just before the cutoff, ${CUT_EN}`,
+        topTitle: 'Top 3 students', topSub: `Points until ${CUT_EN}`,
+        clsTitle: 'Class results', clsSub: `Total points of all students in the class until ${CUT_EN}`,
+        pts: 'pts', players: (p, s) => `${p} of ${s} students played`, empty: '—',
+        none: 'No data yet – press E and paste the script output.',
+        dTitle: 'Data', dText: 'Paste the whole table from the terminal after running each script. Saved in this browser only.',
+        hLast: '1. Last 10 – final_last_answers.sql', hTop: '2. Top 3 – final_results_top3.sql (fields can be edited)',
+        hCls: '3. Classes – final_class_scores.sql', read: (n) => n ? `Rows read: ${n}` : '',
+        name: 'Name', cls: 'Class', points: 'Points', cancel: 'Cancel', save: 'Save' },
 };
 const KEY = 'quizilla-final-results';
-let state = { lang: 'sk', winners: [ { name: '', cls: '', points: '' }, { name: '', cls: '', points: '' }, { name: '', cls: '', points: '' } ] };
-try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.winners)) state = s; } catch {}
+const blank = () => ({ name: '', cls: '', points: '' });
+let state = { lang: 'sk', winners: [blank(), blank(), blank()], last: [], lastRaw: '', topRaw: '', classes: [], clsRaw: '' };
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.winners)) state = { ...state, ...s }; } catch {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmt = (n) => Number(n).toLocaleString(state.lang === 'sk' ? 'sk-SK' : 'en-GB');
 
-let revealed = 0; // 0 = none, 1 = 3rd, 2 = 3rd+2nd, 3 = all
+// ---------- parsing the console.table output of the scripts (│ cells, 'quoted' strings)
+function cellsOf(line) {
+  const sep = /[│|\t;]/.test(line) ? /[│|\t;]/ : /,/;
+  return line.split(sep).map((c) => c.trim().replace(/^['"]|['"]$/g, '').trim()).filter((c) => c !== '');
+}
+const isInt = (c) => /^-?\d+$/.test(c);
+// final_last_answers: a "YYYY-MM-DD HH:MM:SS[.mmm]" cell, then name, class
+function parseLast(text) {
+  const out = [];
+  for (const line of text.split(/\r?\n/)) {
+    const c = cellsOf(line);
+    const i = c.findIndex((x) => /^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(\.\d+)?$/.test(x));
+    if (i < 0 || !c[i + 1]) continue;
+    out.push({ time: c[i].replace('T', ' '), name: c[i + 1], cls: c[i + 2] || '' });
+  }
+  return out.sort((a, b) => b.time.localeCompare(a.time)).slice(0, 10);
+}
+// rows "(index) place text text number …": the first integer followed by text is the place
+function parseRanked(text, width) {
+  const out = [];
+  for (const line of text.split(/\r?\n/)) {
+    const c = cellsOf(line);
+    const j = c.findIndex((x, k) => isInt(x) && c[k + 1] && !isInt(c[k + 1]));
+    if (j < 0 || c.length < j + width) continue;
+    out.push(c.slice(j, j + width + 2));
+  }
+  return out;
+}
+// final_results_top3: place, name, class, points
+const parseTop = (text) => parseRanked(text, 4).filter((r) => isInt(r[3])).slice(0, 3)
+  .map((r) => ({ name: r[1], cls: r[2], points: r[3] }));
+// final_class_scores: place, class, points, students, players
+const parseCls = (text) => parseRanked(text, 3).filter((r) => isInt(r[2]))
+  .map((r) => ({ place: +r[0], name: r[1], points: +r[2], students: isInt(r[3] || '') ? +r[3] : null, players: isInt(r[4] || '') ? +r[4] : null }));
+
+// ---------- steps: 0 last 10 · 1 podium · 2–4 reveal 3rd/2nd/1st · 5 classes · 6 class totals
+const STEPS = 7;
+let step = 0;
+const screenOf = (s) => (s === 0 ? 'sLast' : s <= 4 ? 'sPodium' : 'sClasses');
 const order = [3, 2, 1];
+let countAnim = null;
 
 function render() {
   const t = T[state.lang];
   document.documentElement.lang = state.lang;
-  document.getElementById('title').textContent = t.title;
-  document.getElementById('sub').textContent = t.sub;
-  document.getElementById('hint').textContent = t.hint;
-  const pts = state.winners.map((w) => w.points);
+  const scr = screenOf(step);
+  for (const el of document.querySelectorAll('.screen')) el.classList.toggle('on', el.id === scr);
+  const [title, sub] = scr === 'sLast' ? [t.lastTitle, t.lastSub] : scr === 'sPodium' ? [t.topTitle, t.topSub] : [t.clsTitle, t.clsSub];
+  document.getElementById('title').textContent = title;
+  document.getElementById('sub').textContent = sub;
+  document.getElementById('dots').innerHTML = ['sLast', 'sPodium', 'sClasses'].map((s) => `<i class="${s === scr ? 'on' : ''}"></i>`).join('');
+  renderLast(); renderPodium(); renderClasses();
+}
+
+function renderLast() {
+  const t = T[state.lang], ol = document.querySelector('#sLast ol');
+  ol.innerHTML = state.last.length
+    ? state.last.map((r, i) => {
+        const tm = r.time.split(' ')[1] || r.time, [hms, ms] = tm.split('.');
+        return `<li style="animation-delay:${(state.last.length - 1 - i) * 0.18}s"><span class="n">${i + 1}.</span>` +
+          `<span class="time">${esc(hms)}${ms ? `<small>.${esc(ms.slice(0, 3))}</small>` : ''}</span>` +
+          `<span class="lname">${esc(r.name)}</span>` + (r.cls ? `<span class="class">${esc(r.cls)}</span>` : '<span></span>') + '</li>';
+      }).join('')
+    : `<li class="none" style="grid-template-columns:1fr;opacity:1">${t.none}</li>`;
+}
+
+function renderPodium() {
+  const t = T[state.lang], pts = state.winners.map((w) => w.points);
+  const shown = Math.max(0, Math.min(3, step - 1)); // places revealed
   for (const sec of document.querySelectorAll('.place')) {
     const i = +sec.dataset.place - 1, w = state.winners[i];
     sec.querySelector('.name').textContent = w.name || t.empty;
     const c = sec.querySelector('.class');
     c.textContent = w.cls; c.style.display = w.cls ? '' : 'none';
-    sec.querySelector('.pts').innerHTML = w.points !== '' ? `${Number(w.points).toLocaleString(state.lang)}<small>${t.pts}</small>` : '';
-    // same points as a better place = shared place
-    const shared = w.points !== '' && pts.findIndex((p) => p === w.points) < i;
-    sec.querySelector('.block').innerHTML = shared ? `${pts.findIndex((p) => p === w.points) + 1}<span class="tie">=</span>` : String(i + 1);
-    sec.classList.toggle('revealed', order.indexOf(i + 1) < revealed);
+    sec.querySelector('.pts').innerHTML = w.points !== '' ? `${fmt(w.points)}<small>${t.pts}</small>` : '';
+    const first = pts.findIndex((p) => p === w.points); // same points as a better place = shared place
+    sec.querySelector('.block').innerHTML = w.points !== '' && first < i ? `${first + 1}<span class="tie">=</span>` : String(i + 1);
+    sec.classList.toggle('revealed', order.indexOf(i + 1) < shown);
   }
-  document.body.classList.toggle('done', revealed >= 3);
 }
 
-function next() {
-  if (revealed >= 3) return;
-  revealed++;
+const TEAM_COLORS = ['#22c55e', '#3b82f6', '#a855f7', '#f97316', '#ec4899', '#14b8a6'];
+function renderClasses(animate = false) {
+  const t = T[state.lang], box = document.getElementById('sClasses');
+  if (!state.classes.length) { box.innerHTML = `<div class="none">${t.none}</div>`; return; }
+  const max = Math.max(1, ...state.classes.map((c) => c.points));
+  const final = step >= 6, top = Math.max(...state.classes.map((c) => c.points));
+  // fixed order by name so nobody can guess the winner from the order
+  const list = [...state.classes].sort((a, b) => a.name.localeCompare(b.name));
+  box.innerHTML = list.map((c, i) =>
+    `<div class="team${final && c.points === top && !animate ? ' win' : ''}" data-i="${i}" style="--c:${TEAM_COLORS[i % TEAM_COLORS.length]}">` +
+    `<div class="tname">${esc(c.name)} <span class="trophy">🏆</span></div>` +
+    `<div class="track"><div class="bar" style="width:${final && !animate ? (100 * c.points) / max : 0}%"></div>` +
+    `<div class="tpts">${final && !animate ? fmt(c.points) : '?'}${final && !animate ? `<small>${t.pts}</small>` : ''}</div></div>` +
+    (c.students != null ? `<div class="tmeta">${final && !animate && c.players != null ? t.players(c.players, c.students) : '&nbsp;'}</div>` : '') +
+    '</div>').join('');
+  if (!animate) return;
+  // count up together over 4 s, then crown the winner
+  cancelAnimationFrame(countAnim);
+  const els = [...box.querySelectorAll('.team')], t0 = performance.now(), dur = 4000;
+  const tick = (now) => {
+    const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    els.forEach((el, i) => {
+      const v = list[i].points * e;
+      el.querySelector('.bar').style.width = `${(100 * v) / max}%`;
+      el.querySelector('.tpts').innerHTML = `${fmt(Math.round(v))}<small>${t.pts}</small>`;
+    });
+    if (k < 1) { countAnim = requestAnimationFrame(tick); return; }
+    els.forEach((el, i) => {
+      const c = list[i], meta = el.querySelector('.tmeta');
+      if (meta && c.players != null) meta.textContent = t.players(c.players, c.students);
+      if (c.points === top) {
+        el.classList.add('win');
+        burstAt(el.querySelector('.tname'), 300, ['#fbbf24', '#fde68a', '#22c55e', '#ffffff', '#f59e0b']);
+      }
+    });
+  };
+  countAnim = requestAnimationFrame(tick);
+}
+
+function go(s) {
+  cancelAnimationFrame(countAnim);
+  step = Math.max(0, Math.min(STEPS - 1, s));
   render();
-  const place = order[revealed - 1];
-  burst(place === 1 ? 260 : 90, place);
 }
-function reset() { revealed = 0; render(); }
+function next() {
+  if (step >= STEPS - 1) return;
+  go(step + 1);
+  if (step >= 2 && step <= 4) {
+    const place = order[step - 2];
+    burstAt(document.querySelector(`.p${place} .medal`), place === 1 ? 260 : 90,
+      { 1: ['#fbbf24', '#fde68a', '#22c55e', '#ffffff', '#f59e0b'], 2: ['#e2e8f0', '#94a3b8', '#22c55e', '#ffffff'], 3: ['#f0a46b', '#b45309', '#22c55e', '#ffffff'] }[place]);
+  }
+  if (step === 6) renderClasses(true);
+}
 
-// ---------- edit dialog
-const dlg = document.getElementById('dlg');
-function openEdit() {
-  const t = T[state.lang];
-  document.getElementById('dTitle').textContent = t.dTitle;
-  document.getElementById('dText').textContent = t.dText;
-  document.getElementById('dCancel').textContent = t.cancel;
-  document.getElementById('dSave').textContent = t.save;
-  const rows = document.getElementById('rows');
+// ---------- data dialog
+const dlg = document.getElementById('dlg'), $ = (id) => document.getElementById(id);
+function fillRows(winners) {
+  const t = T[state.lang], rows = $('rows');
   rows.innerHTML = '';
-  state.winners.forEach((w, i) => {
+  winners.forEach((w, i) => {
     const r = document.createElement('div');
     r.className = 'row';
     r.innerHTML = `<b>${i + 1}.</b><input data-k="name" placeholder="${t.name}"><input data-k="cls" placeholder="${t.cls}"><input data-k="points" inputmode="numeric" placeholder="${t.points}">`;
     for (const inp of r.querySelectorAll('input')) inp.value = w[inp.dataset.k];
     rows.appendChild(r);
   });
+}
+function openEdit() {
+  const t = T[state.lang];
+  $('dTitle').textContent = t.dTitle; $('dText').textContent = t.dText;
+  $('h1Last').textContent = t.hLast; $('h1Top').textContent = t.hTop; $('h1Cls').textContent = t.hCls;
+  $('dCancel').textContent = t.cancel; $('dSave').textContent = t.save;
+  $('taLast').value = state.lastRaw || ''; $('taTop').value = state.topRaw || ''; $('taCls').value = state.clsRaw || '';
+  fillRows(state.winners);
+  const show = () => {
+    $('pLast').textContent = t.read(parseLast($('taLast').value).length);
+    $('pTop').textContent = t.read(parseTop($('taTop').value).length);
+    $('pCls').textContent = t.read(parseCls($('taCls').value).length);
+  };
+  $('taLast').oninput = $('taCls').oninput = show;
+  $('taTop').oninput = () => { // pasting the top 3 fills the fields below
+    const w = parseTop($('taTop').value);
+    if (w.length) fillRows([0, 1, 2].map((i) => w[i] || blank()));
+    show();
+  };
+  show();
   dlg.showModal();
 }
-document.getElementById('dCancel').onclick = () => dlg.close();
-document.getElementById('dSave').onclick = () => {
+$('dCancel').onclick = () => dlg.close();
+$('dSave').onclick = () => {
   [...document.querySelectorAll('#rows .row')].forEach((r, i) => {
     for (const inp of r.querySelectorAll('input')) {
       let v = inp.value.trim();
@@ -211,37 +412,43 @@ document.getElementById('dSave').onclick = () => {
       state.winners[i][inp.dataset.k] = v;
     }
   });
+  state.lastRaw = $('taLast').value; state.last = parseLast(state.lastRaw);
+  state.topRaw = $('taTop').value;
+  state.clsRaw = $('taCls').value; state.classes = parseCls(state.clsRaw);
   save(); dlg.close(); render();
 };
 
-document.getElementById('btnEdit').onclick = openEdit;
-document.getElementById('btnReset').onclick = reset;
-document.getElementById('btnLang').onclick = () => { state.lang = state.lang === 'sk' ? 'en' : 'sk'; save(); render(); };
-document.getElementById('btnFull').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
-document.querySelector('main').onclick = next;
+$('btnEdit').onclick = openEdit;
+$('btnBack').onclick = () => go(step - 1);
+$('btnReset').onclick = () => go(0);
+$('btnLang').onclick = () => { state.lang = state.lang === 'sk' ? 'en' : 'sk'; save(); render(); };
+$('btnFull').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
+for (const s of document.querySelectorAll('.screen')) s.onclick = next;
 document.addEventListener('keydown', (e) => {
   if (dlg.open) return;
-  if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'Enter') { e.preventDefault(); next(); }
-  else if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'r') reset();
-  else if (e.key.toLowerCase() === 'e') { e.preventDefault(); openEdit(); }
-  else if (e.key.toLowerCase() === 'f') document.getElementById('btnFull').click();
+  const k = e.key.toLowerCase();
+  if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'Enter' || e.key === 'PageDown') { e.preventDefault(); next(); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(step - 1);
+  else if (k === 'r') go(0);
+  else if (k === '1') go(0); else if (k === '2') go(1); else if (k === '3') go(5);
+  else if (k === 'e') { e.preventDefault(); openEdit(); }
+  else if (k === 'f') $('btnFull').click();
 });
 
 // ---------- confetti
-const cv = document.getElementById('confetti'), cx = cv.getContext('2d');
+const cv = $('confetti'), cx = cv.getContext('2d');
 let parts = [];
 const resize = () => { cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio; };
 addEventListener('resize', resize); resize();
-const COLORS = { 1: ['#fbbf24', '#fde68a', '#22c55e', '#ffffff', '#f59e0b'], 2: ['#e2e8f0', '#94a3b8', '#22c55e', '#ffffff'], 3: ['#f0a46b', '#b45309', '#22c55e', '#ffffff'] };
-function burst(n, place) {
-  const sec = document.querySelector(`.p${place} .medal`).getBoundingClientRect();
-  const x0 = (sec.left + sec.width / 2) * devicePixelRatio, y0 = (sec.top + sec.height / 2) * devicePixelRatio;
+function burstAt(el, n, colors) {
+  if (!el) return;
+  const r = el.getBoundingClientRect(), d = devicePixelRatio;
+  const x0 = (r.left + r.width / 2) * d, y0 = (r.top + r.height / 2) * d;
   for (let i = 0; i < n; i++) {
-    const a = Math.random() * Math.PI * 2, s = (4 + Math.random() * 10) * devicePixelRatio;
-    parts.push({ x: x0, y: y0, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 8 * devicePixelRatio,
-      w: (6 + Math.random() * 8) * devicePixelRatio, h: (4 + Math.random() * 6) * devicePixelRatio,
-      r: Math.random() * 6, vr: (Math.random() - .5) * .4, life: 160 + Math.random() * 80,
-      c: COLORS[place][i % COLORS[place].length] });
+    const a = Math.random() * Math.PI * 2, s = (4 + Math.random() * 10) * d;
+    parts.push({ x: x0, y: y0, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 8 * d,
+      w: (6 + Math.random() * 8) * d, h: (4 + Math.random() * 6) * d,
+      r: Math.random() * 6, vr: (Math.random() - .5) * .4, life: 160 + Math.random() * 80, c: colors[i % colors.length] });
   }
 }
 (function tick() {

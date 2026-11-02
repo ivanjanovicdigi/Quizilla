@@ -80,6 +80,11 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 - Admin student statistics (024): "Statistics" button on each user in Admin.svelte → `admin_student_stats(token, email)`
   → the same StatsPanel students see (prop `source`). Data comes from `quiz.stats_json` – a COPY of the
   get_stats body (020); when get_stats changes, change quiz.stats_json the same way. Does not touch last_seen_at.
+- Final results (027): Admin → Leaderboard tab → "Final results" opens `src/components/FinalResults.svelte`
+  (full-screen projector show: last 10 answers with ms → top 3 podium → class totals count-up) from
+  `admin_final_results(token)`, which counts only answers before quiz.config 'final_cutoff'
+  (2026-11-03 00:00 Europe/Bratislava). Teachers excluded. Admin only. The old paste-in page
+  docs/final-results.html + supabase/maintenance/final_*.sql are the offline fallback.
 - Test accounts (023): test1…test15@lyceum.sk in class Teachers. Remove them (with progress) via
   `supabase/maintenance/delete_test_accounts.sql` – one-off scripts that are not numbered updates live
   in supabase/maintenance/.
