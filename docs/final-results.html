@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quizilla Final Results</title>
+<!--
+  Podium graphic for the final results (top 3 students by points).
+  Open this file in a browser (double-click). Press E (or the pencil button) to type in the
+  names / classes / points from supabase/maintenance/final_results_top3.sql.
+  Space / → reveals the places one by one (3rd, 2nd, 1st), R resets the reveal, F = full screen.
+  Names are kept only in this browser (localStorage) – nothing is sent anywhere and nothing is
+  written into the repo, which is public.
+-->
+<style>
+  :root {
+    --bg1: #06130c; --bg2: #0f2a1b; --text: #f2f7f4; --muted: #a9bdb1;
+    --accent: #22c55e; --gold: #fbbf24; --gold2: #d97706;
+    --silver: #e2e8f0; --silver2: #94a3b8; --bronze: #f0a46b; --bronze2: #b45309;
+    --panel: #ffffff; --panel-text: #0f1a14; --panel-border: #dbe3de;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: radial-gradient(ellipse at 50% 0%, #1d4d31 0%, var(--bg2) 35%, var(--bg1) 80%);
+    overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  canvas#confetti { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+
+  header { text-align: center; padding: clamp(16px, 4vh, 44px) 16px 0; z-index: 2; }
+  .brand { display: inline-flex; align-items: center; gap: 14px; }
+  .brand img { width: clamp(48px, 8vh, 84px); height: auto; filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
+  .brand span { font-weight: 800; font-size: clamp(28px, 5.5vh, 56px); letter-spacing: .5px; }
+  h1 {
+    margin: clamp(6px, 1.5vh, 14px) 0 4px; font-size: clamp(30px, 7vh, 76px); font-weight: 900;
+    background: linear-gradient(180deg, #fff3c4, var(--gold) 55%, var(--gold2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .sub { color: var(--muted); font-size: clamp(14px, 2.3vh, 22px); }
+
+  main { flex: 1; width: 100%; max-width: 1200px; display: flex; align-items: flex-end; justify-content: center;
+         gap: clamp(8px, 2vw, 28px); padding: 0 16px; z-index: 2; }
+  .place { flex: 1 1 0; max-width: 340px; display: flex; flex-direction: column; align-items: center; min-width: 0; }
+  .p1 { order: 2; } .p2 { order: 1; } .p3 { order: 3; }
+
+  .who { text-align: center; padding: 0 4px 14px; opacity: 0; transform: translateY(24px) scale(.9);
+         transition: opacity .6s ease, transform .6s cubic-bezier(.2,1.4,.4,1); width: 100%; }
+  .revealed .who { opacity: 1; transform: none; }
+  .medal { width: clamp(56px, 10vh, 110px); height: clamp(56px, 10vh, 110px); border-radius: 50%;
+           display: grid; place-items: center; margin: 0 auto 10px; font-weight: 900;
+           font-size: clamp(26px, 5vh, 52px); color: #2b1a02; position: relative;
+           box-shadow: 0 8px 24px rgba(0,0,0,.45), inset 0 -6px 0 rgba(0,0,0,.18), inset 0 4px 0 rgba(255,255,255,.45); }
+  .p1 .medal { background: radial-gradient(circle at 35% 30%, #fff7d1, var(--gold) 50%, var(--gold2)); }
+  .p2 .medal { background: radial-gradient(circle at 35% 30%, #ffffff, var(--silver) 50%, var(--silver2)); }
+  .p3 .medal { background: radial-gradient(circle at 35% 30%, #ffe2c9, var(--bronze) 50%, var(--bronze2)); }
+  .p1 .medal::before { content: "👑"; position: absolute; top: -0.85em; font-size: .8em; }
+  .name { font-weight: 800; font-size: clamp(18px, 3.6vh, 40px); line-height: 1.15; overflow-wrap: break-word; }
+  .p1 .name { font-size: clamp(22px, 4.6vh, 50px); }
+  .class { display: inline-block; margin-top: 6px; padding: 3px 12px; border-radius: 999px;
+           background: rgba(34,197,94,.18); color: #86efac; font-weight: 700; font-size: clamp(12px, 2vh, 20px); }
+  .pts { margin-top: 8px; font-weight: 900; font-size: clamp(20px, 4vh, 44px); color: var(--gold);
+         font-variant-numeric: tabular-nums; }
+  .pts small { font-size: .5em; font-weight: 700; color: var(--muted); margin-left: 4px; }
+
+  .block { width: 100%; border-radius: 14px 14px 0 0; display: grid; place-items: start center;
+           padding-top: clamp(8px, 2vh, 20px); font-weight: 900; font-size: clamp(44px, 10vh, 120px);
+           color: rgba(255,255,255,.92); text-shadow: 0 4px 0 rgba(0,0,0,.2);
+           box-shadow: inset 0 6px 0 rgba(255,255,255,.25), 0 -4px 30px rgba(0,0,0,.25); }
+  .p1 .block { height: 34vh; background: linear-gradient(180deg, #fcd34d, var(--gold2)); }
+  .p2 .block { height: 25vh; background: linear-gradient(180deg, #e2e8f0, #64748b); }
+  .p3 .block { height: 18vh; background: linear-gradient(180deg, #f6b98a, var(--bronze2)); }
+  .tie { font-size: .45em; display: block; opacity: .85; }
+
+  footer { width: 100%; height: 10px; background: linear-gradient(90deg, #15803d, var(--accent), #15803d); z-index: 2; }
+
+  .tools { position: fixed; right: 12px; top: 12px; display: flex; gap: 8px; z-index: 10; opacity: .25; transition: opacity .2s; }
+  .tools:hover { opacity: 1; }
+  .tools button { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25);
+                  background: rgba(0,0,0,.35); color: #fff; font-size: 18px; cursor: pointer; }
+
+  dialog { border: 1px solid var(--panel-border); border-radius: 14px; padding: 20px; width: min(560px, calc(100vw - 32px));
+           background: var(--panel); color: var(--panel-text); }
+  dialog::backdrop { background: rgba(0,0,0,.6); }
+  dialog h2 { margin: 0 0 4px; font-size: 20px; }
+  dialog p { margin: 0 0 14px; color: #5b6b62; font-size: 14px; }
+  .row { display: grid; grid-template-columns: 28px 1fr 90px 80px; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .row b { text-align: center; }
+  .row input { width: 100%; padding: 8px 10px; border: 1px solid var(--panel-border); border-radius: 8px; font: inherit; min-width: 0; }
+  .actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; flex-wrap: wrap; }
+  .actions button { padding: 9px 16px; border-radius: 9px; border: 1px solid var(--panel-border); background: #fff; font: inherit; cursor: pointer; }
+  .actions .primary { background: #16a34a; border-color: #16a34a; color: #fff; font-weight: 700; }
+  .hint { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); color: var(--muted); font-size: 14px;
+          z-index: 3; transition: opacity .4s; }
+  .done .hint { opacity: 0; }
+  @media (max-width: 600px) {
+    .row { grid-template-columns: 22px 1fr 64px 64px; }
+    .name, .p1 .name { font-size: clamp(14px, 4.4vw, 22px); }
+    .p1 .block { height: 26vh; } .p2 .block { height: 19vh; } .p3 .block { height: 14vh; }
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="tools">
+  <button id="btnLang" title="SK / EN">🌐</button>
+  <button id="btnEdit" title="Edit (E)">✏️</button>
+  <button id="btnReset" title="Reset reveal (R)">↺</button>
+  <button id="btnFull" title="Full screen (F)">⛶</button>
+</div>
+
+<header>
+  <div class="brand"><img src="../public/icon-512.png" alt=""><span>Quizilla</span></div>
+  <h1 id="title"></h1>
+  <div class="sub" id="sub"></div>
+</header>
+
+<main>
+  <section class="place p2" data-place="2"><div class="who"><div class="medal">2</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">2</div></section>
+  <section class="place p1" data-place="1"><div class="who"><div class="medal">1</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">1</div></section>
+  <section class="place p3" data-place="3"><div class="who"><div class="medal">3</div><div class="name"></div><div class="class"></div><div class="pts"></div></div><div class="block">3</div></section>
+</main>
+<div class="hint" id="hint"></div>
+<footer></footer>
+
+<dialog id="dlg">
+  <h2 id="dTitle"></h2>
+  <p id="dText"></p>
+  <div id="rows"></div>
+  <div class="actions">
+    <button id="dCancel"></button>
+    <button id="dSave" class="primary"></button>
+  </div>
+</dialog>
+
+<script>
+const T = {
+  sk: { title: 'Finálne výsledky', sub: 'Body do 2. 11. 2026, 23:59:59', pts: 'b.', hint: 'Medzerník = odhaliť ďalšie miesto',
+        dTitle: 'Víťazi', dText: 'Mená, triedy a body z final_results_top3.sql. Ukladá sa len v tomto prehliadači.',
+        name: 'Meno', cls: 'Trieda', points: 'Body', cancel: 'Zrušiť', save: 'Uložiť', empty: '—' },
+  en: { title: 'Final results', sub: 'Points until 2 Nov 2026, 23:59:59', pts: 'pts', hint: 'Space = reveal the next place',
+        dTitle: 'Winners', dText: 'Names, classes and points from final_results_top3.sql. Saved in this browser only.',
+        name: 'Name', cls: 'Class', points: 'Points', cancel: 'Cancel', save: 'Save', empty: '—' },
+};
+const KEY = 'quizilla-final-results';
+let state = { lang: 'sk', winners: [ { name: '', cls: '', points: '' }, { name: '', cls: '', points: '' }, { name: '', cls: '', points: '' } ] };
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.winners)) state = s; } catch {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
+
+let revealed = 0; // 0 = none, 1 = 3rd, 2 = 3rd+2nd, 3 = all
+const order = [3, 2, 1];
+
+function render() {
+  const t = T[state.lang];
+  document.documentElement.lang = state.lang;
+  document.getElementById('title').textContent = t.title;
+  document.getElementById('sub').textContent = t.sub;
+  document.getElementById('hint').textContent = t.hint;
+  const pts = state.winners.map((w) => w.points);
+  for (const sec of document.querySelectorAll('.place')) {
+    const i = +sec.dataset.place - 1, w = state.winners[i];
+    sec.querySelector('.name').textContent = w.name || t.empty;
+    const c = sec.querySelector('.class');
+    c.textContent = w.cls; c.style.display = w.cls ? '' : 'none';
+    sec.querySelector('.pts').innerHTML = w.points !== '' ? `${Number(w.points).toLocaleString(state.lang)}<small>${t.pts}</small>` : '';
+    // same points as a better place = shared place
+    const shared = w.points !== '' && pts.findIndex((p) => p === w.points) < i;
+    sec.querySelector('.block').innerHTML = shared ? `${pts.findIndex((p) => p === w.points) + 1}<span class="tie">=</span>` : String(i + 1);
+    sec.classList.toggle('revealed', order.indexOf(i + 1) < revealed);
+  }
+  document.body.classList.toggle('done', revealed >= 3);
+}
+
+function next() {
+  if (revealed >= 3) return;
+  revealed++;
+  render();
+  const place = order[revealed - 1];
+  burst(place === 1 ? 260 : 90, place);
+}
+function reset() { revealed = 0; render(); }
+
+// ---------- edit dialog
+const dlg = document.getElementById('dlg');
+function openEdit() {
+  const t = T[state.lang];
+  document.getElementById('dTitle').textContent = t.dTitle;
+  document.getElementById('dText').textContent = t.dText;
+  document.getElementById('dCancel').textContent = t.cancel;
+  document.getElementById('dSave').textContent = t.save;
+  const rows = document.getElementById('rows');
+  rows.innerHTML = '';
+  state.winners.forEach((w, i) => {
+    const r = document.createElement('div');
+    r.className = 'row';
+    r.innerHTML = `<b>${i + 1}.</b><input data-k="name" placeholder="${t.name}"><input data-k="cls" placeholder="${t.cls}"><input data-k="points" inputmode="numeric" placeholder="${t.points}">`;
+    for (const inp of r.querySelectorAll('input')) inp.value = w[inp.dataset.k];
+    rows.appendChild(r);
+  });
+  dlg.showModal();
+}
+document.getElementById('dCancel').onclick = () => dlg.close();
+document.getElementById('dSave').onclick = () => {
+  [...document.querySelectorAll('#rows .row')].forEach((r, i) => {
+    for (const inp of r.querySelectorAll('input')) {
+      let v = inp.value.trim();
+      if (inp.dataset.k === 'points') v = v.replace(/[^\d-]/g, '');
+      state.winners[i][inp.dataset.k] = v;
+    }
+  });
+  save(); dlg.close(); render();
+};
+
+document.getElementById('btnEdit').onclick = openEdit;
+document.getElementById('btnReset').onclick = reset;
+document.getElementById('btnLang').onclick = () => { state.lang = state.lang === 'sk' ? 'en' : 'sk'; save(); render(); };
+document.getElementById('btnFull').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
+document.querySelector('main').onclick = next;
+document.addEventListener('keydown', (e) => {
+  if (dlg.open) return;
+  if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'Enter') { e.preventDefault(); next(); }
+  else if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'r') reset();
+  else if (e.key.toLowerCase() === 'e') { e.preventDefault(); openEdit(); }
+  else if (e.key.toLowerCase() === 'f') document.getElementById('btnFull').click();
+});
+
+// ---------- confetti
+const cv = document.getElementById('confetti'), cx = cv.getContext('2d');
+let parts = [];
+const resize = () => { cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio; };
+addEventListener('resize', resize); resize();
+const COLORS = { 1: ['#fbbf24', '#fde68a', '#22c55e', '#ffffff', '#f59e0b'], 2: ['#e2e8f0', '#94a3b8', '#22c55e', '#ffffff'], 3: ['#f0a46b', '#b45309', '#22c55e', '#ffffff'] };
+function burst(n, place) {
+  const sec = document.querySelector(`.p${place} .medal`).getBoundingClientRect();
+  const x0 = (sec.left + sec.width / 2) * devicePixelRatio, y0 = (sec.top + sec.height / 2) * devicePixelRatio;
+  for (let i = 0; i < n; i++) {
+    const a = Math.random() * Math.PI * 2, s = (4 + Math.random() * 10) * devicePixelRatio;
+    parts.push({ x: x0, y: y0, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 8 * devicePixelRatio,
+      w: (6 + Math.random() * 8) * devicePixelRatio, h: (4 + Math.random() * 6) * devicePixelRatio,
+      r: Math.random() * 6, vr: (Math.random() - .5) * .4, life: 160 + Math.random() * 80,
+      c: COLORS[place][i % COLORS[place].length] });
+  }
+}
+(function tick() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  parts = parts.filter((p) => p.life > 0 && p.y < cv.height + 50);
+  for (const p of parts) {
+    p.vy += .25 * devicePixelRatio; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life--;
+    cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.globalAlpha = Math.min(1, p.life / 40);
+    cx.fillStyle = p.c; cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); cx.restore();
+  }
+  requestAnimationFrame(tick);
+})();
+
+render();
+</script>
+</body>
+</html>
