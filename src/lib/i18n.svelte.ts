@@ -58,7 +58,7 @@ const sk = {
   'lb.leader': 'Vedie',
   'lb.empty': 'Zatiaľ žiadne výsledky.',
   'freeze.title': 'Výsledky zajtra!',
-  'freeze.info': 'Od 23:50 body neukazujeme. Hrať môžeš až do polnoci – víťazov vyhlásime zajtra.',
+  'freeze.info': 'Od 23:00 body neukazujeme. Hrať môžeš až do polnoci – víťazov vyhlásime zajtra.',
   'freeze.short': 'zajtra',
 
   'profile.title': 'Profil',
@@ -288,7 +288,7 @@ const en: Record<Key, string> = {
   'lb.leader': 'Leading',
   'lb.empty': 'No results yet.',
   'freeze.title': 'Results tomorrow!',
-  'freeze.info': 'Scores are hidden from 23:50. You can keep playing until midnight – the winners are announced tomorrow.',
+  'freeze.info': 'Scores are hidden from 23:00. You can keep playing until midnight – the winners are announced tomorrow.',
   'freeze.short': 'tomorrow',
 
   'profile.title': 'Profile',

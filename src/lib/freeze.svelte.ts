@@ -1,10 +1,10 @@
 import { session } from './session.svelte';
 
-// Score freeze before the final results: from 2026-11-02 23:50 Bratislava time (CET = UTC+1)
+// Score freeze before the final results: from 2026-11-02 23:00 Bratislava time (CET = UTC+1)
 // nobody but the admin sees points (leaderboard, stats, home, topic, quiz). Answers still count
 // until midnight (027 final_cutoff); the winners are announced the next day.
 // Client-side only – the server still returns the numbers.
-export const SCORES_HIDDEN_FROM = Date.parse('2026-11-02T22:50:00Z');
+export const SCORES_HIDDEN_FROM = Date.parse('2026-11-02T22:00:00Z');
 
 // Accounts that see the freeze right away (to preview it). SHA-256 of the lower-case email,
 // so no address is in the public repo.
