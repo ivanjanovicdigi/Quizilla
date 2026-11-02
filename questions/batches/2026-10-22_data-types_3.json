@@ -808,7 +808,7 @@
       "id": "dt-compile-error-001",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -834,7 +834,8 @@
         "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'bool' to 'int')",
         "hash": "9a2c4c76c6f0",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-compile-error-002",
@@ -936,7 +937,7 @@
       "id": "dt-compile-error-005",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -962,13 +963,14 @@
         "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'string')",
         "hash": "b96bf8d963ca",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-compile-error-006",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -994,7 +996,8 @@
         "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'bool')",
         "hash": "c4595eff0898",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-compile-error-007",
@@ -1096,7 +1099,7 @@
       "id": "dt-compile-error-010",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -1122,7 +1125,8 @@
         "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'double')",
         "hash": "15ea5e7fac3d",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-compile-error-011",
@@ -1160,7 +1164,7 @@
       "id": "dt-compile-error-012",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -1186,7 +1190,8 @@
         "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'int' to 'string')",
         "hash": "91feaab723d8",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-compile-error-013",
@@ -1256,7 +1261,7 @@
       "id": "dt-compile-error-015",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -1282,13 +1287,14 @@
         "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'bool' to 'int')",
         "hash": "9d8fa8fe5485",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-compile-error-016",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -1314,7 +1320,8 @@
         "detail": "only the correct answer gives a compile error (error CS1012: Too many characters in character literal)",
         "hash": "20d20ee10245",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-compile-error-017",
@@ -1480,7 +1487,7 @@
       "id": "dt-compile-error-022",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -1506,7 +1513,8 @@
         "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'char')",
         "hash": "98b25644cd66",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-compile-error-023",
@@ -1576,7 +1584,7 @@
       "id": "dt-compile-error-025",
       "template": "dt-compile-error",
       "difficulty": 3,
-      "status": "approved",
+      "status": "rejected",
       "code": null,
       "sk": {
         "body": "Ktorý z týchto riadkov spôsobí chybu pri preklade?",
@@ -1602,7 +1610,8 @@
         "detail": "only the correct answer gives a compile error (error CS0029: Cannot implicitly convert type 'string' to 'int')",
         "hash": "bc8299707921",
         "at": "2026-10-22"
-      }
+      },
+      "note": "Hidden 2026-10-29 (issue #2): relies on char being a number, which Prog 1 does not teach."
     },
     {
       "id": "dt-trace-001",
