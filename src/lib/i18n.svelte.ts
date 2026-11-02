@@ -57,6 +57,9 @@ const sk = {
   'lb.tab_mine': 'Moje',
   'lb.leader': 'Vedie',
   'lb.empty': 'Zatiaľ žiadne výsledky.',
+  'freeze.title': 'Výsledky zajtra!',
+  'freeze.info': 'Od 23:50 body neukazujeme. Hrať môžeš až do polnoci – víťazov vyhlásime zajtra.',
+  'freeze.short': 'zajtra',
 
   'profile.title': 'Profil',
   'profile.language': 'Jazyk',
@@ -284,6 +287,9 @@ const en: Record<Key, string> = {
   'lb.tab_mine': 'Mine',
   'lb.leader': 'Leading',
   'lb.empty': 'No results yet.',
+  'freeze.title': 'Results tomorrow!',
+  'freeze.info': 'Scores are hidden from 23:50. You can keep playing until midnight – the winners are announced tomorrow.',
+  'freeze.short': 'tomorrow',
 
   'profile.title': 'Profile',
   'profile.language': 'Language',

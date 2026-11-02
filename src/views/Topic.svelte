@@ -5,6 +5,7 @@
   import MedalBadge from '../components/MedalBadge.svelte';
   import { api, ApiError } from '../lib/api';
   import { guest } from '../lib/guest';
+  import { scoresHidden } from '../lib/freeze.svelte';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { neededCorrect, pct as rateOf } from '../lib/util';
@@ -174,7 +175,7 @@
           <div class="grow">
             <h3>{t('topic.level', { n: lvl.level })}</h3>
             <p class="muted small">
-              {t('topic.questions', { n: lvl.question_count })}{#if !isGuest} · {t('topic.points', { n: lvl.points })}{/if}
+              {t('topic.questions', { n: lvl.question_count })}{#if !isGuest && !scoresHidden()} · {t('topic.points', { n: lvl.points })}{/if}
             </p>
           </div>
           {#if lvl.unlocked}

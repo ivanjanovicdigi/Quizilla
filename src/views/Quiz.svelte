@@ -5,6 +5,7 @@
   import Rich from '../components/Rich.svelte';
   import { api, ApiError } from '../lib/api';
   import { guest } from '../lib/guest';
+  import { scoresHidden } from '../lib/freeze.svelte';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { shuffledIndices, signed } from '../lib/util';
@@ -182,7 +183,11 @@
       {:else if isGuest}
         <p class="pill learn"><Icon name="user" size={14} /> {t('guest.round_note')}</p>
       {:else}
-        <p class="gold" class:minus={pointsEarned < 0}><Icon name="star" size={18} /> {t('quiz.earned', { n: signed(pointsEarned) })}</p>
+        {#if scoresHidden()}
+          <p class="gold"><Icon name="trophy" size={18} /> {t('freeze.title')}</p>
+        {:else}
+          <p class="gold" class:minus={pointsEarned < 0}><Icon name="star" size={18} /> {t('quiz.earned', { n: signed(pointsEarned) })}</p>
+        {/if}
       {/if}
       {#if passedNow}
         <div class="unlock"><Icon name="check" /> {t('pass.new')}</div>
@@ -208,7 +213,7 @@
         <span class="small learn-tag"><Icon name="book" size={14} /> {t('mode.learn')}</span>
       {:else if isGuest}
         <span class="small learn-tag"><Icon name="user" size={14} /> {t('guest.tag')}</span>
-      {:else}
+      {:else if !scoresHidden()}
         <span class="small gold" class:minus={pointsEarned < 0}><Icon name="star" size={14} /> {signed(pointsEarned)}</span>
       {/if}
     </div>
@@ -240,7 +245,7 @@
         <div class="row">
           <strong>{result.correct ? t('quiz.correct') : t('quiz.wrong')}</strong>
           <span class="spacer"></span>
-          {#if scored}
+          {#if scored && !scoresHidden()}
             {#if result.points !== 0}
               <span class="small pts" class:plus={result.points > 0} class:minus={result.points < 0}>
                 {t('quiz.points', { n: signed(result.points) })}

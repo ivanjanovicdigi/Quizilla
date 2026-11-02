@@ -10,6 +10,7 @@
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { pct, signed } from '../lib/util';
+  import { scoresHidden } from '../lib/freeze.svelte';
   import type { Progress, Stats } from '../lib/types';
 
   let { source, onError }: {
@@ -141,6 +142,7 @@
 
     <div class="stack">
       {#each data.topics as topic (topic.id)}
+        {@const hide = scoresHidden()}
         {@const pts = topic.points ?? null}
         <section class="card topic stack">
           <h3>{pick(topic.name_sk, topic.name_en)}</h3>
@@ -148,7 +150,7 @@
           <div class="kpis">
             <div>
               <!-- "–" if the server sends no points (old get_stats) instead of a misleading 0 -->
-              <strong class:plus={pts !== null && pts > 0} class:minus={pts !== null && pts < 0}>{pts === null ? '–' : signed(pts)}</strong>
+              <strong class:plus={pts !== null && pts > 0} class:minus={pts !== null && pts < 0}>{pts === null ? '–' : hide ? '?' : signed(pts)}</strong>
               <span class="small muted">{t('stats.points')}</span>
             </div>
             <div>

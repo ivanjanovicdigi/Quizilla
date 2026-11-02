@@ -2,6 +2,8 @@
   import TopBar from '../components/TopBar.svelte';
   import ClassBoard from '../components/ClassBoard.svelte';
   import StatsPanel from '../components/StatsPanel.svelte';
+  import ResultsTomorrow from '../components/ResultsTomorrow.svelte';
+  import { scoresHidden } from '../lib/freeze.svelte';
   import { session } from '../lib/session.svelte';
   import { t } from '../lib/i18n.svelte';
 
@@ -13,6 +15,9 @@
 <TopBar title={t('nav.leaderboard')} />
 
 <main class="page stack">
+  {#if scoresHidden()}
+    <ResultsTomorrow />
+  {:else}
   {#if session.student}
     <div class="segmented">
       <button class:active={tab === 'class'} onclick={() => (tab = 'class')}>{t('lb.tab_class')}</button>
@@ -24,5 +29,6 @@
     <StatsPanel />
   {:else}
     <ClassBoard myClassId={session.student?.class_id ?? null} />
+  {/if}
   {/if}
 </main>

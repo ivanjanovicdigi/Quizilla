@@ -9,6 +9,7 @@
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { pct } from '../lib/util';
   import { guest } from '../lib/guest';
+  import { scoresHidden } from '../lib/freeze.svelte';
   import type { Catalog, Subject, TierState, Topic } from '../lib/types';
 
   let data = $state<Catalog | null>(null); // student
@@ -82,8 +83,8 @@
       </div>
       <div class="score">
         <Icon name="star" size={20} />
-        <strong>{data.points}</strong>
-        <span class="muted small">{t('home.points')}</span>
+        <strong>{scoresHidden() ? '?' : data.points}</strong>
+        <span class="muted small">{scoresHidden() ? t('freeze.short') : t('home.points')}</span>
       </div>
     </section>
     {/if}
@@ -139,7 +140,7 @@
                       <span class="pill">{t('home.levels', { current: s.current, total: s.total })}</span>
                     {/if}
                     <span class="spacer"></span>
-                    {#if !isGuest}
+                    {#if !isGuest && !scoresHidden()}
                       <span class="muted">{t('topic.points', { n: topic.progress.points })}</span>
                     {/if}
                   </div>
