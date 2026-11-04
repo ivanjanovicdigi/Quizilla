@@ -63,7 +63,7 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   (running accuracy over all answers, `[[n, correct_so_far]]`, ~60 points). UI: `Stats.svelte` +
   `TrendChart.svelte`. Students only ever see their own stats.
 - Leaderboard page shows ONLY personal stats (StatsPanel) since 2026-11-04; class totals are hidden
-  in the UI (`get_class_leaderboard` is still public; only the admin ClassBoard calls it). Guests see a short "log in" note. The 23:00 score freeze (ResultsTomorrow) still applies.
+  in the UI (`get_class_leaderboard` is still public; only the admin ClassBoard calls it). Guests see a short "log in" note. The score freeze (src/lib/freeze.svelte.ts) is OFF since 2026-11-04: `FREEZE_ENABLED = false`; set true to reuse it.
 - Class leaderboard (015): `get_class_leaderboard()` (no args, public) – per class only the all-time
   total points, membership from active roster rows. No averages / counts / period switch.
   `get_class_ranking` (classmates' points) was dropped on purpose – don't bring it back.
