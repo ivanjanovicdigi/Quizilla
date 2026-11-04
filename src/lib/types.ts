@@ -57,6 +57,8 @@ export interface Topic {
   pass: Pass;
   medal?: MedalKey | null; // from 012_topic_medals.sql
   levels_cleared?: number;
+  /** Rule for clearing a level (medals), 025. Separate from the unlock rule. */
+  medal_rule?: { min_answers: number; accuracy: number } | null;
   grand_master?: TopicGrandMaster | null;
   name_sk: string;
   name_en: string | null;

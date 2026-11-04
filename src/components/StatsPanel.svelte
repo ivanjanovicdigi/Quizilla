@@ -117,7 +117,9 @@
 
     <!-- per topic: points, accuracy, unlock progress, running-accuracy trend -->
     <h3>{t('stats.topics')}</h3>
-    <p class="small muted">{t('stats.trend_info', { pct: Math.round(unlockAcc * 100) })}</p>
+    <p class="small muted">
+      {unlockAcc > 0 ? t('stats.trend_info', { pct: Math.round(unlockAcc * 100) }) : t('stats.trend_info_plain')}
+    </p>
 
     <div class="stack">
       {#each data.topics as topic (topic.id)}
@@ -160,6 +162,7 @@
                   <span>{t('stats.need_answers', { a: Math.min(u.answers, u.min), min: u.min })}</span>
                   <div class="bar" class:ok={u.answers >= u.min}><i style:width={`${u.answersPct}%`}></i></div>
                 </div>
+                {#if u.need > 0}
                 <div class="need">
                   <span>{t('stats.need_acc', { pct: u.answers ? u.acc : 0, need: u.need })}</span>
                   <div class="bar acc" class:ok={u.answers > 0 && u.acc >= u.need}>
@@ -167,6 +170,7 @@
                     <b style:left={`${u.need}%`}></b>
                   </div>
                 </div>
+                {/if}
               {/if}
             </div>
           {/if}

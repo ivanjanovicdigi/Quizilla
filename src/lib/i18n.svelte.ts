@@ -3,7 +3,7 @@ import { load, save } from './storage';
 export type Lang = 'sk' | 'en';
 
 const sk = {
-  'app.tagline': 'Precvičuj, odomykaj úrovne a pomôž svojej triede vyhrať.',
+  'app.tagline': 'Precvičuj, odomykaj úrovne a zbieraj body.',
   'nav.home': 'Domov',
   'nav.leaderboard': 'Rebríček',
   'nav.profile': 'Profil',
@@ -26,6 +26,8 @@ const sk = {
   'topic.recent': 'Správne z posledných {window}',
   'topic.rule_all': 'Ďalšiu úroveň odomkneš, keď odpovieš aspoň na {min} otázok a aspoň {pct} % tvojich odpovedí na tejto úrovni bude správnych.',
   'topic.rate': 'Úspešnosť (treba {pct} %)',
+  'topic.rule_count': 'Ďalšiu úroveň odomkneš, keď na tejto úrovni odpovieš aspoň na {min} otázok.',
+  'topic.rate_plain': 'Úspešnosť',
   'topic.met': 'Splnené',
   'topic.points': '{n} b.',
 
@@ -57,6 +59,7 @@ const sk = {
   'lb.tab_mine': 'Moje',
   'lb.leader': 'Vedie',
   'lb.empty': 'Zatiaľ žiadne výsledky.',
+  'lb.guest': 'Ako hosť nemáš uložené skóre. Prihlás sa a uvidíš tu svoje body a štatistiky.',
 
   'profile.title': 'Profil',
   'profile.language': 'Jazyk',
@@ -83,6 +86,7 @@ const sk = {
   'medal.cleared': 'Zvládnuté úrovne: {c}/{n}',
   'medal.next': 'ďalšia medaila za zvládnutie úrovne {n}',
   'medal.all': 'všetky úrovne zvládnuté',
+  'medal.rule': 'Úroveň zvládneš, keď na nej odpovieš aspoň na {min} otázok a aspoň {pct} % bude správne.',
 
   'pass.title': 'Splnenie témy',
   'pass.rule': 'Tému splníš, keď v hre odpovieš na viac ako {min} otázok na úrovni {level} alebo vyššej a aspoň {pct} % bude správne.',
@@ -166,6 +170,7 @@ const sk = {
   'stats.tiers': 'Úspešnosť podľa stupňov',
   'stats.topics': 'Moje témy',
   'stats.trend_info': 'Graf ukazuje priebežnú úspešnosť zo všetkých tvojich odpovedí v hre, od prvej po poslednú. Prerušovaná čiara = {pct} % na odomknutie ďalšej úrovne.',
+  'stats.trend_info_plain': 'Graf ukazuje priebežnú úspešnosť zo všetkých tvojich odpovedí v hre, od prvej po poslednú.',
   'stats.no_data': 'Zatiaľ žiadne odpovede v hre.',
   'stats.points': 'Body',
   'stats.level_of': 'Úroveň {n} z {m}',
@@ -202,7 +207,7 @@ const sk = {
 type Key = keyof typeof sk;
 
 const en: Record<Key, string> = {
-  'app.tagline': 'Practise, unlock levels and help your class win.',
+  'app.tagline': 'Practise, unlock levels and collect points.',
   'nav.home': 'Home',
   'nav.leaderboard': 'Leaderboard',
   'nav.profile': 'Profile',
@@ -225,6 +230,8 @@ const en: Record<Key, string> = {
   'topic.recent': 'Correct of last {window}',
   'topic.rule_all': 'You unlock the next level after answering at least {min} questions with at least {pct} % of your answers on this level correct.',
   'topic.rate': 'Success rate (need {pct} %)',
+  'topic.rule_count': 'You unlock the next level after answering at least {min} questions on this level.',
+  'topic.rate_plain': 'Success rate',
   'topic.met': 'Completed',
   'topic.points': '{n} pts',
 
@@ -256,6 +263,7 @@ const en: Record<Key, string> = {
   'lb.tab_mine': 'Mine',
   'lb.leader': 'Leading',
   'lb.empty': 'No results yet.',
+  'lb.guest': 'Guests have no saved score. Log in to see your points and stats here.',
 
   'profile.title': 'Profile',
   'profile.language': 'Language',
@@ -282,6 +290,7 @@ const en: Record<Key, string> = {
   'medal.cleared': 'Levels cleared: {c}/{n}',
   'medal.next': 'next medal for clearing level {n}',
   'medal.all': 'all levels cleared',
+  'medal.rule': 'You clear a level after at least {min} answers on it with at least {pct} % correct.',
 
   'pass.title': 'Passing the topic',
   'pass.rule': 'You pass the topic after more than {min} Play answers on level {level} or higher with at least {pct} % correct.',
@@ -365,6 +374,7 @@ const en: Record<Key, string> = {
   'stats.tiers': 'Accuracy per tier',
   'stats.topics': 'My topics',
   'stats.trend_info': 'The chart shows your running accuracy over all your Play answers, from first to last. Dashed line = {pct} % needed to unlock the next level.',
+  'stats.trend_info_plain': 'The chart shows your running accuracy over all your Play answers, from first to last.',
   'stats.no_data': 'No Play answers yet.',
   'stats.points': 'Points',
   'stats.level_of': 'Level {n} of {m}',

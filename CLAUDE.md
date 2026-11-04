@@ -36,8 +36,13 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   mode "Play" / "Hrať" (internal mode name stays 'test'). Old #/quiz/…/learn links open Play.
 - Testing mode → `submit_answer` stores into `quiz.attempts`. Learning mode → `check_answer`
   stores nothing. All stats/points/unlocks count testing answers only.
-- Unlock next level: ≥ 20 answers on the level (019; was 10 in 004) and ≥ 80 % of all of them correct. Sticky.
-- Tiers, topic passes, ranks (009); topic medals (012). Topic Grand Master (018): gold medal +
+- Unlock next level (025): ≥ 10 answers on the level, ANY accuracy (topics.unlock_min_answers = 10,
+  unlock_accuracy = 0; was 20 + 80 % in 019). Sticky. Never re-run 019/021 (they set 20 again).
+- Medals (025): a level is cleared only with ≥ medal_min_answers (20) answers and ≥ medal_accuracy
+  (0.80) correct (quiz.config) – separate from unlocking; `quiz.topic_medal` (025) has the rule,
+  topic JSON adds `medal_rule`. UI hides "need x %" texts when unlock_accuracy is 0.
+- Tiers, topic passes, ranks (009); topic medals (012). Since 024 every tier is open for everyone
+  (`tiers_all_open` = 1 in quiz.config; 0 = old rule). Levels inside a topic still unlock as above. Topic Grand Master (018): gold medal +
   ≥ topic_gm_accuracy (0.99) correct on EVERY level with ≥ topic_gm_min_answers (50) answers per level;
   not sticky; topic JSON medal = 'grand_master' (crown image) + `grand_master` progress object.
   Global ranks (Padawan … Grand Master over all topics) are unchanged – the user wants them as they are.
@@ -51,10 +56,12 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   applied there. 021 re-applies all scoring (013 functions + 019 values/unlock 20 + rescore) and
   prints a live/not-live row for every update 012–020 – reuse that check when something looks off.
 - Personal stats are shown by `src/components/StatsPanel.svelte` – on the Stats page (Profile) and in
-  the Leaderboard "Moje / Mine" tab (Leaderboard opens on "Triedy / Classes" every time).
+  the Leaderboard page.
 - Personal stats (014): `get_stats` per topic adds points, tier_unlocked, progress and `trend`
   (running accuracy over all answers, `[[n, correct_so_far]]`, ~60 points). UI: `Stats.svelte` +
   `TrendChart.svelte`. Students only ever see their own stats.
+- Leaderboard page shows ONLY personal stats (StatsPanel) since 2026-11-04; class totals are hidden
+  in the UI (`get_class_leaderboard` still exists, unused). Guests see a short "log in" note.
 - Class leaderboard (015): `get_class_leaderboard()` (no args, public) – per class only the all-time
   total points, membership from active roster rows. No averages / counts / period switch.
   `get_class_ranking` (classmates' points) was dropped on purpose – don't bring it back.
