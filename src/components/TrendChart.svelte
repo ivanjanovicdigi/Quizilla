@@ -47,7 +47,7 @@
     width={width}
     height={H}
     role="img"
-    aria-label={t('stats.trend_info', { pct: Math.round(threshold * 100) })}
+    aria-label={threshold > 0 ? t('stats.trend_info', { pct: Math.round(threshold * 100) }) : t('stats.trend_info_plain')}
     onpointermove={pick}
     onpointerdown={pick}
     onpointerleave={() => (active = null)}>
@@ -55,7 +55,9 @@
       <line class="grid" x1={PAD.left} x2={width - PAD.right} y1={y(g)} y2={y(g)} />
       <text class="axis" x={PAD.left - 6} y={y(g) + 4} text-anchor="end">{g * 100}</text>
     {/each}
-    <line class="threshold" x1={PAD.left} x2={width - PAD.right} y1={y(threshold)} y2={y(threshold)} />
+    {#if threshold > 0}
+      <line class="threshold" x1={PAD.left} x2={width - PAD.right} y1={y(threshold)} y2={y(threshold)} />
+    {/if}
 
     {#if tip}
       <line class="cross" x1={tip.x} x2={tip.x} y1={PAD.top} y2={H - PAD.bottom} />

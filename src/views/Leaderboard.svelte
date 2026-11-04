@@ -1,15 +1,13 @@
 <script lang="ts">
   import TopBar from '../components/TopBar.svelte';
-  import ClassBoard from '../components/ClassBoard.svelte';
   import StatsPanel from '../components/StatsPanel.svelte';
   import ResultsTomorrow from '../components/ResultsTomorrow.svelte';
   import { scoresHidden } from '../lib/freeze.svelte';
   import { session } from '../lib/session.svelte';
   import { t } from '../lib/i18n.svelte';
 
-  // Global class leaderboard (ClassBoard). Students also get a "Mine" tab with their own
-  // statistics. Opens on "Class" every time.
-  let tab = $state<'class' | 'mine'>('class');
+  // Personal score only: class (team) totals are hidden on purpose (ClassBoard is admin-only now).
+  // Guests have no saved score, so they see a short note.
 </script>
 
 <TopBar title={t('nav.leaderboard')} />
@@ -17,18 +15,9 @@
 <main class="page stack">
   {#if scoresHidden()}
     <ResultsTomorrow />
-  {:else}
-  {#if session.student}
-    <div class="segmented">
-      <button class:active={tab === 'class'} onclick={() => (tab = 'class')}>{t('lb.tab_class')}</button>
-      <button class:active={tab === 'mine'} onclick={() => (tab = 'mine')}>{t('lb.tab_mine')}</button>
-    </div>
-  {/if}
-
-  {#if tab === 'mine' && session.student}
+  {:else if session.student}
     <StatsPanel />
   {:else}
-    <ClassBoard myClassId={session.student?.class_id ?? null} />
-  {/if}
+    <p class="muted center">{t('lb.guest')}</p>
   {/if}
 </main>

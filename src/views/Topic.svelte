@@ -81,6 +81,11 @@
           {t('medal.cleared', { c: Math.min(cleared, levelCount), n: levelCount })} ·
           {cleared >= levelCount ? t('medal.all') : t('medal.next', { n: cleared + 1 })}
         </p>
+        {#if topic.medal_rule && cleared < levelCount}
+          <p class="small muted">
+            {t('medal.rule', { min: topic.medal_rule.min_answers, pct: Math.round(topic.medal_rule.accuracy * 100) })}
+          </p>
+        {/if}
       </div>
     </section>
 
@@ -159,6 +164,8 @@
     <p class="small muted rule">
       {#if p.unlock_window}
         {t('topic.rule', { min: p.unlock_min_answers, window: p.unlock_window, need })}
+      {:else if !pct}
+        {t('topic.rule_count', { min: p.unlock_min_answers })}
       {:else}
         {t('topic.rule_all', { min: p.unlock_min_answers, pct })}
       {/if}
@@ -203,9 +210,9 @@
             {:else}
               {@const r = rate(lvl.recent_correct, lvl.recent_total)}
               <div>
-                <span class="muted small">{t('topic.rate', { pct })}</span>
+                <span class="muted small">{pct ? t('topic.rate', { pct }) : t('topic.rate_plain')}</span>
                 <strong>{lvl.recent_total ? `${r} %` : '–'}</strong>
-                <div class="bar"><i style:width={`${Math.min(100, (r / Math.max(pct, 1)) * 100)}%`}></i></div>
+                <div class="bar"><i style:width={`${pct ? Math.min(100, (r / pct) * 100) : r}%`}></i></div>
               </div>
             {/if}
           </div>
