@@ -1,0 +1,169 @@
+{
+  "slug": "gym",
+  "sort_order": 40,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Fitnes centrum Sila",
+    "brief": [
+      "Fitnes centrum Sila v Nitre prenajíma svojim členom skrinky na celú sezónu. Každá skrinka má číslo a veľkosť, small alebo large. Každý člen má meno a číslo členskej karty a recepcia musí vedieť, ktorý člen používa ktorú skrinku.",
+      "Recepcia pridá skrinku príkazom `addlocker`, za ktorým nasleduje jej číslo a veľkosť. Program odpovie `Locker 12 added.`",
+      "Skrinka sa pridelí členovi príkazom `assign`, za ktorým nasleduje číslo skrinky, meno člena a číslo jeho karty. Ak je skrinka voľná, program odpovie `Locker 12 assigned to Marek.` Ak ju už niekto používa, odpovie `Locker 12 is taken.` Ak taká skrinka neexistuje, odpovie `Locker 99 does not exist.`",
+      "Príkaz `count` vypíše, koľko skriniek je voľných a koľko obsadených, presne v tvare `Free lockers: 2, taken lockers: 1.`",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "Sila Fitness",
+    "brief": [
+      "Sila Fitness in Nitra lends lockers to its members for the whole season. Every locker has a number and a size, small or large. Every member has a name and a membership card number, and the reception must know which member uses which locker.",
+      "Reception adds a locker with the command `addlocker`, followed by its number and size. The program replies `Locker 12 added.`",
+      "A locker is given to a member with `assign`, followed by the locker number, the member's name and card number. If the locker is free, the program replies `Locker 12 assigned to Marek.` If someone already uses it, it replies `Locker 12 is taken.` If there is no such locker, it replies `Locker 99 does not exist.`",
+      "The command `count` prints how many lockers are free and how many are taken, in exactly this form: `Free lockers: 2, taken lockers: 1.`",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "Locker",
+        "role": "item",
+        "properties": [
+          "int Number",
+          "string Size",
+          "Member? Member",
+          "bool IsFree (Member == null)"
+        ]
+      },
+      {
+        "name": "Member",
+        "role": "person",
+        "properties": [
+          "string Name",
+          "string CardId"
+        ]
+      },
+      {
+        "name": "Gym",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<Locker> Lockers"
+        ],
+        "operations": [
+          "AddLocker(number, size)",
+          "Assign(number, member)",
+          "CountFree() / CountTaken()"
+        ]
+      }
+    ],
+    "link": "Locker.Member → Member (one-way: the locker knows who uses it)",
+    "storage": "List<Locker> in Gym"
+  },
+  "scenarios": [
+    {
+      "id": "add-locker",
+      "sk": "Pridanie skrinky",
+      "en": "Adding a locker",
+      "points": 15,
+      "input": [
+        "addlocker 12 large",
+        "addlocker 13 small",
+        "exit"
+      ],
+      "expected": [
+        "Locker 12 added.",
+        "Locker 13 added."
+      ]
+    },
+    {
+      "id": "assign-free",
+      "sk": "Pridelenie voľnej skrinky priradí člena",
+      "en": "Assigning a free locker assigns the member",
+      "points": 25,
+      "input": [
+        "addlocker 12 large",
+        "addlocker 13 small",
+        "assign 12 Marek M001",
+        "count",
+        "exit"
+      ],
+      "expected": [
+        "Locker 12 added.",
+        "Locker 13 added.",
+        "Locker 12 assigned to Marek.",
+        "Free lockers: 1, taken lockers: 1."
+      ]
+    },
+    {
+      "id": "assign-taken",
+      "sk": "Pridelenie obsadenej skrinky zlyhá",
+      "en": "Assigning a taken locker fails",
+      "points": 20,
+      "input": [
+        "addlocker 12 large",
+        "assign 12 Marek M001",
+        "assign 12 Zuzana M002",
+        "count",
+        "exit"
+      ],
+      "expected": [
+        "Locker 12 added.",
+        "Locker 12 assigned to Marek.",
+        "Locker 12 is taken.",
+        "Free lockers: 0, taken lockers: 1."
+      ]
+    },
+    {
+      "id": "count",
+      "sk": "Počty voľných a obsadených skriniek sú presné",
+      "en": "The free and taken counts are exact",
+      "points": 25,
+      "input": [
+        "count",
+        "addlocker 12 large",
+        "addlocker 13 small",
+        "addlocker 14 large",
+        "count",
+        "assign 14 Zuzana M002",
+        "assign 13 Marek M001",
+        "count",
+        "exit"
+      ],
+      "expected": [
+        "Free lockers: 0, taken lockers: 0.",
+        "Locker 12 added.",
+        "Locker 13 added.",
+        "Locker 14 added.",
+        "Free lockers: 3, taken lockers: 0.",
+        "Locker 14 assigned to Zuzana.",
+        "Locker 13 assigned to Marek.",
+        "Free lockers: 1, taken lockers: 2."
+      ]
+    },
+    {
+      "id": "assign-missing",
+      "sk": "Pridelenie neexistujúcej skrinky zlyhá",
+      "en": "Assigning a locker that does not exist fails",
+      "points": 15,
+      "input": [
+        "addlocker 12 large",
+        "assign 99 Marek M001",
+        "count",
+        "exit"
+      ],
+      "expected": [
+        "Locker 12 added.",
+        "Locker 99 does not exist.",
+        "Free lockers: 1, taken lockers: 0."
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "fb969d8574a5b6b7",
+    "at": "2026-11-05"
+  }
+}

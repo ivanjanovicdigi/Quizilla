@@ -1,0 +1,172 @@
+{
+  "slug": "school-cafeteria",
+  "sort_order": 80,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Školská jedáleň",
+    "brief": [
+      "Školská jedáleň na gymnáziu v Poprade varí každý deň niekoľko špeciálnych diétnych porcií a študenti si ich musia vopred rezervovať. Každá porcia má kód a názov jedla. Každý študent má meno a triedu a kuchárka musí vedieť, ktorý študent si rezervoval ktorú porciu.",
+      "Kuchárka pridá porciu príkazom `addportion`, za ktorým nasleduje jej kód a jedlo. Program odpovie `Portion P1 added.`",
+      "Študent si porciu rezervuje príkazom `reserve`, za ktorým nasleduje kód porcie, meno študenta a jeho trieda. Ak je porcia ešte voľná, program odpovie `Portion P1 reserved for Tomas (1A).` Ak je už rezervovaná, odpovie `Portion P1 is already reserved.` Ak taká porcia neexistuje, odpovie `Portion P9 does not exist.`",
+      "Príkaz `class`, za ktorým nasleduje trieda, vypíše každú porciu, ktorú si rezervoval študent z tejto triedy, na samostatný riadok, napríklad `P1 risotto Tomas` (kód, jedlo, študent), v poradí, v akom boli porcie pridané. Ak taká porcia nie je, vypíše `No portions for class 1A.` (s triedou, na ktorú sa pýtame).",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "School Cafeteria",
+    "brief": [
+      "The school cafeteria at the grammar school in Poprad cooks a few special diet portions every day, and students must reserve them in advance. Every portion has a code and the name of the dish. Every student has a name and a class, and the cook must know which student has reserved which portion.",
+      "The cook adds a portion with the command `addportion`, followed by its code and the dish. The program replies `Portion P1 added.`",
+      "A student reserves a portion with `reserve`, followed by the portion code, the student's name and class. If the portion is still free, the program replies `Portion P1 reserved for Tomas (1A).` If it is already reserved, it replies `Portion P1 is already reserved.` If there is no such portion, it replies `Portion P9 does not exist.`",
+      "The command `class`, followed by a class, lists every portion reserved by a student of that class on its own line, like `P1 risotto Tomas` (code, dish, student), in the order the portions were added. If there is none, it prints `No portions for class 1A.` (with the class that was asked for).",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "Portion",
+        "role": "item",
+        "properties": [
+          "string Code",
+          "string Dish",
+          "Student? Student",
+          "bool IsFree (Student == null)"
+        ]
+      },
+      {
+        "name": "Student",
+        "role": "person",
+        "properties": [
+          "string Name",
+          "string ClassName"
+        ]
+      },
+      {
+        "name": "Cafeteria",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<Portion> Portions"
+        ],
+        "operations": [
+          "AddPortion(code, dish)",
+          "Reserve(code, student)",
+          "PortionsOfClass(className)"
+        ]
+      }
+    ],
+    "link": "Portion.Student → Student (one-way: the portion knows who reserved it)",
+    "storage": "List<Portion> in Cafeteria"
+  },
+  "scenarios": [
+    {
+      "id": "add-portion",
+      "sk": "Pridanie porcie",
+      "en": "Adding a portion",
+      "points": 15,
+      "input": [
+        "addportion P1 risotto",
+        "addportion P2 pasta",
+        "exit"
+      ],
+      "expected": [
+        "Portion P1 added.",
+        "Portion P2 added."
+      ]
+    },
+    {
+      "id": "reserve-free",
+      "sk": "Rezervácia voľnej porcie priradí študenta",
+      "en": "Reserving a free portion assigns the student",
+      "points": 25,
+      "input": [
+        "addportion P1 risotto",
+        "addportion P2 pasta",
+        "reserve P2 Tomas 1A",
+        "class 1A",
+        "exit"
+      ],
+      "expected": [
+        "Portion P1 added.",
+        "Portion P2 added.",
+        "Portion P2 reserved for Tomas (1A).",
+        "P2 pasta Tomas"
+      ]
+    },
+    {
+      "id": "reserve-taken",
+      "sk": "Rezervácia rezervovanej porcie zlyhá",
+      "en": "Reserving a portion that is already reserved fails",
+      "points": 20,
+      "input": [
+        "addportion P1 risotto",
+        "reserve P1 Tomas 1A",
+        "reserve P1 Nina 2B",
+        "class 2B",
+        "exit"
+      ],
+      "expected": [
+        "Portion P1 added.",
+        "Portion P1 reserved for Tomas (1A).",
+        "Portion P1 is already reserved.",
+        "No portions for class 2B."
+      ]
+    },
+    {
+      "id": "class-query",
+      "sk": "Zoznam porcií triedy je presný",
+      "en": "The list of a class's portions is exact",
+      "points": 25,
+      "input": [
+        "addportion P1 risotto",
+        "addportion P2 pasta",
+        "addportion P3 soup",
+        "class 1A",
+        "reserve P3 Nina 1A",
+        "reserve P2 Adam 2B",
+        "reserve P1 Tomas 1A",
+        "class 1A",
+        "class 2B",
+        "exit"
+      ],
+      "expected": [
+        "Portion P1 added.",
+        "Portion P2 added.",
+        "Portion P3 added.",
+        "No portions for class 1A.",
+        "Portion P3 reserved for Nina (1A).",
+        "Portion P2 reserved for Adam (2B).",
+        "Portion P1 reserved for Tomas (1A).",
+        "P1 risotto Tomas",
+        "P3 soup Nina",
+        "P2 pasta Adam"
+      ]
+    },
+    {
+      "id": "reserve-missing",
+      "sk": "Rezervácia neexistujúcej porcie zlyhá",
+      "en": "Reserving a portion that does not exist fails",
+      "points": 15,
+      "input": [
+        "addportion P1 risotto",
+        "reserve P9 Tomas 1A",
+        "class 1A",
+        "exit"
+      ],
+      "expected": [
+        "Portion P1 added.",
+        "Portion P9 does not exist.",
+        "No portions for class 1A."
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "d926b784c5652557",
+    "at": "2026-11-05"
+  }
+}

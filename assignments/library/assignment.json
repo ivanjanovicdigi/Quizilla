@@ -1,0 +1,166 @@
+{
+  "slug": "library",
+  "sort_order": 20,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Obecná knižnica",
+    "brief": [
+      "Obecná knižnica v Lúčkach požičiava knihy čitateľom a chce prestať používať papierové lístky. Každá kniha má kód a názov. Každý čitateľ má meno a číslo čitateľského preukazu a knihovníčka musí vždy vedieť, kto si požičal ktorú knihu.",
+      "Knihovníčka pridá novú knihu príkazom `addbook`, za ktorým nasleduje kód a názov knihy. Program odpovie `Book B1 added.`",
+      "Čitateľ si knihu požičia príkazom `borrow`, za ktorým nasleduje kód knihy, meno čitateľa a číslo preukazu. Ak je kniha v regáli, program odpovie `Book B1 borrowed by Eva.` Ak ju už niekto má, odpovie `Book B1 is already borrowed.` Ak kniha s takým kódom neexistuje, odpovie `Book B9 does not exist.`",
+      "Príkaz `borrowed` vypíše každú požičanú knihu na samostatný riadok s kódom, názvom a menom čitateľa, napríklad `B1 Hobbit - Eva`, v poradí, v akom boli knihy pridané. Ak nie je požičaná žiadna kniha, vypíše `No borrowed books.`",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "Village Library",
+    "brief": [
+      "The village library in Lúčky lends books to its readers and wants to stop using paper cards. Every book has a code and a title. Every reader has a name and a library card number, and the librarian must always know who has borrowed which book.",
+      "The librarian adds a new book with the command `addbook`, followed by the book's code and title. The program replies `Book B1 added.`",
+      "A reader borrows a book with `borrow`, followed by the book's code, the reader's name and card number. If the book is on the shelf, the program replies `Book B1 borrowed by Eva.` If someone already has it, it replies `Book B1 is already borrowed.` If there is no book with that code, it replies `Book B9 does not exist.`",
+      "The command `borrowed` lists every borrowed book on its own line with the code, the title and the reader's name, like `B1 Hobbit - Eva`, in the order the books were added. If no book is borrowed, it prints `No borrowed books.`",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "Book",
+        "role": "item",
+        "properties": [
+          "string Code",
+          "string Title",
+          "Reader? Reader",
+          "bool IsBorrowed (Reader != null)"
+        ]
+      },
+      {
+        "name": "Reader",
+        "role": "person",
+        "properties": [
+          "string Name",
+          "string CardNumber"
+        ]
+      },
+      {
+        "name": "Library",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<Book> Books"
+        ],
+        "operations": [
+          "AddBook(code, title)",
+          "Borrow(code, reader)",
+          "BorrowedBooks()"
+        ]
+      }
+    ],
+    "link": "Book.Reader → Reader (one-way: the book knows who has it)",
+    "storage": "List<Book> in Library"
+  },
+  "scenarios": [
+    {
+      "id": "add-book",
+      "sk": "Pridanie knihy",
+      "en": "Adding a book",
+      "points": 15,
+      "input": [
+        "addbook B1 Hobbit",
+        "addbook B2 Matilda",
+        "exit"
+      ],
+      "expected": [
+        "Book B1 added.",
+        "Book B2 added."
+      ]
+    },
+    {
+      "id": "borrow-free",
+      "sk": "Požičanie voľnej knihy priradí čitateľa",
+      "en": "Borrowing a free book assigns the reader",
+      "points": 25,
+      "input": [
+        "addbook B1 Hobbit",
+        "addbook B2 Matilda",
+        "borrow B2 Eva C100",
+        "borrowed",
+        "exit"
+      ],
+      "expected": [
+        "Book B1 added.",
+        "Book B2 added.",
+        "Book B2 borrowed by Eva.",
+        "B2 Matilda - Eva"
+      ]
+    },
+    {
+      "id": "borrow-taken",
+      "sk": "Požičanie už požičanej knihy zlyhá",
+      "en": "Borrowing a book that is already borrowed fails",
+      "points": 20,
+      "input": [
+        "addbook B1 Hobbit",
+        "borrow B1 Eva C100",
+        "borrow B1 Tomas C200",
+        "exit"
+      ],
+      "expected": [
+        "Book B1 added.",
+        "Book B1 borrowed by Eva.",
+        "Book B1 is already borrowed."
+      ]
+    },
+    {
+      "id": "borrowed-list",
+      "sk": "Zoznam požičaných kníh je presný",
+      "en": "The list of borrowed books is exact",
+      "points": 25,
+      "input": [
+        "addbook B1 Hobbit",
+        "addbook B2 Matilda",
+        "addbook B3 Dune",
+        "borrowed",
+        "borrow B3 Tomas C200",
+        "borrow B1 Eva C100",
+        "borrowed",
+        "exit"
+      ],
+      "expected": [
+        "Book B1 added.",
+        "Book B2 added.",
+        "Book B3 added.",
+        "No borrowed books.",
+        "Book B3 borrowed by Tomas.",
+        "Book B1 borrowed by Eva.",
+        "B1 Hobbit - Eva",
+        "B3 Dune - Tomas"
+      ]
+    },
+    {
+      "id": "borrow-missing",
+      "sk": "Požičanie neexistujúcej knihy zlyhá",
+      "en": "Borrowing a book that does not exist fails",
+      "points": 15,
+      "input": [
+        "addbook B1 Hobbit",
+        "borrow B9 Eva C100",
+        "borrowed",
+        "exit"
+      ],
+      "expected": [
+        "Book B1 added.",
+        "Book B9 does not exist.",
+        "No borrowed books."
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "5123699d52db05ef",
+    "at": "2026-11-05"
+  }
+}

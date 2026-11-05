@@ -1,0 +1,170 @@
+{
+  "slug": "vet-clinic",
+  "sort_order": 70,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Veterinárna ambulancia Labka",
+    "brief": [
+      "Veterinárna ambulancia Labka v Prešove objednáva zvieratá na vyšetrenie. Ambulancia ponúka termíny; každý termín má čas, napríklad 09:00, a meno veterinára, ktorý vtedy ordinuje. Každý majiteľ má meno a meno svojho zvieraťa a sestra musí vedieť, ktorý majiteľ si objednal ktorý termín.",
+      "Sestra pridá termín príkazom `addslot`, za ktorým nasleduje čas a meno veterinára. Program odpovie `Slot 09:00 added.`",
+      "Majiteľ si termín objedná príkazom `book`, za ktorým nasleduje čas, meno majiteľa a meno zvieraťa. Ak je termín voľný, program odpovie `Slot 09:00 booked for Ema with Rex.` Ak je už obsadený, odpovie `Slot 09:00 is already booked.` Ak termín v taký čas neexistuje, odpovie `Slot 18:00 does not exist.`",
+      "Príkaz `schedule` vypíše každý termín na samostatný riadok v poradí, v akom boli termíny pridané: obsadený termín ako `09:00 Novak Ema Rex` (čas, veterinár, majiteľ, zviera) a voľný ako `10:00 Kral free`. Ak nie je žiadny termín, vypíše `No slots.`",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "Labka Vet Clinic",
+    "brief": [
+      "Labka Vet Clinic in Prešov books appointments for pets. The clinic offers appointment slots; every slot has a time, like 09:00, and the name of the vet who works then. Every pet owner has a name and the name of their pet, and the nurse must know which owner has booked which slot.",
+      "The nurse adds a slot with the command `addslot`, followed by the time and the vet's name. The program replies `Slot 09:00 added.`",
+      "An owner books a slot with `book`, followed by the time, the owner's name and the pet's name. If the slot is free, the program replies `Slot 09:00 booked for Ema with Rex.` If it is already booked, it replies `Slot 09:00 is already booked.` If there is no slot at that time, it replies `Slot 18:00 does not exist.`",
+      "The command `schedule` prints every slot on its own line, in the order the slots were added: a booked slot as `09:00 Novak Ema Rex` (time, vet, owner, pet) and a free one as `10:00 Kral free`. If there are no slots, it prints `No slots.`",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "Slot",
+        "role": "item",
+        "properties": [
+          "string Time",
+          "string Vet",
+          "Owner? Owner",
+          "bool IsFree (Owner == null)"
+        ]
+      },
+      {
+        "name": "Owner",
+        "role": "person",
+        "properties": [
+          "string Name",
+          "string PetName"
+        ]
+      },
+      {
+        "name": "Clinic",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<Slot> Slots"
+        ],
+        "operations": [
+          "AddSlot(time, vet)",
+          "Book(time, owner)",
+          "Schedule()"
+        ]
+      }
+    ],
+    "link": "Slot.Owner → Owner (one-way: the slot knows who booked it)",
+    "storage": "List<Slot> in Clinic"
+  },
+  "scenarios": [
+    {
+      "id": "add-slot",
+      "sk": "Pridanie termínu",
+      "en": "Adding a slot",
+      "points": 15,
+      "input": [
+        "addslot 09:00 Novak",
+        "addslot 10:00 Kral",
+        "exit"
+      ],
+      "expected": [
+        "Slot 09:00 added.",
+        "Slot 10:00 added."
+      ]
+    },
+    {
+      "id": "book-free",
+      "sk": "Objednanie voľného termínu priradí majiteľa",
+      "en": "Booking a free slot assigns the owner",
+      "points": 25,
+      "input": [
+        "addslot 09:00 Novak",
+        "addslot 10:00 Kral",
+        "book 10:00 Ema Rex",
+        "schedule",
+        "exit"
+      ],
+      "expected": [
+        "Slot 09:00 added.",
+        "Slot 10:00 added.",
+        "Slot 10:00 booked for Ema with Rex.",
+        "09:00 Novak free",
+        "10:00 Kral Ema Rex"
+      ]
+    },
+    {
+      "id": "book-taken",
+      "sk": "Objednanie obsadeného termínu zlyhá",
+      "en": "Booking a slot that is already booked fails",
+      "points": 20,
+      "input": [
+        "addslot 09:00 Novak",
+        "book 09:00 Ema Rex",
+        "book 09:00 Igor Micka",
+        "schedule",
+        "exit"
+      ],
+      "expected": [
+        "Slot 09:00 added.",
+        "Slot 09:00 booked for Ema with Rex.",
+        "Slot 09:00 is already booked.",
+        "09:00 Novak Ema Rex"
+      ]
+    },
+    {
+      "id": "schedule",
+      "sk": "Rozpis termínov je presný",
+      "en": "The schedule is exact",
+      "points": 25,
+      "input": [
+        "schedule",
+        "addslot 08:30 Kral",
+        "addslot 09:00 Novak",
+        "addslot 09:30 Kral",
+        "book 09:30 Igor Micka",
+        "book 08:30 Ema Rex",
+        "schedule",
+        "exit"
+      ],
+      "expected": [
+        "No slots.",
+        "Slot 08:30 added.",
+        "Slot 09:00 added.",
+        "Slot 09:30 added.",
+        "Slot 09:30 booked for Igor with Micka.",
+        "Slot 08:30 booked for Ema with Rex.",
+        "08:30 Kral Ema Rex",
+        "09:00 Novak free",
+        "09:30 Kral Igor Micka"
+      ]
+    },
+    {
+      "id": "book-missing",
+      "sk": "Objednanie neexistujúceho termínu zlyhá",
+      "en": "Booking a slot that does not exist fails",
+      "points": 15,
+      "input": [
+        "addslot 09:00 Novak",
+        "book 18:00 Ema Rex",
+        "schedule",
+        "exit"
+      ],
+      "expected": [
+        "Slot 09:00 added.",
+        "Slot 18:00 does not exist.",
+        "09:00 Novak free"
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "54616735a156a82c",
+    "at": "2026-11-05"
+  }
+}

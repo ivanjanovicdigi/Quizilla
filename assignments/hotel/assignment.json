@@ -1,0 +1,171 @@
+{
+  "slug": "hotel",
+  "sort_order": 10,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Hotel Tatra",
+    "brief": [
+      "Majiteľ malého Hotela Tatra chce jednoduchý konzolový program pre recepciu. Hotel má izby a každá izba má číslo a typ, napríklad single alebo double. V izbách bývajú hostia a recepčná potrebuje poznať meno a e-mail každého hosťa.",
+      "Recepčná musí vedieť pridať novú izbu príkazom `addroom`, za ktorým nasleduje číslo a typ izby. Program odpovie `Room 101 added.`",
+      "Musí vedieť izbu rezervovať príkazom `book`, za ktorým nasleduje číslo izby, meno a e-mail hosťa. Ak je izba voľná, program odpovie `Room 101 booked for John.` Ak je už obsadená, odpovie `Room 101 is not available.` Ak izba neexistuje, odpovie `Room 999 does not exist.`",
+      "Napokon príkaz `free` vypíše každú voľnú izbu na samostatný riadok, napríklad `101 double`, v poradí, v akom boli izby pridané. Ak nie je voľná žiadna izba, vypíše `No free rooms.`",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "Hotel Tatra",
+    "brief": [
+      "The owner of the small Hotel Tatra wants a simple console program for the reception desk. The hotel has rooms, and each room has a number and a type, like single or double. Guests stay in rooms, and the receptionist needs to know each guest's name and email.",
+      "The receptionist must be able to add a new room with the command `addroom`, followed by the room number and type. The program replies `Room 101 added.`",
+      "They must be able to book a room with `book`, followed by the room number, the guest's name and email. If the room is free, the program replies `Room 101 booked for John.` If it is already taken, it replies `Room 101 is not available.` If the room does not exist, it replies `Room 999 does not exist.`",
+      "Finally, the command `free` lists every free room on its own line, like `101 double`, in the order the rooms were added. If no room is free, it prints `No free rooms.`",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "Room",
+        "role": "item",
+        "properties": [
+          "int Number",
+          "string Type",
+          "Guest? Guest",
+          "bool IsFree (Guest == null)"
+        ]
+      },
+      {
+        "name": "Guest",
+        "role": "person",
+        "properties": [
+          "string Name",
+          "string Email"
+        ]
+      },
+      {
+        "name": "Hotel",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<Room> Rooms"
+        ],
+        "operations": [
+          "AddRoom(number, type)",
+          "Book(number, guest)",
+          "FreeRooms()"
+        ]
+      }
+    ],
+    "link": "Room.Guest → Guest (one-way: the room knows its guest)",
+    "storage": "List<Room> in Hotel"
+  },
+  "scenarios": [
+    {
+      "id": "add-room",
+      "sk": "Pridanie izby",
+      "en": "Adding a room",
+      "points": 15,
+      "input": [
+        "addroom 101 double",
+        "addroom 102 single",
+        "exit"
+      ],
+      "expected": [
+        "Room 101 added.",
+        "Room 102 added."
+      ]
+    },
+    {
+      "id": "book-free",
+      "sk": "Rezervácia voľnej izby priradí hosťa a izba už nie je voľná",
+      "en": "Booking a free room assigns the guest and marks the room taken",
+      "points": 25,
+      "input": [
+        "addroom 101 double",
+        "addroom 102 single",
+        "book 101 John john@mail.sk",
+        "free",
+        "exit"
+      ],
+      "expected": [
+        "Room 101 added.",
+        "Room 102 added.",
+        "Room 101 booked for John.",
+        "102 single"
+      ]
+    },
+    {
+      "id": "book-taken",
+      "sk": "Rezervácia obsadenej izby zlyhá",
+      "en": "Booking a taken room fails",
+      "points": 20,
+      "input": [
+        "addroom 101 double",
+        "book 101 John john@mail.sk",
+        "book 101 Anna anna@mail.sk",
+        "exit"
+      ],
+      "expected": [
+        "Room 101 added.",
+        "Room 101 booked for John.",
+        "Room 101 is not available."
+      ]
+    },
+    {
+      "id": "free-list",
+      "sk": "Zoznam voľných izieb obsahuje presne prázdne izby",
+      "en": "The free-room list shows exactly the empty rooms",
+      "points": 25,
+      "input": [
+        "addroom 101 double",
+        "addroom 102 single",
+        "addroom 103 double",
+        "free",
+        "book 102 Anna anna@mail.sk",
+        "book 101 John john@mail.sk",
+        "free",
+        "book 103 Eva eva@mail.sk",
+        "free",
+        "exit"
+      ],
+      "expected": [
+        "Room 101 added.",
+        "Room 102 added.",
+        "Room 103 added.",
+        "101 double",
+        "102 single",
+        "103 double",
+        "Room 102 booked for Anna.",
+        "Room 101 booked for John.",
+        "103 double",
+        "Room 103 booked for Eva.",
+        "No free rooms."
+      ]
+    },
+    {
+      "id": "book-missing",
+      "sk": "Rezervácia neexistujúcej izby zlyhá",
+      "en": "Booking a room that does not exist fails",
+      "points": 15,
+      "input": [
+        "addroom 101 double",
+        "book 999 John john@mail.sk",
+        "free",
+        "exit"
+      ],
+      "expected": [
+        "Room 101 added.",
+        "Room 999 does not exist.",
+        "101 double"
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "2e816077da32103f",
+    "at": "2026-11-05"
+  }
+}

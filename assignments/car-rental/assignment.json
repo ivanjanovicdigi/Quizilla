@@ -1,0 +1,172 @@
+{
+  "slug": "car-rental",
+  "sort_order": 30,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Požičovňa áut Rýchlik",
+    "brief": [
+      "Požičovňa áut Rýchlik v Žiline prenajíma autá a chce malý konzolový program pre svoju kanceláriu. Každé auto má evidenčné číslo (ŠPZ) a model. Každý zákazník má meno a telefónne číslo a kancelária musí vedieť, ktorý zákazník má ktoré auto.",
+      "Nové auto sa pridá príkazom `addcar`, za ktorým nasleduje ŠPZ a model. Program odpovie `Car BA123AB added.`",
+      "Auto sa prenajme príkazom `rent`, za ktorým nasleduje ŠPZ, meno zákazníka a jeho telefónne číslo. Ak je auto voľné, program odpovie `Car BA123AB rented to Peter.` Ak je už prenajaté, odpovie `Car BA123AB is already rented.` Ak auto s takou ŠPZ neexistuje, odpovie `Car XX999XX does not exist.`",
+      "Príkaz `customer`, za ktorým nasleduje meno, vypíše každé auto prenajaté zákazníkovi s týmto menom na samostatný riadok, napríklad `BA123AB Skoda`, v poradí, v akom boli autá pridané. Ak zákazník nemá žiadne auto, vypíše `Peter has no cars.` (s menom, na ktoré sa pýtame).",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "Rychlik Car Rental",
+    "brief": [
+      "Rychlik Car Rental in Žilina rents out cars and wants a small console program for its office. Every car has a licence plate and a model. Every customer has a name and a phone number, and the office must know which customer has which car.",
+      "A new car is added with the command `addcar`, followed by the plate and the model. The program replies `Car BA123AB added.`",
+      "A car is rented with `rent`, followed by the plate, the customer's name and phone number. If the car is available, the program replies `Car BA123AB rented to Peter.` If it is already rented, it replies `Car BA123AB is already rented.` If there is no car with that plate, it replies `Car XX999XX does not exist.`",
+      "The command `customer`, followed by a name, lists every car rented to a customer with that name on its own line, like `BA123AB Skoda`, in the order the cars were added. If that customer has no car, it prints `Peter has no cars.` (with the name that was asked for).",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "Car",
+        "role": "item",
+        "properties": [
+          "string Plate",
+          "string Model",
+          "Customer? Customer",
+          "bool IsRented (Customer != null)"
+        ]
+      },
+      {
+        "name": "Customer",
+        "role": "person",
+        "properties": [
+          "string Name",
+          "string Phone"
+        ]
+      },
+      {
+        "name": "RentalCompany",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<Car> Cars"
+        ],
+        "operations": [
+          "AddCar(plate, model)",
+          "Rent(plate, customer)",
+          "CarsOf(name)"
+        ]
+      }
+    ],
+    "link": "Car.Customer → Customer (one-way: the car knows who rents it)",
+    "storage": "List<Car> in RentalCompany"
+  },
+  "scenarios": [
+    {
+      "id": "add-car",
+      "sk": "Pridanie auta",
+      "en": "Adding a car",
+      "points": 15,
+      "input": [
+        "addcar BA123AB Skoda",
+        "addcar KE456CD Kia",
+        "exit"
+      ],
+      "expected": [
+        "Car BA123AB added.",
+        "Car KE456CD added."
+      ]
+    },
+    {
+      "id": "rent-free",
+      "sk": "Prenájom voľného auta priradí zákazníka",
+      "en": "Renting a free car assigns the customer",
+      "points": 25,
+      "input": [
+        "addcar BA123AB Skoda",
+        "addcar KE456CD Kia",
+        "rent KE456CD Peter 0901111222",
+        "customer Peter",
+        "exit"
+      ],
+      "expected": [
+        "Car BA123AB added.",
+        "Car KE456CD added.",
+        "Car KE456CD rented to Peter.",
+        "KE456CD Kia"
+      ]
+    },
+    {
+      "id": "rent-taken",
+      "sk": "Prenájom prenajatého auta zlyhá",
+      "en": "Renting a car that is already rented fails",
+      "points": 20,
+      "input": [
+        "addcar BA123AB Skoda",
+        "rent BA123AB Peter 0901111222",
+        "rent BA123AB Jana 0902333444",
+        "customer Jana",
+        "exit"
+      ],
+      "expected": [
+        "Car BA123AB added.",
+        "Car BA123AB rented to Peter.",
+        "Car BA123AB is already rented.",
+        "Jana has no cars."
+      ]
+    },
+    {
+      "id": "customer-query",
+      "sk": "Zoznam áut zákazníka je presný",
+      "en": "The list of a customer's cars is exact",
+      "points": 25,
+      "input": [
+        "addcar BA123AB Skoda",
+        "addcar KE456CD Kia",
+        "addcar NR789EF Ford",
+        "customer Peter",
+        "rent NR789EF Peter 0901111222",
+        "rent BA123AB Peter 0901111222",
+        "rent KE456CD Jana 0902333444",
+        "customer Peter",
+        "customer Jana",
+        "exit"
+      ],
+      "expected": [
+        "Car BA123AB added.",
+        "Car KE456CD added.",
+        "Car NR789EF added.",
+        "Peter has no cars.",
+        "Car NR789EF rented to Peter.",
+        "Car BA123AB rented to Peter.",
+        "Car KE456CD rented to Jana.",
+        "BA123AB Skoda",
+        "NR789EF Ford",
+        "KE456CD Kia"
+      ]
+    },
+    {
+      "id": "rent-missing",
+      "sk": "Prenájom neexistujúceho auta zlyhá",
+      "en": "Renting a car that does not exist fails",
+      "points": 15,
+      "input": [
+        "addcar BA123AB Skoda",
+        "rent XX999XX Peter 0901111222",
+        "customer Peter",
+        "exit"
+      ],
+      "expected": [
+        "Car BA123AB added.",
+        "Car XX999XX does not exist.",
+        "Peter has no cars."
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "fac312dddbed07b1",
+    "at": "2026-11-05"
+  }
+}

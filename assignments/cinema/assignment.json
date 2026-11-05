@@ -1,0 +1,169 @@
+{
+  "slug": "cinema",
+  "sort_order": 50,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Kino Hviezda",
+    "brief": [
+      "Malé kino Hviezda v Trnave predáva lístky v pokladni a chce prestať zapisovať rezervácie na papier. Každé sedadlo má kód, napríklad A1, a kategóriu, vip alebo standard. Každý divák má meno a e-mail a pokladníčka musí vedieť, kto si rezervoval ktoré sedadlo.",
+      "Pokladníčka pridá sedadlo príkazom `addseat`, za ktorým nasleduje jeho kód a kategória. Program odpovie `Seat A1 added.`",
+      "Sedadlo sa rezervuje príkazom `reserve`, za ktorým nasleduje kód sedadla, meno a e-mail diváka. Ak je sedadlo voľné, program odpovie `Seat A1 reserved for Lucia.` Ak je už rezervované, odpovie `Seat A1 is already reserved.` Ak také sedadlo neexistuje, odpovie `Seat Z9 does not exist.`",
+      "Príkaz `seat`, za ktorým nasleduje kód sedadla, zobrazí toto jedno sedadlo: `A1 vip free`, ak si ho nikto nerezervoval, alebo `A1 vip reserved for Lucia`, ak áno. Ak také sedadlo neexistuje, vypíše `Seat Z9 does not exist.`",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "Hviezda Cinema",
+    "brief": [
+      "The small Hviezda Cinema in Trnava sells tickets at the box office and wants to stop writing reservations on paper. Every seat has a code, like A1, and a category, vip or standard. Every viewer has a name and an email, and the cashier must know who has reserved which seat.",
+      "The cashier adds a seat with the command `addseat`, followed by its code and category. The program replies `Seat A1 added.`",
+      "A seat is reserved with `reserve`, followed by the seat code, the viewer's name and email. If the seat is free, the program replies `Seat A1 reserved for Lucia.` If it is already reserved, it replies `Seat A1 is already reserved.` If there is no such seat, it replies `Seat Z9 does not exist.`",
+      "The command `seat`, followed by a seat code, shows that one seat: `A1 vip free` if nobody has reserved it, or `A1 vip reserved for Lucia` if somebody has. If there is no such seat, it prints `Seat Z9 does not exist.`",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "Seat",
+        "role": "item",
+        "properties": [
+          "string Code",
+          "string Category",
+          "Viewer? Viewer",
+          "bool IsFree (Viewer == null)"
+        ]
+      },
+      {
+        "name": "Viewer",
+        "role": "person",
+        "properties": [
+          "string Name",
+          "string Email"
+        ]
+      },
+      {
+        "name": "Cinema",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<Seat> Seats"
+        ],
+        "operations": [
+          "AddSeat(code, category)",
+          "Reserve(code, viewer)",
+          "FindSeat(code)"
+        ]
+      }
+    ],
+    "link": "Seat.Viewer → Viewer (one-way: the seat knows who reserved it)",
+    "storage": "List<Seat> in Cinema"
+  },
+  "scenarios": [
+    {
+      "id": "add-seat",
+      "sk": "Pridanie sedadla",
+      "en": "Adding a seat",
+      "points": 15,
+      "input": [
+        "addseat A1 vip",
+        "addseat A2 standard",
+        "exit"
+      ],
+      "expected": [
+        "Seat A1 added.",
+        "Seat A2 added."
+      ]
+    },
+    {
+      "id": "reserve-free",
+      "sk": "Rezervácia voľného sedadla priradí diváka",
+      "en": "Reserving a free seat assigns the viewer",
+      "points": 25,
+      "input": [
+        "addseat A1 vip",
+        "addseat A2 standard",
+        "reserve A2 Lucia lucia@mail.sk",
+        "seat A2",
+        "seat A1",
+        "exit"
+      ],
+      "expected": [
+        "Seat A1 added.",
+        "Seat A2 added.",
+        "Seat A2 reserved for Lucia.",
+        "A2 standard reserved for Lucia",
+        "A1 vip free"
+      ]
+    },
+    {
+      "id": "reserve-taken",
+      "sk": "Rezervácia obsadeného sedadla zlyhá",
+      "en": "Reserving a seat that is already reserved fails",
+      "points": 20,
+      "input": [
+        "addseat A1 vip",
+        "reserve A1 Lucia lucia@mail.sk",
+        "reserve A1 Juraj juraj@mail.sk",
+        "seat A1",
+        "exit"
+      ],
+      "expected": [
+        "Seat A1 added.",
+        "Seat A1 reserved for Lucia.",
+        "Seat A1 is already reserved.",
+        "A1 vip reserved for Lucia"
+      ]
+    },
+    {
+      "id": "seat-query",
+      "sk": "Výpis sedadla je presný",
+      "en": "Showing a seat is exact",
+      "points": 25,
+      "input": [
+        "addseat A1 vip",
+        "addseat B5 standard",
+        "seat B5",
+        "reserve B5 Juraj juraj@mail.sk",
+        "seat B5",
+        "seat A1",
+        "seat C3",
+        "exit"
+      ],
+      "expected": [
+        "Seat A1 added.",
+        "Seat B5 added.",
+        "B5 standard free",
+        "Seat B5 reserved for Juraj.",
+        "B5 standard reserved for Juraj",
+        "A1 vip free",
+        "Seat C3 does not exist."
+      ]
+    },
+    {
+      "id": "reserve-missing",
+      "sk": "Rezervácia neexistujúceho sedadla zlyhá",
+      "en": "Reserving a seat that does not exist fails",
+      "points": 15,
+      "input": [
+        "addseat A1 vip",
+        "reserve Z9 Lucia lucia@mail.sk",
+        "seat A1",
+        "exit"
+      ],
+      "expected": [
+        "Seat A1 added.",
+        "Seat Z9 does not exist.",
+        "A1 vip free"
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "86862cd766f9702e",
+    "at": "2026-11-05"
+  }
+}

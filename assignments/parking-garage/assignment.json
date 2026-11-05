@@ -1,0 +1,171 @@
+{
+  "slug": "parking-garage",
+  "sort_order": 60,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Parkovací dom Centrum",
+    "brief": [
+      "Parkovací dom Centrum v Košiciach prenajíma parkovacie miesta stálym vodičom. Každé miesto má číslo a poschodie, na ktorom sa nachádza. Každý vodič má meno a ŠPZ svojho auta a obsluha musí vedieť, ktorý vodič parkuje na ktorom mieste.",
+      "Obsluha pridá miesto príkazom `addspot`, za ktorým nasleduje číslo miesta a číslo poschodia. Program odpovie `Spot 5 added.`",
+      "Vodič zaparkuje príkazom `park`, za ktorým nasleduje číslo miesta, meno vodiča a ŠPZ. Ak je miesto prázdne, program odpovie `Jana parked at spot 5.` Ak je už obsadené, odpovie `Spot 5 is occupied.` Ak také miesto neexistuje, odpovie `Spot 50 does not exist.`",
+      "Príkaz `find`, za ktorým nasleduje ŠPZ, povie, kde to auto stojí: `Car KE456CD is at spot 5 on floor 1.`, alebo `Car KE456CD is not in the garage.`, ak vodič s takou ŠPZ nezaparkoval.",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "Centrum Parking Garage",
+    "brief": [
+      "Centrum Parking Garage in Košice rents parking spots to regular drivers. Every spot has a number and the floor it is on. Every driver has a name and the licence plate of their car, and the attendant must know which driver has parked in which spot.",
+      "The attendant adds a spot with the command `addspot`, followed by the spot number and the floor number. The program replies `Spot 5 added.`",
+      "A driver parks with `park`, followed by the spot number, the driver's name and licence plate. If the spot is empty, the program replies `Jana parked at spot 5.` If it is already occupied, it replies `Spot 5 is occupied.` If there is no such spot, it replies `Spot 50 does not exist.`",
+      "The command `find`, followed by a licence plate, tells where that car is: `Car KE456CD is at spot 5 on floor 1.`, or `Car KE456CD is not in the garage.` if no driver with that plate has parked.",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "ParkingSpot",
+        "role": "item",
+        "properties": [
+          "int Number",
+          "int Floor",
+          "Driver? Driver",
+          "bool IsFree (Driver == null)"
+        ]
+      },
+      {
+        "name": "Driver",
+        "role": "person",
+        "properties": [
+          "string Name",
+          "string Plate"
+        ]
+      },
+      {
+        "name": "Garage",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<ParkingSpot> Spots"
+        ],
+        "operations": [
+          "AddSpot(number, floor)",
+          "Park(number, driver)",
+          "FindCar(plate)"
+        ]
+      }
+    ],
+    "link": "ParkingSpot.Driver → Driver (one-way: the spot knows who parked there)",
+    "storage": "List<ParkingSpot> in Garage"
+  },
+  "scenarios": [
+    {
+      "id": "add-spot",
+      "sk": "Pridanie miesta",
+      "en": "Adding a spot",
+      "points": 15,
+      "input": [
+        "addspot 5 1",
+        "addspot 6 2",
+        "exit"
+      ],
+      "expected": [
+        "Spot 5 added.",
+        "Spot 6 added."
+      ]
+    },
+    {
+      "id": "park-free",
+      "sk": "Parkovanie na voľnom mieste priradí vodiča",
+      "en": "Parking in a free spot assigns the driver",
+      "points": 25,
+      "input": [
+        "addspot 5 1",
+        "addspot 6 2",
+        "park 6 Jana KE456CD",
+        "find KE456CD",
+        "exit"
+      ],
+      "expected": [
+        "Spot 5 added.",
+        "Spot 6 added.",
+        "Jana parked at spot 6.",
+        "Car KE456CD is at spot 6 on floor 2."
+      ]
+    },
+    {
+      "id": "park-occupied",
+      "sk": "Parkovanie na obsadenom mieste zlyhá",
+      "en": "Parking in an occupied spot fails",
+      "points": 20,
+      "input": [
+        "addspot 5 1",
+        "park 5 Jana KE456CD",
+        "park 5 Milan BA111AA",
+        "find BA111AA",
+        "exit"
+      ],
+      "expected": [
+        "Spot 5 added.",
+        "Jana parked at spot 5.",
+        "Spot 5 is occupied.",
+        "Car BA111AA is not in the garage."
+      ]
+    },
+    {
+      "id": "find-car",
+      "sk": "Hľadanie auta podľa ŠPZ je presné",
+      "en": "Finding a car by its plate is exact",
+      "points": 25,
+      "input": [
+        "addspot 1 0",
+        "addspot 2 0",
+        "addspot 30 3",
+        "find PO222BB",
+        "park 30 Milan PO222BB",
+        "park 1 Jana KE456CD",
+        "find PO222BB",
+        "find KE456CD",
+        "find BA111AA",
+        "exit"
+      ],
+      "expected": [
+        "Spot 1 added.",
+        "Spot 2 added.",
+        "Spot 30 added.",
+        "Car PO222BB is not in the garage.",
+        "Milan parked at spot 30.",
+        "Jana parked at spot 1.",
+        "Car PO222BB is at spot 30 on floor 3.",
+        "Car KE456CD is at spot 1 on floor 0.",
+        "Car BA111AA is not in the garage."
+      ]
+    },
+    {
+      "id": "park-missing",
+      "sk": "Parkovanie na neexistujúcom mieste zlyhá",
+      "en": "Parking in a spot that does not exist fails",
+      "points": 15,
+      "input": [
+        "addspot 5 1",
+        "park 50 Jana KE456CD",
+        "find KE456CD",
+        "exit"
+      ],
+      "expected": [
+        "Spot 5 added.",
+        "Spot 50 does not exist.",
+        "Car KE456CD is not in the garage."
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "d2596df9d23fcb2d",
+    "at": "2026-11-05"
+  }
+}
