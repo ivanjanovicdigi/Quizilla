@@ -236,6 +236,9 @@ const sk = {
   'err.invalid_choice': 'Neplatná odpoveď.',
 
   'assign.title': 'Programovacie zadania',
+  'stats.assign_points': '{p} z {max} bodov',
+  'stats.assign_done': 'Úplne vyriešené: {d} z {n}',
+  'stats.assign_info': 'Počíta sa posledné odovzdanie každého zadania. Body sa pripočítavajú k bodom z kvízov.',
   'assign.home_info': 'Navrhni triedy a napíš konzolovú aplikáciu v C#. Testy ju hneď skontrolujú.',
   'assign.list_info': 'Precvičovanie: odovzdávať môžeš koľkokrát chceš, počíta sa posledné odovzdanie.',
   'assign.desktop_note': 'Zadania sú robené na počítač – na mobile sa programuje ťažko.',
@@ -528,6 +531,9 @@ const en: Record<Key, string> = {
   'err.invalid_choice': 'Invalid answer.',
 
   'assign.title': 'Coding assignments',
+  'stats.assign_points': '{p} of {max} points',
+  'stats.assign_done': 'Fully solved: {d} of {n}',
+  'stats.assign_info': 'The latest submission of each assignment counts. Its points are added to the quiz points.',
   'assign.home_info': 'Design the classes and write a C# console app. Tests check it right away.',
   'assign.list_info': 'Practice: submit as often as you like – your latest submission counts.',
   'assign.desktop_note': 'Assignments are made for a computer – coding on a phone is hard.',

@@ -136,6 +136,26 @@ export interface Stats {
   tiers: TierState[];
   rank: RankInfo;
   topics: StatsTopic[];
+  // 032: coding assignments; null/missing = no access and no submissions
+  assignments?: AssignmentStats | null;
+}
+
+export interface AssignmentStats {
+  points: number;
+  max_points: number;
+  done: number;
+  tried: number;
+  count: number;
+  items: {
+    id: number;
+    slug: string;
+    title_sk: string;
+    title_en: string;
+    score: number | null;
+    max_points: number;
+    submissions: number;
+    submitted_at: string | null;
+  }[];
 }
 
 export type Mode = 'learn' | 'test';
@@ -213,7 +233,8 @@ export interface AdminUser {
   logged_in: boolean;
   last_seen_at: string | null;
   answers: number;
-  points: number;
+  points: number;               // quiz + coding assignment points (032)
+  assignment_points?: number;
 }
 
 export interface ClassInfo {

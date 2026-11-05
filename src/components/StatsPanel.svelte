@@ -136,6 +136,32 @@
       {/each}
     </section>
 
+    <!-- coding assignments (032) -->
+    {#if data.assignments}
+      {@const as = data.assignments}
+      {@const hide = scoresHidden()}
+      <section class="card stack">
+        <div class="row">
+          <h3 class="grow">{t('assign.title')}</h3>
+          <strong class="assign-total">{hide ? '?' : t('stats.assign_points', { p: as.points, max: as.max_points })}</strong>
+        </div>
+        <div class="bar"><i style:width={`${as.max_points ? Math.min(100, (as.points / as.max_points) * 100) : 0}%`}></i></div>
+        <p class="small muted">{t('stats.assign_done', { d: as.done, n: as.count })} · {t('stats.assign_info')}</p>
+        {#each as.items as it (it.id)}
+          <a class="assign-row" href={admin ? undefined : `#/assignment/${it.id}`}>
+            <span class="grow">{pick(it.title_sk, it.title_en)}</span>
+            {#if it.score === null}
+              <span class="small muted">{t('assign.not_tried')}</span>
+            {:else}
+              <span class="pill" class:ok={it.score === it.max_points} class:gold={it.score > 0 && it.score < it.max_points}>
+                {hide ? '?' : t('assign.score', { score: it.score, max: it.max_points })}
+              </span>
+            {/if}
+          </a>
+        {/each}
+      </section>
+    {/if}
+
     <!-- per topic: points, accuracy, unlock progress, running-accuracy trend -->
     <h3>{t(admin ? 'stats.topics_admin' : 'stats.topics')}</h3>
     <p class="small muted">
@@ -212,6 +238,8 @@
 
 <style>
   .grow { flex: 1; min-width: 0; }
+  .assign-total { color: var(--gold); white-space: nowrap; }
+  .assign-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-top: 1px solid var(--border); color: inherit; text-decoration: none; }
   .right { text-align: right; }
   .right .muted { display: inline-flex; align-items: center; gap: 3px; }
   .rank-row { display: flex; align-items: center; gap: 12px; }

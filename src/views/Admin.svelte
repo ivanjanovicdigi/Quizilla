@@ -63,7 +63,7 @@
 
   // Student ranking by all-time points (only users with answers).
   const ranking = $derived(
-    (users ?? []).filter((u) => u.answers > 0).sort((a, b) => b.points - a.points || b.answers - a.answers)
+    (users ?? []).filter((u) => u.answers > 0 || (u.assignment_points ?? 0) > 0).sort((a, b) => b.points - a.points || b.answers - a.answers)
   );
 
   const classes = $derived([...new Set((users ?? []).map((u) => u.class_name))]);

@@ -85,8 +85,9 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   quiz.config, set with `quiz.set_admin_passphrase()` from git-ignored `private/set_admin_passphrase.sql`.
   Admin actions are logged in quiz.admin_log.
 - Admin student statistics (024): "Statistics" button on each user in Admin.svelte → `admin_student_stats(token, email)`
-  → the same StatsPanel students see (prop `source`). Data comes from `quiz.stats_json` – a COPY of the
-  get_stats body (020); when get_stats changes, change quiz.stats_json the same way. Does not touch last_seen_at.
+  → the same StatsPanel students see (prop `source`). Data comes from `quiz.stats_json`. Since 032
+  `get_stats` = `quiz.stats_json(...)` + 'assignments' (no more copy) – change stats in quiz.stats_json only.
+  Does not touch last_seen_at.
 - Final results (027): Admin → Leaderboard tab → "Final results" opens `src/components/FinalResults.svelte`
   (full-screen projector show: last 10 answers with ms → top 3 podium → class totals count-up) from
   `admin_final_results(token)`, which counts only answers before quiz.config 'final_cutoff'
@@ -98,3 +99,11 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 - Load simulation: `node loadtest/simulate.mjs` (plain Node, uses the test accounts) – see
   loadtest/README.md for how to run and the 2026-10-23 results (15 users, 0 errors).
 - Answer keys never leave the DB before the student answers.
+- Coding assignments (030–032, spec docs/prompts/coding-assignments-mvp.md): students write a C# console
+  app, the browser compiles/runs it (compiler/ → public/compiler via `npm run compiler:build`, Web Worker
+  src/lib/assignments/) and the server stores every submission (quiz.assignment_submissions) and recomputes
+  the score. Access: quiz.config 'assignments_access' = emails or '*' (started as ivan.janovic@lyceum.sk).
+  Points (032): each assignment adds its LATEST score (quiz.assignment_points) to get_catalog points, class
+  leaderboard, admin_list_users, stats ('assignments' section) and v_*_totals; quiz penalties never cut them.
+  admin_reset_progress also deletes submissions. Assignments live in assignments/<slug>/ (README there):
+  `npm run a:verify` (dotnet check), `npm run a:sql` (next SQL update). UI: views/Assignments, Assignment.
