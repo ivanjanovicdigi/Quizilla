@@ -8,3 +8,8 @@ dev-dist
 .DS_Store
 private/
 Claude outputs/
+
+# in-browser C# compiler build output (npm run compiler:build)
+public/compiler/
+compiler/bin/
+compiler/obj/

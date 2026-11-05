@@ -37,6 +37,8 @@ export default defineConfig(({ mode }) => {
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+          // the C# compiler (public/compiler, ~7 MB) is downloaded only when a coding assignment is opened
+          globIgnores: ['compiler/**', '**/compiler.worker-*.js'],
           navigateFallbackDenylist: [/\/rest\//]
         }
       })

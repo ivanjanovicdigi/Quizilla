@@ -14,7 +14,8 @@
     "q:import": "node scripts/import-sql.mjs",
     "q:roster": "node scripts/import-roster.mjs",
     "a:verify": "node scripts/verify-assignments.mjs",
-    "a:sql": "node scripts/assignments-to-sql.mjs"
+    "a:sql": "node scripts/assignments-to-sql.mjs",
+    "compiler:build": "node scripts/build-compiler.mjs"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.1.1",

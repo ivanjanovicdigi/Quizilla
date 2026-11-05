@@ -1,0 +1,48 @@
+<!--
+  In-browser C# compiler for coding assignments (Roslyn on WebAssembly, no Blazor UI).
+  Built by `npm run compiler:build` into public/compiler/ (git-ignored); the app loads it
+  lazily in a Web Worker (src/lib/assignments/compiler.worker.ts).
+  Needs only the .NET 10 SDK – no wasm workload (no AOT).
+-->
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- Roslyn uses reflection; keep whole assemblies instead of trimming members away. -->
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>partial</TrimMode>
+    <WasmEnableWebcil>true</WasmEnableWebcil>
+    <!-- .gz copies are what the app downloads (the worker unpacks them; GitHub Pages may not compress .wasm) -->
+    <CompressionEnabled>true</CompressionEnabled>
+    <!-- compiler messages in English only (drops Roslyn's 13 translated resource folders) -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+  </ItemGroup>
+
+  <!-- Student programs run inside this module and may call ANY public API of these assemblies
+       (Console.ReadLine, List<T>, LINQ, string, Math …), so the trimmer must keep them whole. -->
+  <ItemGroup>
+    <TrimmerRootAssembly Include="System.Private.CoreLib;System.Runtime;System.Console;System.Collections;System.Linq;System.Memory;System.Runtime.Extensions;System.Text.RegularExpressions;System.Threading;System.Threading.Tasks" />
+  </ItemGroup>
+
+  <!-- Reference assemblies the student's code is compiled against (from the SDK's targeting pack). -->
+  <PropertyGroup>
+    <RefPackDir>$(NetCoreTargetingPackRoot)/Microsoft.NETCore.App.Ref/$(BundledNETCoreAppPackageVersion)/ref/$(TargetFramework)/</RefPackDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <StudentRef Include="System.Runtime;System.Console;System.Collections;System.Linq;System.Memory;System.Net.Http;System.Runtime.Extensions;System.Text.RegularExpressions;System.Threading;System.Threading.Tasks;netstandard" />
+    <EmbeddedResource Include="@(StudentRef->'$(RefPackDir)%(Identity).dll')" LogicalName="ref/%(Filename)%(Extension)" />
+  </ItemGroup>
+  <Target Name="CheckRefPack" BeforeTargets="BeforeBuild">
+    <Error Condition="!Exists('$(RefPackDir)System.Runtime.dll')" Text="Reference pack not found: $(RefPackDir)" />
+  </Target>
+
+</Project>

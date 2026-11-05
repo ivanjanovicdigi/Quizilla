@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Quizilla – compiler self-test</title>
+  <style>
+    body { font: 14px/1.4 system-ui, sans-serif; margin: 2rem; background: #0f172a; color: #e2e8f0; }
+    .ok { color: #4ade80; } .fail { color: #f87171; }
+    pre { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <!-- Dev-only page (not part of the build): npm run dev → http://localhost:5173/tools/compiler-test.html
+       Needs `npm run compiler:build` first. Runs every reference solution and a set of broken programs
+       through the in-browser compiler and checks the outcome. -->
+  <h1>Compiler self-test</h1>
+  <p id="status">starting…</p>
+  <pre id="out"></pre>
+  <script type="module" src="./compiler-test.ts"></script>
+</body>
+</html>

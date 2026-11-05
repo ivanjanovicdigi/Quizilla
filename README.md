@@ -76,10 +76,17 @@ Bulk import is a separate task (planned).
 ```bash
 npm install
 cp .env.example .env.local   # Supabase URL + publishable key
+npm run compiler:build       # in-browser C# compiler for coding assignments (.NET 10 SDK) – once, and after changes in compiler/
 npm run dev                  # http://localhost:5173 (+ network URL for phone)
 npm run check                # type check
 npm run build                # production build into dist/
 ```
+
+Coding assignments compile and run the student's C# **in the browser**: `compiler/` (Roslyn on
+WebAssembly, ~8 MB, loaded in a Web Worker only when an assignment is opened) → `public/compiler/`
+(git-ignored, built in CI). Self-test of the compiler: `npm run dev`, then open
+`http://localhost:5173/tools/compiler-test.html` (all reference solutions + broken programs).
+Authoring assignments: [assignments/README.md](assignments/README.md).
 
 Testing against a local Postgres + PostgREST instead of Supabase:
 `LOCAL_API=http://localhost:3000 npm run dev` (leave `VITE_SUPABASE_URL` empty).
