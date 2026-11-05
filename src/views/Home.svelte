@@ -16,6 +16,8 @@
   let view = $state<{ subjects: Subject[]; tiers: TierState[] } | null>(null); // student or guest
   let error = $state('');
   const isGuest = $derived(session.guest);
+  // coding assignments (030) – shown only to users the server allows (quiz.config assignments_access)
+  let assignmentsOn = $state(false);
 
   async function load() {
     error = '';
@@ -34,6 +36,13 @@
     }
   }
   onMount(load);
+  onMount(async () => {
+    try {
+      assignmentsOn = await api.assignmentsEnabled(session.student?.id ?? null);
+    } catch {
+      assignmentsOn = false;
+    }
+  });
 
   function summary(topic: Topic) {
     const levels = topic.progress.levels;
@@ -87,6 +96,19 @@
         <span class="muted small">{scoresHidden() ? t('freeze.short') : t('home.points')}</span>
       </div>
     </section>
+    {/if}
+
+    {#if assignmentsOn}
+      <a class="card tappable assign" href="#/assignments">
+        <div class="row">
+          <span class="assign-ico"><Icon name="code" size={24} /></span>
+          <div class="grow">
+            <h3>{t('assign.title')}</h3>
+            <p class="muted small">{t('assign.home_info')}</p>
+          </div>
+          <span class="chev"><Icon name="chevron" size={18} /></span>
+        </div>
+      </a>
     {/if}
 
     {#if view.subjects.length === 0}
@@ -178,4 +200,7 @@
   .grow { flex: 1; min-width: 0; }
   .chev { color: var(--muted); }
   .meta { gap: 8px; }
+  .assign { text-decoration: none; color: inherit; }
+  .assign p { margin: 2px 0 0; }
+  .assign-ico { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--info-soft); color: var(--info); flex: none; }
 </style>

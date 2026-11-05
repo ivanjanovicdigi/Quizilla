@@ -13,6 +13,8 @@
   import Leaderboard from './views/Leaderboard.svelte';
   import Profile from './views/Profile.svelte';
   import Stats from './views/Stats.svelte';
+  import Assignments from './views/Assignments.svelte';
+  import AssignmentView from './views/Assignment.svelte';
 
   // Validate the stored session once per app start (e.g. student deleted by teacher).
   onMount(async () => {
@@ -55,6 +57,10 @@
       <Profile />
     {:else if router.route.name === 'stats'}
       <Stats />
+    {:else if router.route.name === 'assignments'}
+      <Assignments />
+    {:else if router.route.name === 'assignment'}
+      <AssignmentView assignmentId={router.route.assignmentId} />
     {/if}
   {/key}
   {#if router.route.name !== 'quiz'}

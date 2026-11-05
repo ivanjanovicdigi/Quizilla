@@ -4,7 +4,7 @@
   import { t } from '../lib/i18n.svelte';
 
   const items = $derived([
-    { href: '#/', icon: 'home', label: t('nav.home'), active: ['home', 'topic', 'quiz'].includes(router.route.name) },
+    { href: '#/', icon: 'home', label: t('nav.home'), active: ['home', 'topic', 'quiz', 'assignments', 'assignment'].includes(router.route.name) },
     { href: '#/leaderboard', icon: 'trophy', label: t('nav.leaderboard'), active: router.route.name === 'leaderboard' },
     { href: '#/profile', icon: 'user', label: t('nav.profile'), active: ['profile', 'stats'].includes(router.route.name) }
   ]);

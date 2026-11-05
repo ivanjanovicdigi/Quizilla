@@ -1,5 +1,5 @@
 import type {
-  AdminLoginResult, AdminUser, AnswerResult, Catalog, ClassInfo, ClassRow, FinalResults, GuestCheck, GuestSubject, Question, Stats, Student, Topic
+  AdminLoginResult, AdminUser, AssignmentDetail, AssignmentSummary, CompileError, Submission, AnswerResult, Catalog, ClassInfo, ClassRow, FinalResults, GuestCheck, GuestSubject, Question, Stats, Student, Topic
 } from './types';
 
 const BASE = ((import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '').replace(/\/+$/, '');
@@ -104,7 +104,25 @@ export const api = {
   /** Final results: last 10 answers, top 3 students, class totals – before the cutoff (027). */
   adminFinalResults: (token: string) => rpc<FinalResults>('admin_final_results', { p_token: token }),
   /** Class totals (all time), visible to everyone. */
-  classLeaderboard: () => rpc<ClassRow[]>('get_class_leaderboard')
+  classLeaderboard: () => rpc<ClassRow[]>('get_class_leaderboard'),
+  // Coding assignments (030). studentId null = guest: content only, nothing saved.
+  assignmentsEnabled: (studentId: string | null) =>
+    rpc<boolean>('assignments_enabled', { p_student_id: studentId }),
+  assignments: (studentId: string | null) =>
+    rpc<AssignmentSummary[]>('get_assignments', { p_student_id: studentId }),
+  assignment: (assignmentId: number, studentId: string | null) =>
+    rpc<AssignmentDetail>('get_assignment', { p_assignment_id: assignmentId, p_student_id: studentId }),
+  /** Saves one submission; the server recomputes the score from the passed scenarios. */
+  submitAssignment: (studentId: string, assignmentId: number, code: string, compiled: boolean,
+                     compileErrors: CompileError[], results: { scenario: number; passed: boolean; actual: string }[]) =>
+    rpc<Submission>('submit_assignment', {
+      p_student_id: studentId, p_assignment_id: assignmentId, p_code: code, p_compiled: compiled,
+      p_compile_errors: compileErrors, p_results: results
+    }),
+  assignmentSubmissions: (studentId: string, assignmentId: number) =>
+    rpc<Submission[]>('get_assignment_submissions', { p_student_id: studentId, p_assignment_id: assignmentId }),
+  assignmentSubmission: (studentId: string, submissionId: number) =>
+    rpc<Submission>('get_assignment_submission', { p_student_id: studentId, p_submission_id: submissionId })
 };
 
 export const emailDomain = (import.meta.env.VITE_EMAIL_DOMAIN as string | undefined) || 'lyceum.sk';

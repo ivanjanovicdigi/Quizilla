@@ -8,7 +8,9 @@ export type Route =
   | { name: 'quiz'; topicId: number; difficulty: number; mode: 'learn' | 'test' }
   | { name: 'leaderboard' }
   | { name: 'profile' }
-  | { name: 'stats' };
+  | { name: 'stats' }
+  | { name: 'assignments' }
+  | { name: 'assignment'; assignmentId: number };
 
 function parse(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
@@ -33,6 +35,13 @@ function parse(hash: string): Route {
       return { name: 'profile' };
     case 'stats':
       return { name: 'stats' };
+    case 'assignments':
+      return { name: 'assignments' };
+    case 'assignment': {
+      const id = num(parts[1]);
+      if (!isNaN(id)) return { name: 'assignment', assignmentId: id };
+      break;
+    }
   }
   return { name: 'home' };
 }

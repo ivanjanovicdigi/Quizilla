@@ -237,3 +237,71 @@ export interface FinalResults {
   top: { place: number; name: string; class: string; points: number; answers: number; correct: number }[];
   classes: { place: number; name: string; points: number; students: number; players: number }[];
 }
+
+// ------------------------------------------------------------------ coding assignments (030)
+
+export interface AssignmentSummary {
+  id: number;
+  slug: string;
+  title_sk: string;
+  title_en: string;
+  max_points: number;
+  scenario_count: number;
+  latest: { score: number; max_points: number; submitted_at: string } | null;
+  submissions: number;
+}
+
+export interface AssignmentScenario {
+  index: number;
+  name_sk: string;
+  name_en: string;
+  input: string;
+  expected: string;
+  points: number;
+}
+
+/** One scenario of a saved submission, as stored by the server. */
+export interface SubmissionRow {
+  scenario: number;
+  passed: boolean;
+  points: number;
+  actual: string;
+}
+
+export interface CompileError {
+  line: number | null;
+  column: number | null;
+  id: string | null;
+  message: string;
+}
+
+export interface Submission {
+  id: number;
+  assignment_id: number;
+  submitted_at: string;
+  compiled: boolean;
+  score: number;
+  max_points: number;
+  passed: number;
+  scenarios: number;
+  // only with code (latest submission, one submission, submit result)
+  code?: string;
+  compile_errors?: CompileError[];
+  results?: SubmissionRow[];
+  // only in the submit result
+  previous_score?: number | null;
+  points_change?: number;
+}
+
+export interface AssignmentDetail {
+  id: number;
+  slug: string;
+  title_sk: string;
+  title_en: string;
+  brief_sk: string;
+  brief_en: string;
+  max_points: number;
+  time_limit_ms: number;
+  scenarios: AssignmentScenario[];
+  latest: Submission | null;
+}
