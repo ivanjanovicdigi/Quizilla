@@ -30,6 +30,8 @@ jobs:
       # in-browser C# compiler for coding assignments → public/compiler/
       - run: npm run compiler:build
       - run: npm run check
+      # unit + database tests (output comparison, scoring, assignment files, SQL updates in PGlite)
+      - run: npm test
       - run: npm run build
         env:
           BASE_PATH: /${{ github.event.repository.name }}/

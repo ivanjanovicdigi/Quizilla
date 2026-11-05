@@ -71,6 +71,38 @@ supabase/
 
 Bulk import is a separate task (planned).
 
+## Coding assignments
+
+Practice tasks where students design classes and write a small C# console app (hotel, library, …).
+The app compiles and runs the code **in the browser**, feeds each test scenario as console input and
+shows per-test feedback: points, compiler errors with line numbers, expected vs actual output.
+Unlimited submissions; the **latest** submission of each assignment counts and is added to the
+student's points (home page, statistics, class leaderboard). Spec:
+[docs/prompts/coding-assignments-mvp.md](docs/prompts/coding-assignments-mvp.md).
+
+**Who can use them** is set in the database (SQL Editor):
+
+```sql
+update quiz.config set value = 'ivan.janovic@lyceum.sk, someone@lyceum.sk' where key = 'assignments_access';
+update quiz.config set value = '*' where key = 'assignments_access';   -- everyone, guests too
+```
+
+**Adding a new assignment** (details and the template: [assignments/README.md](assignments/README.md)):
+
+1. Copy an existing folder, e.g. `assignments/hotel/` → `assignments/<new-slug>/`, set `"slug"`
+   (= folder name), `"sort_order"` and `"status": "pending"`.
+2. Write the client brief in `sk` and `en` – prose only, no class names, but every command and every
+   reply exactly (replies in English in both languages). Keep the 5 scenarios worth 15/25/20/25/15
+   points; each `input` ends with `exit`.
+3. Write the reference solution in `Solution.cs` and the hidden design in `"design"`.
+4. `npm run a:verify` – checks the format and runs `Solution.cs` against every scenario (.NET 10 SDK).
+5. Review, set `"status": "approved"`, then `npm run a:sql` → new `supabase/updates/NNN_assignments_….sql`.
+6. Import it: `npm run q:import -- supabase/updates/NNN_assignments_….sql`. Re-running is safe
+   (matched by slug), so fixing an assignment = edit, verify, generate, import again.
+
+`npm test` checks the comparison and scoring rules, every assignment file, and the SQL updates
+(030–032) in an in-memory Postgres – it runs in CI before every deploy.
+
 ## Development
 
 ```bash
@@ -79,6 +111,7 @@ cp .env.example .env.local   # Supabase URL + publishable key
 npm run compiler:build       # in-browser C# compiler for coding assignments (.NET 10 SDK) – once, and after changes in compiler/
 npm run dev                  # http://localhost:5173 (+ network URL for phone)
 npm run check                # type check
+npm test                     # unit + database tests (no Supabase needed, ~15 s)
 npm run build                # production build into dist/
 ```
 

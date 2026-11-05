@@ -82,7 +82,7 @@ export function validateAssignment(a) {
   // hidden design: ≥ 3 classes with ≥ 2 properties; one item, one person, one manager with 3 operations
   const classes = d.design?.classes;
   if (!Array.isArray(classes) || classes.length < 3) err('design.classes needs at least 3 classes');
-  else {
+  if (Array.isArray(classes)) { // check the classes that are there too, so every problem is listed at once
     for (const c of classes) {
       if (!isStr(c.name)) err('design class without a name');
       if (!ROLES.includes(c.role) && c.role !== 'other') err(`design class ${c.name}: role must be ${ROLES.join('/')}/other`);

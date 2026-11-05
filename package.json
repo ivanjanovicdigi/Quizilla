@@ -15,9 +15,11 @@
     "q:roster": "node scripts/import-roster.mjs",
     "a:verify": "node scripts/verify-assignments.mjs",
     "a:sql": "node scripts/assignments-to-sql.mjs",
-    "compiler:build": "node scripts/build-compiler.mjs"
+    "compiler:build": "node scripts/build-compiler.mjs",
+    "test": "node --test --experimental-strip-types \"tests/**/*.test.ts\" \"tests/**/*.test.mjs\""
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.15",
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
     "@tsconfig/svelte": "^5.0.8",
     "@types/prismjs": "^1.26.6",
