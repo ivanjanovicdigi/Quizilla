@@ -6,6 +6,8 @@
   import CodeEditor from '../components/CodeEditor.svelte';
   import AssignmentFeedback from '../components/AssignmentFeedback.svelte';
   import DesignGuide from '../components/DesignGuide.svelte';
+  import AssignmentTour from '../components/AssignmentTour.svelte';
+  import { TOUR_STEPS, markTourSeen, tourSeen } from '../lib/assignments/tour';
   import { api, ApiError } from '../lib/api';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
@@ -39,6 +41,18 @@
   onDestroy(() => sub.unsubscribe());
 
   const busy = $derived(progress !== null);
+
+  // First visit: a short tour of the page. Skippable; "How it works" opens it again.
+  let tour = $state<number | null>(null);                 // index into TOUR_STEPS
+  const spot = $derived(tour == null ? null : TOUR_STEPS[tour]);
+  function closeTour() {
+    tour = null;
+    markTourSeen();
+  }
+  $effect(() => {
+    // bring the highlighted part into view (matters when the columns are stacked)
+    if (spot && spot !== 'intro') document.querySelector('.spot')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  });
 
   // Live design guide: a moment after the student stops typing the code is compiled in the
   // browser (no tests, nothing stored) → compile errors + design review for DesignGuide.
@@ -78,6 +92,7 @@
       const draft = draftKey ? loadStored<string | null>(draftKey, null) : null;
       code = draft ?? detail.latest?.code ?? '';
       if (detail.latest) feedback = fromSubmission(detail.latest);
+      if (!tourSeen()) tour = 0;
       loadHistory();
     } catch (e) {
       const c = e instanceof ApiError ? e.code : 'server';
@@ -205,17 +220,18 @@
     <p class="muted small mobile-only"><Icon name="code" size={14} /> {t('assign.desktop_note')}</p>
 
     <div class="cols">
-      <div class="left">
+      <div class="left" class:spot={spot === 'brief'}>
         <section class="card brief">
           <h2>{t('assign.brief')}</h2>
           <AssignmentBrief text={pick(detail.brief_sk, detail.brief_en)} />
         </section>
       </div>
 
-      <div class="stack mid">
+      <div class="stack mid" class:spot={spot === 'code'}>
         <section class="card stack">
           <div class="row head">
             <h2 class="grow">{t('assign.code')}</h2>
+            <button class="btn small ghost" onclick={() => (tour = 0)}>{t('tour.open')}</button>
             {#if history.length > 1}
               <details class="menu">
                 <summary class="btn small ghost">{t('assign.history_short')} ({history.length})</summary>
@@ -273,12 +289,20 @@
       </div>
 
       <div class="stack right">
-        <DesignGuide {review} errors={shownErrors} hasCode={code.trim().length > 0}
-          loading={compiler === 'loading'} {analysing}
-          onJump={(line, col) => editor?.focusLine(line, col)} />
-        <AssignmentFeedback {feedback} scenarios={detail.scenarios} timeLimitMs={detail.time_limit_ms} />
+        <div class="part" class:spot={spot === 'guide'}>
+          <DesignGuide {review} errors={shownErrors} hasCode={code.trim().length > 0}
+            loading={compiler === 'loading'} {analysing}
+            onJump={(line, col) => editor?.focusLine(line, col)} />
+        </div>
+        <div class="part" class:spot={spot === 'tests'}>
+          <AssignmentFeedback {feedback} scenarios={detail.scenarios} timeLimitMs={detail.time_limit_ms} />
+        </div>
       </div>
     </div>
+
+    {#if tour != null}
+      <AssignmentTour step={tour} onStep={(s) => (tour = s)} onClose={closeTour} />
+    {/if}
   {/if}
 </main>
 
@@ -287,6 +311,9 @@
   .page.wide { max-width: 1680px; }
   .cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
   .cols > .stack { margin-top: 0; }
+  /* tour: the part being explained sits above the dimmed backdrop (z-index 30) */
+  .left, .mid, .part { position: relative; }
+  .spot { z-index: 31; border-radius: var(--radius); outline: 3px solid var(--accent); outline-offset: 4px; }
   @media (min-width: 900px) {
     .cols { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
     .left { grid-column: 1 / -1; }

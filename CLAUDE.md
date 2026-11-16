@@ -127,3 +127,8 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   (the owner tried them and reverted: breaking the task down is the student's job). Commands and replies stay
   inside the text. `AssignmentBrief.svelte` + assignments/brief.ts only mark the `code` spans, never with C#
   colours: one lowercase word = command (kbd), anything else = program reply (samp).
+- Assignment intro tour (2026-11-16): `AssignmentTour.svelte` + assignments/tour.ts – 5 steps (welcome, brief,
+  code, guide, tests) shown the first time an assignment is opened; Skip / Esc / click outside closes it.
+  Seen = localStorage `quizilla.assign.tour` (per browser, guests too). "How it works" in the code header
+  reopens it. Assignment.svelte puts class `spot` on the part of the current step (above the backdrop).
+  Texts: i18n `tour.<step>.title/.text`.
