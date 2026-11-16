@@ -2,7 +2,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { outputDiff, visibleLines } from '../src/lib/assignments/diff.ts';
-import { designChecks, errorsForServer, fromCheck, fromSubmission } from '../src/lib/assignments/feedback.ts';
+import { errorsForServer, fromCheck, fromSubmission } from '../src/lib/assignments/feedback.ts';
+import { buildGuide, designChecks, DESIGN_CHECKS, DESIGN_EXAMPLES } from '../src/lib/assignments/guide.ts';
 import type { Diagnostic } from '../src/lib/assignments/protocol.ts';
 
 test('visibleLines drops empty lines and trailing spaces, keeps the rest as written', () => {
@@ -56,6 +57,29 @@ test('design review: carried by a fresh check, shown in the app order, unknown r
   const f = fromCheck({ compiled: true, diagnostics: [], results: [], score: 0, max_points: 100, design });
   assert.deepEqual(designChecks(f.design).map((c) => c.id), ['classes', 'unused']);
   assert.deepEqual(designChecks(undefined), []);
+});
+
+test('guide: one next step in learning order, the rest folded, done kept', () => {
+  const design = { classes: [], checks: [
+    { id: 'unused', ok: false }, { id: 'public_fields', ok: false }, { id: 'link', ok: false },
+    { id: 'classes', ok: true, n: 3 }, { id: 'members', ok: true },
+  ] };
+  const g = buildGuide(design);
+  assert.equal(g.next?.id, 'link');
+  assert.deepEqual(g.more.map((c) => c.id), ['public_fields', 'unused']);
+  assert.deepEqual(g.done.map((c) => c.id), ['classes', 'members']);
+  assert.equal(g.total, 5);
+});
+
+test('guide: nothing left, and no review at all', () => {
+  const all = buildGuide({ classes: [], checks: DESIGN_CHECKS.map((id) => ({ id, ok: true })) });
+  assert.equal(all.next, null);
+  assert.equal(all.done.length, DESIGN_CHECKS.length);
+  assert.deepEqual(buildGuide(null), { next: null, more: [], done: [], total: 0 });
+});
+
+test('guide examples exist only for known rules', () => {
+  for (const id of Object.keys(DESIGN_EXAMPLES)) assert.ok((DESIGN_CHECKS as readonly string[]).includes(id), id);
 });
 
 test('fromSubmission maps a stored submission (latest or older)', () => {

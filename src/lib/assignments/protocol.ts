@@ -55,10 +55,12 @@ export interface RunResult {
 export type WorkerRequest =
   | { type: 'init' }
   | { type: 'compile'; id: number; code: string }
+  | { type: 'analyze'; id: number; code: string }   // compile only: errors + design review, nothing is run
   | { type: 'run'; id: number; assembly: Uint8Array; input: string; maxOutput: number };
 
 export type WorkerResponse =
   | { type: 'ready'; version: string; ms: number }
   | { type: 'compiled'; id: number; result: CompileResult; assembly: Uint8Array | null }
+  | { type: 'analyzed'; id: number; result: CompileResult }
   | { type: 'ran'; id: number; result: RunResult; ms: number }
   | { type: 'error'; id?: number; message: string };

@@ -114,3 +114,15 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   Texts: i18n `design.<id>.ok/.fail`; a new rule also needs its id in DESIGN_CHECKS (assignments/feedback.ts).
   Local PC has only the .NET 8 SDK → the wasm compiler is built by CI; Design.cs is pure Roslyn so it can be
   tested from a small net8 console project.
+- Learning-first assignment page (2026-11-16): three columns ≥ 1280 px (brief | code | guide + tests), brief on
+  top + two columns ≥ 900 px, one column on phones. `DesignGuide.svelte` is a coach: ~1 s after typing stops
+  the worker compiles the code (`analyzeCode` in runner.ts → worker `analyze`, no tests, nothing stored) and
+  shows compile errors, ONE next step (text + `design.<id>.why` + example from DESIGN_EXAMPLES), more tips
+  and done steps – logic in assignments/guide.ts (`buildGuide`, DESIGN_CHECKS = learning order). On compile
+  errors the last good review stays, dimmed. AssignmentFeedback.svelte is now only the Tests card.
+  Scoring/submitting is unchanged ("Run tests and submit" still stores the submission).
+  No .NET 10 locally: to preview, copy the deployed public/compiler/_framework files from the live site.
+- Assignment brief (2026-11-16): shown as PLAIN PROSE on purpose – no sections, lists or per-command blocks
+  (the owner tried them and reverted: breaking the task down is the student's job). Commands and replies stay
+  inside the text. `AssignmentBrief.svelte` + assignments/brief.ts only mark the `code` spans, never with C#
+  colours: one lowercase word = command (kbd), anything else = program reply (samp).

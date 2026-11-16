@@ -27,6 +27,7 @@ export interface CheckProgress {
 
 const INIT_TIMEOUT = 180_000;   // first download on a slow school network
 const COMPILE_TIMEOUT = 60_000;
+const ANALYZE_TIMEOUT = 30_000;
 const MAX_OUTPUT = 20_000;      // characters per scenario
 
 let worker: Worker | null = null;
@@ -103,6 +104,19 @@ async function request(msg: WorkerRequest & { id: number }, timeoutMs: number) {
   const pending = reply(w, (m) => 'id' in m && m.id === msg.id, timeoutMs);
   w.postMessage(msg);
   return pending;
+}
+
+/**
+ * Compile-only look at the code for the live design guide: compile errors and the design review.
+ * Runs no tests and stores nothing. null = could not be analysed right now (compiler busy or down).
+ */
+export async function analyzeCode(code: string): Promise<CompileResult | null> {
+  try {
+    const r = await request({ type: 'analyze', id: nextId++, code }, ANALYZE_TIMEOUT);
+    return r !== 'timeout' && r.type === 'analyzed' ? r.result : null;
+  } catch {
+    return null;
+  }
 }
 
 /** Compiles, then runs every scenario. Never throws for problems in the student's code. */

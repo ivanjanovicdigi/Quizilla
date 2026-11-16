@@ -2,15 +2,16 @@
   import { onDestroy, onMount } from 'svelte';
   import TopBar from '../components/TopBar.svelte';
   import Icon from '../components/Icon.svelte';
-  import Rich from '../components/Rich.svelte';
+  import AssignmentBrief from '../components/AssignmentBrief.svelte';
   import CodeEditor from '../components/CodeEditor.svelte';
   import AssignmentFeedback from '../components/AssignmentFeedback.svelte';
+  import DesignGuide from '../components/DesignGuide.svelte';
   import { api, ApiError } from '../lib/api';
   import { session, setStudent } from '../lib/session.svelte';
   import { errorText, pick, t } from '../lib/i18n.svelte';
   import { load as loadStored, save as saveStored } from '../lib/storage';
   import { signed } from '../lib/util';
-  import { checkCode, compilerStatus, loadCompiler, type CheckProgress, type CompilerStatus } from '../lib/assignments/runner';
+  import { analyzeCode, checkCode, compilerStatus, loadCompiler, type CheckProgress, type CompilerStatus, type DesignReview, type Diagnostic } from '../lib/assignments/runner';
   import { errorsForServer, fromCheck, fromSubmission, type Feedback } from '../lib/assignments/feedback';
   import type { AssignmentDetail, Submission } from '../lib/types';
 
@@ -38,7 +39,37 @@
   onDestroy(() => sub.unsubscribe());
 
   const busy = $derived(progress !== null);
-  const errorLines = $derived(new Set((feedback?.diagnostics ?? []).filter((d) => d.severity === 'error' && d.line).map((d) => d.line)));
+
+  // Live design guide: a moment after the student stops typing the code is compiled in the
+  // browser (no tests, nothing stored) → compile errors + design review for DesignGuide.
+  let review = $state<DesignReview | null>(null);        // of the last version that compiled
+  let liveErrors = $state<Diagnostic[] | null>(null);    // null = not analysed yet
+  let analysing = $state(false);
+  let analyseTimer: ReturnType<typeof setTimeout> | undefined;
+  let analyseSeq = 0;
+  const errorsOnly = (d: Diagnostic[]) => d.filter((x) => x.severity === 'error');
+  const shownErrors = $derived(liveErrors ?? errorsOnly(feedback?.diagnostics ?? []));
+  const errorLines = $derived(new Set(shownErrors.filter((d) => d.line).map((d) => d.line)));
+
+  $effect(() => {
+    const c = code;
+    const idle = compiler === 'ready' && !busy && detail != null;
+    clearTimeout(analyseTimer);
+    if (!idle) return;
+    if (!c.trim()) { analyseSeq++; review = null; liveErrors = null; analysing = false; return; }
+    if (c.length > MAX_CODE) return;
+    analyseTimer = setTimeout(async () => {
+      const seq = ++analyseSeq;
+      analysing = true;
+      const r = await analyzeCode(c);
+      if (seq !== analyseSeq) return;
+      analysing = false;
+      if (!r) return;
+      liveErrors = errorsOnly(r.diagnostics);
+      if (r.design) review = r.design;
+    }, 900);
+  });
+  onDestroy(() => clearTimeout(analyseTimer));
 
   async function load() {
     error = '';
@@ -88,6 +119,10 @@
     try {
       const r = await checkCode(code, detail.scenarios, detail.time_limit_ms, (p) => (progress = p));
       feedback = fromCheck(r);
+      analyseSeq++; // the check is newer than any analysis still on its way
+      analysing = false;
+      liveErrors = errorsOnly(r.diagnostics);
+      if (r.design) review = r.design;
       if (studentId) {
         pending = [
           studentId, assignmentId, code, r.compiled, errorsForServer(r.diagnostics),
@@ -170,27 +205,32 @@
     <p class="muted small mobile-only"><Icon name="code" size={14} /> {t('assign.desktop_note')}</p>
 
     <div class="cols">
-      <div class="stack left">
+      <div class="left">
         <section class="card brief">
           <h2>{t('assign.brief')}</h2>
-          <Rich text={pick(detail.brief_sk, detail.brief_en)} />
-        </section>
-
-        <section class="card">
-          <h3>{t('assign.tests', { n: detail.scenarios.length })}</h3>
-          <p class="small muted">{t('assign.tests_info')}</p>
-          <ul class="scen">
-            {#each detail.scenarios as s (s.index)}
-              <li><span>{pick(s.name_sk, s.name_en)}</span><span class="muted">{s.points} b.</span></li>
-            {/each}
-          </ul>
+          <AssignmentBrief text={pick(detail.brief_sk, detail.brief_en)} />
         </section>
       </div>
 
-      <div class="stack right">
+      <div class="stack mid">
         <section class="card stack">
-          <div class="row">
+          <div class="row head">
             <h2 class="grow">{t('assign.code')}</h2>
+            {#if history.length > 1}
+              <details class="menu">
+                <summary class="btn small ghost">{t('assign.history_short')} ({history.length})</summary>
+                <ul class="hist">
+                  {#each history as h (h.id)}
+                    <li>
+                      <span class="muted small">{new Date(h.submitted_at).toLocaleString()}</span>
+                      <span class="grow"></span>
+                      <strong>{h.score} / {h.max_points}</strong>
+                      <button class="btn small ghost" onclick={() => openSubmission(h.id)}>{t('assign.history_open')}</button>
+                    </li>
+                  {/each}
+                </ul>
+              </details>
+            {/if}
             <button class="btn small secondary" onclick={() => fileInput?.click()} disabled={busy}>
               <Icon name="upload" size={16} /> {t('assign.upload')}
             </button>
@@ -230,41 +270,39 @@
           {/if}
         </section>
 
-        {#if feedback}
-          <AssignmentFeedback {feedback} scenarios={detail.scenarios} timeLimitMs={detail.time_limit_ms}
-            onJump={(line, col) => editor?.focusLine(line, col)} />
-        {/if}
+      </div>
 
-        {#if history.length > 1}
-          <details class="card">
-            <summary><strong>{t('assign.history')}</strong> <span class="muted small">({history.length})</span></summary>
-            <ul class="hist">
-              {#each history as h (h.id)}
-                <li>
-                  <span class="muted small">{new Date(h.submitted_at).toLocaleString()}</span>
-                  <span class="grow"></span>
-                  <strong>{h.score} / {h.max_points}</strong>
-                  <button class="btn small ghost" onclick={() => openSubmission(h.id)}>{t('assign.history_open')}</button>
-                </li>
-              {/each}
-            </ul>
-          </details>
-        {/if}
+      <div class="stack right">
+        <DesignGuide {review} errors={shownErrors} hasCode={code.trim().length > 0}
+          loading={compiler === 'loading'} {analysing}
+          onJump={(line, col) => editor?.focusLine(line, col)} />
+        <AssignmentFeedback {feedback} scenarios={detail.scenarios} timeLimitMs={detail.time_limit_ms} />
       </div>
     </div>
   {/if}
 </main>
 
 <style>
-  .page.wide { max-width: 1200px; }
-  .cols { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 16px; align-items: start; }
+  /* phone: one column · laptop: brief on top, code | guide · wide: brief | code | guide + tests */
+  .page.wide { max-width: 1680px; }
+  .cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
   .cols > .stack { margin-top: 0; }
-  @media (max-width: 960px) { .cols { grid-template-columns: minmax(0, 1fr); } }
-  .left { position: sticky; top: 72px; }
-  @media (max-width: 960px) { .left { position: static; } }
+  @media (min-width: 900px) {
+    .cols { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+    .left { grid-column: 1 / -1; }
+  }
+  @media (min-width: 1280px) {
+    .cols { grid-template-columns: minmax(300px, 7fr) minmax(0, 11fr) minmax(320px, 8fr); }
+    .left { grid-column: auto; position: sticky; top: 72px; max-height: calc(100vh - 88px); overflow: auto; border-radius: var(--radius); }
+    .mid :global(.editor) { height: min(68vh, 760px); }
+  }
   .brief h2 { margin-bottom: 10px; }
-  .scen { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: .9rem; }
-  .scen li { display: flex; justify-content: space-between; gap: 12px; }
+  .head { flex-wrap: wrap; }
+  .menu { position: relative; }
+  .menu summary { list-style: none; }
+  .menu summary::-webkit-details-marker { display: none; }
+  .menu .hist { position: absolute; right: 0; top: calc(100% + 4px); z-index: 5; margin: 0; min-width: 340px; max-height: 320px; overflow: auto;
+    padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
   .grow { flex: 1; min-width: 0; }
   .actions { flex-wrap: wrap; }
   .status { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
@@ -273,7 +311,7 @@
   .dot.ok { background: var(--ok); }
   .dot.spin { border: 2px solid var(--border); border-top-color: var(--accent); background: none; animation: spin .8s linear infinite; }
   .saved { color: var(--ok); display: flex; align-items: center; gap: 6px; margin: 0; }
-  .hist { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .hist { list-style: none; display: flex; flex-direction: column; gap: 4px; }
   .hist li { display: flex; align-items: center; gap: 10px; }
   summary { cursor: pointer; }
   .mobile-only { display: none; align-items: center; gap: 6px; }

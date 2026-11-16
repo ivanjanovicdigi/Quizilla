@@ -13,17 +13,7 @@ export interface Feedback {
   max_points: number;
   submitted_at?: string;
   latest?: boolean;             // the submission that counts (vs. an older one from the history)
-  design?: DesignReview;        // fresh checks only – the server does not store it
-}
-
-/** Design rules the app has texts for ('design.<id>.ok' / '.fail'); others are not shown. */
-export const DESIGN_CHECKS = ['classes', 'members', 'link', 'storage', 'operations', 'main_state',
-  'instantiated', 'static', 'public_fields', 'unused'] as const;
-
-/** The design rules to show, in the app's order. */
-export function designChecks(design: DesignReview | undefined) {
-  const byId = new Map((design?.checks ?? []).map((c) => [c.id, c]));
-  return DESIGN_CHECKS.flatMap((id) => byId.get(id) ?? []);
+  design?: DesignReview;        // fresh checks only – the server does not store it (see guide.ts)
 }
 
 export function fromCheck(r: CheckResult): Feedback {

@@ -72,6 +72,11 @@ self.addEventListener('message', async (e: MessageEvent<WorkerRequest>) => {
         post({ type: 'compiled', id: msg.id, result, assembly }, assembly ? [assembly.buffer] : []);
         break;
       }
+      case 'analyze': {
+        if (!checker) throw new Error('not initialised');
+        post({ type: 'analyzed', id: msg.id, result: JSON.parse(checker.Compile(msg.code)) });
+        break;
+      }
       case 'run': {
         if (!checker) throw new Error('not initialised');
         const started = performance.now();
