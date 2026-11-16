@@ -18,6 +18,9 @@ const target = join(ROOT, 'public', 'compiler', '_framework');
 rmSync(out, { recursive: true, force: true });
 const r = spawnSync(process.env.DOTNET ?? 'dotnet', ['publish', project, '-c', 'Release', '-o', out, '-nologo', '-clp:ErrorsOnly'], {
   stdio: 'inherit',
+  // run inside compiler/ so compiler/global.json pins the .NET 10 SDK (runners also ship newer SDKs,
+  // whose bundled reference pack is not the net10.0 one the project embeds)
+  cwd: join(ROOT, 'compiler'),
   env: { ...process.env, DOTNET_CLI_TELEMETRY_OPTOUT: '1', DOTNET_NOLOGO: '1' },
 });
 if (r.status !== 0) { console.error('dotnet publish failed'); process.exit(r.status ?? 1); }
