@@ -102,7 +102,8 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
 - Coding assignments (030–032, spec docs/prompts/coding-assignments-mvp.md): students write a C# console
   app, the browser compiles/runs it (compiler/ → public/compiler via `npm run compiler:build`, Web Worker
   src/lib/assignments/) and the server stores every submission (quiz.assignment_submissions) and recomputes
-  the score. Access: quiz.config 'assignments_access' = emails or '*' (started as ivan.janovic@lyceum.sk).
+  the score. Access: quiz.config 'assignments_access' = emails or '*' (started as ivan.janovic@lyceum.sk;
+  033 sets '*' = everyone, guests included – guests save nothing).
   Points (032): each assignment adds its LATEST score (quiz.assignment_points) to get_catalog points, class
   leaderboard, admin_list_users, stats ('assignments' section) and v_*_totals; quiz penalties never cut them.
   admin_reset_progress also deletes submissions. Assignments live in assignments/<slug>/ (README there):

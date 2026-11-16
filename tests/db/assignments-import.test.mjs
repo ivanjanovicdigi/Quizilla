@@ -26,11 +26,26 @@ test('8 assignments, no duplicates after a re-run, hidden parts stored', async (
   await h.as('anon');
 });
 
-test('Ivan sees them in order; others are still blocked by the access gate', async () => {
-  const list = await h.rpc('select public.get_assignments($1) r', [ivan]);
-  assert.deepEqual(list.map((a) => a.slug),
-    ['hotel', 'library', 'car-rental', 'gym', 'cinema', 'parking-garage', 'vet-clinic', 'school-cafeteria']);
+test('since 033 everyone sees them in order, guests included; closing the gate blocks the others again', async () => {
+  const slugs = ['hotel', 'library', 'car-rental', 'gym', 'cinema', 'parking-garage', 'vet-clinic', 'school-cafeteria'];
+  for (const who of [ivan, eva, null]) {
+    const list = await h.rpc('select public.get_assignments($1) r', [who]);
+    assert.deepEqual(list.map((a) => a.slug), slugs, String(who));
+    assert.equal(await h.rpc('select public.assignments_enabled($1) r', [who]), true, String(who));
+  }
+
+  await h.as(null);
+  await db.exec(`update quiz.config set value = 'ivan.janovic@lyceum.sk' where key = 'assignments_access'`);
+  await h.as('anon');
+  assert.equal((await h.rpc('select public.get_assignments($1) r', [ivan])).length, 8);
   assert.match(await h.error('select public.get_assignments($1)', [eva]) ?? '', /assignments_disabled/);
+  assert.match(await h.error('select public.get_assignments(null)') ?? '', /assignments_disabled/);
+
+  // 033 is safe to re-run and opens the gate again
+  await h.as(null);
+  await db.exec(read('supabase/updates/033_assignments_open.sql'));
+  await h.as('anon');
+  assert.equal((await h.rpc('select public.get_assignments($1) r', [eva])).length, 8);
 });
 
 test('each assignment in the database matches its JSON file', async () => {

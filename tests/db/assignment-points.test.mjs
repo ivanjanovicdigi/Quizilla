@@ -60,8 +60,18 @@ test('statistics: assignments section with points, solved and per-task scores', 
   assert.ok(Array.isArray(st.topics) && st.rank && st.tiers);
 });
 
-test('statistics: no assignments section without access and submissions', async () => {
+test('statistics: with access (033: everyone) the section lists the assignments; without access and submissions there is none', async () => {
+  const open = (await h.rpc('select public.get_stats($1) r', [eva])).assignments;
+  assert.equal(open.count, 8);
+  assert.equal(open.done, 0);
+
+  await h.as(null);
+  await db.exec("update quiz.config set value = 'ivan.janovic@lyceum.sk' where key = 'assignments_access'");
+  await h.as('anon');
   assert.equal((await h.rpc('select public.get_stats($1) r', [eva])).assignments, null);
+  await h.as(null);
+  await db.exec("update quiz.config set value = '*' where key = 'assignments_access'");
+  await h.as('anon');
 });
 
 test('get_stats is quiz.stats_json plus the assignments section (no drift)', async () => {
