@@ -2,9 +2,9 @@
   // Result of a check: score, compiler errors (click → jump to the line), and per test pass/fail
   // with input, expected and actual output side by side for failed tests.
   import Icon from './Icon.svelte';
-  import { pick, t } from '../lib/i18n.svelte';
+  import { pick, t, type Key } from '../lib/i18n.svelte';
   import { outputDiff, visibleLines } from '../lib/assignments/diff';
-  import type { Feedback } from '../lib/assignments/feedback';
+  import { designChecks, type Feedback } from '../lib/assignments/feedback';
   import type { AssignmentScenario } from '../lib/types';
 
   let {
@@ -23,6 +23,9 @@
   const warnings = $derived(feedback.diagnostics.filter((d) => d.severity === 'warning'));
   const byIndex = $derived(new Map(feedback.rows.map((r) => [r.index, r])));
   let open = $state<Record<number, boolean>>({});
+  // design review: tips on how the code is built – only for a fresh check, never part of the score
+  const design = $derived(feedback.compiled ? designChecks(feedback.design) : []);
+  const designOk = $derived(design.filter((c) => c.ok).length);
 
   function shortException(name: string | undefined) {
     return (name ?? '').replace(/^System\./, '');
@@ -131,6 +134,45 @@
       {/each}
     </ul>
   {/if}
+
+  {#if design.length}
+    <div class="design">
+      <div class="row">
+        <h3 class="grow">{t('design.title')}</h3>
+        <span class="small muted">{designOk} / {design.length}</span>
+      </div>
+      <p class="small muted">{t('design.note')}</p>
+      {#if feedback.design?.classes.length}
+        <ul class="classes">
+          {#each feedback.design.classes as c (c.name + c.line)}
+            <li>
+              <button class="linkish cls" onclick={() => onJump(c.line, 1)} disabled={!c.line}>{c.name}</button>
+              <span class="small muted">{t('design.class_line', { data: c.properties + c.fields, methods: c.methods })}</span>
+            </li>
+          {/each}
+        </ul>
+      {/if}
+      <ul class="checks">
+        {#each design as c (c.id)}
+          <li class:tip={!c.ok}>
+            <span class="mark">{#if c.ok}<Icon name="check" size={16} />{:else}!{/if}</span>
+            <div class="grow">
+              <span>{t(`design.${c.id}.${c.ok ? 'ok' : 'fail'}` as Key, { n: c.n ?? 0 })}</span>
+              {#if !c.ok && c.items?.length}
+                <span class="items">
+                  {#each c.items as it, i (i)}
+                    <button class="linkish item" onclick={() => onJump(it.line, 1)} disabled={!it.line}>
+                      <code>{it.name}</code>{#if it.line}&nbsp;· {t('assign.line', { line: it.line })}{/if}
+                    </button>
+                  {/each}
+                </span>
+              {/if}
+            </div>
+          </li>
+        {/each}
+      </ul>
+    </div>
+  {/if}
 </section>
 
 <style>
@@ -172,5 +214,18 @@
   .cmp h4 { margin-top: 4px; }
   .cell { padding: 1px 8px; background: var(--code-bg); white-space: pre-wrap; word-break: break-word; min-height: 1.5em; }
   .cell.diff { background: var(--bad-soft); color: var(--bad); }
+  .design { border-top: 1px solid var(--border); padding-top: 12px; }
+  .design h3 { margin: 0; }
+  .design p { margin: 2px 0 10px; }
+  .classes { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .classes li { display: flex; align-items: baseline; gap: 6px; }
+  .linkish.cls { color: inherit; font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
+  .checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: .92rem; }
+  .checks li { display: flex; gap: 10px; align-items: flex-start; }
+  .checks .mark { width: 24px; height: 24px; background: var(--ok-soft); color: var(--ok); font-weight: 800; }
+  .checks .tip .mark { background: color-mix(in srgb, var(--gold) 18%, transparent); color: var(--gold); }
+  .items { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 4px; }
+  .linkish.item { color: var(--gold); font-weight: 600; }
+  .linkish.item code { font-size: .85rem; }
   @media (max-width: 560px) { .cmp { grid-template-columns: 1fr; } .cmp h4:nth-child(2) { display: none; } }
 </style>

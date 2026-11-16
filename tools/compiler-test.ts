@@ -29,6 +29,8 @@ async function main() {
     const t = performance.now();
     const r = await checkCode(code, toScenarios(a), a.time_limit_ms);
     const fails = r.results.filter((x) => !x.passed).map((x) => `#${x.index}: ${JSON.stringify(x.actual)}`);
+    const tips = (r.design?.checks ?? []).filter((c) => !c.ok).map((c) => c.id);
+    log(`${a.slug}: design review finds nothing in the reference solution`, (r.design?.checks.length ?? 0) >= 10 && tips.length === 0, tips.join(' '));
     log(`${a.slug}: reference solution`, r.compiled && r.score === 100,
       `${r.score}/${r.max_points}, ${Math.round(performance.now() - t)} ms ${r.compiled ? '' : JSON.stringify(r.diagnostics[0])} ${fails.join(' ')}`);
   }
@@ -80,6 +82,11 @@ async function main() {
   // 10. case / spacing differences are accepted
   r = await checkCode('Console.WriteLine("ROOM   101 added.  ");\nConsole.WriteLine();\nConsole.WriteLine("room 102 ADDED.");', sc.slice(0, 1), 3000);
   log('output compare ignores case and extra whitespace', r.score === 15, `${r.score}`);
+
+  // 11. design review: everything in the main program, public fields, no link
+  r = await checkCode('var rooms = new List<Room>();\nrooms.Add(new Room());\nrooms[0].Number = 5;\nConsole.WriteLine(rooms.Count);\nclass Room { public int Number; }', sc.slice(0, 1), 3000);
+  const bad = (r.design?.checks ?? []).filter((c) => !c.ok).map((c) => c.id).join(' ');
+  log('design review flags a program without real classes', bad === 'classes members link storage operations main_state public_fields', bad);
 
   const failed = results.filter((x) => !x.ok).length;
   status.textContent = failed ? `${failed} FAILED` : `all ${results.length} passed`;

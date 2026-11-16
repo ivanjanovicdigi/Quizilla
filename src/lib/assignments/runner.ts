@@ -2,10 +2,10 @@
 // download, only when a coding assignment is opened), compiles once, then runs every scenario
 // with its own time limit. A scenario that runs too long kills the worker; a fresh worker is
 // started for the remaining scenarios (it reuses the compiled assembly, no second compile).
-import type { CompileResult, Diagnostic, WorkerRequest, WorkerResponse } from './protocol';
+import type { CompileResult, DesignReview, Diagnostic, WorkerRequest, WorkerResponse } from './protocol';
 import { evaluateRun, totalScore, type Scenario, type ScenarioResult } from './scoring';
 
-export type { Diagnostic, Scenario, ScenarioResult };
+export type { DesignReview, Diagnostic, Scenario, ScenarioResult };
 
 export type CompilerStatus = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -15,6 +15,7 @@ export interface CheckResult {
   results: ScenarioResult[];
   score: number;
   max_points: number;
+  design?: DesignReview;      // design review (feedback only, not part of the score)
 }
 
 export interface CheckProgress {
@@ -149,5 +150,5 @@ export async function checkCode(
   }
   onProgress?.({ phase: 'running', done: scenarios.length, total: scenarios.length });
 
-  return { compiled: true, diagnostics: compile.diagnostics, results, score: totalScore(results), max_points: maxPoints };
+  return { compiled: true, diagnostics: compile.diagnostics, results, score: totalScore(results), max_points: maxPoints, design: compile.design };
 }

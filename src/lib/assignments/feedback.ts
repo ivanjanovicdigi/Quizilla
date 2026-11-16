@@ -1,6 +1,6 @@
 // One display model for the feedback panel – from a fresh in-browser check or from a submission
-// stored on the server (which keeps less detail: no timeouts/exceptions, errors only).
-import type { CheckResult, Diagnostic } from './runner';
+// stored on the server (which keeps less detail: no timeouts/exceptions, errors only, no design review).
+import type { CheckResult, DesignReview, Diagnostic } from './runner';
 import type { ScenarioResult } from './scoring';
 import type { CompileError, Submission } from '../types';
 
@@ -13,10 +13,21 @@ export interface Feedback {
   max_points: number;
   submitted_at?: string;
   latest?: boolean;             // the submission that counts (vs. an older one from the history)
+  design?: DesignReview;        // fresh checks only – the server does not store it
+}
+
+/** Design rules the app has texts for ('design.<id>.ok' / '.fail'); others are not shown. */
+export const DESIGN_CHECKS = ['classes', 'members', 'link', 'storage', 'operations', 'main_state',
+  'instantiated', 'static', 'public_fields', 'unused'] as const;
+
+/** The design rules to show, in the app's order. */
+export function designChecks(design: DesignReview | undefined) {
+  const byId = new Map((design?.checks ?? []).map((c) => [c.id, c]));
+  return DESIGN_CHECKS.flatMap((id) => byId.get(id) ?? []);
 }
 
 export function fromCheck(r: CheckResult): Feedback {
-  return { fresh: true, compiled: r.compiled, diagnostics: r.diagnostics, rows: r.results, score: r.score, max_points: r.max_points };
+  return { fresh: true, compiled: r.compiled, diagnostics: r.diagnostics, rows: r.results, score: r.score, max_points: r.max_points, design: r.design };
 }
 
 export function fromSubmission(s: Submission, latest = true): Feedback {

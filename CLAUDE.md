@@ -107,3 +107,10 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   leaderboard, admin_list_users, stats ('assignments' section) and v_*_totals; quiz penalties never cut them.
   admin_reset_progress also deletes submissions. Assignments live in assignments/<slug>/ (README there):
   `npm run a:verify` (dotnet check), `npm run a:sql` (next SQL update). UI: views/Assignments, Assignment.
+- Design review (compiler/Design.cs → `DesignAnalyzer`, 2026-11-16): after a successful compile the browser also
+  reports how the code is built (10 name-independent rules: classes, members, link, storage, operations,
+  main_state, instantiated, static, public_fields, unused) → "Class design" section in AssignmentFeedback.
+  FEEDBACK ONLY: never scored, not sent to or stored on the server (old submissions show no review).
+  Texts: i18n `design.<id>.ok/.fail`; a new rule also needs its id in DESIGN_CHECKS (assignments/feedback.ts).
+  Local PC has only the .NET 8 SDK → the wasm compiler is built by CI; Design.cs is pure Roslyn so it can be
+  tested from a small net8 console project.

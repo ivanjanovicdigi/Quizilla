@@ -70,7 +70,8 @@ public static partial class Checker
     }
 
     /// <summary>
-    /// Compiles the code. Returns JSON { ok, diagnostics: [{ line, column, id, severity, message }] }.
+    /// Compiles the code. Returns JSON { ok, diagnostics: [{ line, column, id, severity, message }], design? }
+    /// (design = the design review of Design.cs, only when the code compiles).
     /// On success the assembly is kept for <see cref="TakeAssembly"/>.
     /// </summary>
     [JSExport]
@@ -89,9 +90,13 @@ public static partial class Checker
             .Select(ToDiag)
             .ToList();
         bool ok = !diagnostics.Any(d => d.Severity == "error");
+        DesignReview? design = null;
 
         if (ok)
         {
+            // feedback only – a failure here must never stop the check
+            try { design = DesignAnalyzer.Analyze(compilation, tree); } catch { }
+
             // swap browser-hostile calls (Environment.Exit, Console.Clear/ReadKey) for safe helpers
             var model = compilation.GetSemanticModel(tree);
             var root = new Rewriter(model).Visit(tree.GetRoot());
@@ -110,7 +115,7 @@ public static partial class Checker
             }
         }
 
-        return JsonSerializer.Serialize(new CompileResult(ok, diagnostics), CheckerJson.Default.CompileResult);
+        return JsonSerializer.Serialize(new CompileResult(ok, diagnostics, ok ? design : null), CheckerJson.Default.CompileResult);
     }
 
     /// <summary>The assembly of the last successful compile (so a new worker can run it without compiling).</summary>
@@ -244,7 +249,7 @@ public static partial class Checker
 }
 
 record Diag(int Line, int Column, string Id, string Severity, string Message);
-record CompileResult(bool Ok, List<Diag> Diagnostics);
+record CompileResult(bool Ok, List<Diag> Diagnostics, DesignReview? Design = null);
 record RunResult(string Stdout, string Stderr, string? Exception, string? ExceptionMessage, bool OutputLimit, int? ExitCode);
 
 // JSON without reflection (the published module is trimmed, reflection-based JSON is disabled)

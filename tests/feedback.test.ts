@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { outputDiff, visibleLines } from '../src/lib/assignments/diff.ts';
-import { errorsForServer, fromCheck, fromSubmission } from '../src/lib/assignments/feedback.ts';
+import { designChecks, errorsForServer, fromCheck, fromSubmission } from '../src/lib/assignments/feedback.ts';
 import type { Diagnostic } from '../src/lib/assignments/protocol.ts';
 
 test('visibleLines drops empty lines and trailing spaces, keeps the rest as written', () => {
@@ -49,6 +49,13 @@ test('fromCheck keeps everything from the browser check', () => {
   assert.equal(f.fresh, true);
   assert.equal(f.compiled, false);
   assert.equal(f.diagnostics.length, 2);
+});
+
+test('design review: carried by a fresh check, shown in the app order, unknown rules dropped', () => {
+  const design = { classes: [], checks: [{ id: 'unused', ok: true }, { id: 'future_rule', ok: false }, { id: 'classes', ok: false, n: 1 }] };
+  const f = fromCheck({ compiled: true, diagnostics: [], results: [], score: 0, max_points: 100, design });
+  assert.deepEqual(designChecks(f.design).map((c) => c.id), ['classes', 'unused']);
+  assert.deepEqual(designChecks(undefined), []);
 });
 
 test('fromSubmission maps a stored submission (latest or older)', () => {
