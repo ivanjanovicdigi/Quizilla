@@ -71,12 +71,14 @@ public static class DesignAnalyzer
             Add("members", thin.Count == 0, items: thin);
         }
 
-        // 3. link: an object knows another object (Room.Guest → Guest)
-        bool link = own.Any(t => Data(t).Any(m => Direct(m.Type, ownSet) is { } other && !Eq.Equals(other, t)));
+        // 3. link: an object knows another object (Room.Guest → Guest), or a second class besides the
+        //    manager keeps a collection of objects (Order.Products → List<Product>)
+        var managers = own.Where(t => Data(t).Any(m => Holds(m.Type, ownSet))).ToList();
+        bool link = own.Any(t => Data(t).Any(m => Direct(m.Type, ownSet) is { } other && !Eq.Equals(other, t)))
+            || managers.Count >= 2;
         Add("link", link);
 
         // 4. storage: a class keeps the collection of objects (not the main program)
-        var managers = own.Where(t => Data(t).Any(m => Holds(m.Type, ownSet))).ToList();
         var looseLists = new List<DesignItem>();
         foreach (var v in root.DescendantNodes().OfType<VariableDeclaratorSyntax>())
         {

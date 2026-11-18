@@ -5,7 +5,7 @@
   import AssignmentBrief from '../components/AssignmentBrief.svelte';
   import CodeEditor from '../components/CodeEditor.svelte';
   import AssignmentFeedback from '../components/AssignmentFeedback.svelte';
-  import DesignGuide from '../components/DesignGuide.svelte';
+  import Coach from '../components/Coach.svelte';
   import AssignmentTour from '../components/AssignmentTour.svelte';
   import { TOUR_STEPS, markTourSeen, tourSeen } from '../lib/assignments/tour';
   import { api, ApiError } from '../lib/api';
@@ -28,6 +28,7 @@
   let error = $state('');
   let code = $state('');
   let feedback = $state<Feedback | null>(null);
+  let testedCode = $state<string | null>(null);   // the code the feedback belongs to (for the coach)
   let progress = $state<CheckProgress | null>(null);
   let checkError = $state('');
   let compiler = $state<CompilerStatus>(compilerStatus().status);
@@ -55,7 +56,7 @@
   });
 
   // Live design guide: a moment after the student stops typing the code is compiled in the
-  // browser (no tests, nothing stored) → compile errors + design review for DesignGuide.
+  // browser (no tests, nothing stored) → compile errors + design review for Coach.
   let review = $state<DesignReview | null>(null);        // of the last version that compiled
   let liveErrors = $state<Diagnostic[] | null>(null);    // null = not analysed yet
   let analysing = $state(false);
@@ -91,7 +92,7 @@
       detail = await api.assignment(assignmentId, studentId);
       const draft = draftKey ? loadStored<string | null>(draftKey, null) : null;
       code = draft ?? detail.latest?.code ?? '';
-      if (detail.latest) feedback = fromSubmission(detail.latest);
+      if (detail.latest) { feedback = fromSubmission(detail.latest); testedCode = detail.latest.code ?? null; }
       if (!tourSeen()) tour = 0;
       loadHistory();
     } catch (e) {
@@ -131,9 +132,11 @@
     if (code.length > MAX_CODE) { checkError = errorText('invalid_code'); return; }
     progress = { phase: 'loading' };
     save = { state: 'idle' };
+    const checked = code;
     try {
-      const r = await checkCode(code, detail.scenarios, detail.time_limit_ms, (p) => (progress = p));
+      const r = await checkCode(checked, detail.scenarios, detail.time_limit_ms, (p) => (progress = p));
       feedback = fromCheck(r);
+      testedCode = checked;
       analyseSeq++; // the check is newer than any analysis still on its way
       analysing = false;
       liveErrors = errorsOnly(r.diagnostics);
@@ -195,6 +198,7 @@
       const s = await api.assignmentSubmission(studentId, id);
       code = s.code ?? '';
       feedback = fromSubmission(s, id === history[0]?.id);
+      testedCode = s.code ?? null;
       save = { state: 'idle' };
     } catch (e) {
       checkError = errorText(e instanceof ApiError ? e.code : 'server');
@@ -290,8 +294,8 @@
 
       <div class="stack right">
         <div class="part" class:spot={spot === 'guide'}>
-          <DesignGuide {review} errors={shownErrors} hasCode={code.trim().length > 0}
-            loading={compiler === 'loading'} {analysing}
+          <Coach {code} {review} errors={shownErrors} {feedback} {testedCode} scenarios={detail.scenarios} {analysing}
+            buttonLabel={session.guest ? t('assign.check_guest') : t('assign.check')}
             onJump={(line, col) => editor?.focusLine(line, col)} />
         </div>
         <div class="part" class:spot={spot === 'tests'}>

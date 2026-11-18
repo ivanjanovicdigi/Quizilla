@@ -1,4 +1,4 @@
-// 031: the generated import of the 8 assignments matches the JSON files in assignments/.
+// 031: the generated import of the assignments (031: 8, 034: cafe) matches the JSON files in assignments/.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { replay, helpers, read, updateFiles } from './replay.mjs';
@@ -16,9 +16,9 @@ before(async () => {
   eva = (await h.rpc(`select public.login_student('eva@lyceum.sk') r`)).id;
 });
 
-test('8 assignments, no duplicates after a re-run, hidden parts stored', async () => {
+test('9 assignments (8 + cafe), no duplicates after a re-run, hidden parts stored', async () => {
   await h.as(null);
-  assert.equal((await h.row('select count(*)::int c from quiz.assignments')).c, 8);
+  assert.equal((await h.row('select count(*)::int c from quiz.assignments')).c, 9);
   assert.equal((await h.row('select count(*)::int c from quiz.assignments where design is null or reference_solution is null')).c, 0);
   // the file's CRLF line ends must not end up in the texts
   assert.equal((await h.row(`select count(*)::int c from quiz.assignments
@@ -27,7 +27,7 @@ test('8 assignments, no duplicates after a re-run, hidden parts stored', async (
 });
 
 test('since 033 everyone sees them in order, guests included; closing the gate blocks the others again', async () => {
-  const slugs = ['hotel', 'library', 'car-rental', 'gym', 'cinema', 'parking-garage', 'vet-clinic', 'school-cafeteria'];
+  const slugs = ['hotel', 'library', 'car-rental', 'gym', 'cinema', 'parking-garage', 'vet-clinic', 'school-cafeteria', 'cafe'];
   for (const who of [ivan, eva, null]) {
     const list = await h.rpc('select public.get_assignments($1) r', [who]);
     assert.deepEqual(list.map((a) => a.slug), slugs, String(who));
@@ -37,7 +37,7 @@ test('since 033 everyone sees them in order, guests included; closing the gate b
   await h.as(null);
   await db.exec(`update quiz.config set value = 'ivan.janovic@lyceum.sk' where key = 'assignments_access'`);
   await h.as('anon');
-  assert.equal((await h.rpc('select public.get_assignments($1) r', [ivan])).length, 8);
+  assert.equal((await h.rpc('select public.get_assignments($1) r', [ivan])).length, 9);
   assert.match(await h.error('select public.get_assignments($1)', [eva]) ?? '', /assignments_disabled/);
   assert.match(await h.error('select public.get_assignments(null)') ?? '', /assignments_disabled/);
 
@@ -45,7 +45,7 @@ test('since 033 everyone sees them in order, guests included; closing the gate b
   await h.as(null);
   await db.exec(read('supabase/updates/033_assignments_open.sql'));
   await h.as('anon');
-  assert.equal((await h.rpc('select public.get_assignments($1) r', [eva])).length, 8);
+  assert.equal((await h.rpc('select public.get_assignments($1) r', [eva])).length, 9);
 });
 
 test('each assignment in the database matches its JSON file', async () => {

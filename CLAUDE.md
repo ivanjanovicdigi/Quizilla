@@ -122,6 +122,12 @@ in `public`) · deployed to GitHub Pages by GitHub Actions on push to `main`.
   and done steps – logic in assignments/guide.ts (`buildGuide`, DESIGN_CHECKS = learning order). On compile
   errors the last good review stays, dimmed. AssignmentFeedback.svelte is now only the Tests card.
   Scoring/submitting is unchanged ("Run tests and submit" still stores the submission).
+- "What to do next" coach (2026-11-18) REPLACES DesignGuide.svelte: `Coach.svelte` shows ONE step only (title,
+  one sentence, jump links, for a test the one differing line; "Why" + example folded) and a step counter.
+  Logic in assignments/coach.ts (`buildCoach`, COACH_PATH = order: start → compile → classes, members →
+  input_read/loop/exit (read from the source text) → link … static → tests (first failing test → test_* hint)
+  → public_fields, unused). Texts `coach.<id>.*` (+ `design.<id>.fail/.why` for design steps).
+  Link rule (Design.cs) also passes when ≥ 2 classes keep a list of objects (Order.Products, cafe).
   No .NET 10 locally: to preview, copy the deployed public/compiler/_framework files from the live site.
 - Assignment brief (2026-11-16): shown as PLAIN PROSE on purpose – no sections, lists or per-command blocks
   (the owner tried them and reverted: breaking the task down is the student's job). Commands and replies stay

@@ -52,7 +52,7 @@ test('class leaderboard includes assignment points', async () => {
 test('statistics: assignments section with points, solved and per-task scores', async () => {
   const st = await h.rpc('select public.get_stats($1) r', [ivan]);
   const as = st.assignments;
-  assert.deepEqual([as.points, as.max_points, as.done, as.tried, as.count, as.items.length], [140, 800, 1, 2, 8, 8]);
+  assert.deepEqual([as.points, as.max_points, as.done, as.tried, as.count, as.items.length], [140, 900, 1, 2, 9, 9]);
   const hotel = as.items.find((i) => i.slug === 'hotel');
   assert.equal(hotel.score, 100);
   assert.equal(hotel.submissions, 2);
@@ -62,7 +62,7 @@ test('statistics: assignments section with points, solved and per-task scores', 
 
 test('statistics: with access (033: everyone) the section lists the assignments; without access and submissions there is none', async () => {
   const open = (await h.rpc('select public.get_stats($1) r', [eva])).assignments;
-  assert.equal(open.count, 8);
+  assert.equal(open.count, 9);
   assert.equal(open.done, 0);
 
   await h.as(null);

@@ -1,7 +1,7 @@
 <script lang="ts">
   // The tests of an assignment: before the first run just the list (input + expected output on
   // click), after a run pass/fail per test with expected and actual output side by side.
-  // Compile errors and design tips are shown by DesignGuide, not here.
+  // Compile errors, design tips and the next step are shown by Coach, not here.
   import Icon from './Icon.svelte';
   import { pick, t } from '../lib/i18n.svelte';
   import { outputDiff, visibleLines } from '../lib/assignments/diff';
