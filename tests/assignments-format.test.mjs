@@ -10,9 +10,9 @@ const clone = (a) => ({ ...a, data: structuredClone(a.data) });
 const errorsOf = (a) => validateAssignment(a).errors;
 const hotel = all.find((a) => a.data.slug === 'hotel');
 
-test('there are the 8 initial assignments', () => {
+test('there are the 8 initial assignments + cafe', () => {
   assert.deepEqual(all.map((a) => a.data.slug).sort(),
-    ['car-rental', 'cinema', 'gym', 'hotel', 'library', 'parking-garage', 'school-cafeteria', 'vet-clinic']);
+    ['cafe', 'car-rental', 'cinema', 'gym', 'hotel', 'library', 'parking-garage', 'school-cafeteria', 'vet-clinic']);
 });
 
 for (const a of all) {

@@ -1,0 +1,184 @@
+{
+  "slug": "cafe",
+  "sort_order": 90,
+  "status": "pending",
+  "max_points": 100,
+  "time_limit_ms": 3000,
+  "sk": {
+    "title": "Objednávky v kaviarni",
+    "brief": [
+      "Malá kaviareň potrebuje jednoduchý konzolový systém, v ktorom si zákazník prezrie ponuku nápojov a dezertov a vytvorí si objednávku. Každý produkt v ponuke má názov a cenu. Kaviareň má jedno menu so všetkými produktmi. Objednávka patrí jednému zákazníkovi a obsahuje zoznam objednaných produktov a celkovú cenu.",
+      "Pri spustení je v menu týchto 5 produktov v tomto poradí: Espresso 2.00, Americano 2.80, Cappuccino 3.50, Latte 3.80 a Cheesecake 4.50. Ceny sa píšu s desatinnou bodkou a vždy s dvoma desatinnými miestami.",
+      "Zákazník sa najprv predstaví príkazom `name`, za ktorým nasleduje jeho meno. Program odpovie `Hello, Peter!` Toto meno sa potom použije pri objednávke.",
+      "Príkaz `menu` vypíše všetky produkty, každý na samostatný riadok s poradovým číslom, názvom a cenou, napríklad `1. Espresso 2.00 EUR`. Príkaz `add`, za ktorým nasleduje názov a cena (napríklad Mocha a 4.20), pridá nový produkt na koniec menu a program odpovie `Mocha added to the menu.`",
+      "Príkaz `find`, za ktorým nasleduje text, vypíše produkty, ktorých názov obsahuje tento text (veľkosť písmen nehrá rolu), napríklad `Americano 2.80 EUR`. Príkaz `cheaper`, za ktorým nasleduje suma, vypíše produkty, ktorých cena je nižšia ako zadaná suma, v rovnakom tvare. Ak sa nenájde žiadny produkt, oba príkazy vypíšu `No products found.` Produkty sa vždy vypisujú v poradí, v akom sú v menu.",
+      "Príkaz `order`, za ktorým nasleduje názov produktu, pridá produkt do objednávky zákazníka a program odpovie `Cappuccino added to the order.` Ak taký produkt v menu nie je, odpovie `Product Mocha does not exist.` Príkaz `myorder` vypíše `Order for Peter:`, potom každý objednaný produkt na samostatný riadok (napríklad `Espresso 2.00 EUR`) v poradí objednania a nakoniec celkovú cenu, napríklad `Total: 10.00 EUR`. Ak je objednávka prázdna, vypíše iba `Your order is empty.`",
+      "Program číta jeden príkaz na riadok a skončí príkazom `exit`. Každá hodnota v príkaze je jedno slovo. Okrem uvedených odpovedí program nevypisuje nič – žiadne menu s možnosťami, uvítanie ani výzvy na zadanie. Odpovede píš presne tak, ako sú uvedené (po anglicky)."
+    ]
+  },
+  "en": {
+    "title": "Cafe Orders",
+    "brief": [
+      "A small cafe needs a simple console system where a customer can look through the drinks and desserts on offer and place an order. Every product on offer has a name and a price. The cafe has one menu with all its products. An order belongs to one customer and holds the list of ordered products and the total price.",
+      "When the program starts, the menu holds these 5 products in this order: Espresso 2.00, Americano 2.80, Cappuccino 3.50, Latte 3.80 and Cheesecake 4.50. Prices are written with a decimal point and always with two decimal places.",
+      "First the customer introduces themselves with the command `name`, followed by their name. The program replies `Hello, Peter!` This name is then used for the order.",
+      "The command `menu` lists all products, each on its own line with its number, name and price, like `1. Espresso 2.00 EUR`. The command `add`, followed by a name and a price (for example Mocha and 4.20), adds a new product to the end of the menu, and the program replies `Mocha added to the menu.`",
+      "The command `find`, followed by some text, lists the products whose name contains that text (letter case does not matter), like `Americano 2.80 EUR`. The command `cheaper`, followed by an amount, lists the products whose price is lower than that amount, in the same form. If no product is found, both commands print `No products found.` Products are always listed in the order they are on the menu.",
+      "The command `order`, followed by a product name, adds that product to the customer's order and the program replies `Cappuccino added to the order.` If there is no such product on the menu, it replies `Product Mocha does not exist.` The command `myorder` prints `Order for Peter:`, then every ordered product on its own line (like `Espresso 2.00 EUR`) in the order they were ordered, and finally the total price, like `Total: 10.00 EUR`. If the order is empty, it prints only `Your order is empty.`",
+      "The program reads one command per line and ends with the command `exit`. Every value in a command is a single word. Apart from the replies above, the program prints nothing – no menu of options, no welcome text, no prompts."
+    ]
+  },
+  "design": {
+    "classes": [
+      {
+        "name": "Product",
+        "role": "item",
+        "properties": [
+          "string Name",
+          "decimal Price"
+        ]
+      },
+      {
+        "name": "Order",
+        "role": "person",
+        "properties": [
+          "string CustomerName",
+          "List<Product> Products",
+          "decimal Total (sum of prices)"
+        ]
+      },
+      {
+        "name": "Menu",
+        "role": "manager",
+        "properties": [
+          "string Name",
+          "List<Product> Products"
+        ],
+        "operations": [
+          "AddProduct(product)",
+          "FindByName(text)",
+          "FindByMaxPrice(price)"
+        ]
+      }
+    ],
+    "link": "Order.Products → Product (one-way: the order knows its products)",
+    "storage": "List<Product> in Menu, List<Product> in Order"
+  },
+  "scenarios": [
+    {
+      "id": "menu-add",
+      "sk": "Výpis menu a pridanie produktu",
+      "en": "Listing the menu and adding a product",
+      "points": 15,
+      "input": [
+        "name Peter",
+        "menu",
+        "add Mocha 4.20",
+        "menu",
+        "exit"
+      ],
+      "expected": [
+        "Hello, Peter!",
+        "1. Espresso 2.00 EUR",
+        "2. Americano 2.80 EUR",
+        "3. Cappuccino 3.50 EUR",
+        "4. Latte 3.80 EUR",
+        "5. Cheesecake 4.50 EUR",
+        "Mocha added to the menu.",
+        "1. Espresso 2.00 EUR",
+        "2. Americano 2.80 EUR",
+        "3. Cappuccino 3.50 EUR",
+        "4. Latte 3.80 EUR",
+        "5. Cheesecake 4.50 EUR",
+        "6. Mocha 4.20 EUR"
+      ]
+    },
+    {
+      "id": "find-name",
+      "sk": "Vyhľadanie podľa názvu",
+      "en": "Searching by name",
+      "points": 25,
+      "input": [
+        "name Peter",
+        "find ame",
+        "find CAKE",
+        "find tea",
+        "exit"
+      ],
+      "expected": [
+        "Hello, Peter!",
+        "Americano 2.80 EUR",
+        "Cheesecake 4.50 EUR",
+        "No products found."
+      ]
+    },
+    {
+      "id": "find-price",
+      "sk": "Vyhľadanie podľa ceny",
+      "en": "Searching by price",
+      "points": 20,
+      "input": [
+        "name Peter",
+        "cheaper 3.50",
+        "cheaper 2.00",
+        "exit"
+      ],
+      "expected": [
+        "Hello, Peter!",
+        "Espresso 2.00 EUR",
+        "Americano 2.80 EUR",
+        "No products found."
+      ]
+    },
+    {
+      "id": "order-total",
+      "sk": "Objednávka a celková cena sú presné",
+      "en": "The order and its total are exact",
+      "points": 25,
+      "input": [
+        "name Peter",
+        "myorder",
+        "order Espresso",
+        "order Cappuccino",
+        "order Cheesecake",
+        "myorder",
+        "exit"
+      ],
+      "expected": [
+        "Hello, Peter!",
+        "Your order is empty.",
+        "Espresso added to the order.",
+        "Cappuccino added to the order.",
+        "Cheesecake added to the order.",
+        "Order for Peter:",
+        "Espresso 2.00 EUR",
+        "Cappuccino 3.50 EUR",
+        "Cheesecake 4.50 EUR",
+        "Total: 10.00 EUR"
+      ]
+    },
+    {
+      "id": "order-missing",
+      "sk": "Objednanie neexistujúceho produktu zlyhá",
+      "en": "Ordering a product that does not exist fails",
+      "points": 15,
+      "input": [
+        "name Peter",
+        "order Mocha",
+        "myorder",
+        "exit"
+      ],
+      "expected": [
+        "Hello, Peter!",
+        "Product Mocha does not exist.",
+        "Your order is empty."
+      ]
+    }
+  ],
+  "check": {
+    "status": "ok",
+    "detail": "5 scenarios pass",
+    "hash": "316877e0cff60252",
+    "at": "2026-11-18"
+  }
+}
